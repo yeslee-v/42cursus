@@ -6,16 +6,15 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 16:22:33 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/04 17:01:21 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/05 15:04:13 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int isprint(int c)
+int	isprint(int c)
 {
-    if ((c >= '!') && (c <= '~'))
-        return (1);
-
-    return (0);
+	if ((c >= '!') && (c <= '~'))
+		return (1);
+	return (0);
 }

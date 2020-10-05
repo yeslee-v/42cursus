@@ -6,19 +6,18 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 16:32:13 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/04 17:02:21 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/05 15:25:40 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_Istsize(t_list *Ist)
+int	ft_lstsize(t_list *lst)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (Ist)
-        i++;
-
-    return (i);
+	i = 0;
+	while (*lst)
+		i++;
+	return (i);
 }

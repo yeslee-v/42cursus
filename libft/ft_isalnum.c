@@ -5,19 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/04 16:12:26 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/04 17:00:17 by yeslee           ###   ########.fr       */
+/*   Created: 2020/10/05 15:26:14 by yeslee            #+#    #+#             */
+/*   Updated: 2020/10/05 15:26:25 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_isalnum(int c)
+int	ft_isalnum(int c)
 {
-    if ((c >= '0') && (c <= '9'))
-        return (1);
-    else if (((c >= 'A') && (c <= 'Z')) || ((c >= 97) && (c <= 122)))
-        return (1);
-
-    return (0);
+	if ((c >= '0') && (c <= '9'))
+		return (1);
+	else if (((c >= 'A') && (c <= 'Z')) || ((c >= 97) && (c <= 122)))
+		return (1);
+	return (0);
 }

@@ -6,14 +6,14 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 16:25:02 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/04 17:02:04 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/05 14:45:01 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_toupper(int c)
+int	ft_toupper(int c)
 {
-    if ((c >= 'a') && (c <= 'Z'))
-        return (c - 'a' + 'A');
+	if ((c >= 'a') && (c <= 'Z'))
+		return (c - 'a' + 'A');
 }
