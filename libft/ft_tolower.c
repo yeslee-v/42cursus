@@ -6,14 +6,14 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 16:31:13 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/04 17:01:54 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/05 15:04:30 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_tolower(int c)
+int	ft_tolower(int c)
 {
-    if ((c >= 'A') && (c <= 'Z'))
-        return (c - 'A' + 'a');
+	if ((c >= 'A') && (c <= 'Z'))
+		return (c - 'A' + 'a');
 }
