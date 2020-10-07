@@ -1,7 +1,7 @@
-cc = gcc
-TARGET = a.out
+NAME = libft.a
+HEADER = ./libft.h
 
-SRC = ./ft_memset.c \
+SRC =  ./ft_memset.c \
 		./ft_bzero.c \
 		./ft_memcpy.c \
 		./ft_memccpy.c \
@@ -20,23 +20,44 @@ SRC = ./ft_memset.c \
 		./ft_isascii.c \
 		./ft_isprint.c \
 		./ft_toupper.c \
-		./ft_tolower.c
+		./ft_tolower.c \
+		./ft_substr.c \
+		./ft_strjoin.c \
+		./ft_strtrim.c \
+		./ft_split.c \
+		./ft_itoa.c \
+		./ft_strmapi.c \
+		./ft_putchar_fd.c \
+		./ft_putstr_fd.c \
+		./ft_putendl_fd.c \
+		./ft_putnbr_fd.c \
+		./ft_lstnew.c \
+		./ft_lstadd_front.c \
+		./ft_lstsize.c \
+		./ft_lstlast.c \
+		./ft_lstadd_back.c \
+		./ft_lstdelone.c \
+		./ft_lstclear.c \
+		./ft_lstiter.c \
+		./ft_lstmap.c
+
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
 
 OBJ = $(SRC:.c=.o)
 
-$(NAME) = libft.o
+all : $(NAME)
 
-CFLAGS = -Wall -Wextra -Werror
-LDFLAGS = -lc
+$(NAME) : $(OBJ)
+	$(CC) -o $@ $^
 
-all : $(TARGET)
-
-$(TARGET) : $(NAME)
-	$(CC) $(LDFLAGS) -o $@ $^
-
-.c.o :
-	$(CC) $(CFLAGS) $@ $<
+%.o : %.c $(HEADER)
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean :
-	rm -f $(OBJS) $(TARGET)
-#  $(NAME), all, clean, fclean, re
+	rm -f $(OBJ)
+
+fclean : clean
+	rm -f $(NAME)
+
+re : fclean all
