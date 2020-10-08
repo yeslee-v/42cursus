@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_Istsize.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/04 16:32:13 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/05 15:25:40 by yeslee           ###   ########.fr       */
+/*   Created: 2020/10/08 15:35:50 by yeslee            #+#    #+#             */
+/*   Updated: 2020/10/08 20:48:31 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+char	ft_strchr(char *str, int c)
 {
-	int	i;
+	int i;
 
-	i = 0;
-	while (*lst)
-		i++;
-	return (i);
+	if (str == '\0')
+		return (0);
+	else
+	{
+		i = 0;
+		while (str[i])
+		{
+			if (str[i] == c)
+				return (*str);
+			i++;
+		}
+	}
+	return (0);
 }

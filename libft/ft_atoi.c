@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 16:33:38 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/05 15:14:49 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/08 21:52:53 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		ft_atoi(const char *str)
 	int	sign;
 	int	result;
 
-	if (str == "\0")
+	if (str == '\0')
 		return (0);
 	i = 0;
 	sign = 1;

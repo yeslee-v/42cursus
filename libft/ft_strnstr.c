@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 15:33:15 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/05 15:56:16 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/08 21:52:34 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,25 @@
 
 char	*strnstr(const char *big, const char *little, size_t len)
 {
-	int i;
-	int j;
+	size_t	i;
+	size_t	j;
 
-	if (*little == "\0")
-		return (0);
+	i = 0;
+	j = 0;
+	if (little[i] == '\0')
+		return ((char *)big);
 	else
 	{
-		i = 0;
-		j = 0;
-		while (big[j])
+		while (big[i])
 		{
-			if (big[j] == little[i])
+			while ((big[i + j] == little[i]) && (i + j) < len)
 			{
-				i++;
-				if (little[i] == "\0")
-					return (*little)
-				}
+				if ((big[i + j] == '\0') && (little[j] == '\0'))
+					return ((char *)big + i);
+				j++;
+			}
+			if (little[j] == '\0')
+				return ((char *)big + i);
 			j++;
 		}
 	}

@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/07 20:22:14 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/08 20:33:12 by yeslee           ###   ########.fr       */
+/*   Created: 2020/10/08 15:36:03 by yeslee            #+#    #+#             */
+/*   Updated: 2020/10/08 20:48:12 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dest, const void *src, int c, size_t len)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	size_t i;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	if (!dest && !src)
-		return (0);
-	while (i < len)
-	{
-		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
-		if (((unsigned char *)src)[i] == (unsigned char)c)
-			return (dest + i + 1);
+	while (dest[i])
 		i++;
+	j = 0;
+	while ((src[j] != '\0') && (i + j + 1) < size)
+	{
+		dest[i + j] = src[j];
+		j++;
 	}
-	return (0);
+	dest[i + j] = '\0';
+	while (src[j])
+		j++;
+	if(size > i)
+		return (i + j);
+	else
+		return (j + size);
 }

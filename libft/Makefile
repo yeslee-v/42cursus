@@ -1,3 +1,6 @@
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+
 NAME = libft.a
 HEADER = ./libft.h
 
@@ -41,8 +44,6 @@ SRC =  ./ft_memset.c \
 		./ft_lstiter.c \
 		./ft_lstmap.c
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
 
 OBJ = $(SRC:.c=.o)
 

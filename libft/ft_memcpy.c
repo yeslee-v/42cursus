@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 17:43:42 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/07 20:21:01 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/08 19:32:59 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	while (n)
 	{
 		*dp++ = *sp++;
-		n--
+		n--;
 	}
 	return (dest);
 }
