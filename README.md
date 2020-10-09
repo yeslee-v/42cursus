@@ -1,3 +1,3 @@
-# 42seoul_cursus
+# 42_cursus
 
 1. libft
