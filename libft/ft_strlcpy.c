@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:17:59 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/08 20:47:37 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/09 21:00:31 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,14 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	size_t	j;
 
 	i = 0;
-	while (src[i] != '\0' && i < size - 1)
+	if (size > 0)
 	{
-		dest[i] = src[i];
-		i++;
-	}
-	while (i < size)
-	{
+		while (src[i] != '\0' && i < size - 1)
+		{
+			dest[i] = src[i];
+			i++;
+		}
 		dest[i] = '\0';
-		i++;
 	}
 	j = 0;
 	while (src[j] != '\0')

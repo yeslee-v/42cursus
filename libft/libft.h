@@ -6,18 +6,18 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 15:07:09 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/08 22:04:45 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/09 21:34:04 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	LIBFT_H
+#ifndef LIBFT_H
 # define LIBFT_H
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stddef.h>
-#include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <string.h>
+# include <stddef.h>
+# include <stdio.h>
 
 void	*ft_memset(void *s, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
@@ -30,7 +30,7 @@ size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlcat(char *dest, const char *src, size_t size);
 
-char	ft_strchr(char *str, int c);
+char	*ft_strchr(const char *str, int c);
 char	*ft_strrchr(char *str, int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_atoi(const char *str);
@@ -43,6 +43,6 @@ int		ft_toupper(int c);
 int		ft_tolower(int c);
 
 void	*ft_calloc(size_t nmemb, size_t size);
-int		ft_strdup(char *c);
+char	*ft_strdup(char *c);
 
 #endif

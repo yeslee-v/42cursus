@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:36:03 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/08 20:48:12 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/09 20:06:36 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	size_t	j;
 
 	i = 0;
+	j = 0;
 	while (dest[i])
 		i++;
-	j = 0;
 	while ((src[j] != '\0') && (i + j + 1) < size)
 	{
 		dest[i + j] = src[j];
@@ -29,7 +29,7 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	dest[i + j] = '\0';
 	while (src[j])
 		j++;
-	if(size > i)
+	if (size > i)
 		return (i + j);
 	else
 		return (j + size);

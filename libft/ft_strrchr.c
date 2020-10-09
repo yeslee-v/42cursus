@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 16:28:48 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/08 21:02:08 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/09 19:32:40 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_strrchr(char *str, int c)
 {
 	int i;
-	
+
 	i = 0;
 	while (str[i])
 		i++;
