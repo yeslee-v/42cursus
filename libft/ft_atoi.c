@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 16:33:38 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/08 21:52:53 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/10 21:14:02 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,28 @@
 
 int		ft_atoi(const char *str)
 {
-	int	i;
 	int	sign;
+	int cnt;
 	int	result;
 
-	if (str == '\0')
-		return (0);
-	i = 0;
 	sign = 1;
-	while (str[i] == ' ' || str[i] == '\t' ||
-			str[i] == '\v' || str[i] == '\n' || str[i] == '\f')
-		i++;
-	while (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i++] == '-')
-			sign = -1;
-	}
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '-')
+		sign = -1;
+	if (*str == '-' || *str == '+')
+		str++;
+	cnt = 0;
 	result = 0;
-	while ((str[i] >= '0') && (str[i] <= '9'))
+	while ((*str >= '0') && (*str <= '9'))
 	{
-		result = (result * 10) + (str[i] - '0');
-		i++;
+		result = (result * 10) + (*str - '0');
+		str++;
+		cnt++;
 	}
+	if (cnt >= 19 && sign == 1)
+		return (-1);
+	else if (cnt >= 19 && sign == -1)
+		return (0);
 	return (sign * result);
 }

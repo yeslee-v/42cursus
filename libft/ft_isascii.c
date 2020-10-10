@@ -6,13 +6,13 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 16:18:49 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/05 15:15:54 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/10 21:39:50 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(signed char c)
+int	ft_isascii(int c)
 {
 	if ((c >= 0) && (c <= 127))
 		return (1);
