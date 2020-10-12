@@ -1,56 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/11 21:49:00 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/12 22:36:30 by yeslee           ###   ########.fr       */
+/*   Created: 2020/10/12 15:20:37 by yeslee            #+#    #+#             */
+/*   Updated: 2020/10/12 22:28:16 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int	ft_size(int n)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int		cnt;
-
-	cnt = 0;
-	while (n > 0)
-	{
-		n = n / 10;
-		cnt++;
-	}
-	return (cnt);
-}
-
-char		*ft_itoa(int n)
-{
-	int		i;
-	int		mod;
-	int		len;
-	char	*c;
+	char			*c;
+	unsigned int	i;
+	unsigned int	size;
 
 	i = 0;
-	len = ft_size(n);
-	if (n > 9)
+	size = ft_strlen(s);
+	while (s[i])
 	{
-		c = malloc(sizeof(char) * (len + 1));
-		while (i < len)
-		{
-			mod = n % 10 + '0';
-			c[i] = mod;
-			n /= 10;
-			i++;
-		}
-	}
-	else
-	{
-		n += '0';
-		c = (char *)malloc(sizeof(char) * 2);
-		c[0] = n;
-		c[1] = '\0';
+		c = malloc(sizeof(char) * (size + 1));
+		*c = (*f)(i, s[i]);
+		i++;
+		c++;
 	}
 	return (c);
 }

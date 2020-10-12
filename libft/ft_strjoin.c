@@ -1,4 +1,5 @@
 /* ************************************************************************** */
+
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
@@ -22,9 +23,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (0);
 	i = ft_strlen(s1);
 	j = ft_strlen(s2);
-	*s3 = malloc(sizeof(char) * (i + j + 1);
+	s3 = malloc(sizeof(char) * (i + j + 1));
+	if (!s3)
+		return (0);
 	while (*s1)
-		*s3++ = (char *)s1++;
+		*s3++ = *(char *)s1++;
 	while (*s2)
 		*s3++ = (char *)s2++;
 	s3[i + j + 1] = '\0';

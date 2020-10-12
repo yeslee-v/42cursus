@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 16:58:33 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/11 20:50:49 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/12 22:21:51 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	{
 		if (*s1 != *set)
 			*s2++ = *s1;
-		*s1++;
+		s1++;
 	}
 	return (s2);
 }
