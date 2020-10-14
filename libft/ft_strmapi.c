@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 15:20:37 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/12 22:28:16 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/14 21:11:10 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,18 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	unsigned int	i;
 	unsigned int	size;
 
+	if (!s || !(*f))
+		return (0);
 	i = 0;
 	size = ft_strlen(s);
+	c = malloc(sizeof(char) * (size + 1));
+	if (!c)
+		return (0);
 	while (s[i])
 	{
-		c = malloc(sizeof(char) * (size + 1));
-		*c = (*f)(i, s[i]);
+		c[i] = (*f)(i, s[i]);
 		i++;
-		c++;
 	}
+	c[i] = '\0';
 	return (c);
 }

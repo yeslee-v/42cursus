@@ -1,35 +1,24 @@
 /* ************************************************************************** */
-
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/11 16:04:36 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/11 16:59:30 by yeslee           ###   ########.fr       */
+/*   Created: 2020/10/14 18:21:40 by yeslee            #+#    #+#             */
+/*   Updated: 2020/10/14 22:00:45 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int		i;
-	int		j;
-	char	*s3;
+	t_list	*node;
 
-	if (!s1 && !s2)
-		return (0);
-	i = ft_strlen(s1);
-	j = ft_strlen(s2);
-	s3 = malloc(sizeof(char) * (i + j + 1));
-	if (!s3)
-		return (0);
-	while (*s1)
-		*s3++ = *(char *)s1++;
-	while (*s2)
-		*s3++ = *(char *)s2++;
-	s3[i + j + 1] = '\0';
-	return (s3);
+	node->next = *lst;
+	while (node)
+		node = node.next;
+	node->next = new->content;
+	new->next = NULL;
 }
