@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:21:40 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/14 22:00:45 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/15 21:34:36 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*node;
+	t_list	*l_next;
 
-	node->next = *lst;
-	while (node)
-		node = node.next;
-	node->next = new->content;
+	if (!**lst || !*new)
+		return ;
+	*l_next = **lst->next;
+	while (*l_next)
+		*l_next = *l_next->next;
+	l_next->next = new;
 	new->next = NULL;
 }

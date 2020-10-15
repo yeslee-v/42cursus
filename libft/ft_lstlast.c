@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 18:31:25 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/14 21:20:19 by yeslee           ###   ########.fr       */
+/*   Created: 2020/10/14 18:17:04 by yeslee            #+#    #+#             */
+/*   Updated: 2020/10/15 20:27:19 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+t_list	*ft_lstlast(t_list *lst)
 {
-
+	if (!*lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }
