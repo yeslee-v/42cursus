@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 16:03:24 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/16 21:48:33 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/17 17:23:28 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	unsigned int	i;
 	unsigned int	j;
 
-	if (!*s || !len)
+	if (!s || !len)
 		return (0);
 	if (start >= ft_strlen(s))
 	{

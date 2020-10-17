@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 21:49:00 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/16 19:38:24 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/17 17:42:34 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static	int	ft_size(int n)
 
 char		*ft_itoa(int n)
 {
+	int		sign;
 	int		i;
 	int		mod;
 	int		len;
@@ -34,7 +35,12 @@ char		*ft_itoa(int n)
 
 	i = 0;
 	len = ft_size(n);
-	if (n > 9)
+	if (n < 0)
+		sign = -1;
+	else
+		sign = 1;
+	n = n * sign;
+	if (n > 9 || n < -9)
 	{
 		c = malloc(sizeof(char) * (len + 1));
 		if (!c)

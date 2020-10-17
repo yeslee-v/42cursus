@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:17:59 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/09 21:00:31 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/17 17:30:01 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	size_t	i;
 	size_t	j;
 
+	if (!dest)
+		return (0);
 	i = 0;
 	if (size > 0)
 	{
