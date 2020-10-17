@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 16:58:33 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/12 22:21:51 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/16 22:17:32 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		i;
 	int		j;
 	char	*s2;
-	
+
 	if (!*s1 && !*set)
 		return (0);
 	i = ft_strlen(s1);
 	j = ft_strlen(s2);
 	s2 = (char *)malloc(sizeof(char) * (i - j + 1));
+	if (!s2)
+		return (0);
 	while (*s1)
 	{
 		if (*s1 != *set)

@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 21:49:00 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/12 22:36:30 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/16 19:38:24 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,13 @@ char		*ft_itoa(int n)
 	if (n > 9)
 	{
 		c = malloc(sizeof(char) * (len + 1));
-		while (i < len)
+		if (!c)
+			return (0);
+		while (i++ < len)
 		{
 			mod = n % 10 + '0';
 			c[i] = mod;
 			n /= 10;
-			i++;
 		}
 	}
 	else
