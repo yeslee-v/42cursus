@@ -6,58 +6,57 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 21:49:00 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/17 17:42:34 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/18 15:47:41 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int	ft_size(int n)
+static size_t	ft_size(int n)
 {
-	int		cnt;
+	size_t	cnt;
 
-	cnt = 0;
-	while (n > 0)
+	cnt = 1;
+	while (n > 9)
 	{
-		n = n / 10;
+		n /= 10;
 		cnt++;
 	}
 	return (cnt);
 }
 
-char		*ft_itoa(int n)
+static char		*ft_input(size_t i, size_t len, int n, char *c)
 {
-	int		sign;
-	int		i;
-	int		mod;
-	int		len;
+	while (i < len)
+	{
+		c[len - i - 1] = n % 10 + '0';
+		n /= 10;
+		i++;
+	}
+	return (c);
+}
+
+char			*ft_itoa(int n)
+{
+	size_t	i;
+	size_t	len;
 	char	*c;
 
-	i = 0;
-	len = ft_size(n);
+	len = 0;
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
 	if (n < 0)
-		sign = -1;
-	else
-		sign = 1;
-	n = n * sign;
-	if (n > 9 || n < -9)
 	{
-		c = malloc(sizeof(char) * (len + 1));
-		if (!c)
-			return (0);
-		while (i++ < len)
-		{
-			mod = n % 10 + '0';
-			c[i] = mod;
-			n /= 10;
-		}
+		len += 1;
+		n *= -1;
 	}
-	else
-	{
-		n += '0';
-		c = (char *)malloc(sizeof(char) * 2);
-		c[0] = n;
-		c[1] = '\0';
-	}
+	len += ft_size(n);
+	i = 0;
+	if (!(c = malloc(len + 1)))
+		return (0);
+	ft_input(i, len, n, c);
+	if (len != ft_size(n))
+		c[0] = '-';
+	c[len] = '\0';
 	return (c);
 }
