@@ -27,7 +27,7 @@ OBJ_BONUS = $(SRC_BONUS:.c=.o)
 all : $(NAME)
 
 .c.o : $(SRC) $(SRC_BONUS)
-	$(CC) $(CFLAGS) -c $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 bonus : $(OBJ_BONUS)
 	$(AR) $(ARFLAGS) $(NAME)
