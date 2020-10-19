@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 21:47:25 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/18 22:00:01 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/19 21:15:42 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,25 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int		size;
+	t_list	*head;
 	t_list	*node;
+	t_list	*temp;
 
-	size = ft_lstsize(lst);
-	if (!(node = malloc(sizeof(t_list) * (size + 1))))
+	if (!lst || !f || !del)
 		return (0);
-	while (lst->next)
+	if (!(head = ft_lstnew((*f)(lst->content))))
+		return (0);
+	node = head;
+	temp = lst->next;
+	while (temp)
 	{
-		(*f)(lst);
-		ft_lstadd_back(lst);
+		if (!(node->next = ft_lstnew((*f)(temp->content))))
+		{
+			ft_lstclear(&head, del);
+			return (0);
+		}
+		node = node->next;
+		temp = temp->next;
+	}
+	return (head);
 }
