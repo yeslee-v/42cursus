@@ -30,7 +30,7 @@ all : $(NAME)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 bonus : $(OBJ_BONUS)
-	$(AR) $(ARFLAGS) $(NAME)
+	$(AR) $(ARFLAGS) $(NAME) $^
 
 $(NAME) : $(OBJ) $(OBJ_BONUS) $(HEADER)
 	$(AR) $(ARFLAGS) $@ $^
