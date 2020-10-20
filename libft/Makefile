@@ -26,14 +26,17 @@ OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 all : $(NAME)
 
-.c.o : $(SRC) $(SRC_BONUS)
-	$(CC) $(CFLAGS) -c -o $@ $<
+$(NAME) : $(OBJ) $(HEADER)
+	$(AR) $(ARFLAGS) $@ $^
 
-bonus : $(OBJ_BONUS)
+bonus : $(OBJ) $(OBJ_BONUS) $(HEADER)
 	$(AR) $(ARFLAGS) $(NAME) $^
 
-$(NAME) : $(OBJ) $(OBJ_BONUS) $(HEADER)
-	$(AR) $(ARFLAGS) $@ $^
+$(OBJ) : $(SRC)
+	$(CC) $(CFLAGS) -c $^
+	
+$(OBJ_BONUS) : $(SRC_BONUS)
+	$(CC) $(CFLAGS) -c $^
 
 clean :
 	$(RM) $(OBJ) $(OBJ_BONUS)
