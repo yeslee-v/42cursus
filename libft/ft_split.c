@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 21:37:05 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/20 11:29:55 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/20 16:46:42 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,53 +16,68 @@ static size_t	ft_cnt(char const *s, char c)
 {
 	size_t	cnt;
 
-	cnt = 1;
+	cnt = 0;
 	while (*s)
 	{
 		if (*s == c)
+			s++;
+		else
+		{
+			while (*s && *s != c)
+				s++;
 			cnt++;
-		s++;
+		}
 	}
 	return (cnt);
 }
 
-char	**ft_split(char const *s, char c)
+char			**ft_split(char const *s, char c)
 {
 	size_t	i;
 	size_t	j;
+	size_t	k;
+	size_t	l;
 	size_t	cnt;
 	char	**all;
-	char	*floor;
 
 	if (!s)
 		return (0);
 	if (!(all = malloc(sizeof(char *) * (ft_cnt(s, c) + 1))))
 		return (0);
 	i = 0;
-	j = 0;
+	k = 0;
 	while (s[i])
 	{
 		cnt = 0;
-		if ((char)s[i] != c)
-		{
-			cnt++;
+		while (s[i] == c)
 			i++;
-		}
-		else
+		if (!s[i])
+			break ;
+		while (s[i] != c && s[i])
 		{
-			if (!(floor = malloc(cnt + 1)))
-				return (0);
-			while (i < cnt)
-			{
-				floor[i] = s[i + cnt];
-				i++;
-			}
-			floor[i] = '\0';
-			*all[j] = *floor;
+			i++;
+			cnt++;
 		}
-		i++;
-		j++;
+		if (!(all[k] = malloc(cnt + 1)))
+		{
+			while (k > 0)
+			{
+				k--;
+				free(all[k]);
+			}
+			return (0);
+		}
+		l = 0;
+		j = i - cnt;
+		while (j < i)
+		{
+			all[k][l] = (char)s[j];
+			j++;
+			l++;
+		}
+		all[k][l] = '\0';
+		k++;
 	}
-	*all[j] = '\0';
+	all[k] = 0;
 	return (all);
 }
