@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 21:37:05 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/20 18:01:11 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/20 18:57:59 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,19 @@ static size_t	ft_cnt(char const *s, char c)
 		}
 	}
 	return (cnt);
+}
+
+static int		*ft_n_malloc(char **all, size_t k, size_t cnt)
+{
+	if (!(all[k] = malloc(cnt + 1)))
+	{
+		while (k > 0)
+		{
+			k--;
+			free(all[k]);
+		}
+	}
+	return (0);
 }
 
 char			**ft_split(char const *s, char c)
@@ -58,15 +71,7 @@ char			**ft_split(char const *s, char c)
 			i++;
 			cnt++;
 		}
-		if (!(all[k] = malloc(cnt + 1)))
-		{
-			while (k > 0)
-			{
-				k--;
-				free(all[k]);
-			}
-			return (0);
-		}
+		ft_n_malloc(all, k, cnt);
 		l = 0;
 		j = i - cnt;
 		while (j < i)
