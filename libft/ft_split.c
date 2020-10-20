@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 21:37:05 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/19 23:43:03 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/20 11:29:55 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (0);
-	if (!(*all = malloc(sizeof(char *) * (ft_cnt(s, c) + 1))))
+	if (!(all = malloc(sizeof(char *) * (ft_cnt(s, c) + 1))))
 		return (0);
 	i = 0;
 	j = 0;
@@ -58,7 +58,7 @@ char	**ft_split(char const *s, char c)
 				i++;
 			}
 			floor[i] = '\0';
-			all[j] = floor;
+			*all[j] = *floor;
 		}
 		i++;
 		j++;
