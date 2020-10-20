@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 21:37:05 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/20 18:57:59 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/20 21:10:23 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,45 +44,56 @@ static int		*ft_n_malloc(char **all, size_t k, size_t cnt)
 	return (0);
 }
 
-char			**ft_split(char const *s, char c)
+static size_t	ft_index(size_t *i, char const *s, char c)
+{
+	size_t	cnt;
+
+	cnt = 0;
+	while (s[*i] != c && s[*i])
+	{
+		(*i)++;
+		cnt++;
+	}
+	return (cnt);
+}
+
+static void		ft_fill(char const *s, char c, char **all)
 {
 	size_t	i;
 	size_t	j;
 	size_t	k;
 	size_t	l;
 	size_t	cnt;
-	char	**all;
 
-	if (!s)
-		return (0);
-	if (!(all = malloc(sizeof(char *) * (ft_cnt(s, c) + 1))))
-		return (0);
 	i = 0;
 	k = 0;
 	while (s[i])
 	{
-		cnt = 0;
 		while (s[i] == c)
 			i++;
 		if (!s[i])
 			break ;
-		while (s[i] != c && s[i])
-		{
-			i++;
-			cnt++;
-		}
+		cnt = ft_index(&i, s, c);
 		ft_n_malloc(all, k, cnt);
 		l = 0;
 		j = i - cnt;
 		while (j < i)
-		{
-			all[k][l] = (char)s[j];
-			j++;
-			l++;
-		}
-		all[k][l] = '\0';
-		k++;
+			all[k][l++] = (char)s[j++];
+		all[k++][l] = '\0';
 	}
-	all[k] = 0;
+}
+
+char			**ft_split(char const *s, char c)
+{
+	size_t	len;
+	char	**all;
+
+	if (!s)
+		return (NULL);
+	len = ft_cnt(s, c);
+	if (!(all = malloc(sizeof(char *) * (len + 1))))
+		return (NULL);
+	ft_fill(s, c, all);
+	all[len] = NULL;
 	return (all);
 }
