@@ -19,7 +19,7 @@ $(NAME) : $(OBJ) $(HEADER)
 	$(AR) $(ARFLAGS) $@ $^
 
 $(OBJ) : $(SRC)
-	$(CC) $(CFLAGS) -c $^
+	$(CC) $(CFLAGS) -c -D BUFFER_SIZE=XX $^
 	
 clean :
 	$(RM) $(OBJ)
