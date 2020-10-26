@@ -6,13 +6,33 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 20:48:06 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/25 21:08:33 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/26 21:43:14 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strdup(char *c)
+{
+	int		i;
+	int		j;
+	char	*str;
+
+	i = ft_strlen(c);
+	str = malloc(sizeof(char) * (i + 1));
+	j = 0;
+	if (!str)
+		return (0);
+	while (c[j])
+	{
+		str[j] = c[j];
+		j++;
+	}
+	str[j] = '\0';
+	return (str);
+}
+
+char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	i;
 	size_t	j;
