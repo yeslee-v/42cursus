@@ -6,11 +6,21 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 20:48:06 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/26 21:43:14 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/27 15:19:02 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+size_t	ft_strlen(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 char	*ft_strdup(char *c)
 {
@@ -52,4 +62,20 @@ char	*ft_strjoin(char *s1, char *s2)
 		s3[k++] = *(s2++);
 	s3[k] = '\0';
 	return (s3);
+}
+
+char	*ft_strchr(char *str, int c)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (&str[i]);
+		i++;
+	}
+	if (str[i] == c)
+		return (&str[i]);
+	return (0);
 }
