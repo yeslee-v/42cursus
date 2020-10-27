@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/25 20:48:22 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/27 13:13:54 by yeslee           ###   ########.fr       */
+/*   Created: 2020/10/27 13:14:23 by yeslee            #+#    #+#             */
+/*   Updated: 2020/10/27 13:16:32 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include <stdio.h>
+#include "get_next_line.h"
 
-#include <fcntl.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-char	*get_next_line(int fd, char **line);
-char	*ft_strdup(char *c);
-char	*ft_strjoin(char *s1, char *s2);
-
-# endif
+int main(void)
+{
+	char *line = 0;
+	int ret;
+	int fd;
+	fd = open("your_file_name", O_RDONLY);
+	while ((ret = get_next_line(fd, &line)) > 0)
+	{
+		printf("%s\n", line);
+		free(line);
+	}
+	printf("%s\n", line);
+	free(line);
+	return (0);
+}
