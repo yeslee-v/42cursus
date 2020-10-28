@@ -6,13 +6,13 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 20:48:06 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/27 15:19:02 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/28 21:52:10 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *s)
+int		ft_strlen(char *s)
 {
 	int	i;
 

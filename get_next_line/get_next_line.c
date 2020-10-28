@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 20:47:55 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/27 21:52:51 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/28 22:01:41 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,18 @@ char	*ft_strnew(size_t size)
 	return (str);
 }
 
+void	ft_strclr(char *s)
+{
+	if (s)
+	{
+		while (*s)
+		{
+			*s = '\0';
+			s++;
+		}
+	}
+}
+
 char	*check_remainder(char *remainder, char **line)
 {
 	char	*p_n;
@@ -46,7 +58,7 @@ char	*check_remainder(char *remainder, char **line)
 	p_n = NULL;
 	if (remainder)
 	{
-		if (p_n = ft_strchr(remainder, '\n'))
+		if ((p_n = ft_strchr(remainder, '\n')))
 		{
 			*p_n = '\0';
 			*line = ft_strdup(remainder);
@@ -66,16 +78,16 @@ char	*check_remainder(char *remainder, char **line)
 	return (p_n);
 }
 
-char	*get_next_line(int fd, char **line)
+int		get_next_line(int fd, char **line)
 {
 	char	buf[BUFFER_SIZE + 1];
 	int		byte_was_read;
 	char	*p_n;
 	static char	*remainder;
+	char	*tmp;
 
-	flag = 1;
-	p_n = check_remainder(remainder, *line);
-	while (byte_was_read = read(fd, buf, BUFFER_SIZE))
+	p_n = check_remainder(remainder, line);
+	while (!p_n && (byte_was_read = read(fd, buf, BUFFER_SIZE)))
 	{
 		buf[byte_was_read] = '\0';
 		if ((p_n = ft_strchr(buf, '\n')))
@@ -84,11 +96,13 @@ char	*get_next_line(int fd, char **line)
 			p_n++;
 			remainder = ft_strdup(p_n);
 		}
+		tmp = *line;
 		*line = ft_strjoin(*line, buf);
+		free(tmp);
 	}
-	return (0);
+	return (byte_was_read || ft_strlen(remainder) || ft_strlen(*line)) ? 1 : 0;
 }
-
+/*
 int main(void)
 {
 	char	*line;
@@ -99,4 +113,4 @@ int main(void)
 	printf("1. %s\n\n", line);
 	get_next_line(fd, &line);
 	printf("2. %s\n", line);
-}
+}*/
