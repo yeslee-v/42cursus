@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 20:47:55 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/29 21:14:55 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/29 21:25:52 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,20 @@ int		get_next_line(int fd, char **line)
 {
 	static char	*isremain; // check '\n'
 	char		buf[BUFFER_SIZE + 1];
-	char		*tmp;
 
 	if (fd < 0 || !line)
 		return (-1);
-	if (!(tmp = malloc(sizeof(char) + 1)))
+	if (!(isremain = malloc(sizeof(char) + 1)))
 		return (-1);
 	while (read(fd, buf, BUFFER_SIZE) != -1)
 	{
-		tmp = ft_strjoin(tmp, buf);
+		isremain = ft_strjoin(isremain, buf);
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}
-	while (*tmp != '\n')
-		**line++ = tmp++;
-	isremain = ft_strdup(tmp + 1);
+	while (*isremain != '\n')
+		**line++ = isremain++;
+	isremain = ft_strdup(isremain + 1);
 	
 }
 
