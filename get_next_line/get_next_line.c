@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 20:47:55 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/29 21:25:52 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/30 11:52:49 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,35 @@
 
 int		get_next_line(int fd, char **line)
 {
-	static char	*isremain; // check '\n'
+	static char	*isremain; // check '\n', if don't initailize, fill 0 automatically
 	char		buf[BUFFER_SIZE + 1];
+	char		*tmp;
+	int			reader; // read에서 얼마만큼 byte를 읽어왔는지
 
-	if (fd < 0 || !line)
+	if (fd < 0 || !line || BUFFER_SIZE < 0)
 		return (-1);
-	if (!(isremain = malloc(sizeof(char) + 1)))
+	if (!(isremain = malloc(sizeof(char) + 1))) // malloc(1) is also correct!
 		return (-1);
-	while (read(fd, buf, BUFFER_SIZE) != -1)
+	while ((readder = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		isremain = ft_strjoin(isremain, buf);
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}
 	while (*isremain != '\n')
-		**line++ = isremain++;
-	isremain = ft_strdup(isremain + 1);
-	
+		tmp = ft_strdup(isremain);
+	isremain = '\0';
+	 = tmp
 }
 
 int main(void)
 {
 	char *line = 0;
-	int ret;
+	int result;
 	int fd;
-	fd = open("your_file_name", O_RDONLY);
-	while ((ret = get_next_line(fd, &line)) > 0)
+
+	fd = open("test.txt", O_RDONLY);
+	while ((result = get_next_line(fd, &line)) > 0)
 	{
 		printf("%s\n", line);
 		free(line);
