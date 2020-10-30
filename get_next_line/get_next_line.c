@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 20:47:55 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/30 13:58:49 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/30 21:10:59 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,28 @@ int		get_next_line(int fd, char **line)
 {
 	static char	*isremain; // check '\n', if don't initailize, fill 0 automatically
 	char		buf[BUFFER_SIZE + 1];
-	char		*tmp;
+	int			idx;
 	int			reader; // read에서 얼마만큼 byte를 읽어왔는지
 
 	if (fd < 0 || !line || BUFFER_SIZE < 0)
 		return (-1);
 	if (!(isremain = malloc(sizeof(char) + 1))) // malloc(1) is also correct!
 		return (-1);
-	while ((readder = read(fd, buf, BUFFER_SIZE)) > 0)
+	if (!(line = malloc(sizeof(char *) + 1)))
+		return (-1);
+	while (!(ft_strchr(isremain, '\n')) && 
+			((reader = read(fd, buf, BUFFER_SIZE)) > 0))
 	{
+		buf[reader] = '\0';
 		isremain = ft_strjoin(isremain, buf);
-		if (ft_strchr(buf, '\n'))
-			break ;
 	}
-	while (*isremain != '\n')
-		*tmp++ = *isremain++;
-	line = tmp;
-	free(tmp);
-	*isremain = '\0';
-	isremain = ft_strdup(isremain + 1);	
+	idx = -1;
+	while (isremain[++idx] != '\n')
+		*line[idx] = isremain[idx];
+	*line[idx] = '\0';
+	isremain = ft_strdup(&isremain[idx + 1]);
 }
-
+/*
 int main(void)
 {
 	char *line = 0;
@@ -53,4 +54,4 @@ int main(void)
 	printf("%s\n", line);
 	free(line);
 	return (0);
-}
+}*/
