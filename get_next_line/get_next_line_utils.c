@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 20:48:06 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/28 21:52:10 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/30 22:46:17 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int		ft_strlen(char *s)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i])
 		i++;
 	return (i);
@@ -28,6 +30,8 @@ char	*ft_strdup(char *c)
 	int		j;
 	char	*str;
 
+	if (!c)
+		return (0);
 	i = ft_strlen(c);
 	str = malloc(sizeof(char) * (i + 1));
 	j = 0;
@@ -44,23 +48,33 @@ char	*ft_strdup(char *c)
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	size_t	i;
-	size_t	j;
-	size_t	k;
+	int		i;
+	int		j;
+	int		k;
 	char	*s3;
 
 	if (!s1)
+	{
+		free(s1);
+		return (s2);
+	}
+	if (!(s3 = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
 		return (0);
-	i = ft_strlen(s1);
-	j = ft_strlen(s2);
-	if (!(s3 = (char *)malloc(sizeof(char) * (i + j + 1))))
-		return (0);
+	i = -1;
+	j = -1;
 	k = 0;
-	while (*s1)
-		s3[k++] = *(s1++);
-	while (*s2)
-		s3[k++] = *(s2++);
+	while (s1[++i])
+	{
+		s3[k] = s1[i];
+		k++;
+	}
+	while (s2[++j])
+	{
+		s3[k] = s2[j];
+		k++;
+	}
 	s3[k] = '\0';
+	free(s1);
 	return (s3);
 }
 
@@ -69,6 +83,8 @@ char	*ft_strchr(char *str, int c)
 	int i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str[i])
 	{
 		if (str[i] == c)
