@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 20:47:55 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/30 11:52:49 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/30 13:58:49 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ int		get_next_line(int fd, char **line)
 			break ;
 	}
 	while (*isremain != '\n')
-		tmp = ft_strdup(isremain);
-	isremain = '\0';
-	 = tmp
+		*tmp++ = *isremain++;
+	line = tmp;
+	free(tmp);
+	*isremain = '\0';
+	isremain = ft_strdup(isremain + 1);	
 }
 
 int main(void)
