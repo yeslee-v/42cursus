@@ -6,43 +6,30 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 20:47:55 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/31 17:30:09 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/31 22:30:21 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "get_next_line.h"
 
-void	get_current_line(char **line, char **isremain)
+int		get_current_line(char **line, char **isremain, char *tmp)
 {
-	int			idx;
-	int			j;
-	char		*tmp;
+	char	*save;
 
-	idx = 0;
-	while ((*isremain)[idx] != '\n' && (*isremain)[idx])
-		idx++;
-	if (!(tmp = (char *)malloc(idx + 1)))
-		return ;
-	j = 0;
-	while (j < idx)
+	if (tmp)
 	{
-		tmp[j] = (*isremain)[j];
-		j++;
-	}
-	tmp[j] = '\0';
-	//printf("* %c", isremain[idx + 1]);
-	*line = tmp;
-	if ((*isremain)[idx] == '\n')
-	{
-		tmp = ft_strdup(*isremain + (idx + 1));
+		*tmp = '\0';
+		*line = ft_strdup(*isremain);
+		save = ft_strdup(tmp + 1);
 		free(*isremain);
-		*isremain = tmp;
-		printf("hello: %s\n", *isremain);
-		return ;
+		*isremain = save;
+		return (1);
 	}
-	else
-		*isremain = NULL;
+	*line = ft_strdup(*isremain);
+	free(*isremain);
+	*isremain = NULL;
+	return (0);
 }
 
 int		get_next_line(int fd, char **line)
@@ -54,10 +41,9 @@ int		get_next_line(int fd, char **line)
 
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	if (!(isremain = (char *)malloc(1)))
-		return (-1);
-	printf("Debugging: %s\n", isremain);
-	while (!(ft_strchr(isremain, '\n')) && 
+	if (!isremain)
+		isremain = ft_strdup("");
+	while (!(tmp = ft_strchr(isremain, '\n')) && 
 			((reader = read(fd, buf, BUFFER_SIZE)) > 0))
 	{
 		buf[reader] = '\0';
@@ -67,10 +53,5 @@ int		get_next_line(int fd, char **line)
 	}
 	if (reader < 0)
 		return (-1);
-	else if (!reader)
-		return (0);
-	get_current_line(line, &isremain);
-	if (!isremain)
-		return (0);
-	return (1);
+	return (get_current_line(line, &isremain, tmp));
 }

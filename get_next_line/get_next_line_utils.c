@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 20:48:06 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/31 17:30:11 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/31 21:45:02 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*ft_strchr(char *str, int c)
 
 	i = 0;
 	if (!str)
-		return (0);
+		return (NULL);
 	while (str[i])
 	{
 		if (str[i] == c)
@@ -87,5 +87,5 @@ char	*ft_strchr(char *str, int c)
 	}
 	if (str[i] == c)
 		return (&str[i]);
-	return (0);
+	return (NULL);
 }
