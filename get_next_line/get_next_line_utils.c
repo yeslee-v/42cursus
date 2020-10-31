@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 20:48:06 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/30 22:46:17 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/10/31 17:30:11 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		k;
 	char	*s3;
 
-	if (!s1)
-	{
-		free(s1);
-		return (s2);
-	}
 	if (!(s3 = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
 		return (0);
 	i = -1;
@@ -74,7 +69,6 @@ char	*ft_strjoin(char *s1, char *s2)
 		k++;
 	}
 	s3[k] = '\0';
-	free(s1);
 	return (s3);
 }
 
