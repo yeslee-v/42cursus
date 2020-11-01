@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 16:26:35 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/01 17:30:08 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/11/01 17:34:08 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		get_next_line(int fd, char **line)
 	if (fd < 0 || fd > OPEN_MAX || !line || BUFFER_SIZE <= 0)
 		return (-1);
 	if (!isremains[fd])
-		isremains[fd] = 0;
+		isremains[fd] = ft_strdup("");
 	while (!(tmp = ft_strchr(isremains[fd], '\n')) &&
 			((reader = read(fd, buf, BUFFER_SIZE)) > 0))
 	{
