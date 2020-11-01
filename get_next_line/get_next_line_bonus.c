@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/25 20:47:55 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/01 16:24:33 by yeslee           ###   ########.fr       */
+/*   Created: 2020/11/01 16:26:35 by yeslee            #+#    #+#             */
+/*   Updated: 2020/11/01 17:30:08 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int		get_current_line(char **line, char **isremain, char *tmp)
 {
@@ -33,24 +33,24 @@ int		get_current_line(char **line, char **isremain, char *tmp)
 
 int		get_next_line(int fd, char **line)
 {
-	static char	*isremain;
+	static char	*isremains[OPEN_MAX];
 	char		buf[BUFFER_SIZE + 1];
 	char		*tmp;
 	int			reader;
 
-	if (fd < 0 || !line || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd > OPEN_MAX || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	if (!isremain)
-		isremain = ft_strdup("");
-	while (!(tmp = ft_strchr(isremain, '\n')) &&
+	if (!isremains[fd])
+		isremains[fd] = 0;
+	while (!(tmp = ft_strchr(isremains[fd], '\n')) &&
 			((reader = read(fd, buf, BUFFER_SIZE)) > 0))
 	{
 		buf[reader] = '\0';
-		tmp = ft_strjoin(isremain, buf);
-		free(isremain);
-		isremain = tmp;
+		tmp = ft_strjoin(isremains[fd], buf);
+		free(isremains[fd]);
+		isremains[fd] = tmp;
 	}
 	if (reader < 0)
 		return (-1);
-	return (get_current_line(line, &isremain, tmp));
+	return (get_current_line(line, &isremains[fd], tmp));
 }
