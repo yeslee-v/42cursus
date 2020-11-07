@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/05 22:11:57 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/07 20:01:37 by yeslee           ###   ########.fr       */
+/*   Created: 2020/10/08 15:35:50 by yeslee            #+#    #+#             */
+/*   Updated: 2020/10/09 21:54:53 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "libft.h"
 
-int	ft_printf(const char *, ...)
+char	*ft_strchr(const char *str, int c)
 {
-		
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return ((char *)&str[i]);
+		i++;
+	}
+	if (str[i] == c)
+		return ((char *)&str[i]);
+	return (0);
 }
