@@ -6,10 +6,13 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/05 22:13:13 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/11/07 15:53:39 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#IFEDEF
-#DEFINE
-#ENDIF
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+
+# include <stdarg.h>
+
+#endif

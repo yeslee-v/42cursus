@@ -6,10 +6,10 @@ ARFLAGS = rc
 
 RM = rm -f
 
-NAME = libftprintf.a
-HEADER = ./ft_printf.h
+NAME = libft.a
+HEADER = ./libft.h
 
-SRC = ft_printf.c libft/ft_printf_utils.c
+SRC = 
 
 SRC_BONUS = 
 
@@ -38,4 +38,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re bonus
