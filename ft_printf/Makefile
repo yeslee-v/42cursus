@@ -9,7 +9,7 @@ RM = rm -f
 NAME = libftprintf.a
 HEADER = ./ft_printf.h
 
-SRC = ft_printf.c libft/ft_printf_utils.c
+SRC = ft_printf.c
 
 SRC_BONUS = 
 
