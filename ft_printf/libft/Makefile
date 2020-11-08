@@ -6,8 +6,8 @@ ARFLAGS = rc
 
 RM = rm -f
 
-NAME = libft.a
-HEADER = ./libft.h
+NAME = libftprintf.a
+HEADER = ../ft_printf.h
 
 SRC = 
 
