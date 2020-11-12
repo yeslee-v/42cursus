@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:03:51 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/12 15:59:27 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/11/12 17:31:14 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_printf(const char *str, ...);
 int main()
 {
 	printf("%d\n", 123);
-//	ft_printf("%d\n", 123);
+	ft_printf("%d\n", 123);
 	
 /*	printf("%8d\n", 123);
 //	ft_printf("%8d\n", 123);
