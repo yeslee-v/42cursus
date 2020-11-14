@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/14 14:50:24 by yeslee           ###   ########.fr       */
+/*   Created: 2020/10/08 20:04:21 by yeslee            #+#    #+#             */
+/*   Updated: 2020/10/10 15:53:49 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <stdlib.h>
-# include <unistd.h>
+char	*ft_strdup(char *c)
+{
+	int		i;
+	int		j;
+	char	*str;
 
-int	ft_normal_d(const char *str, ...);
-
-#endif
+	i = ft_strlen(c);
+	str = malloc(sizeof(char) * (i + 1));
+	j = 0;
+	if (!str)
+		return (0);
+	while (c[j])
+	{
+		str[j] = c[j];
+		j++;
+	}
+	str[j] = '\0';
+	return (str);
+}
