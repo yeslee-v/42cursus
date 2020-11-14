@@ -6,13 +6,13 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 16:33:38 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/10 21:14:02 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/11/14 20:41:45 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+int		ft_atoi(char *str)
 {
 	int	sign;
 	int cnt;

@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 15:07:09 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/13 15:36:00 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/11/14 21:18:27 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char				*ft_strrchr(char *str, int c);
 char				*ft_strnstr(const char *big,
 		const char *little, size_t len);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
-int					ft_atoi(const char *str);
+int					ft_atoi(char *str);
 void				*ft_calloc(size_t nmemb, size_t size);
 char				*ft_strdup(char *c);
 
@@ -37,13 +37,5 @@ char				*ft_strtrim(char const *s1, char const *set);
 char				**ft_split(char const *s, char c);
 char				*ft_itoa(int n);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-
-typedef	struct		printf_list
-{
-	int	flag;
-	int	width;
-	int dot;
-	int	precision;
-}					flag_list;
 
 #endif
