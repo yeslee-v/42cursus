@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_reset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/15 15:24:14 by yeslee           ###   ########.fr       */
+/*   Created: 2020/11/15 14:42:58 by yeslee            #+#    #+#             */
+/*   Updated: 2020/11/15 15:28:26 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-
-# include <stdarg.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include "./libft/libft.h"
-
-void	ft_normal_d(const char *str, ...);
+#include "ft_printf.h"
 
 typedef	struct	s_list {
-	char	right;
-//	char	plus;
-	char	left;
+	s_list.right = 0;
+//	s_list.plus = 0;
+	s_list.left = 0;
 
-	int		flag;
-	int		width;
-	int		precision;
-
-	char	*print;
-
-	int		result;
-	int		cnt;
-	int		len;
+	s_list.flag = 0;
+	s_list.width = 0;
+	s_list.precision = 0;
+	
+	s_list->print = 0;
+	
+	s_list.result = 0;
+	s_list.cnt = 1;
+	s_list.len = 0;
 }				t_list;
-
-#endif
