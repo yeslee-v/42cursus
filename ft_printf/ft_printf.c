@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/15 15:15:41 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/15 15:28:28 by yeslee           ###   ########.fr       */
+/*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
+/*   Updated: 2020/11/16 18:06:23 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.c"
-#include "./libft/libft.h"
+#include "ft_printf.h"
 
 int	ft_printf(const char *str, ...)
 {
@@ -19,5 +18,18 @@ int	ft_printf(const char *str, ...)
 	va_list	ap;
 
 	va_start(ap, str);
-	lst.result = va_arg(ap, int); // 
+	while (*str)
+	{
+		if (*str != '%')
+			ft_putchar(*str);
+		else if (*str == '%')
+		{
+			if (*str == ' ' ? lst.space = ' ' : lst.space = 0)
+			if (*str == '+' ? lst.space = '+' : lst.space = 0)
+			if (*str == '-' ? lst.space = '-' : lst.space = 0)
+			if (*str == ' ' ? lst.space = 1 : lst.space = 0)
+			if (*str == ' ' ? lst.space = 1 : lst.space = 0)
+		}
+		str++;
+	}
 }
