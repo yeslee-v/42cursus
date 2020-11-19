@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 14:42:58 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/18 20:40:30 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/11/19 19:32:59 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,16 @@ int	ft_reset(t_list lst)
 		return (0);
 	else
 	{
-		t_list.space = 0;
+		//t_list.space = 0;
 		//t_list.plus = 0;
-		t_list.left = 0;
-		//t_list.zero = 0;
-		t_list.sharp = 0;
+		t_list.left = '0';
+		t_list.zero = '0';
+		//t_list.sharp = 0;
 
 		t_list.width = 0;
-		t_list.dot = 0;
 		t_list.prec = 0;
 
-		t_list.type = 0;
+		t_list.type = '0';
 
 		t_list.len = 0;
 

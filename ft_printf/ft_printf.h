@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/19 17:33:45 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/11/19 19:33:20 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,13 @@
 char	ft_istype(char c);
 
 typedef	struct	s_list {
-	int		space;
+//	int		space;
 //	char	plus;
 	char	left;
-//	char	zero;
-	char	sharp;
+	char	zero;
+//	char	sharp;
 
 	int		width;
-	int		dot;
 	int		prec;	// precision
 
 	char	type;	// cspdiuxX%

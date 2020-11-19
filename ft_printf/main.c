@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:03:51 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/19 17:33:48 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/11/19 19:40:07 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int main()
 //	printf("%d\n", printf("%d\n", 123));
 //	printf("%d\n", ft_printf("%d\n", 123));
 	
-//	printf("printf: %0*d\n", 8, 123);
+//	printf("printf: %0*d\n", 8, 123); // 우리 수준에선 놉
+//	printf("hello%d", printf("%d\n", 567));
 	ft_printf("hello%05.2d", 123);
 
 	//printf("%-08d\n", 123);	// flag '0' is ignored
