@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:03:51 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/18 20:40:33 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/11/19 17:33:48 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ int main()
 //	printf("%d\n", ft_printf("%d\n", 123));
 	
 //	printf("printf: %0*d\n", 8, 123);
-	ft_printf("ft:%2.3d", 123);
-
-//	printf("%d\n", printf("%.5d\n", 234));
-//	printf("%d\n", ft_printf("%.5d\n", 234));
+	ft_printf("hello%05.2d", 123);
 
 	//printf("%-08d\n", 123);	// flag '0' is ignored
 
