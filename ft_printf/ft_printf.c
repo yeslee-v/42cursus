@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/19 19:47:17 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/11/20 17:38:53 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,19 @@ int	ft_printf(const char *str, ...)
 		else
 		{
 			str++;
-			while (ft_istype(*str) == '0')
+			while (ft_type(*str) == '0')
 			{
+				//printf("str: %c\n", *str);
 				if (*str == '-')
 					lst.left = '-';
 				else if (*str == '0')
 					lst.zero = '0';
 				else if (ft_atoi((char *)str))
+				{
+					//printf("atoi: %d\n", ft_atoi((char *)str));
 					lst.width = ft_atoi((char *)str);
+					//str++;
+				}
 				else if (*str == '.')
 				{
 					str++;
@@ -45,18 +50,18 @@ int	ft_printf(const char *str, ...)
 				}
 				str++;
 			}
-			if (ft_istype(*str))
+			if (ft_type(*str))
 				lst.type = *str;
 		}
 		str++;
 	}
 	lst.result = va_arg(ap, int);
 	va_end(ap);
-	/*printf("space: %c\n", lst.left);
-	printf("space: %c\n", lst.zero);
+/*	printf("left: %c\n", lst.left);
+	printf("zero: %c\n", lst.zero);
 	printf("width: %d\n", lst.width);
 	printf("prec: %d\n", lst.prec);
 	printf("type: %c\n", lst.type);
-	*/
-	return (lst.result);
+*/	
+	return (lst.left);
 }
