@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/20 17:38:53 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/11/21 12:29:19 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,20 @@ int	ft_printf(const char *str, ...)
 		if (*str != '%')
 		{
 			ft_putchar((char *)str);
-		//	lst.cnt++;
+			lst.cnt++;
 		}
 		else
 		{
 			str++;
 			while (ft_type(*str) == '0')
 			{
-				//printf("str: %c\n", *str);
 				if (*str == '-')
 					lst.left = '-';
 				else if (*str == '0')
 					lst.zero = '0';
-				else if (ft_atoi((char *)str))
+				while (*str != '-' || *str != '0')
+    				str++;
+				if (ft_atoi((char *)str))
 				{
 					//printf("atoi: %d\n", ft_atoi((char *)str));
 					lst.width = ft_atoi((char *)str);
@@ -56,12 +57,14 @@ int	ft_printf(const char *str, ...)
 		str++;
 	}
 	lst.result = va_arg(ap, int);
+	lst.len = ft_len(lst.result);
 	va_end(ap);
-/*	printf("left: %c\n", lst.left);
-	printf("zero: %c\n", lst.zero);
-	printf("width: %d\n", lst.width);
-	printf("prec: %d\n", lst.prec);
-	printf("type: %c\n", lst.type);
-*/	
-	return (lst.left);
+//	printf("left: %c\n", lst.left);
+//	printf("zero: %c\n", lst.zero);
+//	printf("width: %d\n", lst.width);
+//	printf("prec: %d\n", lst.prec);
+//	printf("cnt: %d\n", lst.cnt);
+//	printf("type: %c\n", lst.type);
+	
+	return (lst.result);
 }

@@ -9,7 +9,7 @@ RM = rm -f
 NAME = libft.a
 HEADER = libft.h
 
-SRC = ft_atoi.c ft_itoa.c ft_strchr.c
+SRC = *.c
 
 OBJ = $(SRC:.c=.o)
 

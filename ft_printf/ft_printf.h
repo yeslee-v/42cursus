@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/20 14:21:48 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/11/21 12:29:31 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 //void	ft_normal_d(const char *str, ...);
 char	ft_type(char c);
+int		ft_len(int i);
 
 typedef	struct	s_list {
 //	int		space;

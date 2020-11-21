@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_flag.c                                          :+:      :+:    :+:   */
+/*   ft_len.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/20 16:43:59 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/20 16:57:51 by yeslee           ###   ########.fr       */
+/*   Created: 2020/11/21 12:00:48 by yeslee            #+#    #+#             */
+/*   Updated: 2020/11/21 12:20:53 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "../ft_printf.h"
 
-int	ft_print(const char *str, ...);
+int	ft_printf(const char *str, ...);
 
-void	ft_flag(t_list lst.left)
+int	ft_len(int i)
 {
-	t_list lst;
+	int	len;
 
-	printf("%c\n", lst.left);
-//	write(1, &lst.left, 1);
+	len = 1;
+	while (i > 9)
+	{
+		i /= 10;
+		len++;
+	}
+	return (len);
 }
