@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/21 12:29:19 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/11/21 16:08:49 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	ft_printf(const char *str, ...)
 	va_list	ap;
 
 	va_start(ap, str);
+	ft_reset(&lst);
 	while (*str)
 	{
 		if (*str != '%')
