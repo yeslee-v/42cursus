@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/21 16:05:42 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/11/22 14:44:18 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	ft_reset();
 typedef	struct	s_list {
 //	int		space;
 //	char	plus;
-	char	left;
-	char	zero;
+	int		left;
+	int		zero;
 //	char	sharp;
 
 	int		width;

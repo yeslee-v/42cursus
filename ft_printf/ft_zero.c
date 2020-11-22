@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 11:38:40 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/21 11:58:24 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/11/22 14:12:14 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	ft_printf(const char *str, ...);
 
-void	ft_zero(t_list lst)
+void	ft_zero(t_list lst.zero)
 {
-	if (lst.zero)
-	{
-	}
+	//if (lst.zero)
+	//{
+	write(1, &lst.zero, 1);
+	//}
 }
