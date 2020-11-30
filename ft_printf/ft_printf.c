@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/22 18:02:58 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/11/30 15:41:14 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ int	ft_printf(const char *str, ...)
 	while (*str)
 	{
 		if (*str != '%')
-		{
 			ft_putchar((char *)str);
-//			lst.cnt++;
-		}
 		else
 		{
 			str++;
@@ -56,21 +53,14 @@ int	ft_printf(const char *str, ...)
 			if (ft_type(*str))
 				lst.type = *str;
 			str++;
-		/*	printf("left: %d\n", lst.left);
-			printf("zero: %d\n", lst.zero);
-			printf("width: %d\n", lst.width);
-			printf("prec: %d\n", lst.prec);
-			printf("cnt: %d\n", lst.cnt);
-			printf("type: %c\n", lst.type);
-			printf("len: %d\n", lst.len);*/
 		}
 		str++;
-		printf("str: %c\n", *str);
 	}
 	lst.result = va_arg(ap, int);
 	lst.len = ft_len(lst.result);
+	write(1, ft_itoa(lst.result), lst.len);
 	ft_reset(&lst);
 	va_end(ap);
 
-	return (lst.result);
+	return (lst.len);
 }

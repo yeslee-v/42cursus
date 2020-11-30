@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/22 14:44:18 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/11/30 16:30:25 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <unistd.h>
 # include "./libft/libft.h"
 
-//void	ft_normal_d(const char *str, ...);
 char	ft_type(char c);
 int		ft_len(int i);
 void	ft_reset();
