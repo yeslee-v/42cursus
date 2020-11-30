@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_flag_d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/12 15:03:51 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/30 21:55:44 by yeslee           ###   ########.fr       */
+/*   Created: 2020/11/30 16:29:15 by yeslee            #+#    #+#             */
+/*   Updated: 2020/11/30 20:50:33 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-#include <stdlib.h>
-int	ft_printf(const char *str, ...);
-void	ft_flag(t_list lst);
 
-int main()
+void	ft_flag_d(t_list *lst)
 {
-/*	printf("01. -%d\n", 123);
-	ft_printf("01. -%d\n\n", 123);
-	
-	printf("02. %-d\n", 123);
-	ft_printf("02. %-d\n\n", 123);*/
-
-	printf("[1]%-4dhello\n", 123);
-	printf("[2]%04dhello\n", 123);
-	
-	ft_printf("[3]%-4dhello\n", 123);
-	ft_printf("[4]%04dhello\n", 123);
-
-	return (0);
+	if (lst->left == 1)
+	{
+		if (lst->width > lst->len)
+		{
+			write(1, ft_itoa(lst->result), lst->len);
+			while (lst->width > lst->len)
+			{
+				write(1, " ", 1);
+				lst->width--;
+			}
+		}
+	}
+	else if (lst->zero == 1)
+	{
+		if (lst->width > lst->len)
+		{
+			while (lst->width > lst->len)
+			{
+				write(1, "0", 1);
+				lst->width--;
+			}
+			write(1, ft_itoa(lst->result), lst->len);
+		}
+	}
 }

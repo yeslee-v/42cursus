@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/30 16:30:25 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/11/30 21:55:39 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 # include <unistd.h>
 # include "./libft/libft.h"
 
-char	ft_type(char c);
-int		ft_len(int i);
-void	ft_reset();
 
 typedef	struct	s_list {
 //	int		space;
@@ -40,5 +37,11 @@ typedef	struct	s_list {
 	int		result;
 	int		cnt;	// printf("%d\n", printf("%d\n", 123));
 }				t_list;
+
+char	ft_type(char c);
+int		ft_len(int i);
+
+void	ft_flag_d(t_list *lst);
+const char	*ft_parsing(const char *str);
 
 #endif
