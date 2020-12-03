@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2020/12/03 17:10:36 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/12/03 22:04:00 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ int	ft_printf(const char *str, ...)
 		{
 			str++;
 			str = ft_parsing(str);
-			printf("lst->len: %d\n", lst->len);
 			ft_flag_d(lst);
+			//printf("par: %s\n", str);
 		}
-		str++;
+		str++;	// error(sagmentation fault)
 		ft_reset(lst);
 	}
 	va_end(ap);

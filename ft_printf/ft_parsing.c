@@ -6,12 +6,12 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 21:38:00 by yeslee            #+#    #+#             */
-/*   Updated: 2020/12/03 16:47:43 by yeslee           ###   ########.fr       */
+/*   Updated: 2020/12/03 22:04:03 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+#include <stdio.h>
 const char	*ft_parsing(const char *str)
 {
 	t_list	*lst;
@@ -24,9 +24,11 @@ const char	*ft_parsing(const char *str)
 			lst->zero = 1;
 		while (*str == '-' || *str == '0')
     		str++;
+		//printf("str: %c\n", *str);
 		while (ft_atoi((char *)str))
 		{
 			lst->width = (lst->width * 10) + (*str - '0');
+			//printf("width: %d\n", lst->width);
 			str++;
 		}
 		if (*str == '.')
