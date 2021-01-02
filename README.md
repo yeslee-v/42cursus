@@ -1,4 +1,4 @@
-# 🏊‍♀️ 42_cursus
+# 🏊♀️ 42_cursus
 
 ## ✅ 0 Circle
 1. libft
