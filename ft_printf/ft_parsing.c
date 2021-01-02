@@ -12,6 +12,15 @@
 
 #include "ft_printf.h"
 #include <stdio.h>
+
+char	ft_type(char c)
+{
+	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' ||
+			c == 'u' || c == 'x' || c == 'X' || c == '%')
+		return (c);
+	return ('0');
+}
+
 const char	*ft_parsing(const char *str)
 {
 	t_list	*lst;

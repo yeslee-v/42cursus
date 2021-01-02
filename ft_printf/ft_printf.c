@@ -12,6 +12,25 @@
 
 #include "ft_printf.h"
 #include <stdio.h>
+
+void	ft_putchar(char *c)
+{
+    write(1, &(*c), 1);
+}
+
+int	ft_len(int i)
+{
+    int len;
+
+    len = 1;
+    while (i > 9)
+    {
+	i /= 10;
+	len++;
+    }
+    return (len);
+}
+
 void	ft_reset(t_list *lst)
 {
 	if (!lst)
@@ -41,8 +60,8 @@ int	ft_printf(const char *str, ...)
 	t_list	*lst;
 	va_list	ap;
 
-	va_start(ap, str);
 	ft_reset(lst);
+	va_start(ap, str);
 	lst->result = va_arg(ap, int);
 	lst->len = ft_len(lst->result);
 	while (*str)

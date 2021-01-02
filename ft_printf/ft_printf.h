@@ -16,8 +16,6 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "./libft/libft.h"
-
 
 typedef	struct	s_list {
 //	int		space;
@@ -38,10 +36,11 @@ typedef	struct	s_list {
 	int		cnt;	// printf("%d\n", printf("%d\n", 123));
 }				t_list;
 
-char	ft_type(char c);
-int		ft_len(int i);
-
-const char	*ft_parsing(const char *str);
-void	ft_flag_d(t_list *lst);
+int	    ft_printf(const char *str, ...);
+const char  *ft_parsing(const char *str);
+char	    ft_type(char c);
+int	    ft_atoi(char *str);
+void	    ft_flag_d(t_list *lst);
+char	    *ft_itoa(int n);
 
 #endif

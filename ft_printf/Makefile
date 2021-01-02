@@ -9,33 +9,29 @@ RM = rm -f
 NAME = libftprintf.a
 HEADER = ft_printf.h
 
-SRC = ft_printf.c ./libft/*.c
-
-SRC_BONUS = 
+SRC = ft_printf.c \
+    ft_atoi.c \
+    ft_flag_d.c \
+    ft_itoa.c \
+    ft_parsing.c \
+    ft_type.c
 
 OBJ = $(SRC:.c=.o)
-OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 all : $(NAME)
 
 $(NAME) : $(OBJ) $(HEADER)
 	$(AR) $(ARFLAGS) $@ $^
 
-bonus : $(OBJ) $(OBJ_BONUS) $(HEADER)
-	$(AR) $(ARFLAGS) $(NAME) $^
-
 $(OBJ) : $(SRC)
 	$(CC) $(CFLAGS) -c $^
 	
-$(OBJ_BONUS) : $(SRC_BONUS)
-	$(CC) $(CFLAGS) -c $^
-
 clean :
-	$(RM) $(OBJ) $(OBJ_BONUS)
+	$(RM) $(OBJ)
 
 fclean : clean
 	$(RM) $(NAME)
 
 re : fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all fclean clean re

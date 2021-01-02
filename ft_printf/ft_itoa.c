@@ -10,7 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
+
+char	*ft_strdup(char *c)
+{
+	int		i;
+	int		j;
+	char	*str;
+
+	i = ft_strlen(c);
+	str = malloc(sizeof(char) * (i + 1));
+	j = 0;
+	if (!str)
+		return (0);
+	while (c[j])
+	{
+		str[j] = c[j];
+		j++;
+	}
+	str[j] = '\0';
+	return (str);
+}
 
 static size_t	ft_size(int n)
 {
