@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 21:38:00 by yeslee            #+#    #+#             */
-/*   Updated: 2020/12/03 22:04:03 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/04 10:47:59 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ char	ft_type(char c)
 	return ('0');
 }
 
-const char	*ft_parsing(const char *str)
+const char	*ft_parsing(const char *str, t_list *lst)
 {
-	t_list	*lst;
-
 	if (ft_type(*str) == '0')
 	{
 		if (*str == '-')

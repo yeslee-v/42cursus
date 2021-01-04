@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/03 22:27:49 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/04 10:47:57 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct	s_list
 	int cnt; // printf("%d\n", printf("%d\n", 123));
 }				t_list;
 int				ft_printf(const char *str, ...);
-const char		*ft_parsing(const char *str);
+const char		*ft_parsing(const char *str, t_list *lst);
 char			ft_type(char c);
 int				ft_atoi(char *str);
 void			ft_flag_d(t_list *lst);
