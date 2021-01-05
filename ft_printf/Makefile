@@ -14,7 +14,6 @@ SRC = ft_printf.c \
     ft_print_d.c \
     ft_itoa.c \
     ft_parsing.c \
-    ft_type.c \
 	ft_len.c
 
 OBJ = $(SRC:.c=.o)
