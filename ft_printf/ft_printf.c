@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/04 12:04:12 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/05 21:43:18 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ void	ft_reset(t_list *lst)
 		return ;
 	else
 	{
-
-		lst->space = 0;
-		lst->plus = 0;
+		//lst->space = 0;
+		//lst->plus = 0;
 		lst->left = 0;
 		lst->zero = 0;
 		// lst->sharp = 0;
 		lst->width = 0;
 		lst->prec = 0;
+		lst->len_mod = 0;
 		lst->type = 0;
 		lst->len = 0;
 		lst->result = 0;
@@ -56,9 +56,9 @@ int		ft_printf(const char *str, ...)
 		{
 			str++;
 			str = ft_parsing(str, &lst);
-			ft_flag_d(&lst);
+			ft_print_d(&lst);
 		}
-		str++; // error(sagmentation fault
+		str++;
 		ft_reset(&lst);
 	}
 	va_end(ap);
