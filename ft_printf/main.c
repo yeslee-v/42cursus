@@ -6,13 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:03:51 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/05 21:52:19 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/05 22:53:45 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 int main()
 {

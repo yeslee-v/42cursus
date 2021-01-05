@@ -6,12 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 21:38:00 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/05 19:17:28 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/05 22:52:31 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int			ft_type(const char *str, t_list *lst)
 {

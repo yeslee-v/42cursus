@@ -6,12 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 19:43:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/05 21:46:27 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/05 22:52:45 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 void	ft_print_d(t_list *lst)
 {

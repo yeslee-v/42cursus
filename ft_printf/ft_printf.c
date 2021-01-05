@@ -6,12 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/05 21:43:18 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/05 22:51:52 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 void	ft_putchar(char *c)
 {

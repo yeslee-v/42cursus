@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/05 20:16:54 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/05 22:51:28 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
 typedef struct	s_list
 {

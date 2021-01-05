@@ -6,12 +6,12 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 22:05:50 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/05 21:47:32 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/05 22:51:56 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
+
 int	ft_len(int n)
 {
 	printf("n:%d\n", n);
