@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_flag_d.c                                        :+:      :+:    :+:   */
+/*   ft_print_d.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/30 16:29:15 by yeslee            #+#    #+#             */
-/*   Updated: 2020/12/03 22:04:05 by yeslee           ###   ########.fr       */
+/*   Created: 2021/01/05 19:43:34 by yeslee            #+#    #+#             */
+/*   Updated: 2021/01/05 21:46:27 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-void	ft_flag_d(t_list *lst)
+void	ft_print_d(t_list *lst)
 {
-	if (lst->left == 1)
+	printf("len:%d\n", lst->len);
+	if (lst->result < 0)
+		lst->len++;
+	if (lst->left)
 	{
 		if (lst->width > lst->len)
 		{
@@ -27,13 +30,25 @@ void	ft_flag_d(t_list *lst)
 			}
 		}
 	}
-	else if (lst->zero == 1)
+	else if (lst->zero)
 	{
 		if (lst->width > lst->len)
 		{
 			while (lst->width > lst->len)
 			{
 				write(1, "0", 1);
+				lst->width--;
+			}
+			write(1, ft_itoa(lst->result), lst->len);
+		}
+	}
+	else if (lst->width)
+	{
+		if (lst->width > lst->len)
+		{
+			while (lst->width > lst->len)
+			{
+				write(1, " ", 1);
 				lst->width--;
 			}
 			write(1, ft_itoa(lst->result), lst->len);
