@@ -6,11 +6,12 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/06 15:10:28 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/06 17:45:09 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdarg.h>
 
 void	ft_putchar(char *c)
 {
@@ -45,7 +46,6 @@ int		ft_printf(const char *str, ...)
 
 	ft_reset(&lst);
 	va_start(ap, str);
-	lst.result = va_arg(ap, int);
 	lst.len = ft_len(lst.result);
 	while (*str)
 	{
@@ -54,7 +54,9 @@ int		ft_printf(const char *str, ...)
 		else
 		{
 			str++;
-			str = ft_parsing(str, &lst);
+			str = ft_parsing(str, &lst, ap);
+			lst.result = va_arg(ap, int);
+			printf("res:%d\n", lst.result);
 			ft_print_d(&lst);
 		}
 		str++;

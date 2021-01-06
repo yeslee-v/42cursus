@@ -6,11 +6,12 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 21:38:00 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/05 22:52:31 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/06 17:47:34 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdarg.h>
 
 int			ft_type(const char *str, t_list *lst)
 {
@@ -35,7 +36,7 @@ void		ft_flag(const char *str, t_list *lst)
 		lst->zero = 1;
 }
 
-const char	*ft_parsing(const char *str, t_list *lst)
+const char	*ft_parsing(const char *str, t_list *lst, va_list ap)
 {
 	if (ft_type(str, lst))
 	{
@@ -44,18 +45,34 @@ const char	*ft_parsing(const char *str, t_list *lst)
 			ft_flag(str, lst);
 			str++;
 		}
-		while (ft_atoi((char *)str))
+		if (*str == '*')
 		{
-			lst->width = (lst->width * 10) + (*str - '0');
+			lst->width = va_arg(ap, int);
 			str++;
+		}
+		else
+		{
+			while (ft_atoi((char *)str))
+			{
+				lst->width = (lst->width * 10) + (*str - '0');
+				str++;
+			}
 		}
 		if (*str == '.')
 		{
 			str++;
-			while (ft_atoi((char *)str))
+			if (*str == '*')
 			{
-				lst->prec = (lst->prec * 10) + (*str - '0');
-				str++;
+				lst->prec = va_arg(ap, int);
+				printf("what:%d\n", lst->prec);
+			}
+			else
+			{
+				while (ft_atoi((char *)str))
+				{
+					lst->prec = (lst->prec * 10) + (*str - '0');
+					str++;
+				}
 			}
 		}
 	}
