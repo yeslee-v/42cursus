@@ -6,12 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 21:38:00 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/06 17:47:34 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/06 23:10:56 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdarg.h>
 
 int			ft_type(const char *str, t_list *lst)
 {
@@ -36,6 +35,27 @@ void		ft_flag(const char *str, t_list *lst)
 		lst->zero = 1;
 }
 
+int		ft_parsing_star(const char *str, int lst, va_list ap)
+{
+	int	c;
+
+	c = lst;
+	if (*str == '*')
+	{
+		c = va_arg(ap, int);
+		str++;
+	}
+	else
+	{
+		while (ft_atoi((char *)str))
+		{
+			c = (c * 10) + (*str - '0');
+			str++;
+		}
+	}
+	return (c);
+}
+
 const char	*ft_parsing(const char *str, t_list *lst, va_list ap)
 {
 	if (ft_type(str, lst))
@@ -45,38 +65,14 @@ const char	*ft_parsing(const char *str, t_list *lst, va_list ap)
 			ft_flag(str, lst);
 			str++;
 		}
-		if (*str == '*')
-		{
-			lst->width = va_arg(ap, int);
-			str++;
-		}
-		else
-		{
-			while (ft_atoi((char *)str))
-			{
-				lst->width = (lst->width * 10) + (*str - '0');
-				str++;
-			}
-		}
+		lst->width = ft_parsing_star(str, lst->width, ap);
 		if (*str == '.')
 		{
 			str++;
-			if (*str == '*')
-			{
-				lst->prec = va_arg(ap, int);
-				printf("what:%d\n", lst->prec);
-			}
-			else
-			{
-				while (ft_atoi((char *)str))
-				{
-					lst->prec = (lst->prec * 10) + (*str - '0');
-					str++;
-				}
-			}
+			lst->prec = ft_parsing_star(str, lst->prec, ap);
 		}
 	}
-	else
-		ft_type(str, lst);
+	ft_type(str, lst);
+	str++;
 	return (str);
 }
