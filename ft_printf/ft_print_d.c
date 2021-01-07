@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 19:43:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/06 22:50:28 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/07 15:32:57 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,15 @@ void	ft_width_len(t_list *lst)
 			lst->width--;
 		}
 		if (!((lst->left) || (lst->left && lst->zero)))
+			ft_write_res(lst);
+	}
+	else
+	{
+		if (lst->len < lst->prec)
+		{
+			printf("*");
+		}
+		else
 			ft_write_res(lst);
 	}
 }
