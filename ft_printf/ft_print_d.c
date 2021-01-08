@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 19:43:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/07 15:32:57 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/08 23:40:05 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,24 @@ void	ft_write_res(t_list *lst)
 
 void	ft_width_len(t_list *lst)
 {
-	if (lst->width > lst->len)
+	int	big;
+	int	small;
+
+		if (lst->width > lst->prec)
+		{
+			big = lst->width;
+			small = lst->prec;
+		}
+		else
+		{
+			big = lst->prec;
+			small = lst->width;
+		}
+	if (big > lst->len)
 	{
 		if ((lst->left) || (lst->left && lst->zero))
 			ft_write_res(lst);
-		while (lst->width > lst->len)
+		while (big > lst->len)
 		{
 			if (!(lst->left) && lst->zero)
 			{
@@ -35,17 +48,36 @@ void	ft_width_len(t_list *lst)
 				write(1, "0", 1);
 			}
 			else
-				write(1, " ", 1);
-			lst->width--;
+			{
+				if (lst->width > lst->prec)
+				{
+					write(1, " ", 1);
+					lst->width--;
+				}
+				else
+				{
+					if ((lst->prec - lst->len))
+					{
+						write(1, "0", 1);
+						small--;
+					}
+				}
+			}
+			big--;
 		}
 		if (!((lst->left) || (lst->left && lst->zero)))
 			ft_write_res(lst);
 	}
 	else
 	{
-		if (lst->len < lst->prec)
+		if (lst->len < small)
 		{
-			printf("*");
+			while (small > lst->len)
+			{
+				write(1, "0", 1);
+				small--;
+			}
+			ft_write_res(lst);
 		}
 		else
 			ft_write_res(lst);
