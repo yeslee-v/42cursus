@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/07 23:13:06 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/08 21:38:05 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,7 @@ int		ft_printf(const char *str, ...)
 			lst.len = ft_len(lst.result);
 			ft_print_d(&lst);
 		}
-		//printf("prec:%d\n", lst.prec);
-		printf("before:%c\n", *str);
-		//if (lst.prec)
-			str++;
-		//printf("after:%d\n", lst.prec);
+		str++;
 		ft_reset(&lst);
 	}
 	va_end(ap);
