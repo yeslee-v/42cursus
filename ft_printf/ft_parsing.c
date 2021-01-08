@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 21:38:00 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/08 22:59:01 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/08 23:01:40 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ const char	*ft_parsing(const char *str, t_list *lst, va_list ap)
 			if (ft_type(str, lst))
 			{
 				lst->prec = ft_parsing_star(str, lst->prec, ap);
-				//str++;
+				if (*str == '*')
+					str++;
 			}
 		}
 	}
