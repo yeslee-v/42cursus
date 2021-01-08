@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 19:43:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/08 23:40:05 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/08 23:55:42 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ void	ft_width_len(t_list *lst)
 	int	big;
 	int	small;
 
-		if (lst->width > lst->prec)
-		{
-			big = lst->width;
-			small = lst->prec;
-		}
-		else
-		{
-			big = lst->prec;
-			small = lst->width;
-		}
+	if (lst->width > lst->prec)
+	{
+		big = lst->width;
+		small = lst->prec;
+	}
+	else
+	{
+		big = lst->prec;
+		small = lst->width;
+	}
 	if (big > lst->len)
 	{
 		if ((lst->left) || (lst->left && lst->zero))
