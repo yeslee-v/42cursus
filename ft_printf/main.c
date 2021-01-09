@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:03:51 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/09 11:52:13 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/09 23:35:29 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main()
 {
-    printf("Result of applying conversion to 123\n");
+    printf("Result is Positive\n\n");
     
 	printf(  "1.%8d|\n", 123);
     ft_printf(  "1.%8d|\n\n", 123);
@@ -88,10 +88,10 @@ int main()
 	ft_printf("27.%*.*d|\n\n", 6, 1, 456);
 
 	printf("27-1.%-*.*d|\n", 6, 1, 456);
-	ft_printf("27-2.%-*.*d|\n\n", 6, 1, 456);
+	ft_printf("27-1.%-*.*d|\n\n", 6, 1, 456);
 	
-	printf("27-2.% *.*d|\n", 6, 8, 456);
-	ft_printf("27-2.% *.*d|\n\n", 6, 8, 456);
+	//printf("27-2.% *.*d|\n", 6, 8, 456);
+	//ft_printf("27-2.% *.*d|\n\n", 6, 8, 456);
 	
 	printf("27-3.%-*.*d|\n", 6, 8, 456);
 	ft_printf("27-3.%-*.*d|\n\n", 6, 8, 456);
@@ -102,13 +102,13 @@ int main()
 	//printf("27-5.%-0*.*d|\n", 6, 8, 456);
 	ft_printf("27-5.%-0*.*d|\n\n", 6, 8, 456);
 	
-	printf("27-6.% *.*d|\n", 1, 2, 456);
-	ft_printf("27-6.% *.*d|\n\n", 1, 2, 456);
+//	printf("27-6.% *.*d|\n", 1, 2, 456);
+//	ft_printf("27-6.% *.*d|\n\n", 1, 2, 456);
 	
 	printf("27-7.%-*.*d|\n", 2, 1, 456);
 	ft_printf("27-7.%-*.*d|\n\n", 2, 1, 456);
 	
-	printf("Result of applying conversion to -123\n");
+	printf("Result is Negative\n\n");
 
 	printf(  "28.%8d|\n", -123);
 	ft_printf(  "28.%8d|\n\n", -123);
@@ -191,8 +191,8 @@ int main()
 	printf("62.%-*.*d|\n", 6, 1, -456);
 	ft_printf("62.%-*.*d|\n\n", 6, 1, -456);
 	
-	printf("63.% *.*d|\n", 6, 8, -456);
-	ft_printf("63.% *.*d|\n\n", 6, 8, -456);
+//	printf("63.% *.*d|\n", 6, 8, -456);
+//	ft_printf("63.% *.*d|\n\n", 6, 8, -456);
 	
 	printf("64.%-*.*d|\n", 6, 8, -456);
 	ft_printf("64.%-*.*d|\n\n", 6, 8, -456);
@@ -203,8 +203,8 @@ int main()
 	//printf("66.%-0*.*d|\n", 6, 8, -456);
 	ft_printf("66.%-0*.*d|\n\n", 6, 8, -456);
 	
-	printf("67.% *.*d|\n", 1, 2, -456);
-	ft_printf("67.% *.*d|\n\n", 1, 2, -456);
+//	printf("67.% *.*d|\n", 1, 2, -456);
+//	ft_printf("67.% *.*d|\n\n", 1, 2, -456);
 	
 	printf("68.%-*.*d|\n", 2, 1, -456);
 	ft_printf("68.%-*.*d|\n\n", 2, 1, -456);
