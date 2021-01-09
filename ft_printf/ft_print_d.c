@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 19:43:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/08 23:55:42 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/09 11:43:47 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	ft_width_len(t_list *lst)
 				{
 					write(1, "-", 1);
 					lst->result *= -1;
+					lst->len--;
 				}
 				write(1, "0", 1);
 			}
@@ -56,6 +57,12 @@ void	ft_width_len(t_list *lst)
 				}
 				else
 				{
+					if (lst->result < 0)
+					{
+						write(1, "-", 1);
+						lst->result *= -1;
+						lst->len--;
+					}
 					if ((lst->prec - lst->len))
 					{
 						write(1, "0", 1);
@@ -87,6 +94,13 @@ void	ft_width_len(t_list *lst)
 void	ft_print_d(t_list *lst)
 {
 	if (lst->result < 0)
+	{
+		/*if (lst->prec > lst->width)
+			lst->prec--;
+		else
+			lst->width--;*/
 		lst->len++;
+	}
+	// printf("len:%d\n\n", lst->len);
 	ft_width_len(lst);
 }
