@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 19:43:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/10 00:01:32 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/10 11:51:58 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,98 +17,249 @@ void	ft_write_res(t_list *lst)
 	write(1, ft_itoa(lst->result), lst->len);
 }
 
+void	ft_negative(t_list *lst)
+{
+	if (lst->result < 0)
+	{
+		write(1, "-", 1);
+		lst->result *= -1;
+		lst->len--;
+	}
+}
 void	ft_width_len(t_list *lst)
 {
-	// printf("lst:%d %d %d\n\n", lst->width, lst->prec, lst->len);
-	if (lst->len < lst->width)
+	if ((lst->left) || (lst->left && lst->zero)) // -
 	{
-		if ((lst->left) || (lst->left && lst->zero))
+		if (lst->len < lst->width)
 		{
-			while (lst->prec > lst->len)
+			if (lst->prec <= lst->len)
 			{
-				printf("[0]\n");
-				write(1, "0", 1);
-				lst->prec--;
-			}
-			ft_write_res(lst);
-			if ((lst->width > lst->len) && (lst->prec > lst->len))
-				return ;
-		}
-		while (lst->len < lst->width)
-		{
-			if (!(lst->left) && lst->zero)
-			{
-				if (lst->result < 0)
+				ft_write_res(lst);
+				if (lst->prec <= lst->width)
 				{
-					write(1, "-", 1);
-					lst->result *= -1;
-					lst->len--;
+					while (lst->len < lst->width)
+					{
+						write(1, " ", 1);
+						lst->width--;
+					}
+					//printf("[1]\n");
 				}
-				write(1, "0", 1);
+				else
+				{
+					//printf("[2]\n");
+				}
 			}
 			else
 			{
-				if (lst->prec <= lst->len)
+				if (lst->prec < lst->width)
 				{
-					if (lst->prec <= lst->width)
+					ft_write_res(lst);
+					while (lst->len <= lst->width)
 					{
 						write(1, " ", 1);
-						//printf("[1]\n");
-					}
-					else
-					{
-						//printf("[2]\n");
+						lst->width--;
+						//printf("[3]\n");
 					}
 				}
 				else
 				{
-					if (lst->prec < lst->width)
-					{
-						write(1, " ", 1);
-						//printf("[3]\n");
-					}
-					else
+					while (lst->len < lst->prec)
 					{
 						write(1, "0", 1);
 						//printf("[4]\n");
+						lst->prec--;
 					}
 				}
-			}
-			lst->width--;
-		}
-		if (!((lst->left) || (lst->left && lst->zero)))
-			ft_write_res(lst);
-	}
-	else
-	{
-		if (lst->prec <= lst->len)
-		{
-			if (lst->prec < lst->width)
-			{
-				//write(1, " ", 1);
-				//printf("[5]\n");
-			}
-			else
-			{
-				//printf("[6]\n");
 			}
 		}
 		else
 		{
-			if (lst->prec < lst->width)
+			if (lst->prec <= lst->len)
 			{
-				//write(1, " ", 1);
-				//printf("[7]\n");
+				if (lst->prec <= lst->width)
+				{
+					while (lst->len < lst->width)
+					{
+						write(1, " ", 1);
+						lst->width--;
+					}
+					// printf("[1-1]\n");
+				}
+				else
+				{
+					// printf("[2-1]\n");
+				}
 			}
 			else
 			{
-				//write(1, "0", 1);
-				//printf("[8]\n");
+				if (lst->prec < lst->width)
+				{
+					write(1, " ", 1);
+					// printf("[3-1]\n");
+				}
+				else
+				{
+					while (lst->len < lst->prec)
+					{
+						write(1, "0", 1);
+						// printf("[4-1]\n");
+						lst->prec--;
+					}
+				}
 			}
 		}
-		if (lst->len == lst->width)
-			ft_write_res(lst);
 	}
+	else if (!(lst->left) && lst->zero) // 0
+	{
+		if (lst->len < lst->width)
+		{
+			if (lst->prec <= lst->len)
+			{
+				if (lst->prec <= lst->width)
+				{
+					while (lst->len < lst->width)
+					{
+						write(1, " ", 1);
+						lst->width--;
+					}
+					// printf("[5]\n");
+				}
+				else
+				{
+					// printf("[6]\n");
+				}
+			}
+			else
+			{
+				if (lst->prec < lst->width)
+				{
+					write(1, " ", 1);
+					// printf("[7]\n");
+				}
+				else
+				{
+					while (lst->len < lst->prec)
+					{
+						write(1, "0", 1);
+						// printf("[8]\n");
+						lst->prec--;
+					}
+				}
+			}
+		}
+		else
+		{
+			if (lst->prec <= lst->len)
+			{
+				if (lst->prec <= lst->width)
+				{
+					while (lst->len < lst->width)
+					{
+						write(1, " ", 1);
+						lst->width--;
+					}
+					// printf("[5-1]\n");
+				}
+				else
+				{
+					// printf("[6-1]\n");
+				}
+			}
+			else
+			{
+				if (lst->prec < lst->width)
+				{
+					write(1, " ", 1);
+					// printf("[7-1]\n");
+				}
+				else
+				{
+					while (lst->len < lst->prec)
+					{
+						write(1, "0", 1);
+						// printf("[8-1]\n");
+						lst->prec--;
+					}
+				}
+			}
+		}
+	}
+	else // none flag
+	{
+		if (lst->len < lst->width)
+		{
+			if (lst->prec <= lst->len)
+			{
+				if (lst->prec <= lst->width)
+				{
+					while (lst->len < lst->width)
+					{
+						write(1, " ", 1);
+						lst->width--;
+					}
+					// printf("[9]\n");
+				}
+				else
+				{
+					// printf("[10]\n");
+				}
+			}
+			else
+			{
+				if (lst->prec < lst->width)
+				{
+					write(1, " ", 1);
+					// printf("[11]\n");
+				}
+				else
+				{
+					while (lst->len < lst->prec)
+					{
+						write(1, "0", 1);
+						// printf("[12]\n");
+						lst->prec--;
+					}
+				}
+			}
+		}
+		else
+		{
+			if (lst->prec <= lst->len)
+			{
+				if (lst->prec <= lst->width)
+				{
+					while (lst->len < lst->width)
+					{
+						write(1, " ", 1);
+						lst->width--;
+					}
+					// printf("[9-1]\n");
+				}
+				else
+				{
+					// printf("[10-1]\n");
+				}
+			}
+			else
+			{
+				if (lst->prec < lst->width)
+				{
+					write(1, " ", 1);
+					// printf("[11-1]\n");
+				}
+				else
+				{
+					while (lst->len < lst->prec)
+					{
+						write(1, "0", 1);
+						// printf("[12-1]\n");
+						lst->prec--;
+					}
+				}
+			}
+		}
+	}
+	ft_write_res(lst);
 }
 
 void	ft_print_d(t_list *lst)

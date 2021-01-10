@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:03:51 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/09 23:35:29 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/10 11:48:59 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,13 @@ int main()
 //  printf("9.%+08d\n", 123);
 //  printf("10.% 08d\n", 123);
 
-//	printf("11.%*d|\n", 5, -456); 지우기 귀찮아서 안지움_음수는 아래에
-//	printf("12.%.-1d\n", 456); precision must be positive
+	printf("11.%2d|\n", 123);
+	ft_printf("11.%2d|\n\n", 123);
+
+	printf("12.%3d|\n", 123);
+	ft_printf("12.%3d|\n\n", 123);
+
+//	printf("12-1.%.-1d\n", 456); precision must be positive
 
 	printf("13.%3d|\n", 123);
 	ft_printf("13.%3d|\n\n", 123);
@@ -63,8 +68,17 @@ int main()
 	printf("19.%.*d|\n", 0, 456);
 	ft_printf("19.%.*d|\n\n", 0, 456);
 	
-	printf("20.%.*d|\n", 1, 456);
-	ft_printf("20.%.*d|\n\n", 1, 456);
+	printf("20.%-.*d|\n", 1, 456);
+	ft_printf("20.%-.*d|\n\n", 1, 456);
+	
+	printf("20-1.%-.*d|\n", 4, 456);
+	ft_printf("20-1.%-.*d|\n\n", 4, 456);
+	
+	printf("20-2.%0.*d|\n", 1, 456);
+	ft_printf("20-2.%0.*d|\n\n", 1, 456);
+	
+	printf("20-3.%0.*d|\n", 4, 456);
+	ft_printf("20-3.%0.*d|\n\n", 4, 456);
 	
 	printf("21.%.*d|\n", 3, 456);
 	ft_printf("21.%.*d|\n\n", 3, 456);
