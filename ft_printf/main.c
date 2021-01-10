@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:03:51 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/10 17:26:02 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/10 20:57:23 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int main()
 {
+	printf("this %d number", 17);
+
     printf("Result is Positive\n\n");
     
 	printf(  "0.%d|\n", 123);
@@ -238,6 +240,55 @@ int main()
 	printf("68.%-*.*d|\n", 2, 1, -456);
 	ft_printf("68.%-*.*d|\n\n", 2, 1, -456);
 	
+	printf("[which, prec > 9]\n\n");
 	
+	printf("69.%10.23d|\n", 789);
+	ft_printf("69.%10.23d|\n\n", 789);
+
+	printf("70.%*d|\n", 12, 123);
+	ft_printf("70.%*d|\n\n", 12, 123);
+
+	printf("71.%.*d|\n", 12, 123);
+	ft_printf("71.%.*d|\n\n", 12, 123);
+
+	printf("72.%*.*d|\n", 10, 12, 123);
+	ft_printf("72.%*.*d|\n\n", 10, 12, 123);
+
+	printf("73.%12.11d|\n", 123);
+	ft_printf("73.%12.11d|\n\n", 123);
+
+	printf("74.%*d|\n", 12, 123);
+	ft_printf("74.%*d|\n\n", 12, 123);
+
+	printf("75.%.*d|\n", 12, 123);
+	ft_printf("75.%.*d|\n\n", 12, 123);
+
+	printf("76.%*.*d|\n", 12, 10, 123);
+	ft_printf("76.%*.*d|\n\n", 12, 10, 123);
+
+	printf("77.%10.12d|\n", -123);
+	ft_printf("77.%10.12d|\n\n", -123);
+
+	printf("78.%*d|\n", 12, -123);
+	ft_printf("78.%*d|\n\n", 12, -123);
+
+	printf("79.%.*d|\n", 12, -123);
+	ft_printf("79.%.*d|\n\n", 12, -123);
+
+	printf("80.%*.*d|\n", 10, 12, -123);
+	ft_printf("80.%*.*d|\n\n", 10, 12, -123);
+
+	printf("81.%12.11d|\n", -123);
+	ft_printf("81.%12.11d|\n\n", -123);
+
+	printf("82.%*d|\n", 12, -123);
+	ft_printf("82.%*d|\n\n", 12, -123);
+
+	printf("83.%.*d|\n", 12, -123);
+	ft_printf("83.%.*d|\n\n", 12, -123);
+
+	printf("84.%*.*d|\n", 12, 10, -123);
+	ft_printf("84.%*.*d|\n\n", 12, 10, -123);
+
 	return (0);
 }
