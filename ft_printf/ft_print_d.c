@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 19:43:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/10 11:51:58 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/10 17:54:53 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ void	ft_negative(t_list *lst)
 		lst->result *= -1;
 		lst->len--;
 	}
+	return ;
 }
+
 void	ft_width_len(t_list *lst)
 {
 	if ((lst->left) || (lst->left && lst->zero)) // -
@@ -42,37 +44,39 @@ void	ft_width_len(t_list *lst)
 						write(1, " ", 1);
 						lst->width--;
 					}
-					//printf("[1]\n");
+					// printf("[1]\n");
 				}
 				else
 				{
-					//printf("[2]\n");
+					// printf("[2]\n");
 				}
 			}
-			else
+			else // len > prec
 			{
-				if (lst->prec < lst->width)
+				if (lst->prec <= lst->width)
 				{
 					ft_write_res(lst);
 					while (lst->len <= lst->width)
 					{
 						write(1, " ", 1);
 						lst->width--;
-						//printf("[3]\n");
+						// printf("[3]\n");
 					}
 				}
-				else
+				else	// width < prec
 				{
+					ft_negative(lst);
 					while (lst->len < lst->prec)
 					{
 						write(1, "0", 1);
-						//printf("[4]\n");
+						// printf("[4]\n");
 						lst->prec--;
 					}
+					ft_write_res(lst);
 				}
 			}
 		}
-		else
+		else // width <= len
 		{
 			if (lst->prec <= lst->len)
 			{
@@ -89,10 +93,11 @@ void	ft_width_len(t_list *lst)
 				{
 					// printf("[2-1]\n");
 				}
+				ft_write_res(lst);
 			}
-			else
+			else // len < prec
 			{
-				if (lst->prec < lst->width)
+				if (lst->prec <= lst->width)
 				{
 					write(1, " ", 1);
 					// printf("[3-1]\n");
@@ -102,10 +107,11 @@ void	ft_width_len(t_list *lst)
 					while (lst->len < lst->prec)
 					{
 						write(1, "0", 1);
-						// printf("[4-1]\n");
+						//	printf("[4-1]\n");
 						lst->prec--;
 					}
 				}
+				ft_write_res(lst);
 			}
 		}
 	}
@@ -119,19 +125,20 @@ void	ft_width_len(t_list *lst)
 				{
 					while (lst->len < lst->width)
 					{
-						write(1, " ", 1);
+						write(1, "0", 1);
 						lst->width--;
 					}
-					// printf("[5]\n");
+					//	printf("[5]\n");
 				}
 				else
 				{
+					write(1, "0", 1);
 					// printf("[6]\n");
 				}
 			}
 			else
 			{
-				if (lst->prec < lst->width)
+				if (lst->prec <= lst->width)
 				{
 					write(1, " ", 1);
 					// printf("[7]\n");
@@ -141,13 +148,14 @@ void	ft_width_len(t_list *lst)
 					while (lst->len < lst->prec)
 					{
 						write(1, "0", 1);
-						// printf("[8]\n");
+						//	printf("[8]\n");
 						lst->prec--;
 					}
 				}
 			}
+			ft_write_res(lst);
 		}
-		else
+		else // width <= len
 		{
 			if (lst->prec <= lst->len)
 			{
@@ -164,10 +172,11 @@ void	ft_width_len(t_list *lst)
 				{
 					// printf("[6-1]\n");
 				}
+				ft_write_res(lst);
 			}
-			else
+			else // len < prec
 			{
-				if (lst->prec < lst->width)
+				if (lst->prec <= lst->width)
 				{
 					write(1, " ", 1);
 					// printf("[7-1]\n");
@@ -181,6 +190,7 @@ void	ft_width_len(t_list *lst)
 						lst->prec--;
 					}
 				}
+				ft_write_res(lst);
 			}
 		}
 	}
@@ -204,25 +214,29 @@ void	ft_width_len(t_list *lst)
 					// printf("[10]\n");
 				}
 			}
-			else
+			else // len < prec
 			{
-				if (lst->prec < lst->width)
+				if (lst->prec <= lst->width)
 				{
-					write(1, " ", 1);
+					if (lst->result < 0)
+						lst->width--;
+					while (lst->prec < lst->width)
+					{
+						write(1, " ", 1);
+						lst->width--;
+					}
 					// printf("[11]\n");
 				}
-				else
+				ft_negative(lst);
+				while (lst->len < lst->prec)
 				{
-					while (lst->len < lst->prec)
-					{
-						write(1, "0", 1);
-						// printf("[12]\n");
-						lst->prec--;
-					}
+					write(1, "0", 1);
+					//printf("[12]\n");
+					lst->prec--;
 				}
 			}
 		}
-		else
+		else // width <= len
 		{
 			if (lst->prec <= lst->len)
 			{
@@ -240,9 +254,10 @@ void	ft_width_len(t_list *lst)
 					// printf("[10-1]\n");
 				}
 			}
-			else
+			else // len < prec
 			{
-				if (lst->prec < lst->width)
+				ft_negative(lst);
+				if (lst->prec <= lst->width)
 				{
 					write(1, " ", 1);
 					// printf("[11-1]\n");
@@ -258,8 +273,8 @@ void	ft_width_len(t_list *lst)
 				}
 			}
 		}
+		ft_write_res(lst);
 	}
-	ft_write_res(lst);
 }
 
 void	ft_print_d(t_list *lst)
