@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 21:38:00 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/10 21:33:12 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/11 20:18:42 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ const char	*ft_parsing(const char *str, t_list *lst, va_list ap)
 		lst->width = ft_parsing_star(str, lst->width, ap, lst->type);
 		while (*str != '.')
 			str++;
-		//printf("str:%c\n\n", *str);
 		if (*str == '.')
 		{
 			str++;
@@ -75,6 +74,7 @@ const char	*ft_parsing(const char *str, t_list *lst, va_list ap)
 				if (*str == '*')
 					str++;
 			}
+			printf("str:%c\n\n", *str);
 		}
 	}
 	if (ft_type(str, lst->type))

@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/08 21:38:05 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/11 20:06:04 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int		ft_printf(const char *str, ...)
 		{
 			str++;
 			str = ft_parsing(str, &lst, ap);
+			printf("where:%c\n\n", *str);
 			lst.result = va_arg(ap, int);
 			lst.len = ft_len(lst.result);
 			ft_print_d(&lst);
