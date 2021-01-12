@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 21:49:00 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/03 21:42:47 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/12 11:55:12 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ char	*ft_itoa(int n)
 		len += 1;
 		n *= -1;
 	}
-	len += ft_len(n);
+	len += ft_intlen(n);
 	i = 0;
 	if (!(c = malloc(len + 1)))
 		return (0);
 	ft_input(i, len, n, c);
-	if (len != ft_len(n))
+	if (len != ft_intlen(n))
 		c[0] = '-';
 	c[len] = '\0';
 	return (c);

@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/06 17:38:34 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/12 11:33:28 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ const char		*ft_parsing(const char *str, t_list *lst, va_list ap);
 int				ft_atoi(char *str);
 void			ft_print_d(t_list *lst);
 char			*ft_itoa(int n);
-int				ft_len(int n);
+int				ft_intlen(int n);
 #endif

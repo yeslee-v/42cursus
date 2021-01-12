@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/11 20:06:04 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/12 11:32:43 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,21 @@ void	ft_reset(t_list *lst)
 	}
 }
 
+int	ft_intlen(int n)
+{
+	int	cnt;
+
+	cnt = 1;
+	if (n < 0)
+		n *= -1;
+	while (n > 9)
+	{
+		n /= 10;
+		cnt++;
+	}
+	return (cnt);
+}
+
 int		ft_printf(const char *str, ...)
 {
 	t_list	lst;
@@ -53,9 +68,8 @@ int		ft_printf(const char *str, ...)
 		{
 			str++;
 			str = ft_parsing(str, &lst, ap);
-			printf("where:%c\n\n", *str);
 			lst.result = va_arg(ap, int);
-			lst.len = ft_len(lst.result);
+			lst.len = ft_intlen(lst.result);
 			ft_print_d(&lst);
 		}
 		str++;
