@@ -6,16 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/12 11:32:43 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/12 22:27:45 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void	ft_putchar(char *c)
-{
-	write(1, &(*c), 1);
-}
 
 void	ft_reset(t_list *lst)
 {
@@ -23,11 +18,8 @@ void	ft_reset(t_list *lst)
 		return ;
 	else
 	{
-		//lst->space = 0;
-		//lst->plus = 0;
 		lst->left = 0;
 		lst->zero = 0;
-		// lst->sharp = 0;
 		lst->width = 0;
 		lst->prec = 0;
 		lst->len_mod = 0;
@@ -38,7 +30,7 @@ void	ft_reset(t_list *lst)
 	}
 }
 
-int	ft_intlen(int n)
+int		ft_intlen(int n)
 {
 	int	cnt;
 
@@ -55,26 +47,32 @@ int	ft_intlen(int n)
 
 int		ft_printf(const char *str, ...)
 {
+	int		cnt;
 	t_list	lst;
 	va_list	ap;
 
+	cnt = 0;
 	ft_reset(&lst);
 	va_start(ap, str);
 	while (*str)
 	{
 		if (*str != '%')
-			ft_putchar((char *)str);
+		{
+			write(1, &(*str), 1);
+			lst.len++;
+		}
 		else
 		{
 			str++;
 			str = ft_parsing(str, &lst, ap);
 			lst.result = va_arg(ap, int);
-			lst.len = ft_intlen(lst.result);
+			lst.len += ft_intlen(lst.result);
 			ft_print_d(&lst);
 		}
 		str++;
+		cnt += lst.len;
 		ft_reset(&lst);
 	}
 	va_end(ap);
-	return (lst.len);
+	return (cnt);
 }

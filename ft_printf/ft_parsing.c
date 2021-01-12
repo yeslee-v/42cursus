@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 21:38:00 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/12 17:04:47 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/12 22:22:20 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,7 @@ int			ft_type(const char *str, char type)
 
 void		ft_flag(const char *str, t_list *lst)
 {
-	if (*str == ' ')
-		lst->space = 1;
-	else if (*str == '+')
-		lst->plus = 1;
-	else if (*str == '-')
+	if (*str == '-')
 		lst->left = 1;
 	else if (*str == '0')
 		lst->zero = 1;
@@ -57,7 +53,7 @@ const char	*ft_parsing(const char *str, t_list *lst, va_list ap)
 {
 	if (ft_type(str, lst->type))
 	{
-		while (*str == ' ' || *str == '+' || *str == '-' || *str == '0')
+		while (*str == '-' || *str == '0')
 		{
 			ft_flag(str, lst);
 			str++;

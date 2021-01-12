@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/12 11:33:28 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/12 22:21:35 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,17 @@
 
 typedef struct	s_list
 {
-	int			space;
-	int			plus;
 	int			left;
 	int			zero;
 
 	int			width;
 	int			prec;
 
-	//	char	sharp;
 	int			len_mod;
 	char		type;
 	int			len;
 	int			result;
-	int			cnt;
+	//int			cnt;
 }				t_list;
 
 int				ft_printf(const char *str, ...);
