@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 21:38:00 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/12 12:12:01 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/12 17:04:47 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,19 +62,28 @@ const char	*ft_parsing(const char *str, t_list *lst, va_list ap)
 			ft_flag(str, lst);
 			str++;
 		}
-		printf("before:%c\n", *str);
-	//	if (*str != '.' && ft_type(str, lst->type))
+		if (ft_atoi((char *)str) || *str == '*')
+		{
 			lst->width = ft_parsing_star(str, lst->width, ap, lst->type);
-		str += ft_intlen(lst->width);
-		printf("after:%c\n", *str);
+			if (*str != '*')
+				str += ft_intlen(lst->width);
+			else
+				str++;
+		}
 		if (*str == '.')
 		{
 			str++;
-			lst->prec = ft_parsing_star(str, lst->prec, ap, lst->type);
-			str += ft_intlen(lst->prec);
+			if (ft_atoi(((char *)str)) || *str == '*')
+			{
+				lst->prec = ft_parsing_star(str, lst->prec, ap, lst->type);
+				if (*str != '*')
+					str += ft_intlen(lst->prec);
+				else
+					str++;
+			}
 		}
 	}
-	if (ft_type(str, lst->type))
+	while (ft_type(str, lst->type))
 		str++;
 	return (str);
 }

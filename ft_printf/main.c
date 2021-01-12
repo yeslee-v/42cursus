@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:03:51 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/12 11:16:50 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/12 17:08:23 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ int main()
 	ft_printf("this %d number", 17);
 
     printf("Result is Positive\n\n");
-    
+	
+	printf(  "-1.%d|\n", printf(  "-1.%d|\n", 123));
+    ft_printf(  "-1.%d|\n\n", ft_printf(  "-1.%d|\n\n", 123));
+	
 	printf(  "0.%d|\n", 123);
     ft_printf(  "0.%d|\n\n", 123);
 	
@@ -296,6 +299,8 @@ int main()
 //	printf("86.%2.3.4d|\n", 1);
 //	ft_printf("86.%2.3.4d|\n", 1);
 
+	printf("86.%001.02d|\n", 3);
+	ft_printf("86.%001.02d|\n", 3);
 
 	return (0);
 }
