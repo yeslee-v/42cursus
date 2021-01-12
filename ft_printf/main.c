@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:03:51 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/12 17:08:23 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/12 17:43:50 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ int main()
 	ft_printf("this %d number", 17);
 
     printf("Result is Positive\n\n");
-	
-	printf(  "-1.%d|\n", printf(  "-1.%d|\n", 123));
-    ft_printf(  "-1.%d|\n\n", ft_printf(  "-1.%d|\n\n", 123));
 	
 	printf(  "0.%d|\n", 123);
     ft_printf(  "0.%d|\n\n", 123);
@@ -302,5 +299,31 @@ int main()
 	printf("86.%001.02d|\n", 3);
 	ft_printf("86.%001.02d|\n", 3);
 
+	printf("[count]\n\n");
+		
+	printf("87.%d\n", printf("%d\n", 1));
+    ft_printf("87.%d\n", ft_printf("%d\n", 1));
+	
+	printf("88.%d\n", printf("%d\n", 123));
+    ft_printf("88.%d\n", ft_printf("%d\n", 123));
+	
+	printf("89.%-d\n", printf("%-d\n", 1));
+    ft_printf("89.%-d\n", ft_printf("%-d\n", 1));
+	
+	printf("90.%4d\n", printf("%4d\n", 1));
+    ft_printf("90.%4d\n", ft_printf("%4d\n", 1));
+	
+	printf("91.%-5d\n", printf("%-5d\n", 1));
+    ft_printf("91.%-5d\n", ft_printf("%-5d\n", 1));
+	
+	printf("92.%.6d\n", printf("%.6d\n", 1));
+    ft_printf("92.%.6d\n", ft_printf("%.6d\n", 1));
+	
+	printf("93.%7.8d\n", printf("%7.8d\n", 1));
+    ft_printf("93.%7.8d\n", ft_printf("%7.8d\n", 1));
+	
+	printf("94.%-9.10d\n", printf("%-9.10d\n", 1));
+    ft_printf("94.%-9.10d\n", ft_printf("%-9.10d\n", 1));
+	
 	return (0);
 }
