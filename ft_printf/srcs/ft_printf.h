@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/13 10:30:59 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/13 23:04:48 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
+#include "../libft/libft.h"
 
-typedef struct	s_list
+typedef struct	s_lst
 {
 	int			left;
 	int			zero;
@@ -31,12 +32,9 @@ typedef struct	s_list
 	int			len;
 	int			result;
 	int			cnt;
-}				t_list;
+}				t_lst;
 
 int				ft_printf(const char *str, ...);
-const char		*ft_parsing(const char *str, t_list *lst, va_list ap);
-int				ft_atoi(char *str);
-void			ft_print_d(t_list *lst);
-char			*ft_itoa(int n);
-int				ft_intlen(int n);
+const char		*ft_parsing(const char *str, t_lst *lst, va_list ap);
+void			ft_print_d(t_lst *lst);
 #endif

@@ -6,43 +6,13 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 21:49:00 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/12 11:55:12 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/13 22:22:11 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-char	*ft_strdup(char *c)
-{
-	int		i;
-	int		j;
-	char	*str;
-
-	i = ft_strlen(c);
-	str = malloc(sizeof(char) * (i + 1));
-	j = 0;
-	if (!str)
-		return (0);
-	while (c[j])
-	{
-		str[j] = c[j];
-		j++;
-	}
-	str[j] = '\0';
-	return (str);
-}
-
-char	*ft_input(size_t i, size_t len, int n, char *c)
+char		*ft_input(size_t i, size_t len, int n, char *c)
 {
 	while (i < len)
 	{
@@ -53,10 +23,10 @@ char	*ft_input(size_t i, size_t len, int n, char *c)
 	return (c);
 }
 
-char	*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
-	int		i;
-	int		len;
+	size_t	i;
+	size_t	len;
 	char	*c;
 
 	len = 0;
@@ -67,12 +37,14 @@ char	*ft_itoa(int n)
 		len += 1;
 		n *= -1;
 	}
-	len += ft_intlen(n);
+	if (n < 0)
+		len++;
+	len += ft_size(n);
 	i = 0;
 	if (!(c = malloc(len + 1)))
 		return (0);
 	ft_input(i, len, n, c);
-	if (len != ft_intlen(n))
+	if (len != ft_size(n))
 		c[0] = '-';
 	c[len] = '\0';
 	return (c);

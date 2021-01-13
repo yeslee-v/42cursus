@@ -6,18 +6,18 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 19:43:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/11 19:58:15 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/13 22:33:07 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_write_res(t_list *lst)
+void	ft_write_res(t_lst *lst)
 {
 	write(1, ft_itoa(lst->result), lst->len);
 }
 
-void	ft_negative(t_list *lst)
+void	ft_negative(t_lst *lst)
 {
 	if (lst->result < 0)
 	{
@@ -28,7 +28,7 @@ void	ft_negative(t_list *lst)
 	return ;
 }
 
-void	ft_width_len(t_list *lst)
+void	ft_width_len(t_lst *lst)
 {
 	if ((lst->left) || (lst->left && lst->zero)) // -
 	{
@@ -277,7 +277,7 @@ void	ft_width_len(t_list *lst)
 	}
 }
 
-void	ft_print_d(t_list *lst)
+void	ft_print_d(t_lst *lst)
 {
 	if (lst->result < 0)
 		lst->len++;

@@ -6,13 +6,13 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/13 17:11:31 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/13 22:34:11 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_reset(t_list *lst)
+void	ft_reset(t_lst *lst)
 {
 	if (!lst)
 		return ;
@@ -30,24 +30,8 @@ void	ft_reset(t_list *lst)
 	}
 }
 
-int		ft_intlen(int n)
+void	ft_check_conversion(const char *str, t_lst *lst)
 {
-	int	cnt;
-
-	cnt = 1;
-	if (n < 0)
-		n *= -1;
-	while (n > 9)
-	{
-		n /= 10;
-		cnt++;
-	}
-	return (cnt);
-}
-
-void	ft_check_conversion(const char *str, t_list *lst)
-{
-	// printf("type:%c\n", lst->type);
 	if (*str == 'c')
 		// ft_print_c(lst);
 		printf("c");
@@ -79,7 +63,7 @@ void	ft_check_conversion(const char *str, t_list *lst)
 int		ft_printf(const char *str, ...)
 {
 	va_list	ap;
-	t_list	lst;
+	t_lst	lst;
 
 	ft_reset(&lst);
 	va_start(ap, str);
@@ -94,7 +78,7 @@ int		ft_printf(const char *str, ...)
 			str++;
 			str = ft_parsing(str, &lst, ap);
 			lst.result = va_arg(ap, int);
-			lst.len = ft_intlen(lst.result);
+			lst.len = ft_size(lst.result);
 			ft_check_conversion(str, &lst);
 		}
 		str++;

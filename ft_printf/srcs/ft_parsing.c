@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 21:38:00 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/13 17:16:44 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/13 22:32:35 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			ft_type(const char *str)
 	return (1);
 }
 
-void		ft_flag(const char *str, t_list *lst)
+void		ft_flag(const char *str, t_lst *lst)
 {
 	if (*str == '-')
 		lst->left = 1;
@@ -47,13 +47,13 @@ int			ft_input_w_p(const char **str, int num, va_list ap)
 {
 	num = ft_if_star(*str, num, ap);
 	if (**str != '*')
-		*str += ft_intlen(num);
+		*str += ft_size(num);
 	else
 		(*str)++;
 	return (num);
 }
 
-const char	*ft_parsing(const char *str, t_list *lst, va_list ap)
+const char	*ft_parsing(const char *str, t_lst *lst, va_list ap)
 {
 	while (*str == '-' || *str == '0')
 	{
