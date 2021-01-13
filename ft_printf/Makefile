@@ -1,4 +1,8 @@
 NAME = libftprintf.a
+HEADER = ft_printf.h
+
+LIBFT = libft
+LIBFT_NAME = libft.a
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
@@ -6,40 +10,30 @@ CFLAGS = -Wall -Wextra -Werror
 AR = ar
 ARFLAGS = rc
 
-RM = rm -rf
+RM = rm
+RMFLAGS = -f
 
-SRC_NAME = ft_printf.c ft_print_d.c ft_parsing.c
-SRC_PATH = ./srcs
-SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
+SRCS = ft_printf.c ft_print_d.c ft_parsing.c
 
-OBJ_NAME = $(SRC_NAME:.c=.o)
-OBJ_PATH = ./obj
-OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
-
-INC_LINK = -I./includes
-
-LIBFT = -L./libft -lft
+OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
 
-$(NAME) : $(OBJ) libft
-	$(CC) $(CFLAGS) $(OBJ) $(INC_LINK) $(LIBFT) -o $(NAME)
-	# $(AR) $(ARFLAGS) $@ $^
+$(NAME) : $(OBJS)
+	make all -C $(LIBFT)/
+	cp $(LIBFT)/$(LIBFT_NAME) $(NAME)
+	$(AR) $(ARFLAGS) $(NAME) $^
 
-$(OBJ_PATH)/%.o : $(SRC_PATH)/%.c
-	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	$(CC) $(CFLAGS) $(INC_LINK) -o $@ -c $<
-
-libft:
-	@$(MAKE) -C ./libft all
+%.o : %.c $(HEADER)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@$(MAKE) -C ./libft clean
-	$(RM) $(OBJ_PATH)
+	$(RM) $(RMFLAGS) $(OBJS)
+	make clean -C $(LIBFT)
 
 fclean :
-	@$(MAKE) -C ./libft fclean
-	$(RM) $(OBJ_PATH) $(NAME)
+	$(RM) $(RMFLAGS) $(NAME)
+	make fclean -C $(LIBFT)
 
 re : fclean all
 
