@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/13 11:40:29 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/13 17:11:31 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,13 @@ void	ft_check_conversion(const char *str, t_list *lst)
 	else if (*str == '%')
 		// ft_print_percent(lst);
 		printf("c");
-	lst->cnt++;
 }
 
 int		ft_printf(const char *str, ...)
 {
-	int		cnt;
 	va_list	ap;
 	t_list	lst;
 
-	cnt = 0;
 	ft_reset(&lst);
 	va_start(ap, str);
 	while (*str)
@@ -95,17 +92,14 @@ int		ft_printf(const char *str, ...)
 		else
 		{
 			str++;
-			cnt++;
 			str = ft_parsing(str, &lst, ap);
 			lst.result = va_arg(ap, int);
 			lst.len = ft_intlen(lst.result);
 			ft_check_conversion(str, &lst);
-			cnt += lst.cnt;
 		}
 		str++;
-		cnt++;
 		ft_reset(&lst);
 	}
 	va_end(ap);
-	return (cnt);
+	return (lst.cnt);
 }

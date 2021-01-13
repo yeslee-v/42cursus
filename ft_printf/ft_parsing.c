@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 21:38:00 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/13 12:05:29 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/13 17:16:44 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ void		ft_flag(const char *str, t_list *lst)
 int			ft_if_star(const char *str, int num, va_list ap)
 {
 	if (*str == '*')
-	{
 		num = va_arg(ap, int);
-		str++;
-	}
 	else
 	{
 		while (*str != '.' && ft_type(str))
@@ -48,20 +45,11 @@ int			ft_if_star(const char *str, int num, va_list ap)
 
 int			ft_input_w_p(const char **str, int num, va_list ap)
 {
-	if (ft_atoi((char *)str) || **str == '*')
-	{
-		num = ft_if_star(*str, num, ap);
-		if (**str != '*')
-		{
-			// lst->cnt += ft_intlen(num);
-			*str += ft_intlen(num);
-		}
-		else
-		{
-			// lst->cnt++;
-			**str++;
-		}
-	}
+	num = ft_if_star(*str, num, ap);
+	if (**str != '*')
+		*str += ft_intlen(num);
+	else
+		(*str)++;
 	return (num);
 }
 
@@ -73,17 +61,15 @@ const char	*ft_parsing(const char *str, t_list *lst, va_list ap)
 		lst->cnt++;
 		str++;
 	}
-	lst->width = ft_input_w_p(&str, lst->width, ap);
+	if (ft_atoi((char *)str) || *str == '*')
+		lst->width = ft_input_w_p(&str, lst->width, ap);
 	if (*str == '.')
 	{
 		str++;
-		lst->cnt++;
-		lst->prec = ft_input_w_p(&str, lst->prec, ap);
+		if (ft_atoi((char *)str) || *str == '*')
+			lst->prec = ft_input_w_p(&str, lst->prec, ap);
 	}
 	if (ft_type(str))
-	{
-		lst->cnt++;
 		str++;
-	}
 	return (str);
 }

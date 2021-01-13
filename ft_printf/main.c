@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:03:51 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/13 10:19:51 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/13 16:33:29 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,7 +300,7 @@ int main()
 	ft_printf("86.%001.02d|\n\n", 3);
 
 	printf("[count]\n\n");
-		
+
 	printf("87.%d\n", printf("87-1.%d\n", 1));
     ft_printf("87.%d\n", ft_printf("87-1.%d\n", 1));
 	
