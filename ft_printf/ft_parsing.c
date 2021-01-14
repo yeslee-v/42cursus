@@ -6,11 +6,12 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 21:38:00 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/13 22:32:35 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/14 11:56:23 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft/libft.h"
 
 int			ft_type(const char *str)
 {
@@ -20,27 +21,19 @@ int			ft_type(const char *str)
 	return (1);
 }
 
-void		ft_flag(const char *str, t_lst *lst)
-{
-	if (*str == '-')
-		lst->left = 1;
-	else if (*str == '0')
-		lst->zero = 1;
-}
-
-int			ft_if_star(const char *str, int num, va_list ap)
+int			ft_if_star(const char *str, int n, va_list ap)
 {
 	if (*str == '*')
-		num = va_arg(ap, int);
+		n = va_arg(ap, int);
 	else
 	{
 		while (*str != '.' && ft_type(str))
 		{
-			num = (num * 10) + (*str - '0');
+			n = (n * 10) + (*str - '0');
 			str++;
 		}
 	}
-	return (num);
+	return (n);
 }
 
 int			ft_input_w_p(const char **str, int num, va_list ap)
@@ -57,7 +50,10 @@ const char	*ft_parsing(const char *str, t_lst *lst, va_list ap)
 {
 	while (*str == '-' || *str == '0')
 	{
-		ft_flag(str, lst);
+		if (*str == '-')
+			lst->left = 1;
+		else if (*str == '0')
+			lst->zero = 1;
 		lst->cnt++;
 		str++;
 	}
@@ -70,6 +66,9 @@ const char	*ft_parsing(const char *str, t_lst *lst, va_list ap)
 			lst->prec = ft_input_w_p(&str, lst->prec, ap);
 	}
 	if (ft_type(str))
+	{
 		str++;
+		lst->cnt++;
+	}
 	return (str);
 }

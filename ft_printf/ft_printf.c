@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/13 22:34:11 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/14 11:58:39 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,8 @@ void	ft_check_conversion(const char *str, t_lst *lst)
 	else if (*str == 'p')
 		// ft_print_p(lst);
 		printf("c");
-	else if (*str == 'd')
+	else if (*str == 'd' || *str == 'i')
 		ft_print_d(lst);
-	else if (*str == 'i')
-		// ft_print_i(lst);
-		printf("c");
 	else if (*str == 'u')
 		// ft_print_u(lst);
 		printf("c");
@@ -60,11 +57,27 @@ void	ft_check_conversion(const char *str, t_lst *lst)
 		printf("c");
 }
 
+int		ft_res_cnt(t_lst *lst)
+{
+	if (lst->prec < lst->width && lst->len < lst->width)
+		lst->cnt += ft_size(lst->width);
+	else
+	{
+		if (lst->prec < lst->len)
+			lst->cnt += ft_size(lst->prec);
+		else
+			lst->cnt += ft_size(lst->len);
+	}
+	return (lst->cnt);
+}
+
 int		ft_printf(const char *str, ...)
 {
+	int		cnt;
 	va_list	ap;
 	t_lst	lst;
 
+	cnt = 0;
 	ft_reset(&lst);
 	va_start(ap, str);
 	while (*str)
@@ -72,18 +85,21 @@ int		ft_printf(const char *str, ...)
 		if (*str != '%')
 		{
 			write(1, &(*str), 1);
+			cnt++;
 		}
 		else
 		{
 			str++;
+			cnt++;
 			str = ft_parsing(str, &lst, ap);
 			lst.result = va_arg(ap, int);
 			lst.len = ft_size(lst.result);
 			ft_check_conversion(str, &lst);
+			cnt += ft_res_cnt(&lst);
 		}
 		str++;
 		ft_reset(&lst);
 	}
 	va_end(ap);
-	return (lst.cnt);
+	return (cnt);
 }
