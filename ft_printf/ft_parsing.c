@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 21:38:00 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/14 11:56:23 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/14 23:09:57 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ const char	*ft_parsing(const char *str, t_lst *lst, va_list ap)
 		if (*str == '-')
 			lst->left = 1;
 		else if (*str == '0')
-			lst->zero = 1;
+			if (!(lst->left))
+				lst->zero = 1;
 		lst->cnt++;
 		str++;
 	}
@@ -66,9 +67,6 @@ const char	*ft_parsing(const char *str, t_lst *lst, va_list ap)
 			lst->prec = ft_input_w_p(&str, lst->prec, ap);
 	}
 	if (ft_type(str))
-	{
 		str++;
-		lst->cnt++;
-	}
 	return (str);
 }
