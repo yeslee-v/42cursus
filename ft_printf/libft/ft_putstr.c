@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/11 14:33:43 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/16 21:20:49 by yeslee           ###   ########.fr       */
+/*   Created: 2021/01/14 23:23:45 by yeslee            #+#    #+#             */
+/*   Updated: 2021/01/14 23:24:05 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+void	ft_putstr(char *s)
 {
 	int i;
 
 	i = 0;
-	if (!s || !fd)
+	if (!s)
 		return ;
 	while (s[i])
 	{
-		write(fd, &s[i], 1);
+		write(1, &s[i], 1);
 		i++;
 	}
-	write(fd, "\n", 1);
 }
