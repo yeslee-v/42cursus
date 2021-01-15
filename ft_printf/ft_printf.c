@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/14 22:01:10 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/15 11:12:59 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int		ft_printf(const char *str, ...)
 	{
 		if (*str != '%')
 		{
-			write(1, &(*str), 1);
+			ft_putchar(*str);
 			cnt++;
 		}
 		else
