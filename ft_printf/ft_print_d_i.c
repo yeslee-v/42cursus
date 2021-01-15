@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_d.c                                       :+:      :+:    :+:   */
+/*   ft_print_d_i.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/14 22:35:56 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/14 23:38:44 by yeslee           ###   ########.fr       */
+/*   Created: 2021/01/15 17:00:20 by yeslee            #+#    #+#             */
+/*   Updated: 2021/01/15 17:26:21 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ void	ft_width_len(t_lst *lst)
 	}
 }*/
 
-void	ft_print_d(t_lst *lst)
+void	ft_print_d_i(t_lst *lst)
 {
-	if (lst->prec <= lst->len && lst->width <= lst->len)
+	lst->len = ft_size(lst->result);
+/*	if (lst->prec <= lst->len && lst->width <= lst->len)
 		lst->cnt += lst->len;
 	else
 	{
@@ -52,5 +53,6 @@ void	ft_print_d(t_lst *lst)
 	}
 	if (lst->result < 0)
 		lst->len++;
-	//ft_width_len(lst);
+	//ft_width_len(lst);*/
+	ft_putstr(ft_itoa(lst->result));
 }
