@@ -13,7 +13,8 @@ ARFLAGS = rc
 RM = rm
 RMFLAGS = -f
 
-SRCS = ft_printf.c ft_print_d.c ft_parsing.c
+SRCS = ft_printf.c ft_parsing.c ft_check_flag.c ft_check_width.c \
+	   ft_check_prec.c ft_print_d_i.c 
 
 OBJS = $(SRCS:.c=.o)
 

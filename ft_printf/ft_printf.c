@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/15 11:12:59 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/15 17:21:58 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_reset(t_lst *lst)
 		lst->zero = 0;
 		lst->width = 0;
 		lst->prec = 0;
-		lst->len_mod = 0;
+		//lst->len_mod = 0;
 		lst->type = '0';
 		lst->len = 0;
 		lst->result = 0;
@@ -30,7 +30,7 @@ void	ft_reset(t_lst *lst)
 	}
 }
 
-void	ft_check_conversion(const char *str, t_lst *lst, va_list ap)
+void	ft_handle_conversion(const char *str, t_lst *lst, va_list ap)
 {
 	if (*str == 'c')
 	{
@@ -50,8 +50,7 @@ void	ft_check_conversion(const char *str, t_lst *lst, va_list ap)
 	else if (*str == 'd' || *str == 'i')
 	{
 		lst->result = va_arg(ap, int);
-		lst->len = ft_size(lst->result);
-		ft_print_d(lst);
+		ft_print_d_i(lst);
 	}
 	else if (*str == 'u')
 	{
@@ -77,34 +76,37 @@ void	ft_check_conversion(const char *str, t_lst *lst, va_list ap)
 		return ;
 }
 
-int		ft_printf(const char *str, ...)
+void	ft_handle_str(const char *str, t_lst *lst, va_list ap)
 {
-	int		cnt;
-	va_list	ap;
-	t_lst	lst;
-
-	cnt = 0;
-	ft_reset(&lst);
-	va_start(ap, str);
 	while (*str)
 	{
 		if (*str != '%')
 		{
 			ft_putchar(*str);
-			cnt++;
+//			cnt++;
 		}
 		else
 		{
 			str++;
-			str = ft_parsing(str, &lst, ap);
-			ft_check_conversion(str, &lst, ap);
-			cnt += lst.cnt;
+			ft_parsing(&str, lst, ap);
+			ft_handle_conversion(str, lst, ap);
+//			cnt += lst->cnt;
 		}
 		str++;
-		ft_reset(&lst);
+		ft_reset(lst);
 	}
-	if (*str == '\n')
-		cnt++;
+//	if (*str == '\n')
+//		cnt++;
+}
+
+int		ft_printf(const char *str, ...)
+{
+	va_list	ap;
+	t_lst	lst;
+
+	ft_reset(&lst);
+	va_start(ap, str);
+	ft_handle_str(str, &lst, ap);
 	va_end(ap);
-	return (cnt);
+	return (lst.cnt);
 }

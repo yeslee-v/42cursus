@@ -6,35 +6,24 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 21:38:00 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/15 11:18:12 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/15 17:24:27 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_type(const char *str)
+int			ft_istype(const char *str)
 {
 	if (*str == 'c' || *str == 's' || *str == 'p' || *str == 'd' ||
-		*str == 'i' || *str == 'u' || *str == 'x' || *str == 'X' || *str == '%')
-		return (0);
-	return (1);
-}
-
-int			ft_if_star(const char *str, int n, va_list ap)
-{
-	if (*str == '*')
-		n = va_arg(ap, int);
-	else
+		*str == 'i' || *str == 'u' || *str == 'x' || *str == 'X' ||
+		*str == '%')
 	{
-		while (*str != '.' && ft_type(str))
-		{
-			n = (n * 10) + (*str - '0');
-			str++;
-		}
+		return (1);
 	}
-	return (n);
+	return (0);
 }
 
+/*
 int			ft_input_w_p(const char **str, int num, va_list ap)
 {
 	num = ft_if_star(*str, num, ap);
@@ -43,29 +32,13 @@ int			ft_input_w_p(const char **str, int num, va_list ap)
 	else
 		(*str)++;
 	return (num);
-}
+}*/
 
-const char	*ft_parsing(const char *str, t_lst *lst, va_list ap)
+void	ft_parsing(const char **str, t_lst *lst, va_list ap)
 {
-	while (*str == '-' || *str == '0')
-	{
-		if (*str == '-')
-			lst->left = 1;
-		else if (*str == '0')
-			if (!(lst->left))
-				lst->zero = 1;
-		lst->cnt++;
-		str++;
-	}
-	if (ft_atoi((char *)str) || *str == '*')
-		lst->width = ft_input_w_p(&str, lst->width, ap);
-	if (*str == '.')
-	{
-		str++;
-		if (ft_atoi((char *)str) || *str == '*')
-			lst->prec = ft_input_w_p(&str, lst->prec, ap);
-	}
-	if (ft_type(str))
-		str++;
-	return (str);
+	ft_check_flag(str, lst);
+	ft_check_width(str, lst, ap);
+	ft_check_prec(str, lst, ap);
+//	if (ft_type(str))
+//		str++;
 }

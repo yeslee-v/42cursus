@@ -6,18 +6,18 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/15 11:14:13 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/15 17:24:18 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 #define FT_PRINTF_H
 
+#include "libft/libft.h"
 #include <stdarg.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <stdio.h>
-#include "libft/libft.h"
 
 typedef struct	s_lst
 {
@@ -28,13 +28,18 @@ typedef struct	s_lst
 	int			prec;
 
 	int			len_mod;
-	char		type;
+	char			type;
 	int			len;
 	int			result;
 	int			cnt;
 }				t_lst;
 
 int				ft_printf(const char *str, ...);
-const char		*ft_parsing(const char *str, t_lst *lst, va_list ap);
-void			ft_print_d(t_lst *lst);
+int				ft_istype(const char *str);
+
+void			ft_parsing(const char **str, t_lst *lst, va_list ap);
+void			ft_check_flag(const char **str, t_lst *lst);
+void			ft_check_width(const char **str, t_lst *lst, va_list ap);
+void			ft_check_prec(const char **str, t_lst *lst, va_list ap);
+void			ft_print_d_i(t_lst *lst);
 #endif

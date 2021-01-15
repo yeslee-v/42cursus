@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:03:51 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/14 21:50:59 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/15 13:59:43 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,20 @@ int main()
 	printf(  "0.%d|\n", 123);
     ft_printf(  "0.%d|\n\n", 123);
 	
+	printf(  "0-1.%0d|\n", 123);
+    ft_printf(  "0-1.%0d|\n\n", 123);
+	
+	printf(  "0-2.%-d|\n", 123);
+    ft_printf(  "0-2.%-d|\n\n", 123);
+	
 	printf(  "1.%8d|\n", 123);
     ft_printf(  "1.%8d|\n\n", 123);
 	
-	printf( "2.%-8d|\n", 123);
-	ft_printf( "2.%-8d|\n\n", 123);
+	printf( "2.%-3d|\n", 123);
+	ft_printf( "2.%-3d|\n\n", 123);
+
+	printf( "2-1.%-8d|\n", 123);
+	ft_printf( "2-1.%-8d|\n\n", 123);
 
 //	printf( "3.%+8d\n", 123);
 //	ft_printf( "3.%+8d\n\n", 123);
@@ -126,6 +135,9 @@ int main()
 	
 	printf("27-7.%-*.*d|\n", 2, 1, 456);
 	ft_printf("27-7.%-*.*d|\n\n", 2, 1, 456);
+	
+	printf("27-8.%0*.*d|\n", 2, 1, 456);
+	ft_printf("27-8.%0*.*d|\n\n", 2, 1, 456);
 	
 	printf("Result is Negative\n\n");
 
