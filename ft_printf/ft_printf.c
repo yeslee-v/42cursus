@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/15 17:21:58 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/16 11:14:15 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	ft_reset(t_lst *lst)
 		lst->zero = 0;
 		lst->width = 0;
 		lst->prec = 0;
-		//lst->len_mod = 0;
 		lst->type = '0';
+		lst->res = 0;
+		lst->sign = 0;
 		lst->len = 0;
-		lst->result = 0;
 		lst->cnt = 0;
 	}
 }
@@ -49,7 +49,7 @@ void	ft_handle_conversion(const char *str, t_lst *lst, va_list ap)
 	}
 	else if (*str == 'd' || *str == 'i')
 	{
-		lst->result = va_arg(ap, int);
+		lst->res = va_arg(ap, int);
 		ft_print_d_i(lst);
 	}
 	else if (*str == 'u')

@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/15 17:24:18 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/16 11:13:42 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,13 @@ typedef struct	s_lst
 {
 	int			left;
 	int			zero;
-
 	int			width;
 	int			prec;
 
-	int			len_mod;
-	char			type;
+	char		type;
+	int			res;
+	int			sign;
 	int			len;
-	int			result;
 	int			cnt;
 }				t_lst;
 

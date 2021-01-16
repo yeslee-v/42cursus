@@ -6,26 +6,18 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 17:00:20 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/15 17:26:21 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/16 11:17:34 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft/libft.h"
 
-void	ft_negative(t_lst *lst)
+void	ft_printf_d_i(t_lst *lst)
 {
-	if (lst->result < 0)
-	{
-		write(1, "-", 1);
-		lst->result *= -1;
-		lst->len--;
-	}
-	return ;
-}
-/*
-void	ft_width_len(t_lst *lst)
-{
-	if (lst->left)
+	if ((lst->width <= lst->len) && (lst->prec) <= (lst->len))
+		ft_putstr(ft_itoa(lst->res));
+/*	else if (lst->left)
 	{
 		
 	}
@@ -36,12 +28,14 @@ void	ft_width_len(t_lst *lst)
 	else
 	{
 
-	}
-}*/
+	}*/
+}
 
 void	ft_print_d_i(t_lst *lst)
 {
-	lst->len = ft_size(lst->result);
+	lst->res < 0 ? lst->res *= -1 : 1;
+	lst->res < 0 ? lst->len = ft_size(lst->res) + 1 : ft_size(lst->res);
+	lst->res < 0 ? lst->sign = 1 : 0;
 /*	if (lst->prec <= lst->len && lst->width <= lst->len)
 		lst->cnt += lst->len;
 	else
@@ -52,7 +46,6 @@ void	ft_print_d_i(t_lst *lst)
 			lst->cnt += ft_size(lst->width);
 	}
 	if (lst->result < 0)
-		lst->len++;
-	//ft_width_len(lst);*/
-	ft_putstr(ft_itoa(lst->result));
+		lst->len++;*/
+	ft_printf_d_i(lst);
 }
