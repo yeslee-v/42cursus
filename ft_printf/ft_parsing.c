@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 21:38:00 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/15 17:24:27 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/16 21:54:38 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int			ft_input_w_p(const char **str, int num, va_list ap)
 	return (num);
 }*/
 
-void	ft_parsing(const char **str, t_lst *lst, va_list ap)
+void	ft_parsing(const char **str, t_lst *lst, va_list *ap)
 {
 	ft_check_flag(str, lst);
-	ft_check_width(str, lst, ap);
-	ft_check_prec(str, lst, ap);
+	ft_check_width(str, lst, *ap);
+	ft_check_prec(str, lst, *ap);
 //	if (ft_type(str))
 //		str++;
 }

@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/16 11:14:15 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/16 21:54:48 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_reset(t_lst *lst)
 	}
 }
 
-void	ft_handle_conversion(const char *str, t_lst *lst, va_list ap)
+void	ft_handle_conversion(const char *str, t_lst *lst, va_list *ap)
 {
 	if (*str == 'c')
 	{
@@ -49,7 +49,7 @@ void	ft_handle_conversion(const char *str, t_lst *lst, va_list ap)
 	}
 	else if (*str == 'd' || *str == 'i')
 	{
-		lst->res = va_arg(ap, int);
+		lst->res = va_arg(*ap, int);
 		ft_print_d_i(lst);
 	}
 	else if (*str == 'u')
@@ -76,7 +76,7 @@ void	ft_handle_conversion(const char *str, t_lst *lst, va_list ap)
 		return ;
 }
 
-void	ft_handle_str(const char *str, t_lst *lst, va_list ap)
+void	ft_handle_str(const char *str, t_lst *lst, va_list *ap)
 {
 	while (*str)
 	{
@@ -88,8 +88,8 @@ void	ft_handle_str(const char *str, t_lst *lst, va_list ap)
 		else
 		{
 			str++;
-			ft_parsing(&str, lst, ap);
-			ft_handle_conversion(str, lst, ap);
+			ft_parsing(&str, lst, &ap);
+			ft_handle_conversion(str, lst, &ap);
 //			cnt += lst->cnt;
 		}
 		str++;
@@ -106,7 +106,7 @@ int		ft_printf(const char *str, ...)
 
 	ft_reset(&lst);
 	va_start(ap, str);
-	ft_handle_str(str, &lst, ap);
+	ft_handle_str(str, &lst, &ap);
 	va_end(ap);
 	return (lst.cnt);
 }
