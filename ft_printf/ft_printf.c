@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/16 21:54:48 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/17 22:16:13 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,48 +30,24 @@ void	ft_reset(t_lst *lst)
 	}
 }
 
-void	ft_handle_conversion(const char *str, t_lst *lst, va_list *ap)
+void	ft_handle_conversion(const char **str, t_lst *lst)
 {
-	if (*str == 'c')
-	{
-		// ft_print_c(lst);
+	if (**str == 'c')
 		printf("c");
-	}
-	else if (*str == 's')
-	{
-		// ft_print_s(lst);
-		printf("c");
-	}
-	else if (*str == 'p')
-	{
-		// ft_print_p(lst);
-		printf("c");
-	}
-	else if (*str == 'd' || *str == 'i')
-	{
-		lst->res = va_arg(*ap, int);
+	else if (**str == 's')
+		printf("s");
+	else if (**str == 'p')
+		printf("p");
+	else if (**str == 'd' || **str == 'i')
 		ft_print_d_i(lst);
-	}
-	else if (*str == 'u')
-	{
-		// ft_print_u(lst);
-		printf("c");
-	}
-	else if (*str == 'x')
-	{
-		// ft_print_x(lst);
-		printf("c");
-	}
-	else if (*str == 'X')
-	{
-		// ft_print_X(lst);
-		printf("c");
-	}
-	else if (*str == '%')
-	{
-		// ft_print_percent(lst);
-		printf("c");
-	}
+	else if (**str == 'u')
+		printf("u");
+	else if (**str == 'x')
+		printf("x");
+	else if (**str == 'X')
+		printf("X");
+	else if (**str == '%')
+		printf("percent");
 	else
 		return ;
 }
@@ -83,20 +59,17 @@ void	ft_handle_str(const char *str, t_lst *lst, va_list *ap)
 		if (*str != '%')
 		{
 			ft_putchar(*str);
-//			cnt++;
+			//			cnt++;
 		}
 		else
 		{
 			str++;
-			ft_parsing(&str, lst, &ap);
-			ft_handle_conversion(str, lst, &ap);
-//			cnt += lst->cnt;
+			ft_parsing(&str, lst, ap);
+			ft_handle_conversion(&str, lst);
 		}
 		str++;
 		ft_reset(lst);
 	}
-//	if (*str == '\n')
-//		cnt++;
 }
 
 int		ft_printf(const char *str, ...)

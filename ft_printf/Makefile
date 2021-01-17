@@ -13,8 +13,9 @@ ARFLAGS = rc
 RM = rm
 RMFLAGS = -f
 
-SRCS = ft_printf.c ft_parsing.c ft_check_flag.c ft_check_width.c \
-	   ft_check_prec.c ft_print_d_i.c 
+SRCS = ft_printf.c ft_parsing.c parse_flag.c parse_wid_prec.c parse_result.c \
+	   print_d_i.c
+
 
 OBJS = $(SRCS:.c=.o)
 
@@ -32,7 +33,7 @@ clean:
 	$(RM) $(RMFLAGS) $(OBJS)
 	make clean -C $(LIBFT)
 
-fclean :
+fclean : clean
 	$(RM) $(RMFLAGS) $(NAME)
 	make fclean -C $(LIBFT)
 

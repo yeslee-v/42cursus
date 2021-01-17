@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_width.c                                   :+:      :+:    :+:   */
+/*   parse_flag.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/15 15:07:28 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/16 21:53:58 by yeslee           ###   ########.fr       */
+/*   Created: 2021/01/15 14:44:23 by yeslee            #+#    #+#             */
+/*   Updated: 2021/01/17 21:47:46 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_check_width(const char **str, t_lst *lst, va_list *ap)
+void	ft_check_flag(const char **str, t_lst *lst)
 {
-	if (**str == '*' || ft_atoi((char *)str))
+	while (**str == '-' || **str == '0')
 	{
-		if (**str == '*')
-			lst->width = va_arg(*ap, int);
-		else
-		{
-			while (**str != '.' && !(ft_istype(*str)))
-			{
-				lst->width = (lst->width * 10) + (**str - '0');
-				(*str)++;
-			}
-		}
-		if (lst->width < 0)
-		{
+		if (**str == '-')
 			lst->left = 1;
-			lst->zero = 0;
-			lst->width *= -1;
-		}
+		else if (**str == '0')
+			if (!(lst->left))
+				lst->zero = 1;
+		(*str)++;
 	}
-	return ;
 }

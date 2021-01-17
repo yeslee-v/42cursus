@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_d_i.c                                     :+:      :+:    :+:   */
+/*   print_d_i.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/15 17:00:20 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/16 21:50:58 by yeslee           ###   ########.fr       */
+/*   Created: 2021/01/17 22:12:01 by yeslee            #+#    #+#             */
+/*   Updated: 2021/01/17 22:15:21 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_res_negative(t_lst *lst)
-{
-	if (lst->res < 0)
-	{
-		lst->len = ft_size(lst->res) + 1;
-		lst->sign = 1;
-		lst->res *= -1;
-	}
-	else
-		lst->len = ft_size(lst->res);
-
-}
-
-void	ft_printf_d_i(t_lst *lst)
+void	ft_print_detail(t_lst *lst)
 {
 	if ((lst->width <= lst->len) && (lst->prec) <= (lst->len))
 		ft_putstr(ft_itoa(lst->res));
@@ -49,5 +36,5 @@ void	ft_print_d_i(t_lst *lst)
 		}
 		if (lst->result < 0)
 			lst->len++;*/
-	ft_printf_d_i(lst);
+	ft_print_detail(lst);
 }
