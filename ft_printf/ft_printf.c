@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/17 22:16:13 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/18 23:38:47 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ void	ft_reset(t_lst *lst)
 	else
 	{
 		lst->left = 0;
+		lst->left_size = 0;
 		lst->zero = 0;
+		lst->zero_size = 0;
 		lst->width = 0;
 		lst->prec = 0;
 		lst->type = '0';

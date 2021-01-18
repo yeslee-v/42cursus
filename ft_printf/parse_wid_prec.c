@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:55:52 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/17 21:47:13 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/18 23:59:01 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ft_check_width(const char **str, t_lst *lst, va_list *ap)
 {
 	if (**str == '*' || ft_atoi((char *)str))
 	{
+		printf("\n\nstr:%c\n\n", **str);
 		input_wid_prec(str, lst->width, ap);
 		if (lst->width < 0)
 		{
