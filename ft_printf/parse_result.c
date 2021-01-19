@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:53:23 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/19 17:58:28 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/20 00:17:17 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ void	ft_istype(const char **str, t_lst *lst)
 
 void	ft_negative_result(t_lst *lst)
 {
-	if (lst->res < 0 && lst->width != 0)
+	if (lst->res < 0)
 	{
 		lst->sign = 1;
-		lst->width -= 1;
+		if (lst->width != 0)
+			lst->width -= 1;
 	}
 }
 
