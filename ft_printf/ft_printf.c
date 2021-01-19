@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/18 23:38:47 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/19 11:46:19 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,23 @@ void	ft_reset(t_lst *lst)
 	}
 }
 
-void	ft_handle_conversion(const char **str, t_lst *lst)
+void	ft_handle_conversion(t_lst *lst)
 {
-	if (**str == 'c')
+	if (lst->type == 'c')
 		printf("c");
-	else if (**str == 's')
+	else if (lst->type == 's')
 		printf("s");
-	else if (**str == 'p')
+	else if (lst->type == 'p')
 		printf("p");
-	else if (**str == 'd' || **str == 'i')
+	else if (lst->type == 'd' || lst->type == 'i')
 		ft_print_d_i(lst);
-	else if (**str == 'u')
+	else if (lst->type == 'u')
 		printf("u");
-	else if (**str == 'x')
+	else if (lst->type == 'x')
 		printf("x");
-	else if (**str == 'X')
+	else if (lst->type == 'X')
 		printf("X");
-	else if (**str == '%')
+	else if (lst->type == '%')
 		printf("percent");
 	else
 		return ;
@@ -67,7 +67,7 @@ void	ft_handle_str(const char *str, t_lst *lst, va_list *ap)
 		{
 			str++;
 			ft_parsing(&str, lst, ap);
-			ft_handle_conversion(&str, lst);
+			ft_handle_conversion(lst);
 		}
 		str++;
 		ft_reset(lst);

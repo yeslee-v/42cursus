@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:53:23 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/19 00:35:31 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/19 11:59:13 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	ft_negative_result(t_lst *lst)
 
 void	ft_check_result(const char **str, t_lst *lst, va_list *ap)
 {
-	//printf("\n\nstr:%c\n\n", **str);
+	//printf("\nstr:%c\n", **str);
+	lst->type = ft_istype(str);
 	if (**str == 'c')
 		lst->res = va_arg(*ap, int);
 	else if (**str == 's')
@@ -44,4 +45,5 @@ void	ft_check_result(const char **str, t_lst *lst, va_list *ap)
 	else if (**str == '%')
 		lst->res = va_arg(*ap, int);
 	ft_negative_result(lst);
+	printf("\n\nstr:%c %c %d %d %d %d\n\n", **str, lst->type, lst->width, lst->prec, lst->res, lst->len);
 }

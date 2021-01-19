@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/19 00:20:29 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/19 11:26:05 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct	s_lst
 }				t_lst;
 
 int				ft_printf(const char *str, ...);
-int				ft_istype(const char *str);
+char			ft_istype(const char **str);
 
 void			ft_reset(t_lst *lst);
 void			ft_parsing(const char **str, t_lst *lst, va_list *ap);
@@ -54,7 +54,7 @@ void			ft_check_prec(const char **str, t_lst *lst, va_list *ap);
 int				ft_input_wid_prec(const char **str, int w_p, va_list *ap);
 void			ft_check_result(const char **str, t_lst *lst, va_list *ap);
 void			ft_negative_result(t_lst *lst);
-void			ft_handle_conversion(const char **str, t_lst *lst);
+void			ft_handle_conversion(t_lst *lst);
 void			ft_print_d_i(t_lst *lst);
 void			ft_print_detail(t_lst *lst);
 #endif
