@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/19 22:42:45 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/20 01:01:17 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	ft_handle_str(const char *str, t_lst *lst, va_list *ap)
 			ft_handle_conversion(lst);
 		}
 		str++;
-		ft_reset(lst);
 	}
 }
 
@@ -79,8 +78,8 @@ int		ft_printf(const char *str, ...)
 	va_list	ap;
 	t_lst	lst;
 
-	ft_reset(&lst);
 	va_start(ap, str);
+	ft_reset(&lst);
 	ft_handle_str(str, &lst, &ap);
 	va_end(ap);
 	return (lst.cnt);
