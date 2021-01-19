@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/19 11:26:05 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/19 17:11:45 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct	s_lst
 }				t_lst;
 
 int				ft_printf(const char *str, ...);
-char			ft_istype(const char **str);
+void			ft_istype(const char **str, t_lst *lst);
 
 void			ft_reset(t_lst *lst);
 void			ft_parsing(const char **str, t_lst *lst, va_list *ap);

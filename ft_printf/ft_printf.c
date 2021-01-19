@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/19 11:46:19 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/19 22:42:45 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_handle_str(const char *str, t_lst *lst, va_list *ap)
 		if (*str != '%')
 		{
 			ft_putchar(*str);
-			//			cnt++;
+			lst->cnt++;
 		}
 		else
 		{

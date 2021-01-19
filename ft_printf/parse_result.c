@@ -6,28 +6,32 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:53:23 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/19 11:59:13 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/19 17:58:28 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft/libft.h"
+
+void	ft_istype(const char **str, t_lst *lst)
+{
+	if (**str == 'c' || **str == 's' || **str == 'p' || **str == 'd' ||
+		**str == 'i' || **str == 'u' || **str == 'x' || **str == 'X' ||
+		**str == '%')
+		lst->type = **str;
+}
 
 void	ft_negative_result(t_lst *lst)
 {
-	if (lst->res < 0)
+	if (lst->res < 0 && lst->width != 0)
 	{
-		lst->len = ft_size(lst->res) + 1;
 		lst->sign = 1;
-		lst->res *= -1;
+		lst->width -= 1;
 	}
-	else
-		lst->len = ft_size(lst->res);
 }
 
 void	ft_check_result(const char **str, t_lst *lst, va_list *ap)
 {
-	//printf("\nstr:%c\n", **str);
-	lst->type = ft_istype(str);
 	if (**str == 'c')
 		lst->res = va_arg(*ap, int);
 	else if (**str == 's')
@@ -44,6 +48,7 @@ void	ft_check_result(const char **str, t_lst *lst, va_list *ap)
 		lst->res = va_arg(*ap, int);
 	else if (**str == '%')
 		lst->res = va_arg(*ap, int);
+	lst->len = lst->res > 0 ? ft_size(lst->res) : ft_size((lst->res * -1));
 	ft_negative_result(lst);
-	printf("\n\nstr:%c %c %d %d %d %d\n\n", **str, lst->type, lst->width, lst->prec, lst->res, lst->len);
+	ft_istype(str, lst);
 }

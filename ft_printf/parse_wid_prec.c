@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:55:52 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/19 11:55:54 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/19 16:50:44 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,20 @@ int		ft_input_wid_prec(const char **str, int w_p, va_list *ap)
 		w_p = va_arg(*ap, int);
 		(*str)++;
 	}
-	else if (ft_atoi(*str) || **str == '0')
+	else
 	{
-		while (**str != '.' && !(ft_istype(str)))
+		while (ft_atoi(*str) || **str == '0')
 		{
 			w_p = (w_p * 10) + (**str - '0');
-			printf("\nwhere:%d\n", w_p);
 			(*str)++;
 		}
-		(*str) += ft_size(w_p);
 	}
 	return (w_p);
 }
 
 void	ft_check_width(const char **str, t_lst *lst, va_list *ap)
 {
-	//printf("\natoi:%c %d\n", **str, ft_atoi(*str));
-	if (**str == '*' || ft_atoi(*str))
+	if (**str == '*' || **str == '0' || ft_atoi(*str))
 	{
 		lst->width = ft_input_wid_prec(str, lst->width, ap);
 		if (lst->width < 0)
@@ -53,5 +50,7 @@ void	ft_check_prec(const char **str, t_lst *lst, va_list *ap)
 	{
 		(*str)++;
 		lst->prec = ft_input_wid_prec(str, lst->prec, ap);
+		if (lst->prec < 0)
+			lst->prec = 0;
 	}
 }
