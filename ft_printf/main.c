@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:03:51 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/19 21:09:18 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/20 00:32:41 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -347,7 +347,7 @@ int main()
 //	ft_printf("95.%d %d|\n\n", ft_printf("95-1.%d %d|\n\n", 12, 10));
 
 	printf("%d\n", printf("%3.3d\n", 12));
-	ft_printf("%d\n", ft_printf("%33d\n", 12));
+	ft_printf("%d\n", ft_printf("%3.3d\n", 12));
 
 	return (0);
 }
