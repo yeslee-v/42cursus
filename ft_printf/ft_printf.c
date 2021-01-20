@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/20 01:01:17 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/20 09:47:46 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_handle_conversion(t_lst *lst)
 	else if (lst->type == 'X')
 		printf("X");
 	else if (lst->type == '%')
-		printf("percent");
+		ft_print_percent(lst);
 	else
 		return ;
 }

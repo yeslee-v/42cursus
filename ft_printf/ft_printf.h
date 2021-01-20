@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/19 23:51:10 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/20 10:07:56 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct	s_lst
 
 	char			type;
 
-	int			res;
+	long long	res;
 	int			sign;
 	int			len;
 	int			cnt;
@@ -55,5 +55,7 @@ int				ft_input_wid_prec(const char **str, int w_p, va_list *ap);
 void			ft_check_result(const char **str, t_lst *lst, va_list *ap);
 void			ft_negative_result(t_lst *lst);
 void			ft_handle_conversion(t_lst *lst);
+
 void			ft_print_d_i(t_lst *lst);
+void			ft_print_percent(t_lst *lst);
 #endif

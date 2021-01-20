@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:03:51 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/20 01:33:15 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/20 10:11:40 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int main()
 {
+	printf("<<<<<< Print d and i >>>>>>>\n\n");
+
 	ft_printf("this %d number", 17);
 
     ft_printf("%07d", -54);
@@ -161,17 +163,17 @@ int main()
 //	printf( "30.%+8d\n", -123);
 //  printf( "%31. 8d\n", -123);
     
-/*	printf( "32.%08d|\n", -123);
-    ft_printf( "33.%08d|\n\n", -123);
- */   
+//	printf( "32.%08d|\n", -123);
+//    ft_printf( "33.%08d|\n\n", -123);
+
 //	printf("34.%-+8d\n", -123);
 //  printf("35.%- 8d\n", -123);
 //  printf("36.%+08d\n", -123);
 //  printf("37.% 08d\n", -123);
 	
 //	printf("38.%-08d|\n", -123);
-/*	ft_printf("39.%-08d|\n\n", -123);
-*/
+//	ft_printf("39.%-08d|\n\n", -123);
+
 //	printf("40.%-+8d\n", 123);
 //  printf("41.%- 8d\n", 123);
 //  printf("42.%+08d\n", 123);
@@ -356,6 +358,39 @@ int main()
 
 	printf("%d\n", printf("%3.3d\n", 12));
 	ft_printf("%d\n", ft_printf("%3.3d\n", 12));
+/*
 
+	printf("<<<<< print %% >>>>>>\n\n");
+
+//	printf("1.%\n");
+//	ft_printf("1.%\n\n");
+	
+	printf("2.%%\n");
+	ft_printf("2.%%\n\n");
+	
+//	printf("3.%%%\n");
+//	ft_printf("3.%%%\n\n");
+	
+	printf("3-1.%%%%\n");
+	ft_printf("3-1.%%%%\n\n");
+
+	printf("4.-%%\n");
+	ft_printf("4.-%%\n\n");
+	
+	printf("5.0%%\n");
+	ft_printf("5.0%%\n\n");
+	
+	printf("6.3%%\n");
+	ft_printf("6.3%%\n\n");
+	
+	printf("7.-3%%\n");
+	ft_printf("7.-3%%\n\n");
+	
+	printf("8.4%%\n");
+	ft_printf("7.4%%\n\n");
+	
+	printf("9.-4%%\n");
+	ft_printf("9.-4%%\n\n");
+*/	
 	return (0);
 }
