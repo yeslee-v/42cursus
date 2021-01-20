@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:55:52 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/19 16:50:44 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/20 23:40:00 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ void	ft_check_prec(const char **str, t_lst *lst, va_list *ap)
 {
 	if (**str == '.')
 	{
+		lst->dot = 1;
 		(*str)++;
 		lst->prec = ft_input_wid_prec(str, lst->prec, ap);
 		if (lst->prec < 0)
-			lst->prec = 0;
+			lst->prec *= -1;
 	}
 }
