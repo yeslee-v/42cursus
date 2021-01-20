@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 22:12:01 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/20 01:07:57 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/21 00:04:51 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ void	ft_neg_to_pos(t_lst *lst)
 	{
 		ft_putchar('-');
 		lst->res *= -1;
-		lst->sign = 0;
 	}
 }
 
-void	ft_flag_print(int size, char c)
+void	ft_res_print(t_lst *lst)
 {
-	if (size > 0)
-		while (size--)
-			ft_putchar(c);
+	if (lst->dot && !(lst->prec) && !(lst->res))
+		return ;
+	else
+		ft_putstr(ft_itoa(lst->res));
 }
 
 void	ft_flag_off(t_lst *lst)
@@ -41,39 +41,44 @@ void	ft_flag_off(t_lst *lst)
 	ft_flag_print(lst->left_size, ' ');
 	ft_neg_to_pos(lst);
 	ft_flag_print(lst->zero_size, '0');
-	ft_putstr(ft_itoa(lst->res));
+	ft_res_print(lst);
 }
 
 void	ft_flag_on(t_lst *lst)
 {
-	ft_neg_to_pos(lst);
 	lst->cnt += lst->left_size + lst->zero_size + lst->sign + lst->len;
 	if (lst->left)
 	{
+		ft_neg_to_pos(lst);
 		ft_flag_print(lst->zero_size, '0');
-		ft_putstr(ft_itoa(lst->res));
+		ft_res_print(lst);
 		ft_flag_print(lst->left_size, ' ');
 	}
 	else if (lst->zero)
 	{
-		if (!(lst->zero_size))
+		if (!(lst->zero_size) && !(lst->dot))
 			lst->zero_size = lst->width - lst->len;
+		else if (lst->dot)
+			ft_flag_print(lst->left_size, ' ');
+		ft_neg_to_pos(lst);
 		ft_flag_print(lst->zero_size, '0');
-		ft_putstr(ft_itoa(lst->res));
+		ft_res_print(lst);
 	}
 }
 
 void	ft_print_d_i(t_lst *lst)
 {
-	if ((lst->width <= lst->len) && (lst->prec <= lst->len))
+	if (lst->dot && !(lst->prec) && !(lst->res))
+		lst->len = 0;
+	else if ((lst->width <= lst->len) && (lst->prec <= lst->len))
 	{
-		ft_putstr(ft_itoa(lst->res));
+		ft_res_print(lst);
 		lst->cnt += lst->len;
 		return ;
 	}
 	lst->zero_size = lst->len < lst->prec ? lst->prec - lst->len : 0;
 	if ((lst->prec < lst->width) && (lst->len < lst->width))
-		lst->left_size = (lst->len < lst->prec) ?
-			lst->width - lst->prec : lst->width - lst->len;
+		lst->left_size = (lst->len < lst->prec) ? lst->width - lst->prec
+												: lst->width - lst->len;
 	(lst->left || lst->zero) ? ft_flag_on(lst) : ft_flag_off(lst);
 }

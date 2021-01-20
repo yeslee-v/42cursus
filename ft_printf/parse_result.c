@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:53:23 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/20 10:10:41 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/20 23:36:13 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,19 @@ void	ft_check_result(const char **str, t_lst *lst, va_list *ap)
 	if (**str == 'c')
 		lst->res = va_arg(*ap, int);
 	else if (**str == 's')
-		lst->res = va_arg(*ap, int);
+		lst->res_s = va_arg(*ap, char *);
 	else if (**str == 'p')
-		lst->res = va_arg(*ap, int);
+		lst->res = va_arg(*ap, long long);
 	else if (**str == 'd' || **str == 'i')
 		lst->res = va_arg(*ap, int);
 	else if (**str == 'u')
-		lst->res = va_arg(*ap, int);
+		lst->res = va_arg(*ap, unsigned int);
 	else if (**str == 'x')
-		lst->res = va_arg(*ap, int);
+		lst->res = va_arg(*ap, unsigned int);
 	else if (**str == 'X')
-		lst->res = va_arg(*ap, int);
+		lst->res = va_arg(*ap, unsigned int);
 	else if (**str == '%')
-		lst->res = va_arg(*ap, int);
+		lst->res = '%';
 	lst->len = lst->res > 0 ? ft_size(lst->res) : ft_size((lst->res * -1));
 	ft_negative_result(lst);
 	ft_istype(str, lst);
