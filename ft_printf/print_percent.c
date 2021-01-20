@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 09:46:51 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/20 17:12:03 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/21 00:51:06 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,8 @@
 
 void	ft_print_percent(t_lst *lst)
 {
-	ft_putchar(lst->res);
+	if (!(lst->len % 2))
+		return ;
+	//ft_print_d_i(lst);
+	printf("%c", lst->res_pct);
 }

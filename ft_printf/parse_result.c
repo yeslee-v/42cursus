@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:53:23 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/20 23:36:13 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/21 00:49:30 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_check_result(const char **str, t_lst *lst, va_list *ap)
 	else if (**str == 'X')
 		lst->res = va_arg(*ap, unsigned int);
 	else if (**str == '%')
-		lst->res = '%';
+		lst->res_pct = '%';
 	lst->len = lst->res > 0 ? ft_size(lst->res) : ft_size((lst->res * -1));
 	ft_negative_result(lst);
 	ft_istype(str, lst);

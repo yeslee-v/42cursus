@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/20 22:30:41 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/21 00:48:57 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct	s_lst
 	char		type;
 
 	long long	res;
+	char		res_pct;
 	char *		res_s;
 	int			sign;
 	int			len;

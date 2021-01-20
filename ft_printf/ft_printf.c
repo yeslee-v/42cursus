@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/20 22:45:56 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/21 00:50:31 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_reset(t_lst *lst)
 		lst->prec = 0;
 		lst->type = '\0';
 		lst->res = 0;
+		lst->res_pct = '\0';
 		lst->res_s = "";
 		lst->sign = 0;
 		lst->len = 0;
