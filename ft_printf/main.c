@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:03:51 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/20 10:11:40 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/20 23:00:02 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -329,47 +329,52 @@ int main()
 
 	printf("[count]\n\n");
 
-	printf("87.%d\n", printf("87-1.%d\n", 1));
-    ft_printf("87.%d\n", ft_printf("87-1.%d\n", 1));
+	printf("87.%d\n", printf("87-1. %d\n", -123));
+    ft_printf("87.%d\n", ft_printf("87-1. %d\n", -123));
 	
-	printf("88.%d\n", printf("88-1.%d\n", 123));
-    ft_printf("88.%d\n", ft_printf("88-1.%d\n", 123));
+	printf("88.%d\n", printf("88-1. %d\n", 123));
+    ft_printf("88.%d\n", ft_printf("88-1. %d\n", 123));
 	
-	printf("89.%-d\n", printf("89-1.%-d\n", 1));
-    ft_printf("89.%-d\n", ft_printf("89-1.%-d\n", 1));
+	printf("89.%-d\n", printf("89-1. %-d\n", -123));
+    ft_printf("89.%-d\n", ft_printf("89-1. %-d\n", -123));
 	
-	printf("90.%4d\n", printf("90-1.%4d\n", 1));
-    ft_printf("90.%4d\n", ft_printf("90-1.%4d\n", 1));
+	printf("90.%4d\n", printf("90-1. %4d\n", -12));
+    ft_printf("90.%4d\n", ft_printf("90-1. %4d\n", -12));
 	
-	printf("91.%-5d\n", printf("91-1.%-5d\n", 1));
-    ft_printf("91.%-5d\n", ft_printf("91-1.%-5d\n", 1));
+	printf("91.%-5d\n", printf("91-1. %-5d\n", -123));
+    ft_printf("91.%-5d\n", ft_printf("91-1. %-5d\n", -123));
 	
-	printf("92.%.6d\n", printf("92-1.%.6d\n", 1));
-    ft_printf("92.%.6d\n", ft_printf("92-1.%.6d\n", 1));
+	printf("92.%.6d\n", printf("92-1. %.6d\n", -123));
+    ft_printf("92.%.6d\n", ft_printf("92-1. %.6d\n", -123));
 	
-	printf("93.%7.8d\n", printf("93-1.%7.8d\n", 1));
-    ft_printf("93.%7.8d\n", ft_printf("93-1.%7.8d\n", 1));
+	printf("93.%7.8d\n", printf("93-1. %7.8d\n", -123));
+    ft_printf("93.%7.8d\n", ft_printf("93-1. %7.8d\n", -123));
 	
-	printf("94.%-9.10d\n", printf("94-1.%-9.10d\n", 1));
-    ft_printf("94.%-9.10d\n", ft_printf("94-1.%-9.10d\n", 1));
+	printf("94.%-9.10d\n", printf("94-1. %-9.10d\n", -123));
+    ft_printf("94.%-9.10d\n", ft_printf("94-1. %-9.10d\n", -123));
 	
 //	printf("95.%d %d|\n", printf("95-1.%d %d|\n", 12, 10));
 //	ft_printf("95.%d %d|\n\n", ft_printf("95-1.%d %d|\n\n", 12, 10));
 
 	printf("%d\n", printf("%3.3d\n", 12));
 	ft_printf("%d\n", ft_printf("%3.3d\n", 12));
-/*
 
-	printf("<<<<< print %% >>>>>>\n\n");
+    printf("|%08.5d|\n", 34);
+    ft_printf("|%08.5d|\n", 34);
+
+    printf("|%08.d|", 0);
+    ft_printf("|%08.d|", 0);
+
+/*	printf("\n\n<< print %% >>\n\n");
 
 //	printf("1.%\n");
-//	ft_printf("1.%\n\n");
+	ft_printf("1.%\n\n");
 	
 	printf("2.%%\n");
 	ft_printf("2.%%\n\n");
 	
 //	printf("3.%%%\n");
-//	ft_printf("3.%%%\n\n");
+	ft_printf("3.%%%\n\n");
 	
 	printf("3-1.%%%%\n");
 	ft_printf("3-1.%%%%\n\n");
@@ -391,6 +396,6 @@ int main()
 	
 	printf("9.-4%%\n");
 	ft_printf("9.-4%%\n\n");
-*/	
+	*/
 	return (0);
 }
