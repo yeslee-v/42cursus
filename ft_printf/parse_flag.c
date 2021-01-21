@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 14:44:23 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/18 23:41:48 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/21 21:22:30 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,5 @@ void	ft_check_flag(const char **str, t_lst *lst)
 				lst->zero = 1;
 		(*str)++;
 	}
+	return ;
 }

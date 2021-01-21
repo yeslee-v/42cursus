@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/21 14:43:51 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/21 21:26:16 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,16 @@ void	ft_reset(t_lst *lst)
 
 void	ft_handle_conversion(t_lst *lst)
 {
-	if (lst->type == 'c')
-		printf("c");
+	if (lst->type == 'c' || lst->type == '%')
+		ft_print_char(lst);
 	else if (lst->type == 's')
-		printf("s");
+		ft_print_str(lst);
 	else if (lst->type == 'p')
-		printf("p");
-	else if (lst->type == 'd' || lst->type == 'i' || lst->type == 'u' ||
-			lst->type == 'x' || lst->type == 'X' || lst->type == '%')
 		ft_print_num(lst);
-	else
-		return ;
+	else if (lst->type == 'd' || lst->type == 'i' || lst->type == 'u' ||
+			lst->type == 'x' || lst->type == 'X')
+		ft_print_num(lst);
+	return ;
 }
 
 void	ft_handle_str(const char *str, t_lst *lst, va_list *ap)
@@ -67,6 +66,7 @@ void	ft_handle_str(const char *str, t_lst *lst, va_list *ap)
 		}
 		str++;
 	}
+	return ;
 }
 
 int		ft_printf(const char *str, ...)

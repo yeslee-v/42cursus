@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:55:52 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/20 23:40:00 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/21 21:16:27 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	ft_check_width(const char **str, t_lst *lst, va_list *ap)
 			lst->width *= -1;
 		}
 	}
+	return ;
 }
 
 void	ft_check_prec(const char **str, t_lst *lst, va_list *ap)
@@ -54,4 +55,5 @@ void	ft_check_prec(const char **str, t_lst *lst, va_list *ap)
 		if (lst->prec < 0)
 			lst->prec *= -1;
 	}
+	return ;
 }

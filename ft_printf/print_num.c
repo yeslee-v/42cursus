@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 11:57:09 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/21 16:35:06 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/21 21:25:59 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	ft_res_print(t_lst *lst)
 		return ;
 	else
 	{
+		/*if (lst->type == 'p')
+			ft_putstr(lst->res_s);*/
 		if (lst->type == 'd' || lst->type == 'i')
 			ft_putstr(ft_itoa(lst->res));
 		else if (lst->type == 'u')
@@ -36,8 +38,6 @@ void	ft_res_print(t_lst *lst)
 			ft_putstr(ft_itoa_base(lst->res, 16, lst->type));
 		else if (lst->type == 'X')
 			ft_putstr(ft_itoa_base(lst->res, 16, lst->type));
-		else if (lst->type == '%')
-			ft_putchar(lst->res_pct);
 	}
 }
 

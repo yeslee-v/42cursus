@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:53:23 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/21 17:53:21 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/21 23:58:19 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_istype(const char **str, t_lst *lst)
 		**str == 'i' || **str == 'u' || **str == 'x' || **str == 'X' ||
 		**str == '%')
 		lst->type = **str;
+	return ;
 }
 
 void	ft_negative_result(t_lst *lst)
@@ -29,19 +30,21 @@ void	ft_negative_result(t_lst *lst)
 		if (lst->width != 0)
 			lst->width -= 1;
 	}
+	return ;
 }
 
 void	ft_check_len(t_lst *lst)
 {
-	if (lst->type == 'c')
+	if (lst->type == 'c' || lst->type == '%')
 		lst->len = 1;
 	else if (lst->type == 's')
 		lst->len = ft_strlen(lst->res_s);
 	else if (lst->type == 'd' || lst->type == 'i' || lst->type == 'u' ||
-			lst->type == 'p' || lst->type == '%')
+			lst->type == 'p')
 		lst->len = lst->res > 0 ? ft_size(lst->res) : ft_size((lst->res * -1));
 	else if (lst->type == 'x' || lst->type == 'X')
 		lst->len = ft_strlen(ft_itoa_base(lst->res, 16, lst->type));
+	return ;
 }
 
 void	ft_check_result(const char **str, t_lst *lst, va_list *ap)

@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:03:51 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/20 23:00:02 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/22 00:07:20 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main()
 {
-	printf("<<<<<< Print d and i >>>>>>>\n\n");
+/*	printf("<<<<<< Print d and i >>>>>>>\n\n");
 
 	ft_printf("this %d number", 17);
 
@@ -364,7 +364,7 @@ int main()
 
     printf("|%08.d|", 0);
     ft_printf("|%08.d|", 0);
-
+*/
 /*	printf("\n\n<< print %% >>\n\n");
 
 //	printf("1.%\n");
@@ -397,5 +397,21 @@ int main()
 	printf("9.-4%%\n");
 	ft_printf("9.-4%%\n\n");
 	*/
+
+	printf("|%2c|%2d|\n",(char)1, (char)1);
+	printf("|%2c|%2d|\n",'1','1');
+	//printf("|%2c|",'!');
+	printf("|%2c|%2d|\n",1,1);
+	//printf("|%2c%3c|",1,2);
+	//printf("|%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c|",(char)1,(char)2,(char)1,(char)2,(char)1,(char)2,(char)1,(char)2,(char)1,2);
+	//printf("|%c%c%c%c%c%c%c%c%c%c|",(char)1,(char)2,(char)1,(char)2,(char)1,(char)2,(char)1,(char)2,(char)1,2);
+	//ft_printf("%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c",(char)1,(char)2,(char)1,(char)2,(char)1,(char)2,(char)1,(char)2,(char)1,(char)2);
+
+//    printf("%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c",(char)1,(char)2,);
+   
+//	printf("%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c%4c%1c");
+
+  //  printf("%-2c%-3c%-4c%-1c%-2c%-3c%-4c%-1c%-2c%-3c%-4c%-1c%-2c%-3c%-4c%-1c%-2c%-3c%-4c%-1c%-2c%-3c%-4c%-1c%-2c%-3c%-4c");
+
 	return (0);
 }

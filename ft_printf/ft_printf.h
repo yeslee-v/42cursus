@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/21 16:34:30 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/21 20:00:11 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void			ft_negative_result(t_lst *lst);
 void			ft_handle_conversion(t_lst *lst);
 
 void			ft_print_num(t_lst *lst);
+void			ft_print_char(t_lst *lst);
+void			ft_print_str(t_lst *lst);
 
 char			*ft_itoa_base(long long value, int base, char type);
 #endif
