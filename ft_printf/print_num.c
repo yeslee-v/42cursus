@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_d_i.c                                        :+:      :+:    :+:   */
+/*   print_num.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/17 22:12:01 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/21 00:04:51 by yeslee           ###   ########.fr       */
+/*   Created: 2021/01/21 11:57:09 by yeslee            #+#    #+#             */
+/*   Updated: 2021/01/21 16:35:06 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,18 @@ void	ft_res_print(t_lst *lst)
 	if (lst->dot && !(lst->prec) && !(lst->res))
 		return ;
 	else
-		ft_putstr(ft_itoa(lst->res));
+	{
+		if (lst->type == 'd' || lst->type == 'i')
+			ft_putstr(ft_itoa(lst->res));
+		else if (lst->type == 'u')
+			ft_putstr(ft_itoa_base(lst->res, 10, lst->type));
+		else if (lst->type == 'x')
+			ft_putstr(ft_itoa_base(lst->res, 16, lst->type));
+		else if (lst->type == 'X')
+			ft_putstr(ft_itoa_base(lst->res, 16, lst->type));
+		else if (lst->type == '%')
+			ft_putchar(lst->res_pct);
+	}
 }
 
 void	ft_flag_off(t_lst *lst)
@@ -66,7 +77,7 @@ void	ft_flag_on(t_lst *lst)
 	}
 }
 
-void	ft_print_d_i(t_lst *lst)
+void	ft_print_num(t_lst *lst)
 {
 	if (lst->dot && !(lst->prec) && !(lst->res))
 		lst->len = 0;
