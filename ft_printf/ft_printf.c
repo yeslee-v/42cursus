@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/21 00:50:31 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/21 14:43:51 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,9 @@ void	ft_handle_conversion(t_lst *lst)
 		printf("s");
 	else if (lst->type == 'p')
 		printf("p");
-	else if (lst->type == 'd' || lst->type == 'i')
-		ft_print_d_i(lst);
-	else if (lst->type == 'u')
-		printf("u");
-	else if (lst->type == 'x')
-		printf("x");
-	else if (lst->type == 'X')
-		printf("X");
-	else if (lst->type == '%')
-		ft_print_percent(lst);
+	else if (lst->type == 'd' || lst->type == 'i' || lst->type == 'u' ||
+			lst->type == 'x' || lst->type == 'X' || lst->type == '%')
+		ft_print_num(lst);
 	else
 		return ;
 }
