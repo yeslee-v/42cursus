@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/22 18:03:29 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/22 21:54:15 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_handle_conversion(t_lst *lst)
 
 int		ft_handle_str(const char *str, t_lst *lst, va_list *ap)
 {
-	int cnt;
+	int	cnt;
 
 	cnt = 0;
 	while (*str)

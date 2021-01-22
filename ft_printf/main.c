@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:03:51 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/22 00:07:20 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/22 20:57:48 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -413,5 +413,65 @@ int main()
 
   //  printf("%-2c%-3c%-4c%-1c%-2c%-3c%-4c%-1c%-2c%-3c%-4c%-1c%-2c%-3c%-4c%-1c%-2c%-3c%-4c%-1c%-2c%-3c%-4c%-1c%-2c%-3c%-4c");
 
+	printf("\n\n<< print s>>\n\n");
+
+/*	printf("0.|%4s|\n", "123");
+	ft_printf("0.|%4s|*\n", "123");
+	
+	printf("0-1.|%4.s|\n", "123");
+	ft_printf("0-1.|%4.s|*\n", "123");
+	
+	printf("1.|%2.2s|\n", "123");
+	ft_printf("1.|%2.2s|*\n", "123");
+	
+	printf("2.|%2.4s|\n", "123");
+	ft_printf("2.|%2.4s|*\n", "123");
+	
+	printf("3.|%4.2s|\n", "123");
+	ft_printf("3.|%4.2s|*\n", "123");
+	
+	printf("3-1.|%5.4s|\n", "123");
+	ft_printf("3-1.|%5.4s|*\n", "123");
+	
+	printf("4.|%4.4s|\n", "123");
+	ft_printf("4.|%4.4s|*\n", "123");
+	
+	printf("5.|%3.3s|\n", "123");
+	ft_printf("5.|%3.3s|*\n", "123");
+	
+	printf("6.|%4.3s|\n", "123");
+	ft_printf("6.|%4.3s|*\n", "123");
+	
+	printf("7.|%.s|\n", "123");
+	ft_printf("7.|%.s|*\n", "123");
+	
+	printf("8.|%.0s|\n", "123");
+	ft_printf("8.|%.s|*\n", "123");
+	
+	printf("9.|%s|\n", "123");
+	ft_printf("9.|%s|*\n", "123");
+	
+	printf("10.|%-4.2s|\n", "123");
+	ft_printf("10.|%-4.2s|*\n", "123");
+	
+	printf("11.|%-4.4s|\n", "123");
+	ft_printf("11.|%-4.4s|*\n", "123");
+	
+	printf("12.|%3.s|\n", NULL);
+	ft_printf("12.|%3.s|*\n", NULL);
+
+	printf("13.|%3.s|\n", "0");
+	ft_printf("13.|%3.s|*\n", "0");
+*/	
+	//printf("%.3s%.2s", "holla", "bitch");
+	//ft_printf("%.3s%.2s*", "holla", "bitch");
+
+	printf("hello, %s.\n", NULL);
+	ft_printf("hello, %s.\n", NULL);
+
+	//printf("|%3.6s|\n", "");
+	//ft_printf("|%3.6s|*\n", "");
+
+	//printf("%.*s\n", -3, 0);
 	return (0);
 }

@@ -6,76 +6,68 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 21:07:46 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/21 21:34:35 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/22 21:49:11 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-/*static void	ft_neg_to_pos(t_lst *lst)
-{
-	if (lst->sign)
-	{
-		ft_putchar('-');
-		lst->res_s *= -1;
-	}
-}*/
-
 static void	ft_res_print(t_lst *lst)
 {
-	(!(lst->res_s)) ? ft_putchar('\0') : ft_putstr(lst->res_s);
+	if (lst->res_s == NULL)
+	{
+		ft_putstr("(null)");
+		return ;
+	}
+	(lst->prec && (lst->prec < lst->len)) ? ft_putnstr(lst->prec, lst->res_s)
+											: ft_putstr(lst->res_s);
 }
 
 static void	ft_flag_off(t_lst *lst)
 {
-	if ((lst->width < lst->len) && (lst->len < lst->prec))
-		lst->zero_size = lst->prec - lst->len;
-	else if ((lst->len < lst->width) && (lst->len < lst->prec))
-		if (lst->prec < lst->width)
-			lst->zero_size = lst->prec - lst->len;
-	lst->cnt += lst->left_size + lst->zero_size + lst->sign + lst->len;
 	ft_flag_print(lst->left_size, ' ');
-	//ft_neg_to_pos(lst);
-	ft_flag_print(lst->zero_size, '0');
 	ft_res_print(lst);
 }
 
 static void	ft_flag_on(t_lst *lst)
 {
-	lst->cnt += lst->left_size + lst->zero_size + lst->sign + lst->len;
-	if (lst->left)
+	ft_res_print(lst);
+	ft_flag_print(lst->left_size, ' ');
+}
+
+static void	ft_set_size(t_lst *lst)
+{
+	if (lst->len < lst->width)
 	{
-		//ft_neg_to_pos(lst);
-		ft_flag_print(lst->zero_size, '0');
-		ft_res_print(lst);
-		ft_flag_print(lst->left_size, ' ');
+		if (!(lst->dot))
+			lst->left_size = lst->width - lst->len;
+		else if (lst->prec <= lst->width)
+			lst->left_size = ((lst->len <= lst->prec) ? lst->width - lst->len
+														: lst->width - lst->prec);
 	}
-	else if (lst->zero)
+	else
 	{
-		if (!(lst->zero_size) && !(lst->dot))
-			lst->zero_size = lst->width - lst->len;
-		else if (lst->dot)
-			ft_flag_print(lst->left_size, ' ');
-		//ft_neg_to_pos(lst);
-		ft_flag_print(lst->zero_size, '0');
-		ft_res_print(lst);
+		if (lst->prec < lst->len)
+			lst->left_size = lst->width - lst->prec;
 	}
 }
 
 void		ft_print_str(t_lst *lst)
 {
-	if (lst->dot && !(lst->prec) && !(lst->res_s))
-		lst->len = 0;
-	else if ((lst->width <= lst->len) && (lst->prec <= lst->len))
+	if ((lst->dot && !(lst->prec)) || !(lst->len))
+	{
+		ft_flag_print(lst->width, ' ');
+		return ;
+	}
+	if (((lst->width <= lst->len) && !(lst->prec)))
 	{
 		ft_res_print(lst);
 		lst->cnt += lst->len;
 		return ;
 	}
-	lst->zero_size = lst->len < lst->prec ? lst->prec - lst->len : 0;
-	if ((lst->prec < lst->width) && (lst->len < lst->width))
-		lst->left_size = (lst->len < lst->prec) ? lst->width - lst->prec
-												: lst->width - lst->len;
-	(lst->left || lst->zero) ? ft_flag_on(lst) : ft_flag_off(lst);
+	ft_set_size(lst);
+	lst->cnt += (lst->len <= lst->prec) ? lst->left_size + lst->len
+										: lst->left_size + lst->prec;
+	lst->left ? ft_flag_on(lst) : ft_flag_off(lst);
 }
