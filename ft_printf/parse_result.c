@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:53:23 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/22 21:12:40 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/22 23:16:24 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_check_len(t_lst *lst)
 	if (lst->type == 'c' || lst->type == '%')
 		lst->len = 1;
 	else if (lst->type == 's')
-		lst->len = ft_strlen(lst->res_s);
+		lst->len = (lst->res_s == NULL) ? 6 : ft_strlen(lst->res_s);
 	else if (lst->type == 'd' || lst->type == 'i' || lst->type == 'u' || lst->type == 'p')
 		lst->len = lst->res > 0 ? ft_size(lst->res) : ft_size((lst->res * -1));
 	else if (lst->type == 'x' || lst->type == 'X')
