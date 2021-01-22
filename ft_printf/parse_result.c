@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:53:23 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/22 23:16:24 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/23 01:48:27 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_check_result(const char **str, t_lst *lst, va_list *ap)
 	else if (**str == 's')
 		lst->res_s = va_arg(*ap, char *);
 	else if (**str == 'p')
-		lst->res = va_arg(*ap, long long);
+		lst->res = va_arg(*ap, unsigned long long);
 	else if (**str == 'd' || **str == 'i')
 		lst->res = va_arg(*ap, int);
 	else if (**str == 'u')

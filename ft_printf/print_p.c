@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_num.c                                        :+:      :+:    :+:   */
+/*   print_p.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/21 11:57:09 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/23 00:57:09 by yeslee           ###   ########.fr       */
+/*   Created: 2021/01/23 00:58:17 by yeslee            #+#    #+#             */
+/*   Updated: 2021/01/23 01:56:28 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-void	ft_neg_to_pos(t_lst *lst)
+static void	ft_neg_to_pos(t_lst *lst)
 {
 	if (lst->sign)
 	{
@@ -22,24 +22,18 @@ void	ft_neg_to_pos(t_lst *lst)
 	}
 }
 
-void	ft_res_print(t_lst *lst)
+static void	ft_res_print(t_lst *lst)
 {
 	if (lst->dot && !(lst->prec) && !(lst->res))
 		return ;
 	else
 	{
-		if (lst->type == 'd' || lst->type == 'i')
-			ft_putstr(ft_itoa(lst->res));
-		else if (lst->type == 'u')
-			ft_putstr(ft_itoa_base(lst->res, 10, lst->type));
-		else if (lst->type == 'x')
-			ft_putstr(ft_itoa_base(lst->res, 16, lst->type));
-		else if (lst->type == 'X')
-			ft_putstr(ft_itoa_base(lst->res, 16, lst->type));
+		ft_putstr("0x");
+		ft_putstr(ft_itoa_base((lst->res), 16, lst->type));
 	}
 }
 
-void	ft_flag_off(t_lst *lst)
+static void	ft_flag_off(t_lst *lst)
 {
 	if ((lst->width < lst->len) && (lst->len < lst->prec))
 		lst->zero_size = lst->prec - lst->len;
@@ -53,7 +47,7 @@ void	ft_flag_off(t_lst *lst)
 	ft_res_print(lst);
 }
 
-void	ft_flag_on(t_lst *lst)
+static void	ft_flag_on(t_lst *lst)
 {
 	lst->cnt += lst->left_size + lst->zero_size + lst->sign + lst->len;
 	if (lst->left)
@@ -75,7 +69,7 @@ void	ft_flag_on(t_lst *lst)
 	}
 }
 
-void	ft_print_num(t_lst *lst)
+void	ft_print_p(t_lst *lst)
 {
 	if (lst->dot && !(lst->prec) && !(lst->res))
 		lst->len = 0;

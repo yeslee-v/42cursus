@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/22 22:29:19 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/23 00:56:54 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_handle_conversion(t_lst *lst)
 	else if (lst->type == 's')
 		ft_print_str(lst);
 	else if (lst->type == 'p')
-		ft_print_num(lst);
+		ft_print_p(lst);
 	else if (lst->type == 'd' || lst->type == 'i' || lst->type == 'u' ||
 				lst->type == 'x' || lst->type == 'X')
 		ft_print_num(lst);
