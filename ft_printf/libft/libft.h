@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 15:07:09 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/21 16:18:55 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/22 13:13:38 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ void	ft_putstr(char *s);
 void	ft_putendl(char *s);
 void	ft_putnbr(int n);
 void	ft_flag_print(int size, char c);
+void	ft_putnstr(int n, char *str);
 
 #endif
