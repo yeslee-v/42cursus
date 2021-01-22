@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/21 21:26:16 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/22 18:03:29 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,16 @@ void	ft_handle_conversion(t_lst *lst)
 	else if (lst->type == 'p')
 		ft_print_num(lst);
 	else if (lst->type == 'd' || lst->type == 'i' || lst->type == 'u' ||
-			lst->type == 'x' || lst->type == 'X')
+				lst->type == 'x' || lst->type == 'X')
 		ft_print_num(lst);
 	return ;
 }
 
-void	ft_handle_str(const char *str, t_lst *lst, va_list *ap)
+int		ft_handle_str(const char *str, t_lst *lst, va_list *ap)
 {
+	int cnt;
+
+	cnt = 0;
 	while (*str)
 	{
 		if (*str != '%')
@@ -61,22 +64,24 @@ void	ft_handle_str(const char *str, t_lst *lst, va_list *ap)
 		else
 		{
 			str++;
+			ft_reset(lst);
 			ft_parsing(&str, lst, ap);
 			ft_handle_conversion(lst);
 		}
 		str++;
+		cnt += lst->cnt;
 	}
-	return ;
+	return (cnt);
 }
 
 int		ft_printf(const char *str, ...)
 {
+	int		cnt;
 	va_list	ap;
 	t_lst	lst;
 
 	va_start(ap, str);
-	ft_reset(&lst);
-	ft_handle_str(str, &lst, &ap);
+	cnt = ft_handle_str(str, &lst, &ap);
 	va_end(ap);
-	return (lst.cnt);
+	return (cnt);
 }
