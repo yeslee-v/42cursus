@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:03:51 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/22 20:57:48 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/23 00:28:19 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -466,12 +466,18 @@ int main()
 	//printf("%.3s%.2s", "holla", "bitch");
 	//ft_printf("%.3s%.2s*", "holla", "bitch");
 
-	printf("hello, %s.\n", NULL);
-	ft_printf("hello, %s.\n", NULL);
+	//printf("hello, %s.\n", NULL);
+	//ft_printf("hello, %s.\n", NULL);
 
 	//printf("|%3.6s|\n", "");
 	//ft_printf("|%3.6s|*\n", "");
 
 	//printf("%.*s\n", -3, 0);
+	
+	//printf("|%.03s|\n", NULL);
+	//ft_printf("|%.03s|\n", NULL);
+
+	printf("|%.*s|", -3, NULL);
+	ft_printf("f|%.*s|*", -3, NULL);
 	return (0);
 }
