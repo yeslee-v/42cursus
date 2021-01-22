@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:55:52 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/22 16:20:40 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/23 00:08:34 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ void	ft_check_prec(const char **str, t_lst *lst, va_list *ap)
 		(*str)++;
 		lst->prec = ft_input_wid_prec(str, lst->prec, ap);
 		if (lst->prec < 0)
-			lst->prec *= -1;
+			lst->prec = -1;
 	}
 }
