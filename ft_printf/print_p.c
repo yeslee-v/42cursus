@@ -6,14 +6,14 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 23:15:28 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/23 23:15:32 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/23 23:59:33 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-static void	ft_res_print(t_lst *lst)
+void	ft_res_print_p(t_lst *lst)
 {
 	if (lst->dot && !(lst->prec) && !(lst->res))
 		return ;
@@ -24,7 +24,7 @@ static void	ft_res_print(t_lst *lst)
 	}
 }
 
-static void	ft_flag_off(t_lst *lst)
+void	ft_pflag_off(t_lst *lst)
 {
 	if ((lst->width < lst->len) && (lst->len < lst->prec))
 		lst->zero_size = lst->prec - lst->len;
@@ -34,16 +34,16 @@ static void	ft_flag_off(t_lst *lst)
 	lst->cnt += lst->left_size + lst->zero_size + lst->sign + lst->len;
 	ft_flag_print(lst->left_size, ' ');
 	ft_flag_print(lst->zero_size, '0');
-	ft_res_print(lst);
+	ft_res_print_p(lst);
 }
 
-static void	ft_flag_on(t_lst *lst)
+void	ft_pflag_on(t_lst *lst)
 {
 	lst->cnt += lst->left_size + lst->zero_size + lst->sign + lst->len;
 	if (lst->left)
 	{
 		ft_flag_print(lst->zero_size, '0');
-		ft_res_print(lst);
+		ft_res_print_p(lst);
 		ft_flag_print(lst->left_size, ' ');
 	}
 	else if (lst->zero)
@@ -53,7 +53,7 @@ static void	ft_flag_on(t_lst *lst)
 		else if (lst->dot)
 			ft_flag_print(lst->left_size, ' ');
 		ft_flag_print(lst->zero_size, '0');
-		ft_res_print(lst);
+		ft_res_print_p(lst);
 	}
 }
 
@@ -63,7 +63,7 @@ void	ft_print_p(t_lst *lst)
 		lst->len = 0;
 	else if ((lst->width <= lst->len) && (lst->prec <= lst->len))
 	{
-		ft_res_print(lst);
+		ft_res_print_p(lst);
 		lst->cnt += lst->len;
 		return ;
 	}
@@ -71,5 +71,5 @@ void	ft_print_p(t_lst *lst)
 	if ((lst->prec < lst->width) && (lst->len < lst->width))
 		lst->left_size = (lst->len < lst->prec) ? lst->width - lst->prec
 												: lst->width - lst->len;
-	(lst->left || lst->zero) ? ft_flag_on(lst) : ft_flag_off(lst);
+	(lst->left || lst->zero) ? ft_pflag_on(lst) : ft_pflag_off(lst);
 }

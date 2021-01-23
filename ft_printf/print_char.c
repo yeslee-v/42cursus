@@ -6,14 +6,14 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 19:59:04 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/23 12:12:45 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/24 00:03:52 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-static void	ft_res_print(t_lst *lst)
+void	ft_res_print_c(t_lst *lst)
 {
 	if (lst->type == 'c')
 		(!(lst->res)) ? ft_putchar('\0') : ft_putchar(lst->res);
@@ -21,19 +21,19 @@ static void	ft_res_print(t_lst *lst)
 		ft_putchar(lst->res_pct);
 }
 
-static void	ft_flag_off(t_lst *lst)
+void	ft_cflag_off(t_lst *lst)
 {
 	lst->cnt += lst->left_size + lst->zero_size + lst->len;
 	ft_flag_print(lst->left_size, ' ');
-	ft_res_print(lst);
+	ft_res_print_c(lst);
 }
 
-static void	ft_flag_on(t_lst *lst)
+void	ft_cflag_on(t_lst *lst)
 {
 	lst->cnt += lst->left_size + lst->zero_size + lst->len;
 	if (lst->left)
 	{
-		ft_res_print(lst);
+		ft_res_print_c(lst);
 		ft_flag_print(lst->left_size, ' ');
 	}
 	else if (lst->zero && (lst->type == '%'))
@@ -41,7 +41,7 @@ static void	ft_flag_on(t_lst *lst)
 		if (!(lst->zero_size))
 			lst->zero_size = lst->width - lst->len;
 		ft_flag_print(lst->zero_size, '0');
-		ft_res_print(lst);
+		ft_res_print_c(lst);
 	}
 }
 
@@ -49,10 +49,10 @@ void		ft_print_char(t_lst *lst)
 {
 	if (lst->width <= lst->len)
 	{
-		ft_res_print(lst);
+		ft_res_print_c(lst);
 		lst->cnt += lst->len;
 		return ;
 	}
 	lst->left_size = lst->len < lst->width ? lst->width - lst->len : 0;
-	(lst->left || lst->zero) ? ft_flag_on(lst) : ft_flag_off(lst);
+	(lst->left || lst->zero) ? ft_cflag_on(lst) : ft_cflag_off(lst);
 }
