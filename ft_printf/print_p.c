@@ -5,22 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/23 00:58:17 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/23 12:22:10 by yeslee           ###   ########.fr       */
+/*   Created: 2021/01/23 23:15:28 by yeslee            #+#    #+#             */
+/*   Updated: 2021/01/23 23:15:32 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
-
-static void	ft_neg_to_pos(t_lst *lst)
-{
-	if (lst->sign)
-	{
-		ft_putchar('-');
-		lst->res *= -1;
-	}
-}
 
 static void	ft_res_print(t_lst *lst)
 {
@@ -42,7 +33,6 @@ static void	ft_flag_off(t_lst *lst)
 			lst->zero_size = lst->prec - lst->len;
 	lst->cnt += lst->left_size + lst->zero_size + lst->sign + lst->len;
 	ft_flag_print(lst->left_size, ' ');
-	ft_neg_to_pos(lst);
 	ft_flag_print(lst->zero_size, '0');
 	ft_res_print(lst);
 }
@@ -52,7 +42,6 @@ static void	ft_flag_on(t_lst *lst)
 	lst->cnt += lst->left_size + lst->zero_size + lst->sign + lst->len;
 	if (lst->left)
 	{
-		ft_neg_to_pos(lst);
 		ft_flag_print(lst->zero_size, '0');
 		ft_res_print(lst);
 		ft_flag_print(lst->left_size, ' ');
@@ -63,7 +52,6 @@ static void	ft_flag_on(t_lst *lst)
 			lst->zero_size = lst->width - lst->len;
 		else if (lst->dot)
 			ft_flag_print(lst->left_size, ' ');
-		ft_neg_to_pos(lst);
 		ft_flag_print(lst->zero_size, '0');
 		ft_res_print(lst);
 	}
