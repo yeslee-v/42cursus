@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/23 00:56:54 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/23 11:08:13 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_reset(t_lst *lst)
 		lst->res_s = "";
 		lst->sign = 0;
 		lst->len = 0;
-		lst->cnt = 0;
 	}
 }
 
@@ -49,11 +48,8 @@ void	ft_handle_conversion(t_lst *lst)
 	return ;
 }
 
-int		ft_handle_str(const char *str, t_lst *lst, va_list *ap)
+void	ft_handle_str(const char *str, t_lst *lst, va_list *ap)
 {
-	int	cnt;
-
-	cnt = 0;
 	while (*str)
 	{
 		if (*str != '%')
@@ -69,19 +65,17 @@ int		ft_handle_str(const char *str, t_lst *lst, va_list *ap)
 			ft_handle_conversion(lst);
 		}
 		str++;
-		cnt += lst->cnt;
 	}
-	return (cnt);
 }
 
 int		ft_printf(const char *str, ...)
 {
-	int		cnt;
 	va_list	ap;
 	t_lst	lst;
 
+	lst.cnt = 0;
 	va_start(ap, str);
-	cnt = ft_handle_str(str, &lst, &ap);
+	ft_handle_str(str, &lst, &ap);
 	va_end(ap);
-	return (cnt);
+	return (lst.cnt);
 }
