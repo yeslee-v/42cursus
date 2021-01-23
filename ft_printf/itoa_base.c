@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 16:22:07 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/21 17:41:16 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/23 12:23:11 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ char	*ft_islist(char type)
 	if (!(type))
 		return ("0123456789ABCDEF");
 	else
-		hex = (type == 'x') ? "0123456789abcdef" : "0123456789ABCDEF";
+		hex = ((type == 'x') || (type == 'p'))
+			? "0123456789abcdef" : "0123456789ABCDEF";
 	return (hex);
 }
 
