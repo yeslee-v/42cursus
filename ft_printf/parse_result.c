@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:53:23 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/25 01:58:16 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/25 01:59:55 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	ft_check_len(t_lst *lst)
 		lst->len = ft_strlen(ft_itoa_base(lst->res, 10, lst->type));
 	else if (lst->type == 'x' || lst->type == 'X')
 		lst->len = ft_strlen(ft_itoa_base(lst->res, 16, lst->type));
+	else if (lst->type == '%')
+		lst->len = 1;
 	return ;
 }
 
