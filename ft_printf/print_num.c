@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 11:57:09 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/23 23:56:56 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/25 00:40:27 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ void	ft_dflag_on(t_lst *lst)
 	}
 	else if (lst->zero)
 	{
-		if (!(lst->zero_size) && !(lst->dot))
+		if ((!(lst->zero_size) && !(lst->dot)) || (lst->prec == -1))
 			lst->zero_size = lst->width - lst->len;
-		else if (lst->dot)
+		else if (lst->dot && (lst->prec != -1))
 			ft_flag_print(lst->left_size, ' ');
 		ft_neg_to_pos(lst);
 		ft_flag_print(lst->zero_size, '0');

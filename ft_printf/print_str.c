@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 21:07:46 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/23 23:50:15 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/25 00:57:43 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	ft_set_size(t_lst *lst)
 		else if (lst->prec <= lst->width)
 			lst->left_size = ((lst->len <= lst->prec) ?
 					lst->width - lst->len : lst->width - lst->prec);
+		else
+			lst->left_size = lst->width - lst->len;
 	}
 	else
 	{
@@ -67,7 +69,7 @@ void		ft_print_str(t_lst *lst)
 		ft_flag_print(lst->width, ' ');
 		return ;
 	}
-	else if (((lst->width <= lst->len) && !(lst->prec)))
+	else if (((lst->width <= lst->len) && (lst->prec <= 0)))
 	{
 		ft_res_print_s(lst);
 		lst->cnt += lst->len;
