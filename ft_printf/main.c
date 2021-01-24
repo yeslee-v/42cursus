@@ -6,11 +6,12 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:03:51 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/23 15:52:50 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/24 10:54:13 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft/libft.h"
 
 int main()
 {
@@ -398,10 +399,10 @@ int main()
 	ft_printf("9.-4%%\n\n");
 	*/
 
-	printf("|%2c|%2d|\n",(char)1, (char)1);
+/*	printf("|%2c|%2d|\n",(char)1, (char)1);
 	printf("|%2c|%2d|\n",'1','1');
 	//printf("|%2c|",'!');
-	printf("|%2c|%2d|\n",1,1);
+	printf("|%2c|%2d|\n",1,1);*/
 	//printf("|%2c%3c|",1,2);
 	//printf("|%2c%3c%4c%1c%2c%3c%4c%1c%2c%3c|",(char)1,(char)2,(char)1,(char)2,(char)1,(char)2,(char)1,(char)2,(char)1,2);
 	//printf("|%c%c%c%c%c%c%c%c%c%c|",(char)1,(char)2,(char)1,(char)2,(char)1,(char)2,(char)1,(char)2,(char)1,2);
@@ -413,8 +414,10 @@ int main()
 
   //  printf("%-2c%-3c%-4c%-1c%-2c%-3c%-4c%-1c%-2c%-3c%-4c%-1c%-2c%-3c%-4c%-1c%-2c%-3c%-4c%-1c%-2c%-3c%-4c%-1c%-2c%-3c%-4c");
 
-	printf("\n\n<< print s>>\n\n");
-
+/*	printf("\n\n<< print s>>\n\n");
+	
+	printf("|%-*.*s|\n", -7, -3, "yolo");
+	ft_printf("|%-*.*s|\n", -7, -3, "yolo");*/
 /*	printf("0.|%4s|\n", "123");
 	ft_printf("0.|%4s|*\n", "123");
 	
@@ -480,13 +483,64 @@ int main()
 	//printf("|%.*s|", -3, NULL);
 	//ft_printf("f|%.*s|*", -3, NULL);
 	
-	printf("<< print p>>\n\n");
+/*	printf("<< print p>>\n\n");
 
 	char *i;
 
 	i = "123";
 	//printf("%.*p", 3, 12345);
 	ft_printf("|%.*p|", 10, i);
+*/
 
+	printf("|w:%1c|\n", 128);
+	ft_printf("|w:%1c|*\n\n", 128);
+	
+	printf("|w:%2c|\n", 128);
+	ft_printf("|w:%2c|*\n\n", 128);
+	
+	printf("|w:%3c|\n", 128);
+	ft_printf("|w:%3c|*\n\n", 128);
+	
+	printf("|w:%4c|\n", 128);
+	ft_printf("|w:%4c|*\n\n", 128);
+
+	printf("|w:%1c|\n", 129);
+	ft_printf("|w:%1c|*\n\n", 129);
+	
+	printf("|w:%2c|\n", 129);
+	ft_printf("|w:%2c|*\n\n", 129);
+	
+	printf("|w:%3c|\n", 129);
+	ft_printf("|w:%3c|*\n\n", 129);
+	
+	printf("|w:%4c|\n", 129);
+	ft_printf("|w:%4c|*\n\n", 129);
+
+	printf("===s < 0===\n\n");
+
+	printf("|w:%-1c|\n", 128);
+	ft_printf("|w:%-1c|*\n\n", 128);
+	
+	printf("|w:%-2c|\n", 128);
+	ft_printf("|w:%-2c|*\n\n", 128);
+	
+	printf("|w:%-3c|\n", 128);
+	ft_printf("|w:%-3c|*\n\n", 128);
+	
+	printf("|w:%-4c|\n", 128);
+	ft_printf("|w:%-4c|*\n\n", 128);
+	
+	printf("|w:%-1c|\n", 129);
+	ft_printf("|w:%-1c|*\n\n", 129);
+	
+	printf("|w:%-2c|\n", 129);
+	ft_printf("|w:%-2c|*\n\n", 129);
+	
+	printf("|w:%-3c|\n", 129);
+	ft_printf("|w:%-3c|*\n\n", 129);
+	
+	printf("|w:%-4c|\n", 129);
+	ft_printf("|w:%-4c|*\n\n", 129);
+	
 	return (0);
 }
