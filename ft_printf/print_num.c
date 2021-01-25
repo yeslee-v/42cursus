@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 11:57:09 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/25 00:40:27 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/25 11:23:57 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,21 @@ void	ft_neg_to_pos(t_lst *lst)
 
 void	ft_res_print_d(t_lst *lst)
 {
+	char	*res;
+
+	res = "0";
 	if (lst->dot && !(lst->prec) && !(lst->res))
 		return ;
 	else
 	{
 		if (lst->type == 'd' || lst->type == 'i')
-			ft_putstr(ft_itoa(lst->res));
+			res = ft_itoa(lst->res);
 		else if (lst->type == 'u')
-			ft_putstr(ft_itoa_base(lst->res, 10, lst->type));
-		else if (lst->type == 'x')
-			ft_putstr(ft_itoa_base(lst->res, 16, lst->type));
-		else if (lst->type == 'X')
-			ft_putstr(ft_itoa_base(lst->res, 16, lst->type));
+			res = ft_itoa_base(lst->res, 10, lst->type);
+		else if ((lst->type == 'x') || (lst->type == 'X'))
+			res = ft_itoa_base(lst->res, 16, lst->type);
+		ft_putstr(res);
+		free(res);
 	}
 }
 
@@ -67,7 +70,8 @@ void	ft_dflag_on(t_lst *lst)
 	{
 		if ((!(lst->zero_size) && !(lst->dot)) || (lst->prec == -1))
 			lst->zero_size = lst->width - lst->len;
-		else if (lst->dot && (lst->prec != -1))
+		// lst->cnt += lst->left_size + lst->zero_size + lst->sign + lst->len;
+		if (lst->dot && (lst->prec != -1))
 			ft_flag_print(lst->left_size, ' ');
 		ft_neg_to_pos(lst);
 		ft_flag_print(lst->zero_size, '0');
