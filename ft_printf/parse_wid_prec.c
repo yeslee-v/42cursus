@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:55:52 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/25 20:29:48 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/26 22:05:16 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ int		ft_input_wid_prec(const char **str, va_list *ap)
 	}
 	else
 	{
-		if (ft_isdigit(**str))
+		if (ft_isdigit(**str) || (**str == '-'))
 			w_p = ft_atoi(*str);
+		if (**str == '-')
+			(*str)++;
 		while (ft_isdigit(**str))
 			(*str)++;
 	}
@@ -35,7 +37,7 @@ int		ft_input_wid_prec(const char **str, va_list *ap)
 
 void	ft_check_width(const char **str, t_lst *lst, va_list *ap)
 {
-	if (**str == '*' || ft_isdigit(**str))
+	if (**str == '*' || **str == '-' || ft_isdigit(**str))
 	{
 		lst->width = ft_input_wid_prec(str, ap);
 		if (lst->width < 0)
