@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/25 20:23:54 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/27 01:31:08 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-/*typedef struct	s_flag
-{
-	int			left;
-	int			zero;
-}				t_flag;
-*/
 typedef struct	s_lst
 {
-	// t_flag			size;
 	int			left;
 	int			left_size;
 	int			zero;
