@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 21:07:46 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/25 20:46:28 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/27 01:18:13 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ void	ft_set_size(t_lst *lst)
 			lst->left_size = lst->width - lst->len;
 	}
 	else if ((lst->width <= lst->len) && (lst->prec < lst->len))
-		lst->left_size = (lst->prec == -1) ? lst->width
-												: lst->width - lst->prec;
+		lst->left_size = (lst->dot) ? lst->width - lst->prec : lst->width;
 }
 
 void		ft_print_str(t_lst *lst)
@@ -60,6 +59,7 @@ void		ft_print_str(t_lst *lst)
 	if ((lst->dot && !(lst->prec)) || !(lst->len))
 	{
 		ft_flag_print(lst->width, ' ');
+		lst->cnt += lst->width;
 		return ;
 	}
 	else if (((lst->width <= lst->len) && (lst->prec <= 0)))
