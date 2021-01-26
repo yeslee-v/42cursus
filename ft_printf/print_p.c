@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 23:15:28 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/25 01:39:31 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/26 16:57:15 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,17 @@
 
 void	ft_res_print_p(t_lst *lst)
 {
+	char	*res;
+
+	res = "0";
+	ft_putstr("0x");
 	if (lst->dot && !(lst->prec) && !(lst->res))
 		return ;
 	else
 	{
-		ft_putstr("0x");
-		ft_putstr(ft_itoa_base((lst->res), 16, lst->type));
+		res = ft_itoa_base(lst->res, 16, lst->type);
+		ft_putstr(res);
+		free(res);
 	}
 }
 
@@ -60,8 +65,8 @@ void	ft_pflag_on(t_lst *lst)
 void	ft_print_p(t_lst *lst)
 {
 	if (lst->dot && !(lst->prec) && !(lst->res))
-		lst->len = 0;
-	else if ((lst->width <= lst->len) && (lst->prec <= lst->len))
+		lst->len = 2;
+	if ((lst->width <= lst->len) && (lst->prec <= lst->len))
 	{
 		ft_res_print_p(lst);
 		lst->cnt += lst->len;

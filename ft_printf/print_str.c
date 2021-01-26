@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 21:07:46 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/25 00:57:43 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/25 20:46:28 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,8 @@
 void	ft_res_print_s(t_lst *lst)
 {
 	if (lst->res_s == NULL)
-	{
 		lst->res_s = "(null)";
-		if (lst->prec == -1)
-			ft_putstr(lst->res_s);
-	}
-	else if (lst->prec == -1)
+	if (!(lst->dot))
 	{
 		ft_putstr(lst->res_s);
 		return ;
@@ -46,7 +42,7 @@ void	ft_set_size(t_lst *lst)
 {
 	if (lst->len < lst->width)
 	{
-		if (!(lst->dot) || (lst->prec == -1))
+		if (!(lst->dot))
 			lst->left_size = lst->width - lst->len;
 		else if (lst->prec <= lst->width)
 			lst->left_size = ((lst->len <= lst->prec) ?
@@ -54,12 +50,9 @@ void	ft_set_size(t_lst *lst)
 		else
 			lst->left_size = lst->width - lst->len;
 	}
-	else
-	{
-		if (lst->prec < lst->len)
-			lst->left_size = (lst->prec == -1) ? lst->width
+	else if ((lst->width <= lst->len) && (lst->prec < lst->len))
+		lst->left_size = (lst->prec == -1) ? lst->width
 												: lst->width - lst->prec;
-	}
 }
 
 void		ft_print_str(t_lst *lst)

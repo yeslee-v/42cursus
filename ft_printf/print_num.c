@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 11:57:09 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/25 11:23:57 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/27 01:02:16 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_res_print_d(t_lst *lst)
 	char	*res;
 
 	res = "0";
-	if (lst->dot && !(lst->prec) && !(lst->res))
+	if ((lst->dot && !(lst->prec)) && !(lst->res))
 		return ;
 	else
 	{
@@ -58,9 +58,9 @@ void	ft_dflag_off(t_lst *lst)
 
 void	ft_dflag_on(t_lst *lst)
 {
-	lst->cnt += lst->left_size + lst->zero_size + lst->sign + lst->len;
 	if (lst->left)
 	{
+		lst->cnt += lst->left_size + lst->zero_size + lst->sign + lst->len;
 		ft_neg_to_pos(lst);
 		ft_flag_print(lst->zero_size, '0');
 		ft_res_print_d(lst);
@@ -68,10 +68,10 @@ void	ft_dflag_on(t_lst *lst)
 	}
 	else if (lst->zero)
 	{
-		if ((!(lst->zero_size) && !(lst->dot)) || (lst->prec == -1))
+		if (!(lst->zero_size) && !(lst->dot))
 			lst->zero_size = lst->width - lst->len;
-		// lst->cnt += lst->left_size + lst->zero_size + lst->sign + lst->len;
-		if (lst->dot && (lst->prec != -1))
+		lst->cnt += lst->left_size + lst->zero_size + lst->sign + lst->len;
+		if (lst->dot)
 			ft_flag_print(lst->left_size, ' ');
 		ft_neg_to_pos(lst);
 		ft_flag_print(lst->zero_size, '0');
@@ -81,7 +81,7 @@ void	ft_dflag_on(t_lst *lst)
 
 void	ft_print_num(t_lst *lst)
 {
-	if (lst->dot && !(lst->prec) && !(lst->res))
+	if (!(lst->res) && lst->dot && !(lst->prec))
 		lst->len = 0;
 	else if ((lst->width <= lst->len) && (lst->prec <= lst->len))
 	{
@@ -93,5 +93,7 @@ void	ft_print_num(t_lst *lst)
 	if ((lst->prec < lst->width) && (lst->len < lst->width))
 		lst->left_size = (lst->len < lst->prec) ? lst->width - lst->prec
 												: lst->width - lst->len;
+	if (!(lst->dot))
+		lst->left_size = lst->width - lst->len;
 	(lst->left || lst->zero) ? ft_dflag_on(lst) : ft_dflag_off(lst);
 }
