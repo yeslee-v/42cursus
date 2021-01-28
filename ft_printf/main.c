@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:03:51 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/27 01:28:20 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/28 18:53:19 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -749,14 +749,14 @@ int main()
 	printf("%5.6d|\n", 12);
 	ft_printf("%5.6d|\n", 12);*/
 	
-	unsigned int u;
+/*	unsigned int u;
 	int d;
 	char *s;
 
 	u = 1234567;
 	d = 123;
-	s = "qwerty";
-/*	printf("-->|%.u|<--\n", u);
+	s = NULL;
+	printf("-->|%.u|<--\n", u);
 	ft_printf("-->|%.u|<--\n\n", u);
 	
 	printf("-->|%-4u|<--\n", u);
@@ -768,7 +768,7 @@ int main()
 	printf("-->|%0*.*u|<--\n", -2, 4, u);
 	ft_printf("-->|%0*.*u|<--\n\n", -2, 4, u);
 */
-	printf("-->|%0*.*u|<--\n", 2, -4, u);
+/*	printf("-->|%0*.*u|<--\n", 2, -4, u);
 	ft_printf("-->|%0*.*u|<--\n\n", 2, -4, u);
 
 	printf("-->|%0*.*x|<--\n", 2, -4, u);
@@ -783,13 +783,64 @@ int main()
 	printf("-->|%-4.*d|<--\n", -1, d);
 	ft_printf("-->|%-4.*d|<--\n\n", -1, d);
 	
-	printf("-->|%-16.s|<--\n", s);
-	ft_printf("-->|%-16.s|<--\n\n", s);
+	printf("-->|%-16s|<--\n", s);
+	ft_printf("-->|%-16s|<--\n\n", s);*/
 
 	//printf("hello%2.3");
 
 //	printf("%d\n", printf("%0i, %0d, %0d, %0d, %0d, %0d, %d, %d\n", 8, -12, 123456789, 0, -12345678, 97, -2147483648, 2147483647));
-	ft_printf("%d\n", ft_printf("%0i, %0d, %0d, %0d, %0d, %0d, %d, %d\n", 8, -12, 123456789, 0, -12345678, 97, -2147483648, 2147483647));
+	
+/*	printf("%d\n", printf("|%0i\n", 8));
+	printf("%d\n", printf("|%0d\n", -12));
+	printf("%d\n", printf("|%0d\n", 123456789));
+	printf("%d\n", printf("|%0d\n", 0));
+	printf("%d\n", printf("|%0d\n", -123456789));
+	printf("%d\n", printf("|%0d\n", 97));
+//	printf("%d\n", printf("|%0d\n", -2147483648));
+	printf("%d\n", printf("|%0d\n", 2147483647));
+	printf("=================\n");
 
+	ft_printf("%d\n", ft_printf("|%0i\n", 8));
+	ft_printf("%d\n", ft_printf("|%0d\n", -12));
+	ft_printf("%d\n", ft_printf("|%0d\n", 123456789));
+	ft_printf("%d\n", ft_printf("|%0d\n", 0));
+	ft_printf("%d\n", ft_printf("|%0d\n", -123456789));
+	ft_printf("%d\n", ft_printf("|%0d\n", 97));
+	ft_printf("%d\n", ft_printf("|%0d\n", -2147483648));
+	ft_printf("%d\n", ft_printf("|%0d\n", 2147483647));*/
+	
+/*	printf("%d|\n", printf("%2s\n", "abcdefghijklmnop"));
+	printf("%d|\n", printf("%2s\n", "-a"));
+	printf("%d|\n", printf("%2s\n", "-12"));
+	printf("%d|\n", printf("%2s|", "0"));
+	printf("%d|\n", printf("%2s\n", "%%"));
+	
+	printf("================\n");
+	
+	ft_printf("%d|\n", ft_printf("%2s\n", "abcdefghijklmnop"));
+	ft_printf("%d|\n", ft_printf("%2s\n", "-a"));
+	ft_printf("%d|\n", ft_printf("%2s\n", "-12"));
+	ft_printf("%d|\n", ft_printf("%2s|", "0"));
+	ft_printf("%d|\n", ft_printf("%2s\n", "%%"));*/
+
+	printf("|%d|\n", printf("%.*s", 1, "abcdefghijklmnop"));
+	printf("|%d|\n", printf("%.*s", 1, "-a"));
+	printf("|%d|\n", printf("%.*s", 1, "0"));
+	printf("|%d|\n", printf("%.*s", 1, "%%"));
+	printf("|%d|\n", printf("%.*s", 1, "-2147483648"));
+	printf("|%d|\n", printf("%.*s", 1, "0x12345678"));
+	
+	printf("\n------------\n");
+
+	ft_printf("|%d|\n", ft_printf("%.*s", 1, "abcdefghijklmnop"));
+	ft_printf("|%d|\n", ft_printf("%.*s", 1, "-a"));
+	ft_printf("|%d|\n", ft_printf("%.*s", 1, "0"));
+	ft_printf("|%d|\n", ft_printf("%.*s", 1, "%%"));
+	ft_printf("|%d|\n", ft_printf("%.*s", 1, "-2147483648"));
+	ft_printf("|%d|\n", ft_printf("%.*s", 1, "0x12345678"));
+	ft_printf("|%d|\n", ft_printf("%.*s", 1, "-0"));
+
+
+	//	printf("NULL");
 	return (0);
 }
