@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 21:07:46 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/27 01:18:13 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/28 19:10:14 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	ft_res_print_s(t_lst *lst)
 	}
 	((lst->prec) && (lst->prec < lst->len)) ? ft_putnstr(lst->prec, lst->res_s)
 											: ft_putstr(lst->res_s);
+	if ((lst->res_s == NULL) || (lst->dot && !(lst->prec)))
+		free(lst->res_s);
 }
 
 void	ft_sflag_off(t_lst *lst)
@@ -52,24 +54,34 @@ void	ft_set_size(t_lst *lst)
 	}
 	else if ((lst->width <= lst->len) && (lst->prec < lst->len))
 		lst->left_size = (lst->dot) ? lst->width - lst->prec : lst->width;
+	if (lst->left_size < 0)
+		lst->left_size = 0;
 }
 
-void		ft_print_str(t_lst *lst)
+void	ft_print_str(t_lst *lst)
 {
+	if (lst->res_s == NULL)
+		lst->res_s = ft_strdup("(null)");
+	if (lst->dot && !(lst->prec))
+		lst->res_s = ft_strdup("");
+	lst->len = ft_strlen(lst->res_s);
 	if ((lst->dot && !(lst->prec)) || !(lst->len))
 	{
 		ft_flag_print(lst->width, ' ');
 		lst->cnt += lst->width;
 		return ;
 	}
-	else if (((lst->width <= lst->len) && (lst->prec <= 0)))
+	else if ((lst->width <= lst->len) && ((!(lst->dot)) || (lst->prec == 0)))
 	{
 		ft_res_print_s(lst);
 		lst->cnt += lst->len;
 		return ;
 	}
 	ft_set_size(lst);
-	lst->cnt += (lst->len <= lst->prec) ? lst->left_size + lst->len
-										: lst->left_size + lst->prec;
+	if (lst->dot)
+		lst->cnt += ((lst->len <= lst->prec)) ?
+			lst->left_size + lst->len : lst->left_size + lst->prec;
+	else
+		lst->cnt += lst->left_size + lst->len;
 	lst->left ? ft_sflag_on(lst) : ft_sflag_off(lst);
 }
