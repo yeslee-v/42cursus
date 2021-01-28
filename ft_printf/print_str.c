@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 21:07:46 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/28 19:10:14 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/29 01:00:42 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ void	ft_sflag_off(t_lst *lst)
 
 void	ft_sflag_on(t_lst *lst)
 {
+	if (lst->zero)
+	{
+		lst->zero_size = lst->width - lst->len;
+		ft_flag_print(lst->zero_size, '0');
+		ft_res_print_s(lst);
+		return ;
+	}
 	ft_res_print_s(lst);
 	ft_flag_print(lst->left_size, ' ');
 }
@@ -79,9 +86,9 @@ void	ft_print_str(t_lst *lst)
 	}
 	ft_set_size(lst);
 	if (lst->dot)
-		lst->cnt += ((lst->len <= lst->prec)) ?
-			lst->left_size + lst->len : lst->left_size + lst->prec;
+		lst->cnt += ((lst->len <= lst->prec)) ? lst->left_size + lst->len
+												: lst->left_size + lst->prec;
 	else
 		lst->cnt += lst->left_size + lst->len;
-	lst->left ? ft_sflag_on(lst) : ft_sflag_off(lst);
+	(lst->left || lst->zero) ? ft_sflag_on(lst) : ft_sflag_off(lst);
 }
