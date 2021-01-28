@@ -6,18 +6,18 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/27 01:31:08 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/28 19:33:35 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+# define FT_PRINTF_H
 
-#include "libft/libft.h"
-#include <stdarg.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+# include "libft/libft.h"
+# include <stdarg.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct	s_lst
 {
@@ -33,7 +33,7 @@ typedef struct	s_lst
 
 	long long	res;
 	char		res_pct;
-	char *		res_s;
+	char		*res_s;
 	int			sign;
 	int			len;
 	int			cnt;
@@ -58,4 +58,5 @@ void			ft_print_str(t_lst *lst);
 void			ft_print_p(t_lst *lst);
 
 char			*ft_itoa_base(long long value, int base, char type);
+
 #endif

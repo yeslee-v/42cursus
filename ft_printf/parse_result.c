@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:53:23 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/27 17:00:37 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/28 19:17:34 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 void	ft_istype(const char **str, t_lst *lst)
 {
 	if (**str == 'c' || **str == 's' || **str == 'p' || **str == 'd' ||
-		**str == 'i' || **str == 'u' || **str == 'x' || **str == 'X' || **str == '%')
+		**str == 'i' || **str == 'u' || **str == 'x' || **str == 'X' ||
+		**str == '%')
 		lst->type = **str;
 	return ;
 }
@@ -31,7 +32,7 @@ void	ft_negative_result(t_lst *lst)
 	}
 }
 
-void	ft_check_len_puxX(t_lst *lst)
+void	ft_check_len_pux(t_lst *lst)
 {
 	char	*len;
 
@@ -46,15 +47,19 @@ void	ft_check_len_puxX(t_lst *lst)
 
 void	ft_check_len(t_lst *lst)
 {
+	int	i;
+
+	i = 0;
 	if (lst->type == 'c')
 		lst->len = 1;
-	else if (lst->type == 's')
-		lst->len = (lst->res_s == NULL) ? 6 : ft_strlen(lst->res_s);
 	else if (lst->type == 'd' || lst->type == 'i')
-		lst->len = lst->res > 0 ? ft_size(lst->res) : ft_size((lst->res * -1));
+	{
+		i = lst->res;
+		lst->len = (i == -2147483648) ? 10 : ft_size(i);
+	}
 	else if (lst->type == 'p' || lst->type == 'u' ||
 			lst->type == 'x' || lst->type == 'X')
-		ft_check_len_puxX(lst);
+		ft_check_len_pux(lst);
 	else if (lst->type == '%')
 		lst->len = 1;
 	return ;
