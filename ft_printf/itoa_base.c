@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 16:22:07 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/28 22:00:44 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/28 23:17:40 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,18 @@ int		ft_len_base(unsigned long long num, int base, int i)
 	return (i);
 }
 
+char	*ft_value_zero(char *str)
+{
+	str[0] = '0';
+	str[1] = '\0';
+	return (str);
+}
+
 char	*ft_itoa_base(unsigned long long value, int base, char type)
 {
-	int			i;
+	int					i;
+	char				*str;
 	unsigned long long	num;
-	char		*str;
 
 	num = value;
 	i = 0;
@@ -34,10 +41,7 @@ char	*ft_itoa_base(unsigned long long value, int base, char type)
 	if (!(str = (char *)malloc(sizeof(char) * (i + 1))))
 		return (NULL);
 	if (!(value))
-	{
-		str[0] = '0';
-		str[1] = '\0';
-	}
+		str = ft_value_zero(str);
 	else
 		str[i] = '\0';
 	while (i)
@@ -45,8 +49,8 @@ char	*ft_itoa_base(unsigned long long value, int base, char type)
 		if (num % base < 10)
 			str[--i] = (num % base + '0');
 		else
-			str[--i] = ((type == 'x') || (type == 'p')) ? (num % base + 'a' - 10)
-										: (num % base + 'A' - 10);
+			str[--i] = ((type == 'x') || (type == 'p')) ?
+				(num % base + 'a' - 10) : (num % base + 'A' - 10);
 		num /= base;
 	}
 	return (str);

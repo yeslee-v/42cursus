@@ -6,13 +6,13 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 21:49:00 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/13 22:22:11 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/28 22:19:12 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_input(size_t i, size_t len, int n, char *c)
+char	*ft_input(size_t i, size_t len, int n, char *c)
 {
 	while (i < len)
 	{
@@ -23,7 +23,7 @@ char		*ft_input(size_t i, size_t len, int n, char *c)
 	return (c);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	size_t	i;
 	size_t	len;

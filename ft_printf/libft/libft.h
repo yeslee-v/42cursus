@@ -6,17 +6,17 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 15:07:09 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/23 01:30:42 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/28 22:18:04 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
-#define LIBFT_H
+# define LIBFT_H
 
-#include <stddef.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
+# include <stddef.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
 
 void	*ft_memset(void *s, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
