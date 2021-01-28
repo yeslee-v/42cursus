@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 23:15:28 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/29 01:41:55 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/29 02:06:33 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,6 @@ void	ft_res_print_p(t_lst *lst)
 
 void	ft_pflag_off(t_lst *lst)
 {
-//	if (lst->res == 0)
-//	{
-//		printf("*\n");
-//		return ;
-//	}
 	if ((lst->width < lst->len) && (lst->len < lst->prec))
 		lst->zero_size = lst->prec - lst->len;
 	else if ((lst->len < lst->width) && (lst->len < lst->prec))

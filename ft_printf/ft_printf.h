@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:12:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/28 23:59:03 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/29 02:06:54 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int				ft_printf(const char *str, ...);
 void			ft_handle_conversion(t_lst *lst);
 void			ft_reset(t_lst *lst);
 
-//void			ft_parsing(const char **str, t_lst *lst, va_list *ap);
 void			ft_check_flag(const char **str, t_lst *lst);
 void			ft_check_width(const char **str, t_lst *lst, va_list *ap);
 void			ft_check_prec(const char **str, t_lst *lst, va_list *ap);
