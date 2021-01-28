@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 11:57:09 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/27 01:22:15 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/28 15:54:40 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_neg_to_pos(t_lst *lst)
 	{
 		ft_putchar('-');
 		lst->res *= -1;
+		lst->cnt++;
 	}
 }
 
@@ -32,7 +33,14 @@ void	ft_res_print_d(t_lst *lst)
 	else
 	{
 		if (lst->type == 'd' || lst->type == 'i')
+		{
+			if (lst->res == 2147483648)
+			{
+				ft_putstr("2147483648");
+				return ;
+			}
 			res = ft_itoa(lst->res);
+		}
 		else if (lst->type == 'u')
 			res = ft_itoa_base(lst->res, 10, lst->type);
 		else if ((lst->type == 'x') || (lst->type == 'X'))
@@ -49,7 +57,7 @@ void	ft_dflag_off(t_lst *lst)
 	else if ((lst->len < lst->width) && (lst->len < lst->prec))
 		if (lst->prec < lst->width)
 			lst->zero_size = lst->prec - lst->len;
-	lst->cnt += lst->left_size + lst->zero_size + lst->sign + lst->len;
+	lst->cnt += lst->left_size + lst->zero_size + lst->len;
 	ft_flag_print(lst->left_size, ' ');
 	ft_neg_to_pos(lst);
 	ft_flag_print(lst->zero_size, '0');
@@ -60,7 +68,7 @@ void	ft_dflag_on(t_lst *lst)
 {
 	if (lst->left)
 	{
-		lst->cnt += lst->left_size + lst->zero_size + lst->sign + lst->len;
+		lst->cnt += lst->left_size + lst->zero_size + lst->len;
 		ft_neg_to_pos(lst);
 		ft_flag_print(lst->zero_size, '0');
 		ft_res_print_d(lst);
@@ -75,7 +83,7 @@ void	ft_dflag_on(t_lst *lst)
 			lst->cnt += lst->left_size;
 			ft_flag_print(lst->left_size, ' ');
 		}
-		lst->cnt += lst->zero_size + lst->sign + lst->len;
+		lst->cnt += lst->zero_size + lst->len;
 		ft_neg_to_pos(lst);
 		ft_flag_print(lst->zero_size, '0');
 		ft_res_print_d(lst);
@@ -88,6 +96,7 @@ void	ft_print_num(t_lst *lst)
 		lst->len = 0;
 	else if ((lst->width <= lst->len) && (lst->prec <= lst->len))
 	{
+		ft_neg_to_pos(lst);
 		ft_res_print_d(lst);
 		lst->cnt += lst->len;
 		return ;
