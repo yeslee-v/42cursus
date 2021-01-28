@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:21:34 by yeslee            #+#    #+#             */
-/*   Updated: 2021/01/27 18:11:35 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/01/29 00:30:33 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,12 @@ void	ft_handle_str(const char *str, t_lst *lst, va_list *ap)
 		{
 			str++;
 			ft_reset(lst);
-			ft_parsing(&str, lst, ap);
+			ft_check_flag(&str, lst);
+			ft_check_width(&str, lst, ap);
+			ft_check_prec(&str, lst, ap);
+			ft_check_result(&str, lst, ap);
+			if (!(ft_istype(&str, lst)))
+				return ;
 			ft_handle_conversion(lst);
 		}
 		str++;

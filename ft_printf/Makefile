@@ -13,8 +13,8 @@ ARFLAGS = rc
 RM = rm
 RMFLAGS = -f
 
-SRCS = ft_printf.c ft_parsing.c parse_flag.c parse_wid_prec.c parse_result.c \
-	   print_num.c print_char.c print_str.c print_p.c itoa_base.c
+SRCS = ft_printf.c parse_flag.c parse_wid_prec.c parse_result.c print_num.c \
+	   print_char.c print_str.c print_p.c itoa_base.c
 
 OBJS = $(SRCS:.c=.o)
 
