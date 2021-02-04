@@ -2,25 +2,26 @@ FROM	debian:buster
 
 LABEL	maintainer="yeslee@student.42seoul.kr"	
 
-RUN		apt-get update && apt-get install -y \
-		nginx\
-		openssl\
-		vim\
-		php-fpm\
-		mariadb-server\
-		php-mysql\
-		php-mbstring\
+RUN		apt-get update && apt-get install -y upgrade; \
+		apt-get -y install nginx \
+		openssl \
+		vim \
+		php7.3-fpm \
+		mariadb-server \
+		php-mysql \
+		php-mbstring \
 		wget
 
 RUN		wget https://wordpress.org/latest.tar.gz;\
-		wget https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.0.2-all-languages.tar.gz;\
-		tar -xvf phpMyAdmin-5.0.2-all-languages.tar.gz;\
 		tar -xvf latest.tar.gz
+		
+RUN		wget https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.0.2-all-languages.tar.gz;\
+		tar -xvf phpMyAdmin-5.0.2-all-languages.tar.gz
 
-COPY	/srcs/run.sh /
-COPY	/srcs/default /
-COPY	/srcs/config.inc.php /
-COPY	/srcs/wp-config.php /
+COPY	/srcs/run.sh ./
+COPY	/srcs/default ./tmp
+COPY	/srcs/config.inc.php ./tmp
+COPY	/srcs/wp-config.php ./tmp
 
 EXPOSE	80 443
 
