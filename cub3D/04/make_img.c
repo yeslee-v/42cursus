@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include "../mlx/mlx.h"
 
-# define WIN_WIDTH	800
-# define WIN_HEIGHT	600
+# define WIN_WIDTH	700
+# define WIN_HEIGHT	500
 
-# define IMG_WIDTH	400
+# define IMG_WIDTH	200
 # define IMG_HEIGHT	300
 
 typedef struct	s_img
@@ -24,7 +24,6 @@ typedef struct	s_mlx
 
 void draw_box(t_img img)
 {
-
 	int		count_w;
 	int		count_h;
 
