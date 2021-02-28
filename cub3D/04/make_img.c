@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include "../mlx/mlx.h"
 
 # define WIN_WIDTH	700
@@ -7,8 +9,21 @@
 # define IMG_WIDTH	400
 # define IMG_HEIGHT	300
 
-# define ROWS		11
-# define COLS		15
+# define ROWS		5
+# define COLS		5
+
+# define X_EVENT_KEY_PRESS		2
+# define X_EVENT_KEY_release	3
+# define X_EVENT_KEY_EXIT		17
+
+# define KEY_ESC				53
+# define KEY_Q					12
+# define KEY_W					13
+# define KEY_E					14
+# define KEY_R					15
+# define KEY_A					0
+# define KEY_S					1
+# define KEY_D					2
 
 typedef struct	s_img
 {
@@ -54,18 +69,50 @@ void draw_box(t_img img, int width, int height, int color)
 	}
 }
 
+void wall_to_map(t_game game, t_img img)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < ROWS)
+	{
+		j = 0;
+		while (j < COLS)
+		{
+			if (game.map[i][j] == 1)
+				draw_box(img, 330, 230, 0x890aff);
+			j++;
+		}
+		i++;	
+	}
+}
+
+void game_init(t_game *game)
+{
+	int	map[ROWS][COLS] = {
+		{1, 1, 1, 1, 1},
+		{1, 0, 0, 0, 1},
+		{1, 0, 0, 1, 1},
+		{1, 0, 0, 0, 1},
+		{1, 1, 1, 1, 1}
+	};
+	memcpy(game->map, map, sizeof(int) * ROWS * COLS);
+}
+
 int	main(void)
 {
 	t_mlx	*mlx;
 	t_img	img;
+	t_game	game;
 
+	game_init(&game);
 	mlx->mlx_ptr = mlx_init();
-	mlx->win = mlx_new_window(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "A simple example");
+	mlx->win = mlx_new_window(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	img.img_ptr = mlx_new_image(mlx->mlx_ptr, IMG_WIDTH, IMG_HEIGHT);
 	img.data = (int *)mlx_get_data_addr(img.img_ptr, &img.bpp, &img.size_l, &img.endian);
-	
-	draw_box(img, -1, 200, 0x0a80f0);
-	draw_box(img, 250, 100, 0x890aff);
+
+	wall_to_map(game, img);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, img.img_ptr, 0, 0);
 	mlx_loop(mlx->mlx_ptr);
 	return (0);
