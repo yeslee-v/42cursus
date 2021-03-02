@@ -99,11 +99,11 @@ void wall_to_map(t_game game, t_img img)
 void game_init(t_game *game)
 {
 	int	map[ROWS][COLS] = {
-		{1, 1, 1, 1, 1},
-		{1, 1, 0, 0, 1},
-		{1, 0, 0, 1, 1},
-		{1, 1, 0, 0, 1},
-		{1, 1, 1, 1, 1}
+	{1, 1, 1, 1, 1},
+	{1, 1, 0, 0, 1},
+	{1, 0, 0, 1, 1},
+	{1, 1, 0, 0, 1},
+	{1, 1, 1, 1, 1}
 	};
 	memcpy(game->map, map, sizeof(int) * ROWS * COLS);
 }
@@ -137,6 +137,12 @@ void window_init(t_game *game)
 	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 }
 
+void img_init(t_game *game)
+{
+	game->img.img_ptr = mlx_new_image(game->mlx, IMG_WIDTH, IMG_HEIGHT);
+	game->img.data = (int *)mlx_get_data_addr(game->img.img_ptr, &game->img.bpp, &game->img.size_l, &game->img.endian);
+}
+
 int	main(void)
 {
 	t_img	img;
@@ -146,8 +152,7 @@ int	main(void)
 //	param_init(&param);
 	game_init(&game);
 	window_init(&game);
-	img.img_ptr = mlx_new_image(game->mlx, IMG_WIDTH, IMG_HEIGHT);
-	img.data = (int *)mlx_get_data_addr(img.img_ptr, &img.bpp, &img.size_l, &img.endian);
+	img_init(&game);
 
 	wall_to_map(game, img);
 	mlx_put_image_to_window(game->mlx, game->win, img.img_ptr, 0, 0);
