@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <math.h>
 #include "../mlx/mlx.h"
 
 # define WIN_WIDTH	700
@@ -17,6 +18,7 @@
 # define X_EVENT_KEY_EXIT		17
 
 # define KEY_ESC				53
+
 # define KEY_Q					12
 # define KEY_W					13
 # define KEY_E					14
@@ -37,18 +39,22 @@ typedef struct	s_img
 	int		endian;
 }				t_img;
 
-typedef struct	s_mlx
-{
-	void	*mlx_ptr;
-	void	*win;
-}				t_mlx;
-
 typedef	struct	s_game
 {
+	void	*mlx;
+	void	*win;
 	t_img	img;
 
 	int		map[ROWS][COLS];
 }				t_game;
+
+typedef struct	s_param
+{
+	int	x;
+	int	y;
+
+	char str[3];
+}				t_param;
 
 void draw_box(t_img img, int width, int height, int color)
 {
@@ -65,7 +71,9 @@ void draw_box(t_img img, int width, int height, int color)
 				img.data[count_h * IMG_WIDTH + count_w] = color;
 			else
 				img.data[count_h * IMG_WIDTH + count_w] = 0x000000;
+			printf("*");
 		}
+			printf("\n");
 	}
 }
 
@@ -92,28 +100,58 @@ void game_init(t_game *game)
 {
 	int	map[ROWS][COLS] = {
 		{1, 1, 1, 1, 1},
-		{1, 0, 0, 0, 1},
+		{1, 1, 0, 0, 1},
 		{1, 0, 0, 1, 1},
-		{1, 0, 0, 0, 1},
+		{1, 1, 0, 0, 1},
 		{1, 1, 1, 1, 1}
 	};
 	memcpy(game->map, map, sizeof(int) * ROWS * COLS);
 }
 
+/*void param_init(t_param *param)
+{
+	param->x = 3;
+	param->y = 4;
+	param->str[0] = 'a';
+	param->str[1] = 'b';
+	param->str[2] = '\0';
+}*/
+
+/*int	key_press(int keycode, t_param *param)
+{
+	static int a = 0;
+
+	if (keycode == KEY_W)
+		param->x++;
+	else if (keycode == KEY_S)
+		param->x--;
+	else if (keycode == KEY_ESC)
+		exit(0);
+	printf("x: %d\n", param->x);
+	return (0);
+}*/
+
+void window_init(t_game *game)
+{
+	game->mlx = mlx_init();
+	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
+}
+
 int	main(void)
 {
-	t_mlx	*mlx;
 	t_img	img;
 	t_game	game;
+//	t_param param;
 
+//	param_init(&param);
 	game_init(&game);
-	mlx->mlx_ptr = mlx_init();
-	mlx->win = mlx_new_window(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "cub3D");
-	img.img_ptr = mlx_new_image(mlx->mlx_ptr, IMG_WIDTH, IMG_HEIGHT);
+	window_init(&game);
+	img.img_ptr = mlx_new_image(game->mlx, IMG_WIDTH, IMG_HEIGHT);
 	img.data = (int *)mlx_get_data_addr(img.img_ptr, &img.bpp, &img.size_l, &img.endian);
 
 	wall_to_map(game, img);
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, img.img_ptr, 0, 0);
-	mlx_loop(mlx->mlx_ptr);
+	mlx_put_image_to_window(game->mlx, game->win, img.img_ptr, 0, 0);
+//	mlx_hook(win, X_EVENT_KEY_PRESS, 0, &key_press, &param);
+	mlx_loop(game->mlx);
 	return (0);
 }
