@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:06:03 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/05 20:52:51 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/05 21:42:46 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <errno.h>
 
 #include "./include/libft/libft.h"
-#include "./include/get_next_line/get_next_line.h"
+//#include "./include/get_next_line/get_next_line.h"
 
 typedef struct	s_game
 {

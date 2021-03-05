@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 18:30:21 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/05 20:52:58 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/05 21:42:42 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,18 @@ int	main(int ac, char **av)
 	char	*buf;
 
 	//mlx_init();
-	//game_init();
+//	ft_t_game_init();
 	
 	ft_check_error(ac, av, fd);
 	
-	//read(fd, buf, sizeof(buf));
-	buf = NULL;
+	read(fd, buf, sizeof(buf));
+	/*buf = NULL;
 	while ((get_next_line(1, &buf)) > 0)
 	{
 		printf("%s\n", buf);
 		free(buf);
 		buf = NULL;
-	}
+	}*/
 	//close(fd);
 	free(buf);
 	return (0);
