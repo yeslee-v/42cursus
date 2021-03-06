@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 20:47:55 by yeslee            #+#    #+#             */
-/*   Updated: 2020/11/01 16:24:33 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/06 15:19:56 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int		get_current_line(char **line, char **isremain, char *tmp)
 	if (tmp)
 	{
 		*tmp = '\0';
-		*line = ft_strdup(*isremain);
-		save = ft_strdup(tmp + 1);
+		*line = ft_strdup_gnl(*isremain);
+		save = ft_strdup_gnl(tmp + 1);
 		free(*isremain);
 		*isremain = save;
 		return (1);
 	}
-	*line = ft_strdup(*isremain);
+	*line = ft_strdup_gnl(*isremain);
 	free(*isremain);
 	*isremain = NULL;
 	return (0);
@@ -41,12 +41,12 @@ int		get_next_line(int fd, char **line)
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
 	if (!isremain)
-		isremain = ft_strdup("");
-	while (!(tmp = ft_strchr(isremain, '\n')) &&
+		isremain = ft_strdup_gnl("");
+	while (!(tmp = ft_strchr_gnl(isremain, '\n')) &&
 			((reader = read(fd, buf, BUFFER_SIZE)) > 0))
 	{
 		buf[reader] = '\0';
-		tmp = ft_strjoin(isremain, buf);
+		tmp = ft_strjoin_gnl(isremain, buf);
 		free(isremain);
 		isremain = tmp;
 	}

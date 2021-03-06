@@ -6,13 +6,13 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 20:48:06 by yeslee            #+#    #+#             */
-/*   Updated: 2020/10/31 21:45:02 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/06 15:18:52 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		ft_strlen(char *s)
+int		ft_strlen_gnl(char *s)
 {
 	int	i;
 
@@ -24,7 +24,7 @@ int		ft_strlen(char *s)
 	return (i);
 }
 
-char	*ft_strdup(char *c)
+char	*ft_strdup_gnl(char *c)
 {
 	int		i;
 	int		j;
@@ -32,7 +32,7 @@ char	*ft_strdup(char *c)
 
 	if (!c)
 		return (0);
-	i = ft_strlen(c);
+	i = ft_strlen_gnl(c);
 	str = malloc(sizeof(char) * (i + 1));
 	j = 0;
 	if (!str)
@@ -46,14 +46,14 @@ char	*ft_strdup(char *c)
 	return (str);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	int		i;
 	int		j;
 	int		k;
 	char	*s3;
 
-	if (!(s3 = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
+	if (!(s3 = (char *)malloc(ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1)))
 		return (0);
 	i = -1;
 	j = -1;
@@ -72,7 +72,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (s3);
 }
 
-char	*ft_strchr(char *str, int c)
+char	*ft_strchr_gnl(char *str, int c)
 {
 	int i;
 
