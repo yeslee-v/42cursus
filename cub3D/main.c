@@ -6,13 +6,13 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 18:30:21 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/06 20:55:15 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/07 21:37:26 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	ft_check_error(int ac, char **av)
+int		ft_check_error(int ac, char **av)
 {
 	int	fd;
 
@@ -25,40 +25,46 @@ int	ft_check_error(int ac, char **av)
 	return (fd);
 }
 
-char ft_space_on(char *buf)
+char	**ft_space_on(char *line)
 {
-	if (*buf == ' ' || (*buf >= 9 && *buf <= 13))
-		return ('1');
-	return (' ');
+	char	**res;
+
+	res = NULL;
+	if (ft_strchr(line, ' '))
+		res = ft_split(line, ' ');
+	else if (ft_strchr(line, ','))
+		res = ft_split(line, ',');
+	else if (ft_strchr(line, 32))
+		res = ft_split(line, '	');
+	return (res);
 }
 
-int	main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	int		fd;
-	char	res;
-	char	*buf;
-	char	**a;
+	char	*line;
+	char	**res;
 
-	// mlx_init();
 	ft_t_game_init();
 	ft_t_save_init_on(ac, av);
-	//ft_save_on(ac, av, &save);
 	
 	fd = ft_check_error(ac, av);
-	
-	while ((get_next_line(fd, &buf)) > 0)	// while 을 두 번 돌린다?
+	while ((get_next_line(fd, &line)) > 0)
 	{
-		res = ft_space_on(buf);
-		a = ft_split(buf, res);
-		while (*a)
+		if (ft_strlen(line) > 2)
 		{
-			printf("%s|\n", *a);
-			a++;
+			ft_read_line(line);
+			//printf("%s\n", line);
+			res = ft_space_on(line);
+			while (*res)
+			{
+				//printf("%s|\n", *res);
+				res++;
+			}
+			free(line);
 		}
-		//printf("%s\n", buf);
-		free(buf);
 	}
 	close(fd);
-	free(buf);
+	//	free(line);
 	return (0);
 }

@@ -1,17 +1,19 @@
 R 640 480
+
 NO ./pics/path_to_the_north_texture
 SO ./pics/path_to_the_south_texture
 WE ./pics/path_to_the_west_texture
 EA ./pics/path_to_the_east_texture
 
 S ./path_to_the_sprite_texture
-F 220, 100, 0
-C 225, 30, 0
 
-1111111111
-1000000001
-1010000001
-1000000011
+F 220,100,0
+C 225,30,0
+
+111111111111111
+10000000011
+101000000001
+10000000111
 1000000001
 1110000001
 1000000001
