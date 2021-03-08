@@ -6,24 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 18:30:21 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/07 21:37:26 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/08 21:42:44 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
-
-int		ft_check_error(int ac, char **av)
-{
-	int	fd;
-
-	if (!((ac > 1) && (ac < 4)))
-		ft_error_message(1);
-	if (!(ft_strnstr(av[1], ".cub", ft_strlen(av[1]))))
-		ft_error_message(2);
-	if ((fd = open(av[1], O_RDONLY)) == -1)
-		ft_error_message(3);
-	return (fd);
-}
+#include "cub3d.h"
 
 char	**ft_space_on(char *line)
 {
@@ -34,8 +21,8 @@ char	**ft_space_on(char *line)
 		res = ft_split(line, ' ');
 	else if (ft_strchr(line, ','))
 		res = ft_split(line, ',');
-	else if (ft_strchr(line, 32))
-		res = ft_split(line, '	');
+	else
+		ft_error_message(5);
 	return (res);
 }
 
@@ -44,23 +31,17 @@ int		main(int ac, char **av)
 	int		fd;
 	char	*line;
 	char	**res;
+	t_all	all;
 
-	ft_t_game_init();
-	ft_t_save_init_on(ac, av);
+	ft_t_game_init(&(all.game));
+	ft_t_save_init_on(ac, av, &(all.save));
 	
 	fd = ft_check_error(ac, av);
 	while ((get_next_line(fd, &line)) > 0)
 	{
 		if (ft_strlen(line) > 2)
 		{
-			ft_read_line(line);
-			//printf("%s\n", line);
-			res = ft_space_on(line);
-			while (*res)
-			{
-				//printf("%s|\n", *res);
-				res++;
-			}
+			ft_read_line(line, &(all.game));
 			free(line);
 		}
 	}

@@ -6,76 +6,66 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 17:59:16 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/07 21:05:20 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/08 22:01:33 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
-void	ft_read_line(char *line)
+int		ft_isspace(char c)
 {
-	int		i;
-	t_game	game;
-
-	i = 0;
-	// if (game.cnt == 8)
-	ft_read_map(line);
-	while (*line == ' ' || (*line >= 9 && *line <= 13))
-		i++;
-	if ((line[i] == 'R') && (line[i + 1] == ' '))
-	{
-		printf("R is done\n");
-
-	}
-	if ((line[i] == 'N') && (line[i + 1] == 'O') && (line[i + 2] == ' '))
-	{
-		printf("NO is done\n");
-
-	}
-	if ((line[i] == 'S') && (line[i + 1] == 'O') && (line[i + 2] == ' '))
-	{
-
-		printf("SO is done\n");
-	}
-	if ((line[i] == 'W') && (line[i + 1] == 'E') && (line[i + 2] == ' '))
-	{
-		printf("WE is done\n");
-
-	}
-	if ((line[i] == 'E') && (line[i + 1] == 'A') && (line[i + 2] == ' '))
-	{
-		printf("EA is done\n");
-
-	}
-	if ((line[i] == 'S') && (line[i + 1] == ' '))
-	{
-		printf("S is done\n");
-
-	}
-	if ((line[i] == 'F') && (line[i + 1] == ' '))
-	{
-		printf("F is done\n");
-
-	}
-	if ((line[i] == 'C') && (line[i + 1] == ' '))
-	{
-		printf("C is done\n");
-	}
+	if (c == ' ' || (c >= 9 && c <= 13))
+		return (1);
+	return (0);
 }
 
-void	ft_read_map(char *line)
+void	ft_read_line(char *line, t_game *game)
 {
 	int		i;
-	t_map	map;
 
 	i = 0;
-		printf("%c %zd\n", *line, ft_strlen(line));
+	//printf("game.cnt: %d\n", game.cnt);
+	// if (game.cnt == 8)
+	//	ft_read_map(line);
+	if (ft_isspace(line[i]))
+		ft_error_message(6);
+	else
+	{
+		if ((line[i] == 'R') && ft_isspace(line[i + 1]))
+			ft_put_size(line, game, i);
+		if ((line[i] == 'N') && (line[i + 1] == 'O') && ft_isspace(line[i + 2]))
+			ft_put_image(line, game, i);
+		else if ((line[i] == 'S') && (line[i + 1] == 'O') &&
+				ft_isspace(line[i + 2]))
+			ft_put_image(line, game, i);
+		else if ((line[i] == 'W') && (line[i + 1] == 'E') &&
+				ft_isspace(line[i + 2]))
+			ft_put_image(line, game, i);
+		else if ((line[i] == 'E') && (line[i + 1] == 'A') &&
+				ft_isspace(line[i + 2]))
+			ft_put_image(line, game, i);
+		else if ((line[i] == 'S') && ft_isspace(line[i + 1]))
+			ft_put_image(line, game, i);
+		else if ((line[i] == 'F') && ft_isspace(line[i + 1]))
+			ft_put_color(line, game, i);
+		else if ((line[i] == 'C') && ft_isspace(line[i + 1]))
+			ft_put_color(line, game, i);
+	}
+	//game.cnt++;
+}
+
+void	ft_read_map(char *line, t_map *map)
+{
+	int		i;
+
+	i = 0;
+	// printf("%c %zd\n", *line, ft_strlen(line));
 	while (*line)
 	{
-	//	printf("%c %zd\n", *line, ft_strlen(line));
-		map.row = (ft_strlen(line) > map.row) ? ft_strlen(line) : map.row;
+		// printf("here: %c %zd\n", *line, ft_strlen(line));
+		map->row = (ft_strlen(line) > map->row) ? ft_strlen(line) : map->row;
 		line++;
 		i++;
 	}
-	map.col = i;
+	map->col = i;
 }
