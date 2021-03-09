@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/08 21:41:13 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/09 16:49:49 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ typedef struct	s_game
 
 	char			*sp;
 
-	int			f;
-	int			c;
+	int			f[3];
+	int			c[3];
 
 	int			cnt;
 }				t_game;
