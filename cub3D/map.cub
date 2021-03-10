@@ -5,7 +5,7 @@ SO ./pics/wall_s.xpm
 WE ./pics/wall_w.xpm
 EA ./pics/wall_e.xpm
 
-S ./path_to_the_sprite_texture
+S ./pics/sprite.xpm
 
 F 220,100,0
 C 225,30,0

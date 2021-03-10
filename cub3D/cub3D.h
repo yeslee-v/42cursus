@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/09 16:49:49 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/10 17:48:52 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ int				ft_check_error(int ac, char **av);
 void			ft_error_message(int i);
 
 void			ft_read_line(char *line, t_game *game);
-void			ft_read_map(char *line, t_map *map);
+void			ft_read_map(char *line);
 
 char			**ft_space_on(char *line);
 
-void			ft_put_size(char *line, t_game *game, int i);
-void			ft_put_image(char *line, t_game *game, int i);
-void			ft_put_color(char *line, t_game *game, int i);
+void			ft_put_size(char *width, char *height, t_game *game);
+void			ft_put_image(char *img, t_game *game);
+void			ft_put_color(char *color, int *color_arr, int cnt);

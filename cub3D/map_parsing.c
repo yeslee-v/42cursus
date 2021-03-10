@@ -6,11 +6,21 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 17:59:16 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/09 15:31:37 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/10 17:49:44 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int		ft_double_strlen(char **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 int		ft_isspace(char c)
 {
@@ -21,51 +31,46 @@ int		ft_isspace(char c)
 
 void	ft_read_line(char *line, t_game *game)
 {
-	int		i;
+	int		len;
+	char	**res;
 
-	i = 0;
-	//printf("game.cnt: %d\n", game.cnt);
-	// if (game.cnt == 8)
-	//	ft_read_map(line);
-	if (ft_isspace(line[i]))
+	if (game->cnt == 8)
+		ft_read_map(line);
+	if (ft_isspace(line[0]))
 		ft_error_message(6);
-	else
-	{
-		if ((line[i] == 'R') && ft_isspace(line[i + 1]))
-			ft_put_size(line, game, i);
-		if ((line[i] == 'N') && (line[i + 1] == 'O') && ft_isspace(line[i + 2]))
-			ft_put_image(line, game, i);
-		else if ((line[i] == 'S') && (line[i + 1] == 'O') &&
-				ft_isspace(line[i + 2]))
-			ft_put_image(line, game, i);
-		else if ((line[i] == 'W') && (line[i + 1] == 'E') &&
-				ft_isspace(line[i + 2]))
-			ft_put_image(line, game, i);
-		else if ((line[i] == 'E') && (line[i + 1] == 'A') &&
-				ft_isspace(line[i + 2]))
-			ft_put_image(line, game, i);
-		else if ((line[i] == 'S') && ft_isspace(line[i + 1]))
-			ft_put_image(line, game, i);
-		else if ((line[i] == 'F') && ft_isspace(line[i + 1]))
-			ft_put_color(line, game, i);
-		else if ((line[i] == 'C') && ft_isspace(line[i + 1]))
-			ft_put_color(line, game, i);
-	}
-	//game.cnt++;
+	res = ft_split(line, ' ');
+	len = ft_double_strlen(res);
+	if (ft_strnstr(res[0], "R", ft_strlen(res[0])) && len == 3)
+		ft_put_size(res[1], res[2], game);
+	else if (ft_strnstr(res[0], "NO", ft_strlen(res[0])) && len == 2)
+		ft_put_image(res[1], game);
+	else if (ft_strnstr(res[0], "SO", ft_strlen(res[0])) && len == 2)
+		ft_put_image(res[1], game);
+	else if (ft_strnstr(res[0], "WE", ft_strlen(res[0])) && len == 2)
+		ft_put_image(res[1], game);
+	else if (ft_strnstr(res[0], "EA", ft_strlen(res[0])) && len == 2)
+		ft_put_image(res[1], game);
+	else if (ft_strnstr(res[0], "S", ft_strlen(res[0])) && len == 2)
+		ft_put_image(res[1], game);
+	else if (ft_strnstr(res[0], "F", ft_strlen(res[0])) && len == 2)
+		ft_put_color(res[1], game->f, game->cnt);
+	else if (ft_strnstr(res[0], "C", ft_strlen(res[0])) && len == 2)
+		ft_put_color(res[1], game->c, game->cnt);
 }
 
-void	ft_read_map(char *line, t_map *map)
+void	ft_read_map(char *line)
 {
-	int		i;
+	t_map	*map;
 
-	i = 0;
-	// printf("%c %zd\n", *line, ft_strlen(line));
-	while (*line)
-	{
-		// printf("here: %c %zd\n", *line, ft_strlen(line));
-		map->row = (ft_strlen(line) > map->row) ? ft_strlen(line) : map->row;
-		line++;
-		i++;
-	}
-	map->col = i;
+	//	printf("Now here\n");
+	/*	int	i;
+		i = 0;
+		// printf("%c %zd\n", *line, ft_strlen(line));
+		while (*line)
+		{
+			// printf("here: %c %zd\n", *line, ft_strlen(line));
+			map->row = (ft_strlen(line) > map->row) ? ft_strlen(line) :
+		map->row; line++; i++;
+		}
+		map->col = i;*/
 }

@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 17:36:44 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/09 15:45:13 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/10 17:39:48 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	ft_t_game_init(t_game *game)
 	game->e = "0";
 	game->w = "0";
 	game->sp = "0";
-//	game->f = 0;
-//	game->c = 0;
 	game->cnt = 0;
 }
 
