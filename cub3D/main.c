@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 18:30:21 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/10 17:51:20 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/10 20:35:03 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ int		main(int ac, char **av)
 			free(line);
 		}
 	}
-	printf("[size]\nw: %d h: %d\n\n", all.game.r.width, all.game.r.height);
+/*	printf("[size]\nw: %d h: %d\n\n", all.game.r.width, all.game.r.height);
 	printf("[img]\nn: %s\ns: %s\nw: %s\ne: %s\nsp: %s\n\n", all.game.n, all.game.s,
 			all.game.w, all.game.e, all.game.sp);
 	printf("color_f: %d %d %d\n", all.game.f[0], all.game.f[1],
 			all.game.f[2]);
 	printf("color_c: %d %d %d\n", all.game.c[0], all.game.c[1],
-			all.game.c[2]);
+			all.game.c[2]);*/
 	close(fd);
 	free(line);
 	return (0);

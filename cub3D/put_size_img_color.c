@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 13:25:13 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/10 17:49:33 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/10 20:40:25 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_put_image(char *img, t_game *game)
 	game->cnt++;
 }
 
-void	ft_put_color(char *color, int *color_arr, int cnt)
+void	ft_put_color(char *color, int *color_arr, t_game *game)
 {
 	int		i;
 	char	**res;
@@ -48,5 +48,5 @@ void	ft_put_color(char *color, int *color_arr, int cnt)
 		color_arr[i] = ft_atoi(res[i]);
 		i++;
 	}
-	cnt++;
+	game->cnt++;
 }

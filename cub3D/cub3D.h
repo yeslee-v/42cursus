@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/10 17:48:52 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/10 20:40:13 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,4 @@ char			**ft_space_on(char *line);
 
 void			ft_put_size(char *width, char *height, t_game *game);
 void			ft_put_image(char *img, t_game *game);
-void			ft_put_color(char *color, int *color_arr, int cnt);
+void			ft_put_color(char *color, int *color_arr, t_game *game);
