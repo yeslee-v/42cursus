@@ -6,17 +6,36 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 13:25:13 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/10 20:40:25 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/11 21:42:36 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+int		ft_check_atoi(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (!(ft_isdigit(s[i])))
+			ft_error_message(4);
+		i++;
+	}
+	return (ft_atoi(s));
+}
+
 void	ft_put_size(char *width, char *height, t_game *game)
 {
-	game->r.width = ft_atoi(width);
-	game->r.height = ft_atoi(height);
-	game->cnt++;
+	if ((ft_check_atoi(width)) && (ft_check_atoi(height)))
+	{
+		game->r.width = ft_check_atoi(width);
+		game->r.height = ft_check_atoi(height);
+		game->cnt++;
+	}
+	else
+		ft_error_message(1);
 }
 
 void	ft_put_image(char *img, t_game *game)
@@ -39,14 +58,26 @@ void	ft_put_image(char *img, t_game *game)
 void	ft_put_color(char *color, int *color_arr, t_game *game)
 {
 	int		i;
+	int		rgb;
 	char	**res;
+	int		len;
 
 	res = ft_split(color, ',');
-	i = 0;
-	while (res[i])
+	len = ft_double_strlen(res);
+	if (len == 3)
 	{
-		color_arr[i] = ft_atoi(res[i]);
-		i++;
+		i = 0;
+		while (res[i])
+		{
+			rgb = ft_check_atoi(res[i]);
+			if (((rgb >= 0) && (rgb <= 255)))
+				color_arr[i] = rgb;
+			else
+				ft_error_message(7);
+			i++;
+		}
 	}
+	else
+		ft_error_message(7);
 	game->cnt++;
 }

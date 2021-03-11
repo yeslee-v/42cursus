@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/10 20:40:13 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/11 19:55:15 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,10 @@ void			ft_t_save_init_on(int ac, char **avi, t_save *save);
 int				ft_check_error(int ac, char **av);
 void			ft_error_message(int i);
 
-void			ft_read_line(char *line, t_game *game);
-void			ft_read_map(char *line);
+void			ft_read_line(char *line, t_all *all);
+void			ft_read_map(char *line, t_all *all);
+
+int				ft_double_strlen(char **s);
 
 char			**ft_space_on(char *line);
 
