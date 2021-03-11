@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 18:30:21 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/11 20:09:16 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/11 22:11:02 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,20 @@ int		main(int ac, char **av)
 	fd = ft_check_error(ac, av);
 	while ((get_next_line(fd, &line)) > 0)
 	{
-		if (ft_strlen(line) > 2)
+		if (ft_strlen(line))
 		{
 			ft_read_line(line, &all);
 			free(line);
 		}
 	}
-	printf("\n[window_size]\nw: %d h: %d\n\n", all.game.r.width, all.game.r.height);
+/*	printf("\n[window_size]\nw: %d h: %d\n\n", all.game.r.width, all.game.r.height);
 	printf("[img]\nn: %s\ns: %s\nw: %s\ne: %s\nsp: %s\n\n", all.game.n, all.game.s,
 			all.game.w, all.game.e, all.game.sp);
 	printf("[color_f]\n%d %d %d\n\n", all.game.f[0], all.game.f[1],
 			all.game.f[2]);
 	printf("[color_c]\n%d %d %d\n\n", all.game.c[0], all.game.c[1],
 			all.game.c[2]);
-	printf("[map_size]\nrow: %d col:%d\n", all.map.row, all.map.col);
+	printf("[map_size]\nrow: %d col:%d\n", all.map.row, all.map.col);*/
 	close(fd);
 	free(line);
 	return (0);
