@@ -6,7 +6,7 @@
 #    By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 14:38:08 by yeslee            #+#    #+#              #
-#    Updated: 2021/03/11 21:27:40 by yeslee           ###   ########.fr        #
+#    Updated: 2021/03/13 17:22:55 by yeslee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,5 +24,6 @@ all:
 		include/libft/ft_strlen.c \
 		include/libft/ft_strnstr.c \
 		include/libft/ft_atoi.c \
-		include/libft/ft_isdigit.c
+		include/libft/ft_isdigit.c \
+		include/libft/ft_strdup.c
 	./a.out map.cub

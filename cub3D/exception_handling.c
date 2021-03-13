@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:46:42 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/11 19:48:38 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/13 13:24:43 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,7 @@ void	ft_error_message(int error_num)
 		perror("The space in front of sentence is not allowed\n");
 	else if (error_num == 7)
 		perror("The value is invalid\n");
+	else if (error_num == 8)
+		perror("The player exists only one\n");
 	exit(0);
 }

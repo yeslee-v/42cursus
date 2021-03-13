@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/11 19:55:15 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/13 21:27:19 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ typedef struct	s_map
 {
 	int			row;
 	int			col;
+
+	int			**map;
+	int			exist_player;
 }				t_map;
 
 typedef struct	s_save
@@ -71,12 +74,16 @@ int				ft_check_error(int ac, char **av);
 void			ft_error_message(int i);
 
 void			ft_read_line(char *line, t_all *all);
-void			ft_read_map(char *line, t_all *all);
-
-int				ft_double_strlen(char **s);
-
-char			**ft_space_on(char *line);
 
 void			ft_put_size(char *width, char *height, t_game *game);
 void			ft_put_image(char *img, t_game *game);
 void			ft_put_color(char *color, int *color_arr, t_game *game);
+
+void			ft_read_map(char *line, t_all *all);
+
+void			ft_check_valid_map(char *line, t_all *all);
+
+int				ft_isspace(char c);
+int				ft_double_strlen(char **s);
+
+/*char			**ft_space_on(char *line);*/

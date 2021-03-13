@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 17:36:44 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/11 19:12:14 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/13 13:18:51 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_t_map_init(t_map *map)
 {
 	map->row = 0;
 	map->col = 0;
+	map->exist_player = 0;
 }
 
 void	ft_t_save_init_on(int ac, char **av, t_save *save)
