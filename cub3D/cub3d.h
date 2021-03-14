@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/13 21:27:19 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/14 17:23:49 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+
+# define KEY_ESC		53
+# define KEY_Q			12
+# define KEY_W			13
+# define KEY_E			14
+# define KEY_R			15
+# define KEY_A			0
+# define KEY_S			1
+# define KEY_D			2
 
 typedef struct	s_window
 {
@@ -47,8 +56,12 @@ typedef struct	s_map
 	int			row;
 	int			col;
 
+	int			player_row;
+	int			player_col;
+
 	int			**map;
-	int			exist_player;
+
+	int			cnt_exist;
 }				t_map;
 
 typedef struct	s_save
@@ -81,7 +94,7 @@ void			ft_put_color(char *color, int *color_arr, t_game *game);
 
 void			ft_read_map(char *line, t_all *all);
 
-void			ft_check_valid_map(char *line, t_all *all);
+void			ft_input_map(char *line, t_all *all);
 
 int				ft_isspace(char c);
 int				ft_double_strlen(char **s);

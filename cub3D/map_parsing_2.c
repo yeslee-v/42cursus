@@ -6,11 +6,12 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:31:38 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/13 21:27:23 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/14 20:21:54 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "include/libft/libft.h"
 
 void	ft_read_map(char *line, t_all *all)
 {
@@ -21,61 +22,58 @@ void	ft_read_map(char *line, t_all *all)
 	all->map.col++;
 	if ((all->map.row + all->map.col) < 5)
 		ft_error_message(1);
-	ft_check_valid_map(line, all);
+	ft_input_map(line, all);
 }
 
-void	ft_check_valid_map(char *line, t_all *all)
+void	ft_ismap(char *line, t_all *all)
 {
 	int	i;
-	int	j;
-	int **original;
-	//int	**visited;
 
-	i = all->map.col;
-	if (!(map = (char **)malloc(sizeof(char *) * i)))
-		return ;
-	// 예외처리
-	// 형변환
-	// 구조체 맵을 original에 옮겨서 확인
-	map[i] = ft_strdup(line);
-	if (ft_isspace(map[i]) || ft_strchr(map[i], '0') || ft_strchr(map[i], '1') ||
-			ft_strchr(map[i], '2') || (ft_strchr(map[i], 'N') ||
-				ft_strchr(map[i], 'S') || ft_strchr(map[i], 'W') ||
-				ft_strchr(map[i], 'E')))
+	i = 0;
+	while (line[i])
 	{
-		if (ft_strchr(map[i], 'N') || ft_strchr(map[i], 'S') || ft_strchr(map[i], 'W') ||
-				ft_strchr(map[i], 'E'))
+		if ((line[i] == '0') || (line[i] == '1') || (line[i] == '2') ||
+			(line[i] == 'N') || (line[i] == 'S') || (line[i] == 'W') ||
+			(line[i] == 'E') || ft_isspace(line[i]))
 		{
-			all->map.exist_player += 1;
-			if (all->map.exist_player > 1)
-				ft_error_message(8);
-		}
-	}
-	else
-		printf("error\n");
-	printf("map[%d]: %s\n", i, map[i]);
-}
-/*	i = 0;
-	j = 0;
-	while (j < ft_strlen(line))
-	{
-		if ((line[i] == '0') || (line[i] == '1') || (line[i] == '2') || 
-				(line[i] == 'N') || (line[i] == 'S') || (line[i] == 'W') || (line[i] == 'E'))
-		{
-			printf("-------------------\n");
-			printf("line: %s line[%d]: %c\n", line, i, line[i]);
-			printf("exist: %d\n\n", all->map.exist_player);
-			if ((line[i] == 'N') || (line[i] == 'S') || (line[i] == 'W') || (line[i] == 'E'))
+			if ((line[i] == 'N') || (line[i] == 'S') || (line[i] == 'W') ||
+					(line[i] == 'E'))
 			{
-				all->map.exist_player += 1;
-				if (all->map.exist_player > 1)
-					ft_error_message(8);
+				all->map.cnt_exist += 1;
+				if (all->map.cnt_exist > 1)
+					ft_error_message(9);
 			}
 			i++;
 		}
-		//else
-		//	ft_error_message(8);
-		//	printf("who are you: %c\n", line[i]);
-		//i++;
+		else
+			ft_error_message(7);
+	}
+}
+
+void	ft_input_map(char *line, t_all *all)
+{
+	int	i;
+	int	j;
+
+	i = all->map.col - 1;
+	ft_ismap(line, all);
+	if (!(all->map.map = (int **)malloc(sizeof(int *) * i)))
+		return ;
+	if (!(all->map.map[i] = (int *)malloc(sizeof(int) * all->map.row)))
+		return ;
+	j = 0;
+	while (j < all->map.row)
+	{
+		if ((line[j] == 'N') || (line[j] == 'S') || (line[j] == 'W') ||
+				(line[j] == 'E'))
+		{
+			all->map.player_row = j;
+			all->map.player_col = i;
+		}
+		if (ft_isdigit(line[j]))
+			all->map.map[i][j] = line[j] - 48;
+		else
+			all->map.map[i][j] = 0;
 		j++;
-	}*/
+	}
+}

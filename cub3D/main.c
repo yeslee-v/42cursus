@@ -6,25 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 18:30:21 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/13 13:49:06 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/14 20:22:05 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-char	**ft_space_on(char *line)
-{
-	char	**res;
-
-	res = NULL;
-	if (ft_strchr(line, ' '))
-		res = ft_split(line, ' ');
-	else if (ft_strchr(line, ','))
-		res = ft_split(line, ',');
-	else
-		ft_error_message(5);
-	return (res);
-}
 
 int		main(int ac, char **av)
 {
@@ -52,7 +38,9 @@ int		main(int ac, char **av)
 			all.game.f[2]);
 	printf("[color_c]\n%d %d %d\n\n", all.game.c[0], all.game.c[1],
 			all.game.c[2]);*/
-/*	printf("[map_size]\nrow: %d col:%d\n", all.map.row, all.map.col);*/
+	//printf("[map_size]\nrow: %d col:%d\n", all.map.row, all.map.col);
+	//dfs(&all);
+	printf("*\n");
 	close(fd);
 	free(line);
 	return (0);

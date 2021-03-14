@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 17:36:44 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/13 13:18:51 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/14 15:26:21 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	ft_t_game_init(t_game *game)
 	game->e = "0";
 	game->w = "0";
 	game->sp = "0";
+//	game->f[3] = 0;
+//	game->c[3] = 0;
 	game->cnt = 0;
 }
 
@@ -32,7 +34,10 @@ void	ft_t_map_init(t_map *map)
 {
 	map->row = 0;
 	map->col = 0;
-	map->exist_player = 0;
+	map->player_row = 0;
+	map->player_col = 0;
+	map->map = 0;
+	map->cnt_exist = 0;
 }
 
 void	ft_t_save_init_on(int ac, char **av, t_save *save)
