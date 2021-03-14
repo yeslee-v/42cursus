@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 18:30:21 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/14 20:22:05 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/14 20:33:48 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int		main(int ac, char **av)
 			all.game.c[2]);*/
 	//printf("[map_size]\nrow: %d col:%d\n", all.map.row, all.map.col);
 	//dfs(&all);
-	printf("*\n");
+	if (!(all.map.cnt_exist))
+		ft_error_message(8);
 	close(fd);
 	free(line);
 	return (0);
