@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:31:38 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/16 00:41:22 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/16 14:18:58 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 void	ft_read_map(char *line, t_all *all)
 {
-	if (!(all->map.row))
-		all->map.row = ft_strlen(line);
-	else if (ft_strlen(line) > all->map.row)
-		all->map.row = ft_strlen(line);
-	all->map.col++;
-	if ((all->map.row + all->map.col) < 5)
-		ft_error_message(1);
-	ft_input_map(line, all);
+	int	len;
+
+	len = all->map.col;
+	if (!(all->map.col))
+		all->map.col = ft_strlen(line);
+	else if (ft_strlen(line) > all->map.col)
+		all->map.col = ft_strlen(line);
+	all->map.row++;
+	//	if ((all->map.row + all->map.col) < 5) 지울지 안지울지 아직 미지
+	//		ft_error_message(1);
+	ft_input_map(line, all, len);
 }
 
 void	ft_ismap(char *line, t_all *all)
@@ -35,8 +38,7 @@ void	ft_ismap(char *line, t_all *all)
 			(line[i] == 'N') || (line[i] == 'S') || (line[i] == 'W') ||
 			(line[i] == 'E') || ft_isspace(line[i]))
 		{
-			if ((line[i] == 'N') || (line[i] == 'S') || (line[i] == 'W') ||
-					(line[i] == 'E'))
+			if ((line[i] == 'N') || (line[i] == 'S') || (line[i] == 'W') || (line[i] == 'E'))
 			{
 				all->map.cnt_exist += 1;
 				if (all->map.cnt_exist > 1)
@@ -49,62 +51,86 @@ void	ft_ismap(char *line, t_all *all)
 	}
 }
 
-void	ft_input_map(char *line, t_all *all)
+void	ft_input_map(char *line, t_all *all, int len)
 {
 	int	i;
 	int	j;
+	int	**original;
 
-	//printf("%d %d\n", all->map.col, all->map.row);
-	//i = all->map.col - 1;
 	i = 0;
 	ft_ismap(line, all);
-	if (!(all->map.map = malloc(sizeof(int *) * all->map.row)))
+	if (!(original = malloc(sizeof(int *) * all->map.row)))
 		return ;
-	while (i < all->map.col)
+	while (i < all->map.row)
 	{
-		all->map.map[i] = malloc(sizeof(int) * all->map.col);
+		original[i] = malloc(sizeof(int) * all->map.col);
 		i++;
 	}
-//	if (!(all->map.map[i] = malloc(sizeof(int) * all->map.row)))
-//		return ;
+	i = 0;
+	while (i < all->map.row - 1)
+	{
+		j = 0;
+		while (j < len)
+		{
+			original[i][j] = all->map.map[i][j];
+			j++;
+		}
+		if (j != all->map.col)
+		{
+			while (j < all->map.col)
+			{
+				original[i][j] = 0;
+				j++;
+			}
+		}
+		i++;
+	}
 	j = 0;
-	while (j < all->map.row)
+	while (j < all->map.col)
 	{
 		if ((line[j] == 'N') || (line[j] == 'S') || (line[j] == 'W') ||
 				(line[j] == 'E'))
 		{
-			all->map.player_row = j;
-			all->map.player_col = i;
+			all->map.player_row = i;
+			all->map.player_col = j;
 		}
-		/*if (ft_isdigit(line[j]))
-			all->map.map[i][j] = line[j] - 48;
+		if (ft_isdigit(line[j]))
+			original[i][j] = line[j] - 48;
 		else
-			all->map.map[i][j] = 0;*/
+			original[i][j] = 0;
 		j++;
 	}
+	/*	i = 0;
+		if (all->map.map)
+		{
+			while (i < all->map.row)
+			{
+				free(all->map.map[i]);
+				i++;
+			}
+			free(all->map.map);
+		}*/
+	all->map.map = original;
 }
 
 void	ft_dfs(t_all *all)
 {
 	int	i;
-	int j;
-	int	**copy_map;
+	int	j;
 
+	printf("player:map[%d][%d]\n", all->map.player_row, all->map.player_col);
 	i = 0;
-/*	printf("%d %d", all->map.col, all->map.row);
-	if (!(copy_map = (int **)malloc(sizeof(int *) * all->map.col)))
-		return ;
-	if (!(copy_map = (int *)malloc(sizeof(int) * all->map.row)))
-		return ;*/
-	while (i < all->map.col)
+	while (i < all->map.row)
 	{
 		j = 0;
-		while (j < all->map.row)
+		while (j < all->map.col)
 		{
-			//printf("%d %d\n", i, j);
+			printf("map[%d][%d]\n", i, j);
+			printf("%d", all->map.map[i][j]);
 			j++;
 		}
-		//printf("-----\n");
+		printf("\n");
 		i++;
 	}
+	printf("\n");
 }

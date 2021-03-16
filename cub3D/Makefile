@@ -6,13 +6,12 @@
 #    By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 14:38:08 by yeslee            #+#    #+#              #
-#    Updated: 2021/03/15 20:03:39 by yeslee           ###   ########.fr        #
+#    Updated: 2021/03/16 12:05:22 by yeslee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 all:
 	gcc -L ./mlx -lmlx -framework OpenGL -framework AppKit \
-		-fsanitize=address \
 		cub3d.h init.c main.c \
 		exception_handling.c map_parsing_1.c map_parsing_2.c \
 		put_size_img_color.c \
