@@ -6,7 +6,7 @@
 #    By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 14:38:08 by yeslee            #+#    #+#              #
-#    Updated: 2021/03/16 12:05:22 by yeslee           ###   ########.fr        #
+#    Updated: 2021/03/16 20:32:23 by yeslee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ all:
 		cub3d.h init.c main.c \
 		exception_handling.c map_parsing_1.c map_parsing_2.c \
 		put_size_img_color.c \
+		map_validation.c \
 		include/get_next_line/get_next_line.c \
 		include/get_next_line/get_next_line_utils.c \
 		include/get_next_line/get_next_line.h \

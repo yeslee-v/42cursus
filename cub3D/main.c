@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 18:30:21 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/16 12:08:25 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/16 20:47:08 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		main(int ac, char **av)
 	printf("[color_c]\n%d %d %d\n\n", all.game.c[0], all.game.c[1],
 			all.game.c[2]);*/
 //	printf("[map_size]\nrow: %d col:%d\n", all.map.row, all.map.col);
-	ft_dfs(&all);
+	ft_map_validation(&all);
 	if (!(all.map.cnt_exist))
 		ft_error_message(8);
 	close(fd);

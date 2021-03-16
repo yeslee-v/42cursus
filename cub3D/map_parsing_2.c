@@ -6,26 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:31:38 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/16 14:18:58 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/16 20:40:31 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	ft_read_map(char *line, t_all *all)
-{
-	int	len;
-
-	len = all->map.col;
-	if (!(all->map.col))
-		all->map.col = ft_strlen(line);
-	else if (ft_strlen(line) > all->map.col)
-		all->map.col = ft_strlen(line);
-	all->map.row++;
-	//	if ((all->map.row + all->map.col) < 5) 지울지 안지울지 아직 미지
-	//		ft_error_message(1);
-	ft_input_map(line, all, len);
-}
 
 void	ft_ismap(char *line, t_all *all)
 {
@@ -38,7 +23,8 @@ void	ft_ismap(char *line, t_all *all)
 			(line[i] == 'N') || (line[i] == 'S') || (line[i] == 'W') ||
 			(line[i] == 'E') || ft_isspace(line[i]))
 		{
-			if ((line[i] == 'N') || (line[i] == 'S') || (line[i] == 'W') || (line[i] == 'E'))
+			if ((line[i] == 'N') || (line[i] == 'S') || (line[i] == 'W') ||
+					(line[i] == 'E'))
 			{
 				all->map.cnt_exist += 1;
 				if (all->map.cnt_exist > 1)
@@ -50,6 +36,8 @@ void	ft_ismap(char *line, t_all *all)
 			ft_error_message(7);
 	}
 }
+
+//void	ft_set_player_
 
 void	ft_input_map(char *line, t_all *all, int len)
 {
@@ -113,24 +101,17 @@ void	ft_input_map(char *line, t_all *all, int len)
 	all->map.map = original;
 }
 
-void	ft_dfs(t_all *all)
+void	ft_read_map(char *line, t_all *all)
 {
-	int	i;
-	int	j;
+	int	len;
 
-	printf("player:map[%d][%d]\n", all->map.player_row, all->map.player_col);
-	i = 0;
-	while (i < all->map.row)
-	{
-		j = 0;
-		while (j < all->map.col)
-		{
-			printf("map[%d][%d]\n", i, j);
-			printf("%d", all->map.map[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-	printf("\n");
+	len = all->map.col;
+	if (!(all->map.col))
+		all->map.col = ft_strlen(line);
+	else if (ft_strlen(line) > all->map.col)
+		all->map.col = ft_strlen(line);
+	all->map.row++;
+	//	if ((all->map.row + all->map.col) < 5) 지울지 안지울지 아직 미지
+	//		ft_error_message(1);
+	ft_input_map(line, all, len);
 }
