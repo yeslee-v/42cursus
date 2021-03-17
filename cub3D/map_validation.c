@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 20:29:35 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/16 22:02:09 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/17 12:20:24 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,20 @@ void	ft_map_validation(t_all *all)
 		{
 			if (all->map.map[i][j] == 9)
 			{
-				if (map[i - 1][j] != 1)
+				if (all->map.map[i - 1][j] != 1)
 				{
 					i--;
 					
 				}
-				else if (map[i + 1][j] != 1)
+				else if (all->map.map[i + 1][j] != 1)
 				{
 					i++;
 				}
-				else if (map[i][j - 1] != 1)
+				else if (all->map.map[i][j - 1] != 1)
 				{
 					j--;
 				}
-				else if	(map[i][j + 1] != 1)
+				else if	(all->map.map[i][j + 1] != 1)
 					j++;
 			}
 				
