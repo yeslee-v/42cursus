@@ -96,7 +96,7 @@ void			ft_read_map(char *line, t_all *all);
 void			ft_input_map(char *line, t_all *all, int len);
 
 void			ft_map_validation(t_all *all);
-int				ft_dfs(t_all *all, int i, int j);
+void			ft_dfs(t_all *all, int i, int j);
 
 int				ft_isspace(char c);
 int				ft_double_strlen(char **s);

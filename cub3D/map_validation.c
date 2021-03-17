@@ -12,32 +12,54 @@
 
 #include "cub3d.h"
 
-int		ft_dfs(t_all *all, int i, int j)
+void	ft_dfs(t_all *all, int i, int j)
 {
-	if ((((!i) || (i == (all->map.row - 1))) || ((!j) || (j == (all->map.col - 1)))) && (!(all->map.map[i][j])))
-		return (9);
-	return (all->map.map[i][j]);
+	printf("map[%d][%d]:%d\n", i, j, all->map.map[i][j]);
+	//i = 0;
+/*	while (i < all->map.row)
+	{
+		//j = 0;
+		while (j < all->map.col)
+		{
+			if (all->map.map[i][j] == 9)
+			{
+				if (all->map.map[i - 1][j] != 1)
+					ft_dfs(all, (i - 1), j);
+				else if (all->map.map[i + 1][j] != 1)
+					ft_dfs(all, (i + 1), j);
+				else if (all->map.map[i][j - 1] != 1)
+					ft_dfs(all, i, (j - 1));
+				else if	(all->map.map[i][j + 1] != 1)
+					ft_dfs(all, i, (j + 1));
+			}
+			else
+				return ;
+		}
+	}*/
 }
 
 void	ft_map_validation(t_all *all)
 {
 	int	i;
 	int	j;
+	int	rec_i;
+	int	rec_j;
 
+	rec_i = 0;
+	rec_j = 0;
+	
 	i = 0;
 	while (i < all->map.row)
 	{
 		j = 0;
 		while (j < all->map.col)
 		{
-			all->map.map[i][j] = ft_dfs(all, i, j);
-			//printf("%d", all->map.map[i][j]);
+			if ((((!i) || (i == (all->map.row - 1))) || ((!j) || (j == (all->map.col - 1)))) && (!(all->map.map[i][j])))
+				all->map.map[i][j] = 9;
 			j++;
 		}
-	//	printf("\n");
 		i++;
 	}
-	//printf("\n");
 	i = 0;
 	while (i < all->map.row)
 	{
@@ -46,23 +68,40 @@ void	ft_map_validation(t_all *all)
 		{
 			if (all->map.map[i][j] == 9)
 			{
-				if (all->map.map[i - 1][j] != 1)
+				if	(((i - 1) >= 0) && !(all->map.map[i - 1][j]))
 				{
-					i--;
-					
+					rec_i = i;
+					rec_j = j;
+					ft_dfs(all, i - 1, j);
 				}
-				else if (all->map.map[i + 1][j] != 1)
+				else if (((i + 1) < all->map.row) && !(all->map.map[i + 1][j]))
 				{
-					i++;
+					rec_i = i;
+					rec_j = j;
+					ft_dfs(all, i + 1, j);
 				}
-				else if (all->map.map[i][j - 1] != 1)
+				else if (((j - 1) >= 0) && !(all->map.map[i][j - 1]))
 				{
-					j--;
+					rec_i = i;
+					rec_j = j;
+					ft_dfs(all, i, j - 1);
 				}
-				else if	(all->map.map[i][j + 1] != 1)
-					j++;
+				else if (((j + 1) < all->map.col) && !(all->map.map[i][j + 1]))
+				{
+					rec_i = i;
+					rec_j = j;
+					ft_dfs(all, i, j + 1);
+				}
 			}
-				
+			/*	if	((((i - 1) >= 0) && !(all->map.map[i - 1][j])) || (((i + 1) < all->map.row) && !(all->map.map[i + 1][j])) || (((j - 1) >= 0) && !(all->map.map[i][j - 1])) || (((j + 1) < all->map.col) && !(all->map.map[i][j + 1])))
+				{	
+					rec_i = i;
+					rec_j = j;
+					ft_dfs(all, i, j);
+				}
+			}*/
+		j++;
 		}
+	i++;
 	}
 }
