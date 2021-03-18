@@ -14,24 +14,32 @@
 
 void	ft_dfs(t_all *all, int i, int j)
 {
-	printf("map[%d][%d]:%d\n", i, j, all->map.map[i][j]);
-	all->map.map[i][j] = 9;
-	//i = 0;
 	while (i < all->map.row)
 	{
-		//j = 0;
 		while (j < all->map.col)
 		{
 			if (all->map.map[i][j] == 9)
 			{
-				if (all->map.map[i - 1][j] != 1)
+				if	(((i - 1) >= 0) && !(all->map.map[i - 1][j]))
+				{
+					all->map.map[i - 1][j] = 9;
 					ft_dfs(all, (i - 1), j);
-				else if (all->map.map[i + 1][j] != 1)
+				}
+				if (((i + 1) < all->map.row) && !(all->map.map[i + 1][j]))
+				{
+					all->map.map[i + 1][j] = 9;
 					ft_dfs(all, (i + 1), j);
-				else if (all->map.map[i][j - 1] != 1)
+				}
+				if (((j - 1) >= 0) && !(all->map.map[i][j - 1]))
+				{
+					all->map.map[i][j - 1] = 9;
 					ft_dfs(all, i, (j - 1));
-				else if	(all->map.map[i][j + 1] != 1)
+				}
+				if (((j + 1) < all->map.col) && !(all->map.map[i][j + 1]))
+				{
+					all->map.map[i][j + 1] = 9;
 					ft_dfs(all, i, (j + 1));
+				}
 			}
 			else
 				return ;
@@ -64,24 +72,16 @@ void	ft_map_validation(t_all *all)
 		j = 0;
 		while (j < all->map.col)
 		{
-			if (all->map.map[i][j] == 9)
+			if ((all->map.map[i][j] == 9) &&
+					(((i - 1) >= 0) && !(all->map.map[i - 1][j])) ||
+					(((i + 1) < all->map.row) && !(all->map.map[i + 1][j])) ||
+						(((j - 1) >= 0) && !(all->map.map[i][j - 1])) ||
+						(((j + 1) < all->map.col) && !(all->map.map[i][j + 1])))
 			{
-				if	(((i - 1) >= 0) && !(all->map.map[i - 1][j]))
-					ft_dfs(all, i - 1, j);
-				else if (((i + 1) < all->map.row) && !(all->map.map[i + 1][j]))
-					ft_dfs(all, i + 1, j);
-				else if (((j - 1) >= 0) && !(all->map.map[i][j - 1]))
-					ft_dfs(all, i, j - 1);
-				else if (((j + 1) < all->map.col) && !(all->map.map[i][j + 1]))
-					ft_dfs(all, i, j + 1);
+				ft_dfs(all, i, j);
+				if (all->map.map[i][j] == 9)
+					ft_error_message(10);
 			}
-			/*	if	((((i - 1) >= 0) && !(all->map.map[i - 1][j])) || (((i + 1) < all->map.row) && !(all->map.map[i + 1][j])) || (((j - 1) >= 0) && !(all->map.map[i][j - 1])) || (((j + 1) < all->map.col) && !(all->map.map[i][j + 1])))
-				{	
-					rec_i = i;
-					rec_j = j;
-					ft_dfs(all, i, j);
-				}
-			}*/
 		j++;
 		}
 	i++;

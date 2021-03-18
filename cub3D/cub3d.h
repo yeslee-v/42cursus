@@ -12,6 +12,7 @@
 
 #include "./include/get_next_line/get_next_line.h"
 #include "./include/libft/libft.h"
+#include "./mlx/mlx.h"
 #include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>

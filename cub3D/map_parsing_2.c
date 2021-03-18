@@ -37,8 +37,6 @@ void	ft_ismap(char *line, t_all *all)
 	}
 }
 
-//void	ft_set_player_
-
 void	ft_input_map(char *line, t_all *all, int len)
 {
 	int	i;

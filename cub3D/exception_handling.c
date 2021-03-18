@@ -45,5 +45,7 @@ void	ft_error_message(int error_num)
 		perror("The player dosen't exist\n");
 	else if (error_num == 9)
 		perror("The player exists only one\n");
+	else if (error_num == 10)
+		perror("The map is invalid\n");
 	exit(0);
 }

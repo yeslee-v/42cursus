@@ -27,4 +27,3 @@ all:
 		include/libft/ft_atoi.c \
 		include/libft/ft_isdigit.c \
 		include/libft/ft_strdup.c
-	./a.out map.cub
