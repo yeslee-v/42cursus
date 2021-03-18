@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 20:29:35 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/17 12:20:24 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/18 11:36:22 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 void	ft_dfs(t_all *all, int i, int j)
 {
 	printf("map[%d][%d]:%d\n", i, j, all->map.map[i][j]);
+	all->map.map[i][j] = 9;
 	//i = 0;
-/*	while (i < all->map.row)
+	while (i < all->map.row)
 	{
 		//j = 0;
 		while (j < all->map.col)
@@ -34,8 +35,10 @@ void	ft_dfs(t_all *all, int i, int j)
 			}
 			else
 				return ;
+			j++;
 		}
-	}*/
+		i++;
+	}
 }
 
 void	ft_map_validation(t_all *all)
