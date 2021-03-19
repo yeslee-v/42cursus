@@ -40,6 +40,11 @@ void	ft_t_map_init(t_map *map)
 	map->cnt_exist = 0;
 }
 
+/*void	ft_t_ray_init(t_ray	*ray)
+{
+
+}*/
+
 void	ft_t_save_init_on(int ac, char **av, t_save *save)
 {
 	save->pic = 0;

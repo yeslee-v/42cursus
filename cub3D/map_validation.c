@@ -79,7 +79,7 @@ void	ft_map_validation(t_all *all)
 						(((j + 1) < all->map.col) && !(all->map.map[i][j + 1])))
 			{
 				ft_dfs(all, i, j);
-				if (all->map.map[i][j] == 9)
+				if (all->map.map[all->map.player_row][all->map.player_col] == 9)
 					ft_error_message(10);
 			}
 		j++;

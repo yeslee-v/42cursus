@@ -70,6 +70,19 @@ typedef struct	s_save
 	int			pic;
 }				t_save;
 
+typedef struct	s_ray
+{
+	double	posX;
+	double	posY;
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
+
+	double	time;
+	double	oldTime;
+}				t_ray;
+
 typedef struct	s_all
 {
 	t_game			game;
