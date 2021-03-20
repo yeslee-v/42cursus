@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:53:02 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/11 22:07:16 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/20 23:46:59 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,30 @@ int		ft_isspace(char c)
 void	ft_read_line(char *line, t_all *all)
 {
 	int		len;
+	int		len_id;
 	char	**res;
 
 	if (all->game.cnt == 8)
 		ft_read_map(line, all);
-	else
-		if (ft_isspace(line[0]))
-			ft_error_message(6);
+	else if (ft_isspace(line[0]))
+		ft_error_message(5);
 	res = ft_split(line, ' ');
 	len = ft_double_strlen(res);
-	if (ft_strnstr(res[0], "R", ft_strlen(res[0])) && len == 3)
+	len_id = ft_strlen(res[0]);
+	if (ft_strnstr(res[0], "R", len_id) && (len_id == 1) && (len == 3))
 		ft_put_size(res[1], res[2], &(all->game));
-	else if (ft_strnstr(res[0], "NO", ft_strlen(res[0])) && len == 2)
+	else if (ft_strnstr(res[0], "NO", len_id) && (len_id == 2) && (len == 2))
 		ft_put_image(res[1], &(all->game));
-	else if (ft_strnstr(res[0], "SO", ft_strlen(res[0])) && len == 2)
+	else if (ft_strnstr(res[0], "SO", len_id) && (len_id == 2) && (len == 2))
 		ft_put_image(res[1], &(all->game));
-	else if (ft_strnstr(res[0], "WE", ft_strlen(res[0])) && len == 2)
+	else if (ft_strnstr(res[0], "WE", len_id) && (len_id == 2) && (len == 2))
 		ft_put_image(res[1], &(all->game));
-	else if (ft_strnstr(res[0], "EA", ft_strlen(res[0])) && len == 2)
+	else if (ft_strnstr(res[0], "EA", len_id) && (len_id == 2) && (len == 2))
 		ft_put_image(res[1], &(all->game));
-	else if (ft_strnstr(res[0], "S", ft_strlen(res[0])) && len == 2)
+	else if (ft_strnstr(res[0], "S", len_id) && (len_id == 1) && (len == 2))
 		ft_put_image(res[1], &(all->game));
-	else if (ft_strnstr(res[0], "F", ft_strlen(res[0])) && len == 2)
+	else if (ft_strnstr(res[0], "F", len_id) && (len_id == 1) && (len == 2))
 		ft_put_color(res[1], all->game.f, &(all->game));
-	else if (ft_strnstr(res[0], "C", ft_strlen(res[0])) && len == 2)
+	else if (ft_strnstr(res[0], "C", len_id) && (len_id == 1) && (len == 2))
 		ft_put_color(res[1], all->game.c, &(all->game));
 }
