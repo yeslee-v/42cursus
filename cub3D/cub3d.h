@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/16 22:02:31 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/21 22:54:54 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct	s_all
 
 int				main(int ac, char **av);
 
+void			ft_init_start(int ac, char **av, t_all *all);
 void			ft_t_game_init(t_game *game);
 void			ft_t_window_init(t_window *window);
 void			ft_t_map_init(t_map *map);
@@ -111,6 +112,8 @@ void			ft_input_map(char *line, t_all *all, int len);
 
 void			ft_map_validation(t_all *all);
 void			ft_dfs(t_all *all, int i, int j);
+
+void			ft_free_all(t_all *all, int **original);
 
 int				ft_isspace(char c);
 int				ft_double_strlen(char **s);
