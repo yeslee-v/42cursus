@@ -6,11 +6,12 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:31:38 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/21 00:43:12 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/21 23:22:54 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "include/libft/libft.h"
 
 void	ft_ismap(char *line, t_all *all)
 {
@@ -23,17 +24,16 @@ void	ft_ismap(char *line, t_all *all)
 			(line[i] == 'N') || (line[i] == 'S') || (line[i] == 'W') ||
 			(line[i] == 'E') || ft_isspace(line[i]))
 		{
-			if ((line[i] == 'N') || (line[i] == 'S') || (line[i] == 'W') ||
-					(line[i] == 'E'))
+			if ((line[i] == 'N') || (line[i] == 'S') || (line[i] == 'W') || (line[i] == 'E'))
 			{
 				all->map.cnt_exist += 1;
 				if (all->map.cnt_exist > 1)
-					ft_error_message(9);
+					ft_error_message(8);
 			}
 			i++;
 		}
 		else
-			ft_error_message(7);
+			ft_error_message(6);
 	}
 }
 
@@ -50,6 +50,8 @@ void	ft_input_map(char *line, t_all *all, int len)
 	while (i < all->map.row)
 	{
 		original[i] = malloc(sizeof(int) * all->map.col);
+		if (!(original[i]))
+			ft_free_all(all, original);
 		i++;
 	}
 	i = 0;
@@ -74,29 +76,28 @@ void	ft_input_map(char *line, t_all *all, int len)
 	j = 0;
 	while (j < all->map.col)
 	{
-		if ((line[j] == 'N') || (line[j] == 'S') || (line[j] == 'W') ||
-				(line[j] == 'E'))
+		if (!(ft_isspace(line[j])))
 		{
-			all->map.player_row = i;
-			all->map.player_col = j;
+			if (ft_isdigit(line[j]))
+			{
+				original[i][j] = line[j] - 48;
+			}
+			else if ((line[j] == 'N') || (line[j] == 'S') || (line[j] == 'W') ||
+				(line[j] == 'E'))
+			{
+				all->map.player_row = i;
+				all->map.player_col = j;
+				original[i][j] = 0;
+			}
 		}
-		if (ft_isdigit(line[j]))
-			original[i][j] = line[j] - 48;
 		else
+		{
 			original[i][j] = 0;
+		}
 		j++;
 	}
-	/*	i = 0;
-		if (all->map.map)
-		{
-			while (i < all->map.row)
-			{
-				free(all->map.map[i]);
-				i++;
-			}
-			free(all->map.map);
-		}*/
 	all->map.map = original;
+	original = 0;
 }
 
 void	ft_read_map(char *line, t_all *all)
@@ -109,7 +110,18 @@ void	ft_read_map(char *line, t_all *all)
 	else if (ft_strlen(line) > all->map.col)
 		all->map.col = ft_strlen(line);
 	all->map.row++;
-	//	if ((all->map.row + all->map.col) < 5) 지울지 안지울지 아직 미지
-	//		ft_error_message(1);
 	ft_input_map(line, all, len);
+}
+
+void	ft_free_all(t_all *all, int **original)
+{
+	int	i;
+
+	i = 0;
+	while (i < all->map.row)
+	{
+		free(original[i]);
+		i++;
+	}
+	free(original);
 }
