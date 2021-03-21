@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:46:42 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/20 22:35:55 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/21 23:23:11 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,13 @@ void	ft_error_message(int error_num)
 		perror("It is not a number\n");
 	else if (error_num == 5)
 		perror("Parsing does not work\n");
-//	else if (error_num == 6)
-//		perror("The space in front of sentence is not allowed\n");
-	else if (error_num == 7)
+	else if (error_num == 6)
 		perror("The value is invalid\n");
-	else if (error_num == 8)
+	else if (error_num == 7)
 		perror("The player dosen't exist\n");
-	else if (error_num == 9)
+	else if (error_num == 8)
 		perror("The player exists only one\n");
-	else if (error_num == 10)
+	else if (error_num == 9)
 		perror("The map is invalid\n");
 	exit(0);
 }
