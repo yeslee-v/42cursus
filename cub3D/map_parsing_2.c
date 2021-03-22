@@ -6,12 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:31:38 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/21 23:22:54 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/23 00:35:08 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "include/libft/libft.h"
 
 void	ft_ismap(char *line, t_all *all)
 {
@@ -51,7 +50,7 @@ void	ft_input_map(char *line, t_all *all, int len)
 	{
 		original[i] = malloc(sizeof(int) * all->map.col);
 		if (!(original[i]))
-			ft_free_all(all, original);
+			ft_free_all(original);
 		i++;
 	}
 	i = 0;
@@ -79,11 +78,9 @@ void	ft_input_map(char *line, t_all *all, int len)
 		if (!(ft_isspace(line[j])))
 		{
 			if (ft_isdigit(line[j]))
-			{
 				original[i][j] = line[j] - 48;
-			}
-			else if ((line[j] == 'N') || (line[j] == 'S') || (line[j] == 'W') ||
-				(line[j] == 'E'))
+			else if ((line[j] == 'N') || (line[j] == 'S') || (line[j] == 'W')
+					|| (line[j] == 'E'))
 			{
 				all->map.player_row = i;
 				all->map.player_col = j;
@@ -91,9 +88,7 @@ void	ft_input_map(char *line, t_all *all, int len)
 			}
 		}
 		else
-		{
 			original[i][j] = 0;
-		}
 		j++;
 	}
 	all->map.map = original;
@@ -105,23 +100,23 @@ void	ft_read_map(char *line, t_all *all)
 	int	len;
 
 	len = all->map.col;
-	if (!(all->map.col))
-		all->map.col = ft_strlen(line);
-	else if (ft_strlen(line) > all->map.col)
+	if (!(all->map.col) || (ft_strlen(line) > all->map.col))
 		all->map.col = ft_strlen(line);
 	all->map.row++;
 	ft_input_map(line, all, len);
 }
 
-void	ft_free_all(t_all *all, int **original)
+void	ft_free_all(int **original)
 {
-	int	i;
-
-	i = 0;
-	while (i < all->map.row)
+	if (*original)
 	{
-		free(original[i]);
-		i++;
+		while (*original)
+		{
+			free(*original);
+			original++;
+		}
 	}
+	original = 0;
 	free(original);
+	ft_error_message(10);
 }
