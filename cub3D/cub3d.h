@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/21 22:54:54 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/22 22:11:46 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct	s_save
 	int			pic;
 }				t_save;
 
-typedef struct	s_ray
+typedef struct	s_info
 {
 	double	posX;
 	double	posY;
@@ -79,15 +79,19 @@ typedef struct	s_ray
 	double	planeX;
 	double	planeY;
 
-	double	time;
-	double	oldTime;
-}				t_ray;
+	void	*mlx;
+	void	*win;
+
+	double	moveSpeed;
+	double	rotSpeed;
+}				t_info;
 
 typedef struct	s_all
 {
 	t_game			game;
 	t_map			map;
 	t_save			save;
+	t_info			info;
 }				t_all;
 
 int				main(int ac, char **av);
@@ -97,6 +101,7 @@ void			ft_t_game_init(t_game *game);
 void			ft_t_window_init(t_window *window);
 void			ft_t_map_init(t_map *map);
 void			ft_t_save_init_on(int ac, char **avi, t_save *save);
+void			ft_t_info_init(t_info *info);
 
 int				ft_check_error(int ac, char **av);
 void			ft_error_message(int i);
@@ -113,7 +118,7 @@ void			ft_input_map(char *line, t_all *all, int len);
 void			ft_map_validation(t_all *all);
 void			ft_dfs(t_all *all, int i, int j);
 
-void			ft_free_all(t_all *all, int **original);
+void			ft_free_all(int **original);
 
 int				ft_isspace(char c);
 int				ft_double_strlen(char **s);
