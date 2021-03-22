@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:53:02 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/21 23:14:05 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/22 21:47:42 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,4 @@ void	ft_read_line(char *line, t_all *all)
 		ft_put_color(res[1], all->game.f, &(all->game));
 	else if (ft_strnstr(res[0], "C", len_id) && (len_id == 1) && (len == 2))
 		ft_put_color(res[1], all->game.c, &(all->game));
-	//free(res);
 }

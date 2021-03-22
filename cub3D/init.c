@@ -6,14 +6,16 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 17:36:44 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/21 20:39:23 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/22 21:21:45 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "mlx/mlx.h"
 
 void	ft_init_start(int ac, char **av, t_all *all)
 {
+	ft_t_info_init(&(all->info));
 	ft_t_game_init(&(all->game));
 	ft_t_map_init(&(all->map));
 	ft_t_save_init_on(ac, av, (&(all->save)));
@@ -47,10 +49,19 @@ void	ft_t_map_init(t_map *map)
 	map->cnt_exist = 0;
 }
 
-/*void	ft_t_ray_init(t_ray	*ray)
+void	ft_t_info_init(t_info *info)
 {
+	info->mlx = mlx_init();
 
-}*/
+	info->posX = 12;
+	info->posY = 5;
+	info->dirX = -1;
+	info->dirY = 0;
+	info->planeX = 0;
+	info->planeY = 0.66;
+	info->moveSpeed = 0.05;
+	info->rotSpeed = 0.05;
+}
 
 void	ft_t_save_init_on(int ac, char **av, t_save *save)
 {
