@@ -48,7 +48,7 @@ int	main(int ac, char **av)
 		}
 	}
 	ft_map_validation(&all);
-/*	i = 0;
+	/*i = 0;
 	while (all.map.map[i])
 	{
 		j = 0;

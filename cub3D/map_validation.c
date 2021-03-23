@@ -74,24 +74,25 @@ void	ft_dfs(t_all *all, int **dfs_map, int i, int j)
 void	ft_map_validation(t_all *all)
 {
 	int	i;
-	int	j;
-	int	**dfs_map;
-	
+	int j;
+	int **dfs_map;
+
 	i = 0;
-	dfs_map = calloc(sizeof(int *), all->map.row);
+	dfs_map = ft_calloc(sizeof(int *), all->map.row);
 	if (!(dfs_map))
 		return ;
 	while (i < all->map.row)
 	{
-		dfs_map[i] = calloc(sizeof(int), all->map.col);
+		dfs_map[i] = ft_calloc(sizeof(int), all->map.col);
 		if (!(dfs_map[i]))
-			ft_free_all_int(all, dfs_map);
+				ft_free_all_int(all, dfs_map);
 		j = 0;
 		while (j < all->map.col)
 		{
- 			if (all->map.map[i][j] == '1')
- 				dfs_map[i][j] = 1;
- 			j++;
+			printf("%d %d %d %d\n", i, j, all->map.row, all->map.col);
+			if (all->map.map[i][j] == '1')
+				dfs_map[i][j] = 1;
+			j++;
 		}
 		i++;
 	}
