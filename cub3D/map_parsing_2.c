@@ -36,87 +36,68 @@ void	ft_ismap(char *line, t_all *all)
 	}
 }
 
-void	ft_input_map(char *line, t_all *all, int len)
+void	ft_input_map(char *line, t_all *all, int len, int prev)
 {
 	int	i;
 	int	j;
-	int	**original;
+	char	**original;
 
 	i = 0;
 	ft_ismap(line, all);
-	if (!(original = malloc(sizeof(int *) * all->map.row)))
+	original = (char **)malloc(sizeof(char *) * (all->map.row + 1));
+	if (!(original))
 		return ;
-	while (i < all->map.row)
-	{
-		original[i] = malloc(sizeof(int) * all->map.col);
-		if (!(original[i]))
-			ft_free_all(original);
-		i++;
-	}
-	i = 0;
 	while (i < all->map.row - 1)
 	{
+		original[i] = malloc(sizeof(char) * (ft_strlen(all->map.map[i]) + 1));
+		if (!(original[i]))
+			ft_free_all(original);
 		j = 0;
-		while (j < len)
+		while (j < ft_strlen(all->map.map[i]))
 		{
 			original[i][j] = all->map.map[i][j];
 			j++;
 		}
-		if (j != all->map.col)
-		{
-			while (j < all->map.col)
-			{
-				original[i][j] = 0;
-				j++;
-			}
-		}
+
+		original[i][j]='\0';
 		i++;
 	}
+	original[i + 1] = NULL;
+	original[i] = malloc (len + 1);
 	j = 0;
-	while (j < all->map.col)
+	while (j < len)
 	{
-		if (!(ft_isspace(line[j])))
-		{
-			if (ft_isdigit(line[j]))
-				original[i][j] = line[j] - 48;
-			else if ((line[j] == 'N') || (line[j] == 'S') || (line[j] == 'W')
-					|| (line[j] == 'E'))
-			{
-				all->map.player_row = i;
-				all->map.player_col = j;
-				original[i][j] = 0;
-			}
-		}
-		else
-			original[i][j] = 0;
+		original[i][j] = line[j];
 		j++;
 	}
+	original[i][j] = '\0';
 	all->map.map = original;
-	original = 0;
 }
 
 void	ft_read_map(char *line, t_all *all)
 {
 	int	len;
+	int	prev;
 
-	len = all->map.col;
-	if (!(all->map.col) || (ft_strlen(line) > all->map.col))
-		all->map.col = ft_strlen(line);
+	len = ft_strlen(line);
+	prev = all->map.col;
+	if (len > all->map.col)
+		all->map.col = len;
 	all->map.row++;
-	ft_input_map(line, all, len);
+	ft_input_map(line, all, len, prev);
 }
 
-void	ft_free_all(int **original)
+void	ft_free_all(char **map)
 {
-	if (*original)
+	if (*map)
 	{
-		while (*original)
+		while (*map)
 		{
-			free(*original);
-			original++;
+			free(*map);
+			map++;
 		}
 	}
-	original = 0;
-	free(original);
+	free(map);
+	map = 0;
 	ft_error_message(10);
 }
