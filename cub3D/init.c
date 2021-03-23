@@ -6,20 +6,12 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 17:36:44 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/22 21:21:45 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/23 11:28:35 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx/mlx.h"
-
-void	ft_init_start(int ac, char **av, t_all *all)
-{
-	ft_t_info_init(&(all->info));
-	ft_t_game_init(&(all->game));
-	ft_t_map_init(&(all->map));
-	ft_t_save_init_on(ac, av, (&(all->save)));
-}
 
 void	ft_t_game_init(t_game *game)
 {

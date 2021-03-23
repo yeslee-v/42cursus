@@ -6,19 +6,23 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/22 22:11:46 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/23 12:50:58 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/get_next_line/get_next_line.h"
 #include "./include/libft/libft.h"
-#include "./mlx/mlx.h"
+#include "mlx/mlx.h"
 #include <errno.h>
 #include <fcntl.h>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+
+# define X_EVENT_KEY_PRESS	2
+# define X_EVENT_KEY_EXIT	17
 
 # define KEY_ESC		53
 # define KEY_Q			12
@@ -70,6 +74,16 @@ typedef struct	s_save
 	int			pic;
 }				t_save;
 
+typedef struct	s_img
+{
+	void	*img;
+	int		*data;
+
+	int		size_l;
+	int		bpp;
+	int		endian;
+}				t_img;
+
 typedef struct	s_info
 {
 	double	posX;
@@ -79,8 +93,36 @@ typedef struct	s_info
 	double	planeX;
 	double	planeY;
 
+	double	oldDirX;
+	double	oldPlaneX;
+	
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	
+	int		mapX;
+	int		mapY;
+
+	double	sideDistX;
+	double	sideDistY;
+
+	double	deltaDistX;
+	double	deltaDistY;
+	double	perpWallDist;
+
+	int		stepX;
+	int		stepY;
+
+	int		hit;
+	int		side;
+
 	void	*mlx;
 	void	*win;
+
+	t_img	img;
+
+	int		**buf;
+//	int		texture[8][texHeight * texWidth];
 
 	double	moveSpeed;
 	double	rotSpeed;
@@ -95,6 +137,7 @@ typedef struct	s_all
 }				t_all;
 
 int				main(int ac, char **av);
+void			mlx_start(t_all *all);
 
 void			ft_init_start(int ac, char **av, t_all *all);
 void			ft_t_game_init(t_game *game);
@@ -122,3 +165,8 @@ void			ft_free_all(int **original);
 
 int				ft_isspace(char c);
 int				ft_double_strlen(char **s);
+
+int				main_loop(t_all *all);
+void			calc(t_all *all);
+int				key_press(int key, t_all *all);
+void			verLine(t_all *all, int x, int y1, int y2, int color);
