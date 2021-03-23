@@ -14,7 +14,7 @@
 
 void	ft_init_start(int ac, char **av, t_all *all)
 {
-	ft_t_info_init(&(all->info));
+//	ft_t_info_init(&(all->info));
 	ft_t_game_init(&(all->game));
 	ft_t_map_init(&(all->map));
 	ft_t_save_init_on(ac, av, (&(all->save)));
@@ -22,11 +22,11 @@ void	ft_init_start(int ac, char **av, t_all *all)
 
 void	mlx_start(t_all *all)
 {
-	all->info.win = mlx_new_window(
+/*	all->info.win = mlx_new_window(
 		all->info.mlx, all->game.r.width, all->game.r.height, "broccoli_cub3D");
 	mlx_loop_hook(all->info.mlx, &main_loop, &(all->info));
 	mlx_hook(all->info.win, X_EVENT_KEY_PRESS, 0, &key_press, &(all->info));
-	mlx_loop(all->info.mlx);
+	mlx_loop(all->info.mlx);*/
 }
 
 int	main(int ac, char **av)
@@ -49,12 +49,12 @@ int	main(int ac, char **av)
 	}
 	ft_map_validation(&all);
 /*	i = 0;
-	while (i < all.map.row)
+	while (all.map.map[i])
 	{
 		j = 0;
-		while (j < all.map.col)
+		while (all.map.map[i][j])
 		{
-			printf("%d ", all.map.map[i][j]);
+			printf("%c ", all.map.map[i][j]);
 			j++;
 		}
 		printf("\n");
@@ -65,6 +65,6 @@ int	main(int ac, char **av)
 		ft_error_message(7);
 	}
 	close(fd);
-	mlx_start(&all);
+//	mlx_start(&all);
 	return (0);
 }

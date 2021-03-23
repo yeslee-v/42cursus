@@ -36,7 +36,7 @@ void	ft_ismap(char *line, t_all *all)
 	}
 }
 
-void	ft_input_map(char *line, t_all *all, int len, int prev)
+void	ft_input_map(char *line, t_all *all, int len)
 {
 	int	i;
 	int	j;
@@ -59,7 +59,7 @@ void	ft_input_map(char *line, t_all *all, int len, int prev)
 			j++;
 		}
 
-		original[i][j]='\0';
+		original[i][j] = '\0';
 		i++;
 	}
 	original[i + 1] = NULL;
@@ -80,11 +80,10 @@ void	ft_read_map(char *line, t_all *all)
 	int	prev;
 
 	len = ft_strlen(line);
-	prev = all->map.col;
 	if (len > all->map.col)
 		all->map.col = len;
 	all->map.row++;
-	ft_input_map(line, all, len, prev);
+	ft_input_map(line, all, len);
 }
 
 void	ft_free_all(char **map)

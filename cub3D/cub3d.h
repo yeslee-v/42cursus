@@ -63,8 +63,9 @@ typedef struct	s_map
 
 	int			player_row;
 	int			player_col;
+	char		player;
 
-	int			**map;
+	char		**map;
 
 	int			cnt_exist;
 }				t_map;
@@ -159,14 +160,15 @@ void			ft_read_map(char *line, t_all *all);
 void			ft_input_map(char *line, t_all *all, int len);
 
 void			ft_map_validation(t_all *all);
-void			ft_dfs(t_all *all, int i, int j);
+void			ft_dfs(t_all *all, int **dfs_map, int i, int j);
 
-void			ft_free_all(int **original);
+void			ft_free_all(char **map);
+void			ft_free_all_int(t_all *all, int **map);
 
 int				ft_isspace(char c);
 int				ft_double_strlen(char **s);
 
-int				main_loop(t_all *all);
-void			calc(t_all *all);
-int				key_press(int key, t_all *all);
-void			verLine(t_all *all, int x, int y1, int y2, int color);
+//int				main_loop(t_all *all);
+//void			calc(t_all *all);
+//int				key_press(int key, t_all *all);
+//void			verLine(t_all *all, int x, int y1, int y2, int color);

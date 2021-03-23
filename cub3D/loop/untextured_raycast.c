@@ -154,6 +154,17 @@ int	key_press(int key, t_all *all)
 
 int	main_loop(t_all *all)
 {
+	info->mlx = mlx_init();
+
+	info->posX = 12;
+	info->posY = 5;
+	info->dirX = -1;
+	info->dirY = 0;
+	info->planeX = 0;
+	info->planeY = 0.66;
+	info->moveSpeed = 0.05;
+	info->rotSpeed = 0.05;
+	
 	calc(all);
 	return (0);
 }
