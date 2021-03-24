@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/23 12:50:58 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/24 18:12:25 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+
+# define texHeight	64
+# define texWidth	64
 
 # define X_EVENT_KEY_PRESS	2
 # define X_EVENT_KEY_EXIT	17
@@ -83,6 +86,9 @@ typedef struct	s_img
 	int		size_l;
 	int		bpp;
 	int		endian;
+
+	int		img_width;
+	int		img_height;
 }				t_img;
 
 typedef struct	s_info
@@ -123,7 +129,7 @@ typedef struct	s_info
 	t_img	img;
 
 	int		**buf;
-//	int		texture[8][texHeight * texWidth];
+	int		**texture;
 
 	double	moveSpeed;
 	double	rotSpeed;
@@ -145,7 +151,7 @@ void			ft_t_game_init(t_game *game);
 void			ft_t_window_init(t_window *window);
 void			ft_t_map_init(t_map *map);
 void			ft_t_save_init_on(int ac, char **avi, t_save *save);
-void			ft_t_info_init(t_info *info);
+void			ft_t_info_init(t_all *all);
 
 int				ft_check_error(int ac, char **av);
 void			ft_error_message(int i);
@@ -162,13 +168,15 @@ void			ft_input_map(char *line, t_all *all, int len);
 void			ft_map_validation(t_all *all);
 void			ft_dfs(t_all *all, int **dfs_map, int i, int j);
 
-void			ft_free_all(char **map);
-void			ft_free_all_int(t_all *all, int **map);
+void			ft_free_all(char **map, int max);
+void			ft_free_all_int(t_all *all, int **map, int max);
 
 int				ft_isspace(char c);
 int				ft_double_strlen(char **s);
 
-//int				main_loop(t_all *all);
-//void			calc(t_all *all);
-//int				key_press(int key, t_all *all);
-//void			verLine(t_all *all, int x, int y1, int y2, int color);
+int				main_loop(t_all *all);
+void			draw(t_all *all);
+void			calc(t_all *all);
+int				key_press(int key, t_all *all);
+void			ft_load_texture(t_info *info);
+void			ft_load_image(t_info *info, int *texture, char *path, t_img *img);

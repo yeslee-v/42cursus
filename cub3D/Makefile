@@ -6,7 +6,7 @@
 #    By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 14:38:08 by yeslee            #+#    #+#              #
-#    Updated: 2021/03/23 11:07:27 by yeslee           ###   ########.fr        #
+#    Updated: 2021/03/24 18:05:47 by yeslee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,4 +29,5 @@ all:
 		include/libft/ft_strdup.c \
 		include/libft/ft_size.c \
 		include/libft/ft_calloc.c \
-		include/libft/ft_memset.c
+		include/libft/ft_memset.c \
+		loop/textured.c

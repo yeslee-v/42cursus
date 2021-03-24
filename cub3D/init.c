@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 17:36:44 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/23 11:28:35 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/24 18:04:40 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	ft_t_game_init(t_game *game)
 	game->e = "0";
 	game->w = "0";
 	game->sp = "0";
-//	game->f[3] = 0;
-//	game->c[3] = 0;
 	game->cnt = 0;
 }
 
@@ -41,18 +39,47 @@ void	ft_t_map_init(t_map *map)
 	map->cnt_exist = 0;
 }
 
-void	ft_t_info_init(t_info *info)
+void	ft_t_info_init(t_all *all)
 {
-	info->mlx = mlx_init();
+	int i;
+	int j;
 
-	info->posX = 12;
-	info->posY = 5;
-	info->dirX = -1;
-	info->dirY = 0;
-	info->planeX = 0;
-	info->planeY = 0.66;
-	info->moveSpeed = 0.05;
-	info->rotSpeed = 0.05;
+	all->info.mlx = mlx_init();
+
+	all->info.posX = 22.0;
+	all->info.posY = 11.5;
+	all->info.dirX = -1.0;
+	all->info.dirY = 0.0;
+	all->info.planeX = 0.0;
+	all->info.planeY = 0.66;
+	all->info.moveSpeed = 0.05;
+	all->info.rotSpeed = 0.05;
+
+	i = 0;
+	while (i < all->game.r.height)
+	{
+		j = 0;
+		while (j < all->game.r.width)
+		{
+			all->info.buf[i][j] = 0;
+			j++;
+		}
+		i++;
+	}
+	all->info.texture = malloc(sizeof(int *) * 5);
+	if (!(all->info.texture))
+		return ;
+	i = 0;
+	while (i < 5)
+	{
+		j = 0;
+		while (j < texHeight * texWidth)
+		{
+			all->info.texture[i][j] = 0;
+			j++;
+		}
+		i++;
+	}
 }
 
 void	ft_t_save_init_on(int ac, char **av, t_save *save)

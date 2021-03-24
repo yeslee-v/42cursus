@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   untextured_raycast.c                               :+:      :+:    :+:   */
+/*   textured.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/23 11:05:26 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/23 12:45:52 by yeslee           ###   ########.fr       */
+/*   Created: 2021/03/24 16:30:19 by yeslee            #+#    #+#             */
+/*   Updated: 2021/03/24 18:19:00 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	verLine(t_all *all, int x, int y1, int y2, int color)
+void	draw(t_all *all)
 {
+	int x;
 	int y;
 
-	y = y1;
-	while (y <= y2)
+	y = 0;
+	while (y < all->game.r.height)
 	{
-		mlx_pixel_put(all->info.mlx, all->info.win, x, y, color);
+		x = 0;
+		while (x < all->game.r.width)
+		{
+			all->info.img.data[y * all->game.r.width + x] = all->info.buf[y][x];
+			x++;
+		}
 		y++;
 	}
 }
@@ -93,23 +99,39 @@ void	calc(t_all *all)
 		int drawEnd = lineHeight / 2 + all->game.r.height / 2;
 		if (drawEnd >= all->game.r.height)
 			drawEnd = all->game.r.height - 1;
+		
+		int	texNum = all->map.map[mapX][mapY];
 
-		int color;
-		if (all->map.map[all->info.mapY][all->info.mapX] == 1)
-			color = 0xFF0000;
-		if (all->map.map[all->info.mapY][all->info.mapX] == 2)
-			color = 0x00FF00;
-		if (all->map.map[all->info.mapY][all->info.mapX] == 3)
-			color = 0x0000FF;
-		if (all->map.map[all->info.mapY][all->info.mapX] == 4)
-			color = 0xFFFFFF;
-		else
-			color = 0xFFFF00;
-		if (all->info.side == 1)
-			color /= 2;
-		verLine(all, x, drawStart, drawEnd, color);
+		double wallX;
+		if (all->info.side == 0 && all->info.rayDirX > 0)
+			texX = texWidth - texX - 1;
+		if (all->info.side == 1 && all->info.rayDirY < 0)
+			texX = texWidth - texX - 1;
+
+		double step = 1.0 * texHeight / lineHeight;
+
+		double texPos = (drawStart - all->game.r.height / 2 + lineHeight / 2) * step;
+		y = drawStart;
+		while (y < drawEnd)
+		{
+			int texY = (int)texPos & (texHeight - 1);
+			texPos += step;
+			int color = all->info.texture[texNum][texHeight * texY + texX];
+			if (side == 1)
+				color = (color >> 1) & 8355711;
+			all->info.buf[y][x] = color;
+			y++;
+		}
+
 		x++;
 	}
+}
+
+int	main_loop(t_all *all)
+{
+	calc(all);
+	draw(all);
+	return (0);
 }
 
 int	key_press(int key, t_all *all)
@@ -152,19 +174,34 @@ int	key_press(int key, t_all *all)
 	return (0);
 }
 
-int	main_loop(t_all *all)
+void	ft_load_image(t_info *info, int *texture, char *path, t_img *img)
 {
-	info->mlx = mlx_init();
+	int x;
+	int y;
 
-	info->posX = 12;
-	info->posY = 5;
-	info->dirX = -1;
-	info->dirY = 0;
-	info->planeX = 0;
-	info->planeY = 0.66;
-	info->moveSpeed = 0.05;
-	info->rotSpeed = 0.05;
-	
-	calc(all);
-	return (0);
+	img->img = mlx_xpm_file_to_image(info->mlx, path, &(img->img_width), &(img->img_height));
+	img->data = (int *)mlx_get_data_addr(img->img, &(img->bpp), &(img->size_l), &(img->endian));
+	y = 0;
+	while (x < img->img_height)
+	{
+		x = 0;
+		while (y < img->img_width)
+		{
+			texture[img->img_width * y + x] = img->data[img->img_width * y + x];
+			x++;
+		}
+		y++;
+	}
+	mlx_destroy_image(info->mlx, img->img);
+}
+
+void	ft_load_texture(t_info *info)
+{
+	t_img	img;
+
+	ft_load_image(info, info->texture[0], "pics/wall_e.xpm", &img);
+	ft_load_image(info, info->texture[1], "pics/wall_n.xpm", &img);
+	ft_load_image(info, info->texture[2], "pics/wall_s.xpm", &img);
+	ft_load_image(info, info->texture[3], "pics/wall_w.xpm", &img);
+	ft_load_image(info, info->texture[4], "pics/sprite.xpm", &img);
 }
