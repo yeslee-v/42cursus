@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 16:30:19 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/24 18:19:00 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/24 23:54:07 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,16 @@ void	calc(t_all *all)
 		if (drawEnd >= all->game.r.height)
 			drawEnd = all->game.r.height - 1;
 		
-		int	texNum = all->map.map[mapX][mapY];
+		int	texNum = all->map.map[all->info.mapX][all->info.mapY];
 
 		double wallX;
+		if (all->info.side == 0)
+			wallX = all->info.posY + all->info.perpWallDist * all->info.rayDirY;
+		else
+			wallX = all->info.posX + all->info.perpWallDist * all->info.rayDirX;
+		wallX -= floor(wallX);
+
+		int texX = (int)(wallX * (double)texWidth);
 		if (all->info.side == 0 && all->info.rayDirX > 0)
 			texX = texWidth - texX - 1;
 		if (all->info.side == 1 && all->info.rayDirY < 0)
@@ -111,13 +118,14 @@ void	calc(t_all *all)
 		double step = 1.0 * texHeight / lineHeight;
 
 		double texPos = (drawStart - all->game.r.height / 2 + lineHeight / 2) * step;
-		y = drawStart;
+		
+		int y = drawStart;
 		while (y < drawEnd)
 		{
 			int texY = (int)texPos & (texHeight - 1);
 			texPos += step;
 			int color = all->info.texture[texNum][texHeight * texY + texX];
-			if (side == 1)
+			if (all->info.side == 1)
 				color = (color >> 1) & 8355711;
 			all->info.buf[y][x] = color;
 			y++;
