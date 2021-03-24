@@ -51,7 +51,10 @@ void	ft_input_map(char *line, t_all *all, int len)
 	{
 		original[i] = malloc(sizeof(char) * (ft_strlen(all->map.map[i]) + 1));
 		if (!(original[i]))
-			ft_free_all(original);
+		{
+			ft_free_all(original, i);
+			return ;
+		}
 		j = 0;
 		while (j < ft_strlen(all->map.map[i]))
 		{
@@ -86,17 +89,19 @@ void	ft_read_map(char *line, t_all *all)
 	ft_input_map(line, all, len);
 }
 
-void	ft_free_all(char **map)
+void	ft_free_all(char **map, int max)
 {
-	if (*map)
+	int i;
+
+	i = 0;
+	if (map[i])
 	{
-		while (*map)
+		while (i < max)
 		{
-			free(*map);
-			map++;
+			free(map[i]);
+			i++;
 		}
 	}
 	free(map);
 	map = 0;
-	ft_error_message(10);
 }

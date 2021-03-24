@@ -50,7 +50,6 @@ void	ft_dfs_intro(t_all *all, int **dfs_map)
 		}
 		i++;
 	}
-	ft_free_all_int(all, dfs_map);
 }
 
 void	ft_dfs(t_all *all, int **dfs_map, int i, int j)
@@ -59,7 +58,7 @@ void	ft_dfs(t_all *all, int **dfs_map, int i, int j)
 	if (((i - 1) >= 0) && (dfs_map[i - 1][j] != 1) && (dfs_map[i - 1][j] != 9))
 		ft_dfs(all, dfs_map, (i - 1), j);
 	else if (((i + 1) < all->map.row) && (dfs_map[i + 1][j] != 1) &&
-		(all->map.map[i + 1][j] != 9))
+		(dfs_map[i + 1][j] != 9))
 		ft_dfs(all, dfs_map, (i + 1), j);
 	else if (((j - 1) >= 0) && (dfs_map[i][j - 1] != 1) &&
 			(dfs_map[i][j - 1] != 9))
@@ -85,28 +84,36 @@ void	ft_map_validation(t_all *all)
 	{
 		dfs_map[i] = ft_calloc(sizeof(int), all->map.col);
 		if (!(dfs_map[i]))
-				ft_free_all_int(all, dfs_map);
-		j = 0;
-		while (j < all->map.col)
 		{
-			printf("%d %d %d %d\n", i, j, all->map.row, all->map.col);
+				ft_free_all_int(all, dfs_map, i);
+				return ;
+		}
+		j = 0;
+		while (j < ft_strlen(all->map.map[i]))
+		{
 			if (all->map.map[i][j] == '1')
 				dfs_map[i][j] = 1;
+			j++;
+		}
+		while (j < all->map.col)
+		{
+			dfs_map[i][j] = 9;
 			j++;
 		}
 		i++;
 	}
 	ft_dfs_intro(all, dfs_map);
+	ft_free_all_int(all, dfs_map, i);
 }
 
-void	ft_free_all_int(t_all *all, int **map)
+void	ft_free_all_int(t_all *all, int **map, int max)
 {
 	int i;
 
 	if (map)
 	{
 		i = 0;
-		while (i < all->map.row)
+		while (i < max)
 		{
 			free(map[i]);
 			i++;
@@ -114,5 +121,4 @@ void	ft_free_all_int(t_all *all, int **map)
 	}
 	free(map);
 	map = 0;
-	ft_error_message(10);
 }
