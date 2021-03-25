@@ -12,7 +12,19 @@
 
 #include "../cub3d.h"
 
-void	draw(t_all *all)
+void	verLine(t_info *info, int x, int y1, int y2, int color)
+{
+/*	int temp;
+
+	temp = y1;
+	while (temp <= y2)
+	{
+		mlx_pixel_put(info->mlx, info->win, x, temp, color);
+		temp++;
+	}*/
+}
+
+/*void	draw(t_all *all)
 {
 	int x;
 	int y;
@@ -28,11 +40,11 @@ void	draw(t_all *all)
 		}
 		y++;
 	}
-}
+}*/
 
 void	calc(t_all *all)
 {
-	int	x;
+/*	int	x;
 
 	x = 0;
 	while (x < all->game.r.width)
@@ -81,7 +93,7 @@ void	calc(t_all *all)
 			{
 				all->info.sideDistY += all->info.deltaDistY;
 				all->info.mapY += all->info.stepY;
-				all->info.side = 0;
+				all->info.side = 1;
 			}
 			if (all->map.map[all->info.mapX][all->info.mapY] > 0)
 				all->info.hit = 1;
@@ -93,14 +105,14 @@ void	calc(t_all *all)
 
 		int lineHeight = (int)(all->game.r.height / all->info.perpWallDist);
 
-		int drawStart = -lineHeight / 2 + all->game.r.height / 2;
+		int drawStart = (-lineHeight / 2) + (all->game.r.height / 2);
 		if (drawStart < 0)
 			drawStart = 0;
-		int drawEnd = lineHeight / 2 + all->game.r.height / 2;
+		int drawEnd = (lineHeight / 2) + (all->game.r.height / 2);
 		if (drawEnd >= all->game.r.height)
 			drawEnd = all->game.r.height - 1;
 		
-		int	texNum = all->map.map[all->info.mapX][all->info.mapY];
+		/*int	texNum = all->map.map[all->info.mapX][all->info.mapY];
 
 		double wallX;
 		if (all->info.side == 0)
@@ -129,31 +141,46 @@ void	calc(t_all *all)
 				color = (color >> 1) & 8355711;
 			all->info.buf[y][x] = color;
 			y++;
-		}
+		}*/
 
+/*		int color;
+		if (all->map.map[all->info.mapX][all->info.mapY] == 1)
+			color = 0xFF0000;
+		else if (all->map.map[all->info.mapX][all->info.mapY] == 2)
+			color = 0x00FF00;
+		else if (all->map.map[all->info.mapX][all->info.mapY] == 3)
+			color = 0x0000FF;
+		else if (all->map.map[all->info.mapX][all->info.mapY] == 4)
+			color = 0xFFFFFF;
+		else
+			color = 0x123145;
+
+		if (all->info.side == 1)
+			color = color / 2;
+		verLine(&all->info, x, drawStart, drawEnd, color);
 		x++;
-	}
+	}*/
 }
 
 int	main_loop(t_all *all)
 {
-	calc(all);
-	draw(all);
+//	calc(all);
+//	draw(all);
 	return (0);
 }
 
 int	key_press(int key, t_all *all)
 {
-	if (key == KEY_W)
+/*	if (key == KEY_W)
 	{
-		if (!(all->map.map[(int)(all->info.posX - all->info.dirX * all->info.moveSpeed)][(int)(all->info.posY)]))
+		if (!(all->map.map[(int)(all->info.posX + all->info.dirX * all->info.moveSpeed)][(int)(all->info.posY)]))
 			all->info.posX += all->info.dirX * all->info.moveSpeed;
-		if (!(all->map.map[(int)(all->info.posY)][(int)(all->info.posY + all->info.dirY * all->info.moveSpeed)]))
+		if (!(all->map.map[(int)(all->info.posX)][(int)(all->info.posY + all->info.dirY * all->info.moveSpeed)]))
 			all->info.posY += all->info.dirY * all->info.moveSpeed;
 	}
 	if (key == KEY_S)
 	{
-		if (!(all->map.map[(int)(all->info.posX - all->info.dirX * all->info.moveSpeed)][(int)(all->info.moveSpeed)]))
+		if (!(all->map.map[(int)(all->info.posX - all->info.dirX * all->info.moveSpeed)][(int)(all->info.posY)]))
 			all->info.posX -= all->info.dirX * all->info.moveSpeed;
 		if (!(all->map.map[(int)(all->info.posX)][(int)(all->info.posY - all->info.dirY * all->info.moveSpeed)]))
 			all->info.posY -= all->info.dirY * all->info.moveSpeed;
@@ -179,23 +206,23 @@ int	key_press(int key, t_all *all)
 	}
 	if (key == KEY_ESC)
 		exit(0);
-	return (0);
+	return (0);*/
 }
 
-void	ft_load_image(t_info *info, int *texture, char *path, t_img *img)
+/*void	ft_load_image(t_info *info, int *texture, char *path, t_img *img)
 {
 	int x;
 	int y;
 
 	img->img = mlx_xpm_file_to_image(info->mlx, path, &(img->img_width), &(img->img_height));
-	img->data = (int *)mlx_get_data_addr(img->img, &(img->bpp), &(img->size_l), &(img->endian));
+	img->addr = (int *)mlx_get_data_addr(img->img, &(img->bpp), &(img->size_l), &(img->endian));
 	y = 0;
 	while (x < img->img_height)
 	{
 		x = 0;
 		while (y < img->img_width)
 		{
-			texture[img->img_width * y + x] = img->data[img->img_width * y + x];
+			texture[img->img_width * y + x] = img->addr[img->img_width * y + x];
 			x++;
 		}
 		y++;
@@ -212,4 +239,4 @@ void	ft_load_texture(t_info *info)
 	ft_load_image(info, info->texture[2], "pics/wall_s.xpm", &img);
 	ft_load_image(info, info->texture[3], "pics/wall_w.xpm", &img);
 	ft_load_image(info, info->texture[4], "pics/sprite.xpm", &img);
-}
+}*/

@@ -44,18 +44,16 @@ void	ft_t_info_init(t_all *all)
 	int i;
 	int j;
 
-	all->info.mlx = mlx_init();
-
-	all->info.posX = 22.0;
-	all->info.posY = 11.5;
-	all->info.dirX = -1.0;
-	all->info.dirY = 0.0;
-	all->info.planeX = 0.0;
+	all->info.posX = 12;
+	all->info.posY = 5;
+	all->info.dirX = -1;
+	all->info.dirY = 0;
+	all->info.planeX = 0;
 	all->info.planeY = 0.66;
 	all->info.moveSpeed = 0.05;
 	all->info.rotSpeed = 0.05;
 
-	i = 0;
+/*	i = 0;
 	while (i < all->game.r.height)
 	{
 		j = 0;
@@ -79,7 +77,7 @@ void	ft_t_info_init(t_all *all)
 			j++;
 		}
 		i++;
-	}
+	}*/
 }
 
 void	ft_t_save_init_on(int ac, char **av, t_save *save)

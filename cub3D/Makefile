@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 all:
-	gcc -L ./mlx -lmlx -g3 -fsanitize=address -framework OpenGL -framework AppKit \
+	gcc -L ./mlx -lmlx -framework OpenGL -framework AppKit textured.c\
 		cub3d.h init.c main.c \
 		exception_handling.c map_parsing_1.c map_parsing_2.c \
 		put_size_img_color.c \
@@ -30,4 +30,3 @@ all:
 		include/libft/ft_size.c \
 		include/libft/ft_calloc.c \
 		include/libft/ft_memset.c \
-		loop/textured.c

@@ -81,10 +81,10 @@ typedef struct	s_save
 typedef struct	s_img
 {
 	void	*img;
-	int		*data;
+	char	*addr;
 
-	int		size_l;
 	int		bpp;
+	int		size_l;
 	int		endian;
 
 	int		img_width;
@@ -144,7 +144,8 @@ typedef struct	s_all
 }				t_all;
 
 int				main(int ac, char **av);
-void			mlx_start(t_all *all);
+void			ft_map_parsing_intro(int ac, char **av, t_all *all);
+//void			ft_mlx_start(t_all *all);
 
 void			ft_init_start(int ac, char **av, t_all *all);
 void			ft_t_game_init(t_game *game);
@@ -174,9 +175,9 @@ void			ft_free_all_int(t_all *all, int **map, int max);
 int				ft_isspace(char c);
 int				ft_double_strlen(char **s);
 
-int				main_loop(t_all *all);
+/*int				main_loop(t_all *all);
 void			draw(t_all *all);
 void			calc(t_all *all);
 int				key_press(int key, t_all *all);
 void			ft_load_texture(t_info *info);
-void			ft_load_image(t_info *info, int *texture, char *path, t_img *img);
+void			ft_load_image(t_info *info, int *texture, char *path, t_img *img);*/
