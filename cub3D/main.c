@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 18:30:21 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/24 17:37:39 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/26 17:26:29 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_map_parsing_intro(int ac, char **av, t_all *all)
 
 }
 
-int	main(int ac, char **av)
+int	main_intro(int ac, char **av)
 {
 	t_all	all;
 	
