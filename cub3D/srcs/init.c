@@ -6,12 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 17:36:44 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/24 18:04:40 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/26 15:56:04 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "mlx/mlx.h"
+#include "../cub3d.h"
 
 void	ft_t_game_init(t_game *game)
 {
@@ -41,8 +40,8 @@ void	ft_t_map_init(t_map *map)
 
 void	ft_t_info_init(t_all *all)
 {
-	int i;
-	int j;
+	//int i;
+	//int j;
 
 	all->info.posX = 12;
 	all->info.posY = 5;

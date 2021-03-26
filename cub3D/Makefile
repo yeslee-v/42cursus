@@ -1,21 +1,14 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/03/07 14:38:08 by yeslee            #+#    #+#              #
-#    Updated: 2021/03/24 18:05:47 by yeslee           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 all:
-	gcc -L ./mlx -lmlx -framework OpenGL -framework AppKit textured.c\
-		cub3d.h init.c main.c \
-		exception_handling.c map_parsing_1.c map_parsing_2.c \
-		put_size_img_color.c \
-		map_validation.c \
+	gcc -L ./mlx -lmlx -framework OpenGL -framework AppKit -g3 -fsanitize=address \
+		textured.c\
+		cub3d.h \
+		srcs/init.c \
+		main.c \
+		srcs/exception_handling.c \
+		srcs/map_parsing_1.c \
+		srcs/map_parsing_2.c \
+		srcs/put_size_img_color.c \
+		srcs/map_validation.c \
 		include/get_next_line/get_next_line.c \
 		include/get_next_line/get_next_line_utils.c \
 		include/get_next_line/get_next_line.h \

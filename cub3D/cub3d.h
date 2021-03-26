@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/24 18:12:25 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/26 16:00:09 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ void			ft_map_validation(t_all *all);
 void			ft_dfs(t_all *all, int **dfs_map, int i, int j);
 
 void			ft_free_all(char **map, int max);
-void			ft_free_all_int(t_all *all, int **map, int max);
+void			ft_free_all_int(int **map, int max);
 
 int				ft_isspace(char c);
 int				ft_double_strlen(char **s);

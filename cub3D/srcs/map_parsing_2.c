@@ -6,11 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:31:38 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/23 00:35:08 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/26 15:57:05 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	ft_ismap(char *line, t_all *all)
 {
@@ -56,7 +56,7 @@ void	ft_input_map(char *line, t_all *all, int len)
 			return ;
 		}
 		j = 0;
-		while (j < ft_strlen(all->map.map[i]))
+		while (j < (int)ft_strlen(all->map.map[i]))
 		{
 			original[i][j] = all->map.map[i][j];
 			j++;
@@ -80,7 +80,6 @@ void	ft_input_map(char *line, t_all *all, int len)
 void	ft_read_map(char *line, t_all *all)
 {
 	int	len;
-	int	prev;
 
 	len = ft_strlen(line);
 	if (len > all->map.col)
