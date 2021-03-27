@@ -21,13 +21,11 @@
 #include <string.h>
 #include <unistd.h>
 
-# define texHeight	64
-# define texWidth	64
-
 # define X_EVENT_KEY_PRESS	2
 # define X_EVENT_KEY_EXIT	17
 
 # define KEY_ESC		53
+
 # define KEY_Q			12
 # define KEY_W			13
 # define KEY_E			14
@@ -81,7 +79,7 @@ typedef struct	s_save
 typedef struct	s_img
 {
 	void	*img;
-	char	*addr;
+	int		*data;
 
 	int		bpp;
 	int		size_l;
@@ -133,6 +131,9 @@ typedef struct	s_info
 
 	double	moveSpeed;
 	double	rotSpeed;
+
+	int		texWidth;
+	int		texHeight;
 }				t_info;
 
 typedef struct	s_all
@@ -145,7 +146,7 @@ typedef struct	s_all
 
 int				main(int ac, char **av);
 void			ft_map_parsing_intro(int ac, char **av, t_all *all);
-//void			ft_mlx_start(t_all *all);
+int				ft_mlx_start(t_all *all);
 
 void			ft_init_start(int ac, char **av, t_all *all);
 void			ft_t_game_init(t_game *game);
@@ -174,6 +175,7 @@ void			ft_free_all_int(int **map, int max);
 
 int				ft_isspace(char c);
 int				ft_double_strlen(char **s);
+
 
 /*int				main_loop(t_all *all);
 void			draw(t_all *all);

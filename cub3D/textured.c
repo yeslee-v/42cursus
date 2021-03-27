@@ -1,28 +1,4 @@
-# include "mlx/mlx.h"
-# include <math.h>
-# include <string.h>
-# include <stdio.h>
-# include <stdlib.h>
-
-// WASD
-# define KEY_W 13
-# define KEY_A 0
-# define KEY_S 1
-# define KEY_D 2
-
-// KEYBOARD ESC
-# define K_ESC 53
-
-#define mapWidth 24
-#define mapHeight 24
-#define screenWidth 640
-#define screenHeight 480
-
-// EVENT KEY
-#define X_EVENT_KEY_PRESS   2
-#define X_EVENT_KEY_EXIT    17
-
-
+# include "cub3d.h"
 
 /*
     texture를 입히기 위해서는 verLine() 함수를 이용해 수직선을 그리는 방식은 버려야 한다.
@@ -30,50 +6,13 @@
     우리가 사용할 방식을 쉽게 설명하면 2차원짜리 '버퍼'를 이용, 
     한번에 (변경된)화면을 출력하는 것이다.
 
-    아래의 texWidth, texHeight는 텍스쳐의 텍셀 너비, 높이 값이다.
+    아래의 all->info.texWidth, all->info.texHeight는 텍스쳐의 텍셀 너비, 높이 값이다.
 
 */
-#define texWidth 64
-#define texHeight 64
+//#define all->info.texWidth 64
+//#define all->info.texHeight 64
 
-// get_img_data_addr 함수에서 쓸 변수를 갖고 있는 구조체.
-typedef struct    s_img
-{
-    void    *img;
-    int        *data;
-
-    int        size_l;
-    int        bpp;
-    int        endian;
-    int     img_width;
-    int     img_height;
-}                t_img;
-
-typedef struct    s_info
-{
-    double playerPositionX;
-    double playerPositionY;
-    double directionVectorX;
-    double directionVectorY;
-    double planeX;
-    double planeY;
-    void    *mlx;
-    void    *win;
-    double    moveSpeed;
-    double    rotSpeed;
-
-// textured에서 아래 세 변수가 추가됨.
-    t_img   img;
-    int     buf[screenHeight][screenWidth];
-    int     **texture;
-
-}                t_info;
-
-int calculateAndSaveToMap(t_info *info);
-void imageDraw(t_info *info);
-
-// 바뀐 맵.
-int    worldMap[mapWidth][mapHeight] =
+/*int    all->map.map[all->map.row][all->map.col] =
 {
   {8,8,8,8,8,8,8,8,8,8,8,4,4,6,4,4,6,4,6,4,4,4,6,4},
   {8,0,0,0,0,0,0,0,0,0,8,4,0,0,0,0,0,0,0,0,0,0,0,4},
@@ -99,56 +38,63 @@ int    worldMap[mapWidth][mapHeight] =
   {2,0,0,0,0,0,0,0,2,0,0,0,0,0,2,5,0,5,0,5,0,5,0,5},
   {2,2,0,0,0,0,0,2,2,2,0,0,0,2,2,0,5,0,5,0,0,0,5,5},
   {2,2,2,2,1,2,2,2,2,2,2,1,2,2,2,5,5,5,5,5,5,5,5,5}
-};
+};*/
 
-int main_loop(t_info *info)
+void imageDraw(t_info *info, t_all *all)
 {
-    calculateAndSaveToMap(info);
-    imageDraw(info);
-
-    // warning 방지용.
-    return (0);
-}
-
-void imageDraw(t_info *info)
-{
-    for (int y = 0; y < screenHeight; y++)
-        for (int x = 0; x < screenWidth; x++)
-            info->img.data[y * screenWidth + x] = info->buf[y][x];
+    for (int y = 0; y < all->game.r.height; y++)
+        for (int x = 0; x < all->game.r.width; x++)
+            info->img.data[y * all->game.r.width + x] = info->buf[y][x];
 
     mlx_put_image_to_window(info->mlx, info->win, info->img.img, 0, 0);
 }
 
-int calculateAndSaveToMap(t_info *info)
+int calculateAndSaveToMap(t_info *info, t_all *all)
 {
+	int i;
+
+	i = 0;
+	info->buf = malloc(sizeof(int *) * all->game.r.width);
+	if (!(info->buf))
+		return (0);
+	while (i < all->game.r.width)
+	{
+		info->buf[i] = malloc(sizeof(int) * all->game.r.height);
+		if (!(info->buf[i]))
+		{
+			ft_free_all_int(info->buf, i);
+			return (0);
+		}
+		i++;
+	}
     // 화면 생성 후 게임 루프 시작.
     // while문은 전체 프레임을 그려내고 입력을 읽는 역할을 함.
-	for (int x = 0; x < screenWidth; x++)
+	for (int x = 0; x < all->game.r.width; x++)
     {
-        for (int y = 0; y < screenHeight; y++)
+        for (int y = 0; y < all->game.r.height; y++)
         {
             info->buf[y][x] = 0xFFFFFF; 
-            info->buf[screenHeight - y - 1][x] = 0x000000;
-            // buf[screenHeight - 1 ~ screenHeight - screenHeight][x] 를 칠해줌.
+            info->buf[all->game.r.height - y - 1][x] = 0x000000;
+            // buf[all->game.r.height - 1 ~ all->game.r.height - all->game.r.height][x] 를 칠해줌.
         }
     }
 
     int  x = 0;
-    while (x < screenWidth)
+    while (x < all->game.r.width)
     {
         // cameraX 는 for문의 x값이 카메라 평면 상에 있을 때의 x좌표.
-        double cameraX = (2 * x / (double)(screenWidth)) - 1;
+        double cameraX = (2 * x / (double)(all->game.r.width)) - 1;
         // cameraPlaneX == 0; cameraPlaneY == 0.66; dirVecX = -1; dirVecY = 0;
         // 광선의 방향은 방향벡터 + 카메라평면 * 배수.
-        double rayDirectionX = info->directionVectorX + info->planeX * cameraX;
-        double rayDirectionY = info->directionVectorY + info->planeY * cameraX;
+        double rayDirectionX = info->dirX + info->planeX * cameraX;
+        double rayDirectionY = info->dirY + info->planeY * cameraX;
 
         /*
             DDAgorithm
         */
         // 현재 player가 위치한 맵 내 위치.(which box of the map)
-        int mapX = (int)(info->playerPositionX);
-        int mapY = (int)(info->playerPositionY);
+        int mapX = (int)(info->posX);
+        int mapY = (int)(info->posY);
 
         // 현재 위치에서 다음 x사이드 또는 y사이드까지의 거리.
         // 이를 이하 '첫 번째 x면 및 y면'이라고 부를 것.
@@ -194,28 +140,28 @@ int calculateAndSaveToMap(t_info *info)
             sideDistY의 값은 rayDirectionY 값이 양수인 경우
             광선의 위쪽으로 이동하다 처음 만나는 y면까지의 거리가 된다.
             rayDirectionX가 양수일 경우 sideDistX는 
-            mapX + 1에서 실제 위치 playerPositionX를 빼주고 deltaDistX를 곱한 결과다.
-            반대의 경우 playerPositionX에서 mapX를 빼주고 deltaDistX를 곱한 결과다.
+            mapX + 1에서 실제 위치 posX를 빼주고 deltaDistX를 곱한 결과다.
+            반대의 경우 posX에서 mapX를 빼주고 deltaDistX를 곱한 결과다.
         */
         if (rayDirectionX < 0)
         {
             stepX = -1;
-            sideDistX = (info->playerPositionX - mapX) * deltaDistX;
+            sideDistX = (info->posX - mapX) * deltaDistX;
         }
         else
         {
             stepX = 1;
-            sideDistX = (mapX + 1.0 - info->playerPositionX) * deltaDistX;
+            sideDistX = (mapX + 1.0 - info->posX) * deltaDistX;
         }
         if (rayDirectionY < 0)
         {
             stepY = -1;
-            sideDistY = (info->playerPositionY - mapY) * deltaDistY;
+            sideDistY = (info->posY - mapY) * deltaDistY;
         }
         else
         {
             stepY = 1;
-            sideDistY = (mapY + 1.0 - info->playerPositionY) * deltaDistY;
+            sideDistY = (mapY + 1.0 - info->posY) * deltaDistY;
         }
 
         /*
@@ -241,7 +187,7 @@ int calculateAndSaveToMap(t_info *info)
                 side = 1; // y면에 부딪혔다면 side = 1
             }
             // ray가 벽을 만났는지 확인하는 작업
-            if (worldMap[mapX][mapY] > 0)
+            if (all->map.map[mapX][mapY] > 0)
                 hit = 1;
         }
         /*
@@ -257,11 +203,11 @@ int calculateAndSaveToMap(t_info *info)
             이에 대한 자세한 설명은 로데브 설명 참고.
             따라서 아래 if-else문은 fisheye (side)effect를 방지하는 코드.
             (1 - stepX) / 2는 stepX가 -1이면 1이되고 1이면 0이 된다.(-1 or 0)
-            해당 연산은 mapX - playerPositionX가 < 0 일 때, 즉 벽 밖으로 갈 때
+            해당 연산은 mapX - posX가 < 0 일 때, 즉 벽 밖으로 갈 때
             길이에 1을 더해주기 위한 코드이다.
             수직거리를 계산하는 방법은 이렇다. 
             만약 광선이 처음으로 부딪힌 면이 x면이면 
-                mapX - playerPositionX + (1 - stepX / 2)는
+                mapX - posX + (1 - stepX / 2)는
                 광선이 x방향으로 몇 칸이나 갔는지를 나타낸다.(정수 아니어도 됨.)
                 rayDirectionX로 나눠주는 이유는 구해진 값이 수직거리보다 크기 때문.
             y면에 처음 부딪혔을 때도 같은 원리로 동작.
@@ -269,53 +215,53 @@ int calculateAndSaveToMap(t_info *info)
             계산된 값은 항상 양수임.
         */
         if (side == 0)
-            perpWallDist = (mapX - info->playerPositionX + (1 - stepX) / 2) / rayDirectionX;
+            perpWallDist = (mapX - info->posX + (1 - stepX) / 2) / rayDirectionX;
         else
-            perpWallDist = (mapY - info->playerPositionY + (1 - stepY) / 2) / rayDirectionY;
+            perpWallDist = (mapY - info->posY + (1 - stepY) / 2) / rayDirectionY;
 
         // 스크린에 그릴 line의 높이를 계산.
-        int lineHeight = (int)(screenHeight / perpWallDist);
+        int lineHeight = (int)(all->game.r.height / perpWallDist);
         /*
             이제 계산한 거리를 가지고 화면에 그려야 하는 선의 높이를 구할 수 있다.
             벽을 더 높게 그리거나 낮게 그리고 싶으면 2 * lineHeight 같은 값을 넣을 수도 있다.
             위에서 구한 lineHeight로부터 우리는 선을 그릴 위치의 시작점과 끝점을 구해낼 수 있다.
-            만약에 벽의 범위 (0 ~ screenHeight)를 벗어나는 경우 
-            각각 0과 screenHeight - 1을 대입한다.
+            만약에 벽의 범위 (0 ~ all->game.r.height)를 벗어나는 경우 
+            각각 0과 all->game.r.height - 1을 대입한다.
                 +) drawStart와 End에 2로 나눈 값들을 더하는 이유는
-                   screenHeight보다 drawEnd가 커지면 될까 안될까를 생각해보면 알 수 있다.
+                   all->game.r.height보다 drawEnd가 커지면 될까 안될까를 생각해보면 알 수 있다.
         */
-        int drawStart = (-lineHeight / 2) + (screenHeight / 2);
+        int drawStart = (-lineHeight / 2) + (all->game.r.height / 2);
         if (drawStart < 0)
             drawStart = 0;
-        int drawEnd = (lineHeight / 2) + (screenHeight / 2);
-        if (drawEnd >= screenHeight)
-            drawEnd = screenHeight - 1;
+        int drawEnd = (lineHeight / 2) + (all->game.r.height / 2);
+        if (drawEnd >= all->game.r.height)
+            drawEnd = all->game.r.height - 1;
 
         // texturing calculations
         // 1을 빼주는 이유는 0번째 텍스쳐도 0, 벽이 없어도 0이기 때문.
         // 1을 빼지 않는다면 어떻게 될까?
         // 아마 시작하자마자 뒷방향을 보고 앞으로 걸어나가려고 하면 
         // segmentation fault가 뜰 것이다.
-        int texNum = worldMap[mapX][mapY] - 1;
-        // int textNum = worldMap[mapX][mapY];
+        int texNum = all->map.map[mapX][mapY] - 1;
+        // int textNum = all->map.map[mapX][mapY];
 
         // wallX의 값은 벽의 x면과 부딪힌 경우(side == 0)
         // 벽의 Y좌표가 된다.
         // wallX의 값은 텍스처의 x좌표에 대해서만 사용한다.
         double wallX;
         if (side == 0)
-            wallX = info->playerPositionY + perpWallDist * rayDirectionY;
+            wallX = info->posY + perpWallDist * rayDirectionY;
         else
-            wallX = info->playerPositionX + perpWallDist * rayDirectionX;
+            wallX = info->posX + perpWallDist * rayDirectionX;
         wallX -= floor(wallX);
 
         // texX는 texture의 x좌표를 나타낸다.
         // x coordinate on the texture
-        int texX = (int)(wallX * (double)texWidth);
+        int texX = (int)(wallX * (double)all->info.texWidth);
         if (side == 0 && rayDirectionX > 0)
-            texX = texWidth - texX - 1;
+            texX = all->info.texWidth - texX - 1;
         if (side == 1 && rayDirectionY < 0)
-            texX = texWidth - texX - 1;
+            texX = all->info.texWidth - texX - 1;
 
         /*
             texY를 지정하는 반복문.
@@ -323,15 +269,15 @@ int calculateAndSaveToMap(t_info *info)
             buffer[y][x]에 넣을 color는 texture 배열에서 가져온다.
         */
         // How much to increase the texture coordinate perscreen pixel
-        double step = 1.0 * texHeight / lineHeight;
+        double step = 1.0 * all->info.texHeight / lineHeight;
         // Starting texture coordinate
-        double texPos = (drawStart - screenHeight / 2 + lineHeight / 2) * step;
+        double texPos = (drawStart - all->game.r.height / 2 + lineHeight / 2) * step;
         for (int y = drawStart; y < drawEnd; y++)
         {
-            // Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
-            int texY = (int)texPos & (texHeight - 1);
+            // Cast the texture coordinate to integer, and mask with (all->info.texHeight - 1) in case of overflow
+            int texY = (int)texPos & (all->info.texHeight - 1);
             texPos += step;
-            int color = info->texture[texNum][texHeight * texY + texX];
+            int color = info->texture[texNum][all->info.texHeight * texY + texX];
             // 광선이 벽의 y면에 부딪힌 경우(side == 1).
             // 조명표현을 위해 색상을 더 검게 만든다.
             // 이진수를 2로 나눔으로써 RGB값을 반감시킨다.
@@ -346,15 +292,16 @@ int calculateAndSaveToMap(t_info *info)
 	return (0);
 }
 
-int key_press(int key, t_info *info)
+int key_press(int key, t_info *info, t_all *all)
 {
+	printf("loaded\n");
     // WS
     if (key == KEY_W)
     {
-        if (!worldMap[(int)(info->playerPositionX + info->directionVectorX * info->moveSpeed)][(int)(info->playerPositionY)])
-            info->playerPositionX += info->directionVectorX * info->moveSpeed;
-        if (!worldMap[(int)(info->playerPositionX)][(int)(info->playerPositionY + info->directionVectorY * info->moveSpeed)])
-            info->playerPositionY += info->directionVectorY * info->moveSpeed;
+        if (!all->map.map[(int)(info->posX + info->dirX * info->moveSpeed)][(int)(info->posY)])
+            info->posX += info->dirX * info->moveSpeed;
+        if (!all->map.map[(int)(info->posX)][(int)(info->posY + info->dirY * info->moveSpeed)])
+            info->posY += info->dirY * info->moveSpeed;
     }
 
     if (key == KEY_S)
@@ -370,18 +317,18 @@ int key_press(int key, t_info *info)
             y를 한칸 아래로 이동시키면 된다.
             아래는 다음을 구체적으로 구현한 것이다.
         */
-        if (!worldMap[(int)(info->playerPositionX - info->directionVectorX * info->moveSpeed)][(int)(info->playerPositionY)])
-            info->playerPositionX -= info->directionVectorX * info->moveSpeed;
-        if (!worldMap[(int)(info->playerPositionX)][(int)(info->playerPositionY - info->directionVectorY * info->moveSpeed)])
-            info->playerPositionY -= info->directionVectorY * info->moveSpeed;
+        if (!all->map.map[(int)(info->posX - info->dirX * info->moveSpeed)][(int)(info->posY)])
+            info->posX -= info->dirX * info->moveSpeed;
+        if (!all->map.map[(int)(info->posX)][(int)(info->posY - info->dirY * info->moveSpeed)])
+            info->posY -= info->dirY * info->moveSpeed;
     }
 
    // AD
     if (key == KEY_A)
     {
-        double oldDirectionX = info->directionVectorX;
-        info->directionVectorX = info->directionVectorX * cos(info->rotSpeed) - info->directionVectorY * sin(info->rotSpeed);
-        info->directionVectorY = oldDirectionX * sin(info->rotSpeed) + info->directionVectorY * cos(info->rotSpeed);
+        double oldDirectionX = info->dirX;
+        info->dirX = info->dirX * cos(info->rotSpeed) - info->dirY * sin(info->rotSpeed);
+        info->dirY = oldDirectionX * sin(info->rotSpeed) + info->dirY * cos(info->rotSpeed);
         double oldPlaneX = info->planeX;
         info->planeX = info->planeX * cos(info->rotSpeed) - info->planeY * sin(info->rotSpeed);
         info->planeY = oldPlaneX * sin(info->rotSpeed) + info->planeY * cos(info->rotSpeed);
@@ -392,15 +339,24 @@ int key_press(int key, t_info *info)
     // https://github.com/minckim0/cub3d_lect 해당 깃 레포 내 pdf 62~66 페이지 참고.
     if (key == KEY_D)
     {
-        double oldDirectionX = info->directionVectorX;
-        info->directionVectorX = info->directionVectorX * cos(-info->rotSpeed) - info->directionVectorY * sin(-info->rotSpeed);
-        info->directionVectorY = oldDirectionX * sin(-info->rotSpeed) + info->directionVectorY * cos(-info->rotSpeed);
+        double oldDirectionX = info->dirX;
+        info->dirX = info->dirX * cos(-info->rotSpeed) - info->dirY * sin(-info->rotSpeed);
+        info->dirY = oldDirectionX * sin(-info->rotSpeed) + info->dirY * cos(-info->rotSpeed);
         double oldPlaneX = info->planeX;
         info->planeX = info->planeX * cos(-info->rotSpeed) - info->planeY * sin(-info->rotSpeed);
         info->planeY = oldPlaneX * sin(-info->rotSpeed) + info->planeY * cos(-info->rotSpeed);
     }
-    if (key == K_ESC)
+    if (key == KEY_ESC)
         exit(0);
+    return (0);
+}
+
+int main_loop(t_info *info, t_all *all)
+{
+    calculateAndSaveToMap(info, all);
+    imageDraw(info, all);
+
+    // warning 방지용.
     return (0);
 }
 
@@ -424,67 +380,49 @@ void    load_image(t_info *info, int *texture, char *path, t_img *img)
     mlx_destroy_image(info->mlx, img->img);
 }
 
-void    load_texture(t_info *info)
+void    load_texture(t_all *all)
 {
-    t_img    img;
-
-    load_image(info, info->texture[0], "pics/sprite.xpm", &img);
-    load_image(info, info->texture[1], "pics/wall_e.xpm", &img);
-    load_image(info, info->texture[2], "pics/wall_n.xpm", &img);
-    load_image(info, info->texture[3], "pics/wall_s.xpm", &img);
-    load_image(info, info->texture[4], "pics/wall_w.xpm", &img);
-    load_image(info, info->texture[5], "pics/sprite.xpm", &img);
-    load_image(info, info->texture[6], "pics/wall_e.xpm", &img);
-    load_image(info, info->texture[7], "pics/wall_s.xpm", &img);
+    load_image(&all->info, all->info.texture[0], "pics/wall_w.xpm", &all->info.img);
+    load_image(&all->info, all->info.texture[1], "pics/wall_e.xpm", &all->info.img);
+    load_image(&all->info, all->info.texture[2], "pics/wall_n.xpm", &all->info.img);
+    load_image(&all->info, all->info.texture[3], "pics/wall_s.xpm", &all->info.img);
 }
 
-
-int main()
+int ft_mlx_start(t_all *all)
 {
-    t_info info;
-    info.mlx = mlx_init();
+    all->info.mlx = mlx_init();
 
-    // info는 아래 필드 모두를 가지고 있다.
-    info.playerPositionX = 22.0;
-    info.playerPositionY = 11.5;
-    info.directionVectorX = -1.0;
-    info.directionVectorY = 0.0;
-    info.planeX = 0.0;
-    info.planeY = 0.66;
-    info.moveSpeed = 0.05;
-    info.rotSpeed = 0.05;
-
-
-    if (!(info.texture = (int **)malloc(sizeof(int *) * 8)))
+	if (!(all->info.texture = (int **)malloc(sizeof(int *) * 4)))
         return (-1);
-    for (int i = 0; i < 8; i++)
-        if (!(info.texture[i] = (int *)malloc(sizeof(int) * (texHeight * texWidth))))
+    for (int i = 0; i < 4; i++)
+        if (!(all->info.texture[i] = (int *)malloc(sizeof(int) * (all->info.texHeight * all->info.texWidth))))
             return (-1);
 
-    for (int i = 0; i < 8; i++)
-        for (int j = 0; j < texHeight * texWidth; j++)
-            info.texture[i][j] = 0;
+    for (int i = 0; i < 4; i++)
+        for (int j = 0; j < all->info.texHeight * all->info.texWidth; j++)
+            all->info.texture[i][j] = 0;
 
     /*
-        info.texture 변수는 다음과 같이 선언돼 있는데,
-            int        texture[8][texHeight * texWidth];
+        all->info.texture 변수는 다음과 같이 선언돼 있는데,
+            int        texture[8][all->info.texHeight * all->info.texWidth];
         이것이 의미하는 바는 총 8가지 종류의 텍스쳐를 저장할 수 있고,
-        그 크기가 texHeight * texWidth 라는 뜻이다.
+        그 크기가 all->info.texHeight * all->info.texWidth 라는 뜻이다.
     */
-    for (int i = 0; i < 8; i++)
-        for (int j = 0; j < texHeight * texWidth; j++)
-            info.texture[i][j] = 0;
+	for (int i = 0; i < 4; i++)
+        for (int j = 0; j < all->info.texHeight * all->info.texWidth; j++)
+            all->info.texture[i][j] = 0;
 
-    load_texture(&info);
+    load_texture(all);
 
     // textured에서 추가된 코드 세 줄.
-    info.win = mlx_new_window(info.mlx, screenWidth, screenHeight, "mlx");
-    info.img.img = mlx_new_image(info.mlx, screenWidth, screenHeight);
-    info.img.data = (int *)mlx_get_data_addr(info.img.img, &info.img.bpp, &info.img.size_l, &info.img.endian);
+	all->info.win = mlx_new_window(all->info.mlx, all->game.r.width, all->game.r.height, "mlx");
+	all->info.img.img = mlx_new_image(all->info.mlx, all->game.r.width, all->game.r.height);
+	all->info.img.data = (int *)mlx_get_data_addr(all->info.img.img, &all->info.img.bpp, &all->info.img.size_l, &all->info.img.endian);
 
     // 아래 코드들이 무슨 역할을 하는 지 궁금하다면 아래 링크에서 정리해둔 내용을 보자.
     // https://42kchoi.tistory.com/229
-    mlx_loop_hook(info.mlx, &main_loop, &info);
-    mlx_hook(info.win, X_EVENT_KEY_PRESS, 0, &key_press, &info);
-    mlx_loop(info.mlx);    
+	mlx_loop_hook(all->info.mlx, &main_loop, &all->info);
+	mlx_hook(all->info.win, X_EVENT_KEY_PRESS, 0, &key_press, &all->info);
+    mlx_loop(all->info.mlx);
+	return (0);
 }

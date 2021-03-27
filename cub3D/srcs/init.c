@@ -43,40 +43,16 @@ void	ft_t_info_init(t_all *all)
 	//int i;
 	//int j;
 
-	all->info.posX = 12;
-	all->info.posY = 5;
-	all->info.dirX = -1;
-	all->info.dirY = 0;
-	all->info.planeX = 0;
+	all->info.posX = 22.0;
+	all->info.posY = 11.5;
+	all->info.dirX = -1.0;
+	all->info.dirY = 0.0;
+	all->info.planeX = 0.0;
 	all->info.planeY = 0.66;
 	all->info.moveSpeed = 0.05;
 	all->info.rotSpeed = 0.05;
-
-/*	i = 0;
-	while (i < all->game.r.height)
-	{
-		j = 0;
-		while (j < all->game.r.width)
-		{
-			all->info.buf[i][j] = 0;
-			j++;
-		}
-		i++;
-	}
-	all->info.texture = malloc(sizeof(int *) * 5);
-	if (!(all->info.texture))
-		return ;
-	i = 0;
-	while (i < 5)
-	{
-		j = 0;
-		while (j < texHeight * texWidth)
-		{
-			all->info.texture[i][j] = 0;
-			j++;
-		}
-		i++;
-	}*/
+	all->info.texWidth = 64;
+	all->info.texHeight = 64;
 }
 
 void	ft_t_save_init_on(int ac, char **av, t_save *save)

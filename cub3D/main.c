@@ -14,37 +14,11 @@
 
 void	ft_init_start(int ac, char **av, t_all *all)
 {
-//	ft_t_info_init(all);
+	ft_t_info_init(all);
 	ft_t_game_init(&(all->game));
 	ft_t_map_init(&(all->map));
 	ft_t_save_init_on(ac, av, (&(all->save)));
 }
-
-/*void	ft_my_mlx_pixel_put(t_all *all, int x, int y, int color)
-{
-	char *dst;
-
-	dst = all->info.img.addr + (y * all->info.img.size_l + x *
-			(all->info.img.bpp / 8));
-	*(unsigned int *)dst = color;
-}*/
-
-/*void	ft_mlx_start(t_all *all)
-{
-	all->info.mlx = mlx_init();
-//	ft_load_texture(&(all->info));
-	all->info.win = mlx_new_window(
-		all->info.mlx, all->game.r.width, all->game.r.height, "yelled");
-//	all->info.img.img = mlx_new_image(all->info.mlx, all->game.r.width, all->game.r.height);
-//	all->info.img.addr = mlx_get_data_addr(all->info.img.img,
-//			&all->info.img.bpp, &all->info.img.size_l,
-//			&all->info.img.endian);
-//	ft_my_mlx_pixel_put(all, 5, 5, 0x00FF0000);
-//	mlx_put_image_to_window(all->info.mlx, all->info.win, all->info.img.img, 0, 0);
-	mlx_loop_hook(all->info.mlx, &main_loop, &(all->info));
-	mlx_hook(all->info.win, X_EVENT_KEY_PRESS, 0, &key_press, &(all->info));
-	mlx_loop(all->info.mlx);
-}*/
 
 void	ft_map_parsing_intro(int ac, char **av, t_all *all)
 {
@@ -68,11 +42,11 @@ void	ft_map_parsing_intro(int ac, char **av, t_all *all)
 
 }
 
-int	main_intro(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_all	all;
 	
 	ft_map_parsing_intro(ac, av, &all);
-//	ft_mlx_start(&all);
+	ft_mlx_start(&all);
 	return (0);
 }
