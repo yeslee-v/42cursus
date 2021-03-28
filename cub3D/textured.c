@@ -1,28 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   textured.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/28 16:58:03 by yeslee            #+#    #+#             */
+/*   Updated: 2021/03/28 20:30:04 by yeslee           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "cub3d.h"
 
 void imageDraw(t_info *info, t_all *all)
 {
     for (int y = 0; y < all->game.r.height; y++)
         for (int x = 0; x < all->game.r.width; x++)
-            info->img.data[y * all->game.r.width + x] = info->buf[y][x];
+            info->img.data[y * all->game.r.width + x] = all->info.buf[y][x];
 
     mlx_put_image_to_window(info->mlx, info->win, info->img.img, 0, 0);
 }
 
-int calculateAndSaveToMap(t_info *info, t_all *all)
+int calculateAndSaveToMap(t_all *all)
 {
 	int i;
 
 	i = 0;
-	info->buf = ft_calloc(sizeof(int *), all->game.r.width);
-	if (!(info->buf))
+	all->info.buf = malloc(sizeof(int *) * all->game.r.height);
+	if (!(all->info.buf))
 		return (0);
-	while (i < all->game.r.width)
+	while (i < all->game.r.height)
 	{
-		info->buf[i] = ft_calloc(sizeof(int), all->game.r.height);
-		if (!(info->buf[i]))
+		all->info.buf[i] = malloc(sizeof(int) * all->game.r.width);
+		if (!(all->info.buf[i]))
 		{
-			ft_free_all_int(info->buf, i);
+			ft_free_all_int(all->info.buf, i);
 			return (0);
 		}
 		i++;
@@ -31,21 +43,20 @@ int calculateAndSaveToMap(t_info *info, t_all *all)
     {
         for (int y = 0; y < all->game.r.height; y++)
         {
-            info->buf[y][x] = 0xFFFFFF; 
-            info->buf[all->game.r.height - y - 1][x] = 0x000000;
+            all->info.buf[y][x] = 0xFFFFFF; 
+            all->info.buf[all->game.r.height - y - 1][x] = 0x000000;
         }
     }
 
-	printf("loaded\n");
 	int  x = 0;
     while (x < all->game.r.width)
     {
         double cameraX = (2 * x / (double)(all->game.r.width)) - 1;
-        double rayDirectionX = info->dirX + info->planeX * cameraX;
-        double rayDirectionY = info->dirY + info->planeY * cameraX;
+        double rayDirectionX = all->info.dirX + all->info.planeX * cameraX;
+        double rayDirectionY = all->info.dirY + all->info.planeY * cameraX;
 
-        int mapX = (int)(info->posX);
-        int mapY = (int)(info->posY);
+        int mapX = (int)(all->info.posX);
+        int mapY = (int)(all->info.posY);
 
         double sideDistX;
         double sideDistY;
@@ -64,22 +75,22 @@ int calculateAndSaveToMap(t_info *info, t_all *all)
 		if (rayDirectionX < 0)
         {
             stepX = -1;
-            sideDistX = (info->posX - mapX) * deltaDistX;
+            sideDistX = (all->info.posX - mapX) * deltaDistX;
         }
         else
         {
             stepX = 1;
-            sideDistX = (mapX + 1.0 - info->posX) * deltaDistX;
+            sideDistX = (mapX + 1.0 - all->info.posX) * deltaDistX;
         }
         if (rayDirectionY < 0)
         {
             stepY = -1;
-            sideDistY = (info->posY - mapY) * deltaDistY;
+            sideDistY = (all->info.posY - mapY) * deltaDistY;
         }
         else
         {
             stepY = 1;
-            sideDistY = (mapY + 1.0 - info->posY) * deltaDistY;
+            sideDistY = (mapY + 1.0 - all->info.posY) * deltaDistY;
         }
         while (hit == 0)
         {
@@ -99,9 +110,9 @@ int calculateAndSaveToMap(t_info *info, t_all *all)
                 hit = 1;
         }
         if (side == 0)
-            perpWallDist = (mapX - info->posX + (1 - stepX) / 2) / rayDirectionX;
+            perpWallDist = (mapX - all->info.posX + (1 - stepX) / 2) / rayDirectionX;
         else
-            perpWallDist = (mapY - info->posY + (1 - stepY) / 2) / rayDirectionY;
+            perpWallDist = (mapY - all->info.posY + (1 - stepY) / 2) / rayDirectionY;
 
         int lineHeight = (int)(all->game.r.height / perpWallDist);
         int drawStart = (-lineHeight / 2) + (all->game.r.height / 2);
@@ -115,9 +126,9 @@ int calculateAndSaveToMap(t_info *info, t_all *all)
         
 		double wallX;
         if (side == 0)
-            wallX = info->posY + perpWallDist * rayDirectionY;
+            wallX = all->info.posY + perpWallDist * rayDirectionY;
         else
-            wallX = info->posX + perpWallDist * rayDirectionX;
+            wallX = all->info.posX + perpWallDist * rayDirectionX;
         wallX -= floor(wallX);
 
         int texX = (int)(wallX * (double)all->info.texWidth);
@@ -132,62 +143,62 @@ int calculateAndSaveToMap(t_info *info, t_all *all)
         {
             int texY = (int)texPos & (all->info.texHeight - 1);
             texPos += step;
-            int color = info->texture[texNum][all->info.texHeight * texY + texX];
+            int color = all->info.texture[texNum][all->info.texHeight * texY + texX];
             if (side == 1)
                 color = (color >> 1) & 8355711;
-            info->buf[y][x] = color;
+            all->info.buf[y][x] = color;
         }
         x++;
     }
 	return (0);
 }
 
-int key_press(int key, t_info *info, t_all *all)
+int key_press(int key, t_all *all)
 {
     if (key == KEY_W)
     {
-        if (!all->map.map[(int)(info->posX + info->dirX * info->moveSpeed)][(int)(info->posY)])
-            info->posX += info->dirX * info->moveSpeed;
-        if (!all->map.map[(int)(info->posX)][(int)(info->posY + info->dirY * info->moveSpeed)])
-            info->posY += info->dirY * info->moveSpeed;
+        if (!all->map.map[(int)(all->info.posX + all->info.dirX * all->info.moveSpeed)][(int)(all->info.posY)])
+            all->info.posX += all->info.dirX * all->info.moveSpeed;
+        if (!all->map.map[(int)(all->info.posX)][(int)(all->info.posY + all->info.dirY * all->info.moveSpeed)])
+            all->info.posY += all->info.dirY * all->info.moveSpeed;
     }
 
     if (key == KEY_S)
     {
-        if (!all->map.map[(int)(info->posX - info->dirX * info->moveSpeed)][(int)(info->posY)])
-            info->posX -= info->dirX * info->moveSpeed;
-        if (!all->map.map[(int)(info->posX)][(int)(info->posY - info->dirY * info->moveSpeed)])
-            info->posY -= info->dirY * info->moveSpeed;
+        if (!all->map.map[(int)(all->info.posX - all->info.dirX * all->info.moveSpeed)][(int)(all->info.posY)])
+            all->info.posX -= all->info.dirX * all->info.moveSpeed;
+        if (!all->map.map[(int)(all->info.posX)][(int)(all->info.posY - all->info.dirY * all->info.moveSpeed)])
+            all->info.posY -= all->info.dirY * all->info.moveSpeed;
     }
 
     if (key == KEY_A)
     {
-        double oldDirectionX = info->dirX;
-        info->dirX = info->dirX * cos(info->rotSpeed) - info->dirY * sin(info->rotSpeed);
-        info->dirY = oldDirectionX * sin(info->rotSpeed) + info->dirY * cos(info->rotSpeed);
-        double oldPlaneX = info->planeX;
-        info->planeX = info->planeX * cos(info->rotSpeed) - info->planeY * sin(info->rotSpeed);
-        info->planeY = oldPlaneX * sin(info->rotSpeed) + info->planeY * cos(info->rotSpeed);
+        double oldDirectionX = all->info.dirX;
+        all->info.dirX = all->info.dirX * cos(all->info.rotSpeed) - all->info.dirY * sin(all->info.rotSpeed);
+        all->info.dirY = oldDirectionX * sin(all->info.rotSpeed) + all->info.dirY * cos(all->info.rotSpeed);
+        double oldPlaneX = all->info.planeX;
+        all->info.planeX = all->info.planeX * cos(all->info.rotSpeed) - all->info.planeY * sin(all->info.rotSpeed);
+        all->info.planeY = oldPlaneX * sin(all->info.rotSpeed) + all->info.planeY * cos(all->info.rotSpeed);
     }
 
     if (key == KEY_D)
     {
-        double oldDirectionX = info->dirX;
-        info->dirX = info->dirX * cos(-info->rotSpeed) - info->dirY * sin(-info->rotSpeed);
-        info->dirY = oldDirectionX * sin(-info->rotSpeed) + info->dirY * cos(-info->rotSpeed);
-        double oldPlaneX = info->planeX;
-        info->planeX = info->planeX * cos(-info->rotSpeed) - info->planeY * sin(-info->rotSpeed);
-        info->planeY = oldPlaneX * sin(-info->rotSpeed) + info->planeY * cos(-info->rotSpeed);
+        double oldDirectionX = all->info.dirX;
+        all->info.dirX = all->info.dirX * cos(-all->info.rotSpeed) - all->info.dirY * sin(-all->info.rotSpeed);
+        all->info.dirY = oldDirectionX * sin(-all->info.rotSpeed) + all->info.dirY * cos(-all->info.rotSpeed);
+        double oldPlaneX = all->info.planeX;
+        all->info.planeX = all->info.planeX * cos(-all->info.rotSpeed) - all->info.planeY * sin(-all->info.rotSpeed);
+        all->info.planeY = oldPlaneX * sin(-all->info.rotSpeed) + all->info.planeY * cos(-all->info.rotSpeed);
     }
     if (key == KEY_ESC)
         exit(0);
     return (0);
 }
 
-int main_loop(t_info *info, t_all *all)
+int main_loop(t_all *all)
 {
-    calculateAndSaveToMap(info, all);
-    imageDraw(info, all);
+    calculateAndSaveToMap(all);
+    imageDraw(&all->info, all);
 
     return (0);
 }
@@ -212,27 +223,19 @@ void    load_texture(t_all *all)
     load_image(&all->info, all->info.texture[1], "pics/wall_e.xpm", &all->info.img);
     load_image(&all->info, all->info.texture[2], "pics/wall_n.xpm", &all->info.img);
     load_image(&all->info, all->info.texture[3], "pics/wall_s.xpm", &all->info.img);
-    load_image(&all->info, all->info.texture[4], "pics/wall_s.xpm", &all->info.img);
-    load_image(&all->info, all->info.texture[5], "pics/wall_s.xpm", &all->info.img);
-    load_image(&all->info, all->info.texture[6], "pics/wall_s.xpm", &all->info.img);
-    load_image(&all->info, all->info.texture[7], "pics/wall_s.xpm", &all->info.img);
 }
 
-int ft_mlx_start(t_all *all)
+int ft_mlx_intro(t_all *all)
 {
     all->info.mlx = mlx_init();
 
-	if (!(all->info.texture = (int **)malloc(sizeof(int *) * 8)))
+	if (!(all->info.texture = (int **)malloc(sizeof(int *) * 4)))
         return (-1);
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < 4; i++)
         if (!(all->info.texture[i] = (int *)malloc(sizeof(int) * (all->info.texHeight * all->info.texWidth))))
             return (-1);
 
-    for (int i = 0; i < 8; i++)
-        for (int j = 0; j < all->info.texHeight * all->info.texWidth; j++)
-            all->info.texture[i][j] = 0;
-
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 4; i++)
         for (int j = 0; j < all->info.texHeight * all->info.texWidth; j++)
             all->info.texture[i][j] = 0;
 
@@ -242,8 +245,8 @@ int ft_mlx_start(t_all *all)
 	all->info.img.img = mlx_new_image(all->info.mlx, all->game.r.width, all->game.r.height);
 	all->info.img.data = (int *)mlx_get_data_addr(all->info.img.img, &all->info.img.bpp, &all->info.img.size_l, &all->info.img.endian);
 
-	mlx_loop_hook(all->info.mlx, &main_loop, &all->info);
-	mlx_hook(all->info.win, X_EVENT_KEY_PRESS, 0, &key_press, &all->info);
+	mlx_loop_hook(all->info.mlx, &main_loop, all);
+	mlx_hook(all->info.win, X_EVENT_KEY_PRESS, 0, &key_press, all);
     mlx_loop(all->info.mlx);
 	return (0);
 }

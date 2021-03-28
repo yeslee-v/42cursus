@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 18:30:21 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/26 17:26:29 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/28 19:50:02 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ int	main(int ac, char **av)
 	t_all	all;
 	
 	ft_map_parsing_intro(ac, av, &all);
-	ft_mlx_start(&all);
+	ft_mlx_intro(&all);
 	return (0);
 }

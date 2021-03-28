@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/26 16:00:09 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/28 20:13:24 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ typedef struct	s_all
 
 int				main(int ac, char **av);
 void			ft_map_parsing_intro(int ac, char **av, t_all *all);
-int				ft_mlx_start(t_all *all);
+int				ft_mlx_intro(t_all *all);
 
 void			ft_init_start(int ac, char **av, t_all *all);
 void			ft_t_game_init(t_game *game);
@@ -176,10 +176,3 @@ void			ft_free_all_int(int **map, int max);
 int				ft_isspace(char c);
 int				ft_double_strlen(char **s);
 
-
-/*int				main_loop(t_all *all);
-void			draw(t_all *all);
-void			calc(t_all *all);
-int				key_press(int key, t_all *all);
-void			ft_load_texture(t_info *info);
-void			ft_load_image(t_info *info, int *texture, char *path, t_img *img);*/
