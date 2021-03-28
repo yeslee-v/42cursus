@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 16:58:03 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/28 20:30:04 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/28 21:05:32 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int calculateAndSaveToMap(t_all *all)
     {
         for (int y = 0; y < all->game.r.height; y++)
         {
-            all->info.buf[y][x] = 0xFFFFFF; 
-            all->info.buf[all->game.r.height - y - 1][x] = 0x000000;
+            all->info.buf[y][x] = 0xFFFFCC; 
+            all->info.buf[all->game.r.height - y - 1][x] = 0xCCCCFF;
         }
     }
 
