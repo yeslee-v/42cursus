@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 16:58:03 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/28 21:05:32 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/29 23:13:43 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int calculateAndSaveToMap(t_all *all)
     {
         for (int y = 0; y < all->game.r.height; y++)
         {
-            all->info.buf[y][x] = 0xFFFFCC; 
-            all->info.buf[all->game.r.height - y - 1][x] = 0xCCCCFF;
+            all->info.buf[y][x] = ((all->game.c[0] * 256 *256) + (all->game.c[1] * 256) + all->game.c[2]); 
+            all->info.buf[all->game.r.height - y - 1][x] = ((all->game.f[0] * 256 *256) + (all->game.f[1] * 256) + all->game.f[2]); 
         }
     }
 
@@ -106,7 +106,7 @@ int calculateAndSaveToMap(t_all *all)
                 mapY += stepY;
                 side = 1;
             }
-            if (all->map.map[mapX][mapY] > 0)
+            if (all->map.map[mapX][mapY] > '0')
                 hit = 1;
         }
         if (side == 0)
@@ -122,7 +122,7 @@ int calculateAndSaveToMap(t_all *all)
         if (drawEnd >= all->game.r.height)
             drawEnd = all->game.r.height - 1;
 
-        int texNum = all->map.map[mapX][mapY] - 1;
+        int texNum = all->map.map[mapX][mapY] - '1';
         
 		double wallX;
         if (side == 0)
@@ -146,7 +146,7 @@ int calculateAndSaveToMap(t_all *all)
             int color = all->info.texture[texNum][all->info.texHeight * texY + texX];
             if (side == 1)
                 color = (color >> 1) & 8355711;
-            all->info.buf[y][x] = color;
+        	all->info.buf[y][x] = color;
         }
         x++;
     }
@@ -157,17 +157,17 @@ int key_press(int key, t_all *all)
 {
     if (key == KEY_W)
     {
-        if (!all->map.map[(int)(all->info.posX + all->info.dirX * all->info.moveSpeed)][(int)(all->info.posY)])
+        if (all->map.map[(int)(all->info.posX + all->info.dirX * all->info.moveSpeed)][(int)(all->info.posY)] == '0')
             all->info.posX += all->info.dirX * all->info.moveSpeed;
-        if (!all->map.map[(int)(all->info.posX)][(int)(all->info.posY + all->info.dirY * all->info.moveSpeed)])
+        if (all->map.map[(int)(all->info.posX)][(int)(all->info.posY + all->info.dirY * all->info.moveSpeed)] == '0')
             all->info.posY += all->info.dirY * all->info.moveSpeed;
     }
 
     if (key == KEY_S)
     {
-        if (!all->map.map[(int)(all->info.posX - all->info.dirX * all->info.moveSpeed)][(int)(all->info.posY)])
+        if (all->map.map[(int)(all->info.posX - all->info.dirX * all->info.moveSpeed)][(int)(all->info.posY)] == '0')
             all->info.posX -= all->info.dirX * all->info.moveSpeed;
-        if (!all->map.map[(int)(all->info.posX)][(int)(all->info.posY - all->info.dirY * all->info.moveSpeed)])
+        if (all->map.map[(int)(all->info.posX)][(int)(all->info.posY - all->info.dirY * all->info.moveSpeed)] == '0')
             all->info.posY -= all->info.dirY * all->info.moveSpeed;
     }
 
