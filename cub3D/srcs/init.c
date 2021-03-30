@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 17:36:44 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/29 23:14:34 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/30 17:20:10 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ void	ft_t_map_init(t_map *map)
 
 void	ft_t_info_init(t_all *all)
 {
-	all->info.posX = 22.0;
-	all->info.posY = 11.5;
-	all->info.dirX = -1.0;
+	all->info.posX = all->map.player_col;
+	all->info.posY = all->map.player_row;
+/*	all->info.dirX = -1.0;
 	all->info.dirY = 0.0;
 	all->info.planeX = 0.0;
-	all->info.planeY = 0.66;
+	all->info.planeY = 0.66;*/
 	all->info.moveSpeed = 0.5;
 	all->info.rotSpeed = 0.5;
 	all->info.texWidth = 64;

@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/28 20:13:24 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/30 17:37:52 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@
 
 # define KEY_ESC		53
 
-# define KEY_Q			12
+# define KEY_ARROW_L	123		
+# define KEY_ARROW_R	124		
 # define KEY_W			13
-# define KEY_E			14
-# define KEY_R			15
 # define KEY_A			0
 # define KEY_S			1
 # define KEY_D			2

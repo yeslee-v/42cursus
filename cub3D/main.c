@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 18:30:21 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/28 19:50:02 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/30 17:21:27 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_init_start(int ac, char **av, t_all *all)
 {
-	ft_t_info_init(all);
 	ft_t_game_init(&(all->game));
 	ft_t_map_init(&(all->map));
 	ft_t_save_init_on(ac, av, (&(all->save)));
@@ -39,7 +38,6 @@ void	ft_map_parsing_intro(int ac, char **av, t_all *all)
 		ft_error_message(7);
 	ft_map_validation(all);
 	close(fd);
-
 }
 
 int	main(int ac, char **av)
@@ -47,6 +45,7 @@ int	main(int ac, char **av)
 	t_all	all;
 	
 	ft_map_parsing_intro(ac, av, &all);
+	ft_t_info_init(&all);
 	ft_mlx_intro(&all);
 	return (0);
 }
