@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 16:58:03 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/30 17:46:16 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/30 21:09:07 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,22 @@ void	ft_paint_f_c(t_all *all)
         }
     }
 
+}
+
+int	ft_set_texnum(t_all *all, double rayX, double rayY, int side)
+{
+	int num;
+
+	num = 3;
+	if (side == 0 && rayX < 0)
+		num = 0;
+	else if (side == 0 && rayX > 0)
+		num = 1;
+	else if (side == 1 && rayY < 0)
+		num = 2;
+	//else if (side == 1 && rayY > 0)
+	//	num = 3;
+	return (num);
 }
 
 int calculateAndSaveToMap(t_all *all)
@@ -135,8 +151,7 @@ int calculateAndSaveToMap(t_all *all)
         int drawEnd = (lineHeight / 2) + (all->game.r.height / 2);
         if (drawEnd >= all->game.r.height)
             drawEnd = all->game.r.height - 1;
-
-        int texNum = all->map.map[mapX][mapY] - '0';
+		int texNum = ft_set_texnum(all, rayDirectionX, rayDirectionY, side);
         
 		double wallX;
         if (side == 0)
@@ -185,7 +200,7 @@ int key_press(int key, t_all *all)
             all->info.posY -= all->info.dirY * all->info.moveSpeed;
     }
 
-    if (key == KEY_A)
+    if (key == KEY_D)
     {
         if (all->map.map[(int)(all->info.posX + all->info.dirY * all->info.moveSpeed)][(int)(all->info.posY)] != '1')
             all->info.posX += all->info.dirY * all->info.moveSpeed;
@@ -193,7 +208,7 @@ int key_press(int key, t_all *all)
             all->info.posY -= all->info.dirX * all->info.moveSpeed;
     }
 
-    if (key == KEY_D)
+    if (key == KEY_A)
     {
         if (all->map.map[(int)(all->info.posX - all->info.dirY * all->info.moveSpeed)][(int)(all->info.posY)] != '1')
             all->info.posX -= all->info.dirY * all->info.moveSpeed;
@@ -249,10 +264,10 @@ void    load_image(t_info *info, int *texture, char *path, t_img *img)
 
 void    load_texture(t_all *all)
 {
-    load_image(&all->info, all->info.texture[0], "pics/wall_w.xpm", &all->info.img);
-    load_image(&all->info, all->info.texture[1], "pics/wall_e.xpm", &all->info.img);
-    load_image(&all->info, all->info.texture[2], "pics/wall_n.xpm", &all->info.img);
-    load_image(&all->info, all->info.texture[3], "pics/wall_s.xpm", &all->info.img);
+    load_image(&all->info, all->info.texture[0], "pics/wall_n.xpm", &all->info.img);
+    load_image(&all->info, all->info.texture[1], "pics/wall_s.xpm", &all->info.img);
+    load_image(&all->info, all->info.texture[2], "pics/wall_w.xpm", &all->info.img);
+    load_image(&all->info, all->info.texture[3], "pics/wall_e.xpm", &all->info.img);
 }
 
 int ft_mlx_intro(t_all *all)

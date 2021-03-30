@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/30 17:37:52 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/30 21:11:43 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ typedef struct	s_img
 	int		bpp;
 	int		size_l;
 	int		endian;
+
+	char	*path;
 
 	int		img_width;
 	int		img_height;
