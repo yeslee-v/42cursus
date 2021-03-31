@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 20:29:35 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/30 20:20:44 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/31 15:08:04 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	ft_dfs_intro(t_all *all, int **dfs_map)
 				(((j + 1) < all->map.col) && (dfs_map[i][j + 1] != 9))))
 			{
 				ft_dfs(all, dfs_map, i, j);
-				//if (dfs_map[all->map.player_row][all->map.player_col] == 9)
-				//	ft_error_message(9);
+				if (dfs_map[all->map.player_row][all->map.player_col] == 9)
+					ft_error_message(9);
 			}
 			j++;
 		}
@@ -93,40 +93,7 @@ void	ft_map_validation(t_all *all)
 		{
 			if (all->map.map[i][j] == '1')
 				dfs_map[i][j] = 1;
-			else if ((all->map.map[i][j] == 'N') || (all->map.map[i][j] == 'E')
-					|| (all->map.map[i][j] == 'S') || (all->map.map[i][j] == 'W'))
-			{
-				all->map.player_col = i;
-				all->map.player_row = j;
-				if (all->map.map[i][j] == 'N')
-				{
-					all->info.dirX = -1.0;
-					all->info.dirY = 0.0;
-					all->info.planeX = 0.0;
-					all->info.planeY = 0.66;
-				}
-				if (all->map.map[i][j] == 'E')
-				{
-					all->info.dirX = 0.0;
-					all->info.dirY = 1.0;
-					all->info.planeX = 0.66;
-					all->info.planeY = 0.0;
-				}
-				if (all->map.map[i][j] == 'S')
-				{
-					all->info.dirX = 1.0;
-					all->info.dirY = 0.0;
-					all->info.planeX = 0.0;
-					all->info.planeY = -0.66;
-				}
-				if (all->map.map[i][j] == 'W')
-				{
-					all->info.dirX = 0.0;
-					all->info.dirY = -1.0;
-					all->info.planeX = -0.66;
-					all->info.planeY = 0.0;
-				}
-			}
+			ft_nesw_intro(all, i, j);
 			j++;
 		}
 		while (j < all->map.col)

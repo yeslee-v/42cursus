@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/30 21:11:43 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/03/31 21:58:35 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@
 # define KEY_A			0
 # define KEY_S			1
 # define KEY_D			2
+
+typedef struct	s_scr
+{
+	int			c_sizeX;
+	int			c_sizeY;
+}				t_scr;
 
 typedef struct	s_window
 {
@@ -116,16 +122,27 @@ typedef struct	s_info
 	double	deltaDistY;
 	double	perpWallDist;
 
+	double	step;
 	int		stepX;
 	int		stepY;
 
 	int		hit;
 	int		side;
 
+	int		lineHeight;
+	int		drawStart;
+	int		drawEnd;
+	int		texNum;
+
+	int		texX;
+	int		texY;
+	int		color;
+
+	double	wallX;
+	double	texPos;
+
 	void	*mlx;
 	void	*win;
-
-	t_img	img;
 
 	int		**buf;
 	int		**texture;
@@ -139,6 +156,8 @@ typedef struct	s_info
 
 typedef struct	s_all
 {
+	t_scr			scr;
+	t_img			img;
 	t_game			game;
 	t_map			map;
 	t_save			save;
@@ -154,7 +173,6 @@ void			ft_t_game_init(t_game *game);
 void			ft_t_window_init(t_window *window);
 void			ft_t_map_init(t_map *map);
 void			ft_t_save_init_on(int ac, char **avi, t_save *save);
-void			ft_t_info_init(t_all *all);
 
 int				ft_check_error(int ac, char **av);
 void			ft_error_message(int i);
@@ -177,3 +195,25 @@ void			ft_free_all_int(int **map, int max);
 int				ft_isspace(char c);
 int				ft_double_strlen(char **s);
 
+void			ft_t_info_init(t_all *all);
+void			ft_nesw_intro(t_all *all, int i, int j);
+void			ft_nesw_init(t_all *all, int i, int j);
+void			ft_calc_save_init(t_all *all, int x);
+
+int				ft_set_texnum(t_all *all);
+
+void			ft_put_step_side_value(t_all *all);
+void			ft_dda(t_all *all);
+void			ft_draw_wall(t_all *all);
+void			ft_paint_texture(t_all *all, int x);
+
+int				ft_press_key(int key, t_all *all);
+int				ft_close(int key, t_all *all);
+
+void			ft_bgm_start();
+void			ft_bgm_end();
+
+void			ft_set_screen_size(t_all *all);
+int				ft_main_loop(t_all *all);
+
+void			ft_allocate_texture(t_all *all);

@@ -1,8 +1,7 @@
 all:
-	gcc -L ./mlx -lmlx -framework OpenGL -framework AppKit -g3 -fsanitize=address \
-		textured.c\
+	gcc -L ./mlx -lmlx -framework AppKit -g3 -fsanitize=address \
 		cub3d.h \
-		srcs/init.c \
+		srcs/parse_init.c \
 		main.c \
 		srcs/exception_handling.c \
 		srcs/map_parsing_1.c \
@@ -23,3 +22,10 @@ all:
 		include/libft/ft_size.c \
 		include/libft/ft_calloc.c \
 		include/libft/ft_memset.c \
+		srcs/mlx_init.c \
+		srcs/mlx_init_2.c \
+		srcs/mlx_put.c \
+		textured.c \
+		srcs/bgm.c \
+		srcs/input_key.c
+
