@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 16:58:03 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/31 21:59:34 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/01 10:58:44 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,14 +118,21 @@ int ft_main_loop(t_all *all)
 
 void    ft_load_image(t_info *info, int *texture, char *path, t_img *img)
 {
+	int x;
+	int y;
+
     img->img = mlx_xpm_file_to_image(info->mlx, path, &img->img_width, &img->img_height);
     img->data = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->size_l, &img->endian);
-    for (int y = 0; y < img->img_height; y++)
+    y = 0;
+	while (y < img->img_height)
     {
-        for (int x = 0; x < img->img_width; x++)
+		x = 0;
+        while (x < img->img_width)
         {
             texture[img->img_width * y + x] = img->data[img->img_width * y + x];
+			x++;
         }
+		y++;
     }
     mlx_destroy_image(info->mlx, img->img);
 }

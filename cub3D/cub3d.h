@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/31 21:58:35 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/01 12:02:31 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,6 @@ typedef struct	s_info
 	double	planeX;
 	double	planeY;
 
-	double	oldDirX;
-	double	oldPlaneX;
-	
 	double	cameraX;
 	double	rayDirX;
 	double	rayDirY;
@@ -210,8 +207,8 @@ void			ft_paint_texture(t_all *all, int x);
 int				ft_press_key(int key, t_all *all);
 int				ft_close(int key, t_all *all);
 
-void			ft_bgm_start();
-void			ft_bgm_end();
+void			ft_bgm_start(void);
+void			ft_bgm_end(void);
 
 void			ft_set_screen_size(t_all *all);
 int				ft_main_loop(t_all *all);
