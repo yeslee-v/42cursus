@@ -27,5 +27,7 @@ all:
 		srcs/mlx_put.c \
 		textured.c \
 		srcs/bgm.c \
-		srcs/input_key.c
-
+		srcs/input_key.c \
+		srcs/draw_paint.c \
+		srcs/save_bmp.c \
+		srcs/draw_sprite.c

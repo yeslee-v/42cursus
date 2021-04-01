@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 18:30:21 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/31 16:45:28 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/01 15:32:32 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,6 @@ int	main(int ac, char **av)
 	t_all	all;
 	
 	ft_map_parsing_intro(ac, av, &all);
-/*	int i = 0;
-	while (i < all.map.row)
-	{
-		int j = 0;
-		while (j < all.map.col)
-		{
-			printf("%c", all.map.map[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}*/
 	ft_t_info_init(&all);
 	ft_mlx_intro(&all);
 	return (0);

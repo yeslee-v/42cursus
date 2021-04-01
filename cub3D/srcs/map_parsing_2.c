@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:31:38 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/26 15:57:05 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/01 20:25:10 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	ft_ismap(char *line, t_all *all)
 				if (all->map.cnt_exist > 1)
 					ft_error_message(8);
 			}
+			else if (line[i] == '2')
+				all->map.num_sp++;
 			i++;
 		}
 		else

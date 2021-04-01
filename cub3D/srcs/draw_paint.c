@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 14:45:15 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/01 16:34:08 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/01 20:34:57 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	ft_img_draw(t_all *all)
 		x = 0;
 		while (x < all->game.r.width)
 		{
-            all->img.data[y * all->img.size_l / all->img.bpp * 8 + x] = all->info.buf[y][x];
+            all->img.data[y * all->img.size_l / all->img.bpp * 8 + x] =
+				all->info.buf[y][x];
 			x++;
 		}
 		y++;

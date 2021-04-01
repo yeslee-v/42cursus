@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 13:53:10 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/31 15:33:57 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/01 16:31:08 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,8 @@ void	ft_dda(t_all *all)
 			all->info.mapY += all->info.stepY;
 			all->info.side = 1;
 		}
-		printf("%d %d\n", all->info.mapX, all->info.mapY);
 		if (all->map.map[all->info.mapX][all->info.mapY] == '1')
-		{
 			all->info.hit = 1;
-			printf("loaded\n");
-		}
 	}
 }
 
@@ -102,7 +98,7 @@ void	ft_paint_texture(t_all *all, int x)
 	{
 		all->info.texY = (int)all->info.texPos & (all->info.texHeight - 1);
 		all->info.texPos += all->info.step;
-		all->info.color = all->info.texture[all->info.texNum][all->info.texHeight * all->info.texY + all->info.texX];
+		all->info.color = all->info.tex[all->info.texNum][all->info.texHeight * all->info.texY + all->info.texX];
 		if (all->info.side == 1)
 			all->info.color = (all->info.color >> 1) & 8355711;
 		all->info.buf[y][x] = all->info.color;

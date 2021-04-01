@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/01 12:02:31 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/01 21:40:10 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,12 @@ typedef struct	s_map
 	int			row;
 	int			col;
 
+	int			num_sp;
+	
 	int			player_row;
 	int			player_col;
+	
 	char		player;
-
 	char		**map;
 
 	int			cnt_exist;
@@ -142,7 +144,7 @@ typedef struct	s_info
 	void	*win;
 
 	int		**buf;
-	int		**texture;
+	int		**tex;
 
 	double	moveSpeed;
 	double	rotSpeed;
@@ -150,6 +152,23 @@ typedef struct	s_info
 	int		texWidth;
 	int		texHeight;
 }				t_info;
+
+typedef struct	s_sprite
+{
+	int		*texture;
+	int		x;
+	int		y;
+}				t_sprite;
+
+typedef struct	s_sp_buf
+{
+	int		*spriteOrder;
+
+	double	*spriteDistance;
+	double	*zBuffer;
+	
+	t_sprite	sprite;
+}				t_sp_buf;
 
 typedef struct	s_all
 {
@@ -159,6 +178,7 @@ typedef struct	s_all
 	t_map			map;
 	t_save			save;
 	t_info			info;
+	t_sp_buf		sp_buf;
 }				t_all;
 
 int				main(int ac, char **av);
@@ -214,3 +234,17 @@ void			ft_set_screen_size(t_all *all);
 int				ft_main_loop(t_all *all);
 
 void			ft_allocate_texture(t_all *all);
+void			ft_allocate_buf(t_all *all);
+void			ft_allocate_buf_for_texture(t_all *all);
+
+void			load_texture(t_all *all);
+void			ft_load_image(t_info *info, int *texture, char *path,
+				t_img *img);
+
+void			ft_img_draw(t_all *all);
+void			ft_paint_f_c(t_all *all);
+
+int				ft_save_bmp_intro(char **av);
+
+int				ft_sprite_loop(t_all *all);
+void			ft_sort_sprites(double *buf1, double *buf2, int num);
