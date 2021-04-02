@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 21:51:29 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/01 21:38:46 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/02 20:40:09 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ void	ft_allocate_buf_for_texture(t_all *all)
 	if (!(all->sp_buf.spriteDistance))
 		return ;
 	all->sp_buf.sprite.texture = malloc(sizeof(int) * all->map.num_sp);
-	if (!(all->sp_buf.sprite.texuture))
+	if (!(all->sp_buf.sprite.texture))
 		return ;
 }
