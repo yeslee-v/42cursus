@@ -6,13 +6,13 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 15:32:14 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/01 21:40:14 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/03 23:46:44 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	ft_sort_sprite(double *buf1, double *buf2, int num)
+void	ft_sort_sprite(int *buf1, double *buf2, int num)
 {
 	int		i;
 	int		j;
@@ -26,13 +26,14 @@ void	ft_sort_sprite(double *buf1, double *buf2, int num)
 		{
 			if (buf2[j] < buf2[i])
 			{
+				printf("loaded\n");
 				temp = buf2[j];
 				buf2[j] = buf2[i];
 				buf2[i] = temp;
 				temp = buf1[j];
 				buf1[j] = buf1[i];
 				buf1[i] = temp;
-				printf("[%d:%d] %f %f %f %f\n", i, j, buf2[j], buf2[i], buf1[j], buf1[i]);
+				printf("[%d:%d] %f %f %d %d\n", i, j, buf2[j], buf2[i], buf1[j], buf1[i]);
 			}
 			j++;
 		}
@@ -45,11 +46,11 @@ int	ft_sprite_loop(t_all *all)
 	for(int i = 0; i < all->map.num_sp; i++)
     {
       all->sp_buf.spriteOrder[i] = i;
-      all->sp_buf.spriteDistance[i] = ((all->info.posX - sprite[i].x) *
-			  (all->info.posX - sprite[i].x) + (all->info.posY - sprite[i].y) *
-			  (all->info.posY - sprite[i].y));
+      all->sp_buf.spriteDistance[i] = ((all->info.posX - all->sp_buf.sprite.x) *
+			  (all->info.posX - all->sp_buf.sprite.x) + (all->info.posY - all->sp_buf.sprite.y) *
+			  (all->info.posY - all->sp_buf.sprite.y));
     }
-    sortSprites(all->sp_buf.spriteOrder, all->sp_buf.spriteDistance, all->map.num_sp);
+    ft_sort_sprite(all->sp_buf.spriteOrder, all->sp_buf.spriteDistance, all->map.num_sp);
 
     //after sorting the sprites, do the projection and draw them
 /*    for(int i = 0; i < all->map.num_sp; i++)
