@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 21:51:29 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/02 20:40:09 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/04 21:02:24 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	ft_allocate_texture(t_all *all)
 	int	j;
 
 	i = 0;
-	if (!(all->info.tex = (int **)malloc(sizeof(int *) * 4)))
+	if (!(all->info.tex = (int **)malloc(sizeof(int *) * 5)))
         return ;
-	while (i < 4)
+	while (i < 5)
 	{
 		if (!(all->info.tex[i] = (int *)malloc(sizeof(int) *
 						(all->info.texHeight * all->info.texWidth))))
@@ -48,7 +48,7 @@ void	ft_allocate_texture(t_all *all)
 		i++;
 	}
 	i = 0;
-	while (i < 4)
+	while (i < 5)
 	{
 		j = 0;
         while (j < (all->info.texHeight * all->info.texWidth))
@@ -60,7 +60,35 @@ void	ft_allocate_texture(t_all *all)
 	}
 }
 
-void	ft_allocate_buf_for_texture(t_all *all)
+void	ft_allocate_sprite(t_all *all)
+{
+	int i;
+	int j;
+	int k;
+
+	i = 0;
+	k = 0;
+	all->sp_buf.sprite = calloc(sizeof(t_sprite), all->map.num_sp);
+	if (!(all->sp_buf.sprite))
+		return ;
+	while (i < all->map.row)
+	{
+		j = 0;
+		while (all->map.map[i][j])
+		{
+			if (all->map.map[i][j] == '2')
+			{
+				all->sp_buf.sprite[k].x = i;
+				all->sp_buf.sprite[k].y = j;
+				k++;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	ft_allocate_buf_for_sprite(t_all *all)
 {
 	all->sp_buf.zBuffer = malloc(sizeof(double) * all->game.r.width);
 	if (!(all->sp_buf.zBuffer))
@@ -71,7 +99,5 @@ void	ft_allocate_buf_for_texture(t_all *all)
 	all->sp_buf.spriteDistance = malloc(sizeof(double) * all->map.num_sp);
 	if (!(all->sp_buf.spriteDistance))
 		return ;
-	all->sp_buf.sprite.texture = malloc(sizeof(int) * all->map.num_sp);
-	if (!(all->sp_buf.sprite.texture))
-		return ;
+	ft_allocate_sprite(all);
 }

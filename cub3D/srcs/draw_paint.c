@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 14:45:15 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/01 20:34:57 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/04 21:08:06 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,11 @@ void    ft_load_image(t_info *info, int *texture, char *path, t_img *img)
 
 void    load_texture(t_all *all)
 {
-    ft_load_image(&all->info, all->info.tex[0], "pics/wall_n.xpm", &all->img);
-    ft_load_image(&all->info, all->info.tex[1], "pics/wall_s.xpm", &all->img);
-    ft_load_image(&all->info, all->info.tex[2], "pics/wall_w.xpm", &all->img);
-    ft_load_image(&all->info, all->info.tex[3], "pics/wall_e.xpm", &all->img);
+	t_img	img;
+
+    ft_load_image(&all->info, all->info.tex[0], "pics/wall_n.xpm", &img);
+    ft_load_image(&all->info, all->info.tex[1], "pics/wall_s.xpm", &img);
+    ft_load_image(&all->info, all->info.tex[2], "pics/wall_w.xpm", &img);
+    ft_load_image(&all->info, all->info.tex[3], "pics/wall_e.xpm", &img);
+    ft_load_image(&all->info, all->info.tex[4], "pics/sprite.xpm", &img);
 }

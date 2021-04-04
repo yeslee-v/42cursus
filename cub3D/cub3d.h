@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/03 18:24:59 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/04 16:09:06 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,6 @@ typedef struct	s_info
 
 typedef struct	s_sprite
 {
-	int		*texture;
 	int		x;
 	int		y;
 }				t_sprite;
@@ -167,7 +166,7 @@ typedef struct	s_sp_buf
 	double	*spriteDistance;
 	double	*zBuffer;
 	
-	t_sprite	sprite;
+	t_sprite	*sprite;
 }				t_sp_buf;
 
 typedef struct	s_all
@@ -235,7 +234,7 @@ int				ft_main_loop(t_all *all);
 
 void			ft_allocate_texture(t_all *all);
 void			ft_allocate_buf(t_all *all);
-void			ft_allocate_buf_for_texture(t_all *all);
+void			ft_allocate_buf_for_sprite(t_all *all);
 
 void			load_texture(t_all *all);
 void			ft_load_image(t_info *info, int *texture, char *path,
