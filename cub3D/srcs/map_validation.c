@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 20:29:35 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/31 15:08:04 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/04 15:36:30 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	ft_map_validation(t_all *all)
 		if (!(dfs_map[i]))
 		{
 				ft_free_all_int(dfs_map, i);
-				return ;
+				return ; 
 		}
 		j = 0;
 		while (j < (int)ft_strlen(all->map.map[i]))
