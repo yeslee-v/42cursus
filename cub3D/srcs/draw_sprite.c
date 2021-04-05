@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 15:32:14 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/04 21:57:36 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/05 21:41:32 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ int	ft_sprite_loop(t_all *all)
 	  while (stripe < drawEndX)
       {
 		  int texX = (int)(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * all->info.texWidth / spriteWidth) / 256;
-		  //printf("tran: %f buf: %f\n", transformY, all->sp_buf.zBuffer[stripe]);
 		//if(transformY > 0 && stripe > 0 && stripe < all->game.r.width && transformY < all->sp_buf.zBuffer[stripe])
 		if(transformY > 0 && stripe > 0 && stripe < all->game.r.width)
 		{
@@ -101,7 +100,7 @@ int	ft_sprite_loop(t_all *all)
 				int d = (dy) * 256 - all->game.r.height * 128 + spriteHeight * 128;
 				int texY = ((d * all->info.texHeight) / spriteHeight) / 256;
 				all->info.color = all->info.tex[4][all->info.texWidth * texY + texX];
-				//printf("color: %d\n", all->info.color);
+				printf("color: %d\n", all->info.color);
           		if ((all->info.color & 0x00FFFFFF) != 0)
 					all->info.buf[dy][stripe] = all->info.color;
 				dy++;
