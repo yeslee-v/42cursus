@@ -6,14 +6,14 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 14:58:57 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/01 15:00:57 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/06 21:11:16 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	ft_save_bmp_intro(char **av)
+int	ft_save_bmp_intro(t_all *all)
 {
-	printf("%s\n:", av[2]);
+	printf("--save\n");
 	return (0);
 }

@@ -1,5 +1,5 @@
 all:
-	gcc -L ./mlx -lmlx -framework AppKit -g3 -fsanitize=address \
+	gcc -L ./mlx -lmlx -framework AppKit \
 		cub3d.h \
 		srcs/parse_init.c \
 		main.c \

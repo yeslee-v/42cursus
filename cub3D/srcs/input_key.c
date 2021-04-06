@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 18:38:23 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/01 12:00:50 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/06 18:34:25 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,24 @@ int	ft_press_arrow(int key, t_all *all, double old_dirx, double old_planex)
 
 int	ft_press_key_ad(int key, t_all *all, double vec_x, double vec_y)
 {
+	double old_pos_x;
+
+	old_pos_x = all->info.posX;
 	if (key == KEY_A)
 	{
 		if (all->map.map[(int)(all->info.posX - vec_y)]
 				[(int)(all->info.posY)] != '1')
 			all->info.posX -= vec_y;
-		if (all->map.map[(int)(all->info.posX)]
+		if (all->map.map[(int)old_pos_x]
 				[(int)(all->info.posY + vec_x)] != '1')
 			all->info.posY += vec_x;
 	}
-	if (key == KEY_D)
+	else if (key == KEY_D)
 	{
 		if (all->map.map[(int)(all->info.posX + vec_y)]
 				[(int)(all->info.posY)] != '1')
 			all->info.posX += vec_y;
-		if (all->map.map[(int)(all->info.posX)]
+		if (all->map.map[(int)old_pos_x]
 				[(int)(all->info.posY - vec_x)] != '1')
 			all->info.posY -= vec_x;
 	}
@@ -74,12 +77,15 @@ int	ft_press_key_ad(int key, t_all *all, double vec_x, double vec_y)
 
 int	ft_press_key_ws(int key, t_all *all, double vec_x, double vec_y)
 {
+	double old_pos_x;
+
+	old_pos_x = all->info.posX;
 	if (key == KEY_W)
 	{
 		if (all->map.map[(int)(all->info.posX + vec_x)]
 				[(int)(all->info.posY)] != '1')
 			all->info.posX += vec_x;
-		if (all->map.map[(int)(all->info.posX)]
+		if (all->map.map[(int)old_pos_x]
 				[(int)(all->info.posY + vec_y)] != '1')
 			all->info.posY += vec_y;
 	}
@@ -88,7 +94,7 @@ int	ft_press_key_ws(int key, t_all *all, double vec_x, double vec_y)
 		if (all->map.map[(int)(all->info.posX - vec_x)]
 				[(int)(all->info.posY)] != '1')
 			all->info.posX -= vec_x;
-		if (all->map.map[(int)(all->info.posX)]
+		if (all->map.map[(int)old_pos_x]
 				[(int)(all->info.posY - vec_y)] != '1')
 			all->info.posY -= vec_y;
 	}
@@ -110,5 +116,6 @@ int	ft_press_key(int key, t_all *all)
 	ft_press_key_ad(key, all, vec_x, vec_y);
 	ft_press_arrow(key, all, old_dirx, old_planex);
 	ft_press_esc(key, all);
+	ft_main_loop(all);
 	return (0);
 }

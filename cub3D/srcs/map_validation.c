@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 20:29:35 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/04 15:36:30 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/06 16:40:04 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	ft_dfs_intro(t_all *all, int **dfs_map)
 				(((j + 1) < all->map.col) && (dfs_map[i][j + 1] != 9))))
 			{
 				ft_dfs(all, dfs_map, i, j);
-				if (dfs_map[all->map.player_row][all->map.player_col] == 9)
+				if (dfs_map[(int)all->map.player_row][(int)all->map.player_col]
+						== 9)
 					ft_error_message(9);
 			}
 			j++;

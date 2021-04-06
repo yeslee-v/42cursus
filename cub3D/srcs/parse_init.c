@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 12:41:18 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/01 20:14:53 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/06 21:09:25 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,4 @@ void	ft_t_save_init_on(int ac, char **av, t_save *save)
 	save->pic = 0;
 	if ((ac == 3) && (!(ft_strncmp(av[2], "--save", ft_strlen(av[2])))))
 		save->pic = 1;
-	if (save->pic)
-		ft_save_bmp_intro(av);
 }

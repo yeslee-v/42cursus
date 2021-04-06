@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/04 16:09:06 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/06 21:10:46 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ typedef struct	s_map
 
 	int			num_sp;
 	
-	int			player_row;
-	int			player_col;
+	double		player_row;
+	double		player_col;
 	
 	char		player;
 	char		**map;
@@ -155,8 +155,8 @@ typedef struct	s_info
 
 typedef struct	s_sprite
 {
-	int		x;
-	int		y;
+	double	x;
+	double	y;
 }				t_sprite;
 
 typedef struct	s_sp_buf
@@ -165,6 +165,23 @@ typedef struct	s_sp_buf
 
 	double	*spriteDistance;
 	double	*zBuffer;
+
+	double	sp_x;
+	double	sp_y;
+
+	double	inv_det;
+
+	double	transform_x;
+	double	transform_y;
+
+	int		sp_screen_x;
+	int		sp_h;
+
+	int		start_dx;
+	int		start_dy;
+	
+	int		end_dx;
+	int		end_dy;
 	
 	t_sprite	*sprite;
 }				t_sp_buf;
@@ -177,7 +194,7 @@ typedef struct	s_all
 	t_map			map;
 	t_save			save;
 	t_info			info;
-	t_sp_buf		sp_buf;
+	t_sp_buf		sp;
 }				t_all;
 
 int				main(int ac, char **av);
@@ -243,7 +260,8 @@ void			ft_load_image(t_info *info, int *texture, char *path,
 void			ft_img_draw(t_all *all);
 void			ft_paint_f_c(t_all *all);
 
-int				ft_save_bmp_intro(char **av);
+int				ft_save_bmp_intro(t_all *all);
 
 int				ft_sprite_loop(t_all *all);
-void			ft_sort_sprites(double *buf1, double *buf2, int num);
+void			ft_sort_sprite_init(t_all *all);
+void			ft_sort_sprite(int *buf1, double *buf2, int num);

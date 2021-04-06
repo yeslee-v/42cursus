@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 13:53:10 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/01 16:31:08 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/06 17:25:46 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ void	ft_draw_wall(t_all *all)
 {
 	if (all->info.side == 0)
 		all->info.perpWallDist = (all->info.mapX - all->info.posX + 
-				(1 - all->info.stepX) / 2) / all->info.rayDirX;
+				(1.0 - all->info.stepX) / 2.0) / all->info.rayDirX;
 	else
 		all->info.perpWallDist = (all->info.mapY - all->info.posY +
-				(1 - all->info.stepY) / 2) / all->info.rayDirY;
+				(1.0 - all->info.stepY) / 2.0) / all->info.rayDirY;
 	all->info.lineHeight = (int)(all->game.r.height / all->info.perpWallDist);
 	all->info.drawStart = (-all->info.lineHeight / 2) + (all->game.r.height / 2);
 	if (all->info.drawStart < 0)
@@ -90,7 +90,7 @@ void	ft_paint_texture(t_all *all, int x)
 		all->info.texX = all->info.texWidth - all->info.texX - 1;
 
 	all->info.step = 1.0 * all->info.texHeight / all->info.lineHeight;
-	all->info.texPos = (all->info.drawStart - all->game.r.height / 2 + all->info.lineHeight / 2) * all->info.step;
+	all->info.texPos = (all->info.drawStart - all->game.r.height / 2.0 + all->info.lineHeight / 2.0) * all->info.step;
 	
 	int y;
 	y = all->info.drawStart; 

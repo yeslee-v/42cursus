@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 14:45:15 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/04 21:08:06 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/06 17:21:18 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int	ft_set_texnum(t_all *all)
 		num = 1;
 	else if (all->info.side == 1 && all->info.rayDirY < 0)
 		num = 2;
-	//else if (side == 1 && rayY > 0)
-	//	num = 3;
 	return (num);
 }
 

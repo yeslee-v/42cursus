@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 12:40:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/04 16:14:57 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/06 16:39:04 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	ft_t_info_init(t_all *all)
 {
 	all->info.posX = all->map.player_row;
 	all->info.posY = all->map.player_col;
-	all->info.moveSpeed = 0.5;
-	all->info.rotSpeed = 0.5;
+	all->info.moveSpeed = 0.49;
+	all->info.rotSpeed = 0.49;
 	all->info.texWidth = 64;
 	all->info.texHeight = 64;
 }
@@ -27,8 +27,8 @@ void	ft_nesw_intro(t_all *all, int i, int j)
 	if ((all->map.map[i][j] == 'N') || (all->map.map[i][j] == 'E')
 			|| (all->map.map[i][j] == 'S') || (all->map.map[i][j] == 'W'))
 	{
-		all->map.player_row = i;
-		all->map.player_col = j;
+		all->map.player_row = i + 0.5;
+		all->map.player_col = j + 0.5;
 		ft_nesw_init(all, i, j);
 	}
 }
@@ -78,13 +78,13 @@ void	ft_calc_save_init(t_all *all, int x)
 {
     all->info.hit = 0;
 	
-	all->info.cameraX = (2 * x / (double)(all->game.r.width)) - 1;
+	all->info.cameraX = (2.0 * x / (double)(all->game.r.width)) - 1.0;
     all->info.rayDirX = all->info.dirX + all->info.planeX * all->info.cameraX;
     all->info.rayDirY = all->info.dirY + all->info.planeY * all->info.cameraX;
 
     all->info.mapX = (int)(all->info.posX);
     all->info.mapY = (int)(all->info.posY);
 
-    all->info.deltaDistX = fabs(1 / all->info.rayDirX);
-    all->info.deltaDistY = fabs(1 / all->info.rayDirY);
+    all->info.deltaDistX = fabs(1.0 / all->info.rayDirX);
+    all->info.deltaDistY = fabs(1.0 / all->info.rayDirY);
 }
