@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textured.c                                         :+:      :+:    :+:   */
+/*   mlx_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/28 16:58:03 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/07 15:52:49 by yeslee           ###   ########.fr       */
+/*   Created: 2021/04/07 20:44:47 by yeslee            #+#    #+#             */
+/*   Updated: 2021/04/07 20:46:11 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int ft_mlx_intro(t_all *all)
 		ft_save_bmp_intro(all);
 	mlx_hook(all->info.win, X_EVENT_KEY_PRESS, 0, &ft_press_key, all);
 	mlx_hook(all->info.win, X_EVENT_KEY_EXIT, 17, &ft_close, all);
-	//ft_bgm_start();
+	ft_bgm_start();
     mlx_loop(all->info.mlx);
 	if (!(&ft_main_loop))
 		ft_bgm_end();

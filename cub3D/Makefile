@@ -25,7 +25,7 @@ all:
 		srcs/mlx_init.c \
 		srcs/mlx_init_2.c \
 		srcs/mlx_put.c \
-		textured.c \
+		mlx_main.c \
 		srcs/bgm.c \
 		srcs/input_key.c \
 		srcs/draw_paint.c \

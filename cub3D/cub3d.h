@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/07 16:52:03 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/07 20:36:45 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,9 @@ typedef struct	s_map
 typedef struct	s_save
 {
 	int			pic;
+
+	unsigned char	file_header[14];
+	unsigned char	info_header[40];
 }				t_save;
 
 typedef struct	s_img

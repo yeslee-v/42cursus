@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:46:42 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/26 13:26:13 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/07 20:48:11 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ void	ft_error_message(int error_num)
 		perror("The map is invalid\n");
 	else if (error_num == 10)
 		perror("Malloc error\n");
+	else if (error_num == 11)\
+		perror("Can not open file\n");
 	exit(0);
 }
