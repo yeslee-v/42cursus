@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/06 21:10:46 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/07 16:52:03 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@
 # define KEY_A			0
 # define KEY_S			1
 # define KEY_D			2
+
+# define IMG_DEPTH		3
+
+# define FILE_HEADER_SIZE	14
+# define INFO_HEADER_SIZE	40
+
+# define BMP_BPP 24
 
 typedef struct	s_scr
 {
@@ -260,7 +267,7 @@ void			ft_load_image(t_info *info, int *texture, char *path,
 void			ft_img_draw(t_all *all);
 void			ft_paint_f_c(t_all *all);
 
-int				ft_save_bmp_intro(t_all *all);
+int			ft_save_bmp_intro(t_all *all);
 
 int				ft_sprite_loop(t_all *all);
 void			ft_sort_sprite_init(t_all *all);

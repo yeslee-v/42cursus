@@ -30,4 +30,5 @@ all:
 		srcs/input_key.c \
 		srcs/draw_paint.c \
 		srcs/save_bmp.c \
-		srcs/draw_sprite.c
+		srcs/draw_sprite.c \
+		include/libft/ft_bzero.c

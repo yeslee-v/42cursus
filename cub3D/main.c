@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 18:30:21 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/06 21:36:19 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/07 15:46:52 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_init_start(int ac, char **av, t_all *all)
 {
 	ft_t_game_init(&(all->game));
 	ft_t_map_init(&(all->map));
-	//ft_t_save_init_on(ac, av, (&(all->save)));
+	ft_t_save_init_on(ac, av, (&(all->save)));
 }
 
 void	ft_map_parsing_intro(int ac, char **av, t_all *all)
