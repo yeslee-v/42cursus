@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 17:21:56 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/01 12:02:15 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/07 20:40:47 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_bgm_start(void)
 {
-	system("afplay ./bgm/rollin.mp3 &");
+	system("afplay ./bgm/rollin.mp3 -v 0.3 &");
 }
 
 void	ft_bgm_end(void)
