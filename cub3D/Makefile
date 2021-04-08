@@ -1,5 +1,5 @@
 all:
-	gcc -L ./mlx -lmlx -framework AppKit \
+	gcc -L ./mlx -lmlx -framework AppKit -fsanitize=address -g3 \
 		cub3d.h \
 		srcs/parse_init.c \
 		main.c \
@@ -31,4 +31,5 @@ all:
 		srcs/draw_paint.c \
 		srcs/save_bmp.c \
 		srcs/draw_sprite.c \
-		include/libft/ft_bzero.c
+		include/libft/ft_bzero.c \
+		srcs/free.c

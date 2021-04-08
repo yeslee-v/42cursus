@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 14:45:15 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/06 17:21:18 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/08 21:41:16 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,10 @@ void    load_texture(t_all *all)
 {
 	t_img	img;
 
-    ft_load_image(&all->info, all->info.tex[0], "pics/wall_n.xpm", &img);
-    ft_load_image(&all->info, all->info.tex[1], "pics/wall_s.xpm", &img);
-    ft_load_image(&all->info, all->info.tex[2], "pics/wall_w.xpm", &img);
-    ft_load_image(&all->info, all->info.tex[3], "pics/wall_e.xpm", &img);
-    ft_load_image(&all->info, all->info.tex[4], "pics/sprite.xpm", &img);
+	printf("n: %s\n", all->game.n);
+    ft_load_image(&all->info, all->info.tex[0], all->game.n, &img);
+    ft_load_image(&all->info, all->info.tex[1], all->game.s, &img);
+    ft_load_image(&all->info, all->info.tex[2], all->game.w, &img);
+    ft_load_image(&all->info, all->info.tex[3], all->game.e, &img);
+    ft_load_image(&all->info, all->info.tex[4], all->game.sp, &img);
 }

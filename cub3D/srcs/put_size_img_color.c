@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 13:25:13 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/26 13:27:02 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/08 21:49:17 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,16 @@ void	ft_put_size(char *width, char *height, t_game *game)
 		ft_error_message(1);
 }
 
-void	ft_put_image(char *img, t_game *game)
+void	ft_put_image(char *img, char **txtr_addr, t_game *game)
 {
-	if (!(ft_strnstr(img, ".xpm", ft_strlen(img))))
+	char *tmp;
+
+	if (*txtr_addr)
+		ft_error_message(5);
+	tmp = ft_strnstr(img, ".xpm", ft_strlen(img));
+	if ((!*tmp) && (!tmp[4]))
 		ft_error_message(2);
-	if (ft_strnstr(img, "wall_n", ft_strlen(img)))
-		game->n = img;
-	else if (ft_strnstr(img, "wall_s", ft_strlen(img)))
-		game->s = img;
-	else if (ft_strnstr(img, "wall_w", ft_strlen(img)))
-		game->w = img;
-	else if (ft_strnstr(img, "wall_e", ft_strlen(img)))
-		game->e = img;
-	else if (ft_strnstr(img, "sprite", ft_strlen(img)))
-		game->sp = img;
+	*txtr_addr = img;
 	game->cnt++;
 }
 
@@ -64,6 +60,8 @@ void	ft_put_color(char *color, int *color_arr, t_game *game)
 
 	res = ft_split(color, ',');
 	len = ft_double_strlen(res);
+	if (*color_arr)
+		ft_error_message(5);
 	if (len == 3)
 	{
 		i = 0;

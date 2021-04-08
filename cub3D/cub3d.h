@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/07 20:36:45 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/08 21:39:55 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,10 +212,7 @@ void			ft_map_parsing_intro(int ac, char **av, t_all *all);
 int				ft_mlx_intro(t_all *all);
 
 void			ft_init_start(int ac, char **av, t_all *all);
-void			ft_t_game_init(t_game *game);
-void			ft_t_window_init(t_window *window);
-void			ft_t_map_init(t_map *map);
-void			ft_t_save_init_on(int ac, char **avi, t_save *save);
+void			ft_struct_init(int ac, char **av, t_all *all);
 
 int				ft_check_error(int ac, char **av);
 void			ft_error_message(int i);
@@ -223,13 +220,13 @@ void			ft_error_message(int i);
 void			ft_read_line(char *line, t_all *all);
 
 void			ft_put_size(char *width, char *height, t_game *game);
-void			ft_put_image(char *img, t_game *game);
+void			ft_put_image(char *img, char **txtr_addr, t_game *game);
 void			ft_put_color(char *color, int *color_arr, t_game *game);
 
 void			ft_read_map(char *line, t_all *all);
 void			ft_input_map(char *line, t_all *all, int len);
 
-void			ft_map_validation(t_all *all);
+void			ft_map_validation_intro(t_all *all);
 void			ft_dfs(t_all *all, int **dfs_map, int i, int j);
 
 void			ft_free_all(char **map, int max);

@@ -6,30 +6,17 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 20:29:35 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/06 16:40:04 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/08 20:04:36 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	ft_dfs_intro(t_all *all, int **dfs_map)
+void	ft_dfs_essential(t_all *all, int **dfs_map)
 {
 	int i;
 	int j;
-
-	i = 0;
-	while (i < all->map.row)
-	{
-		j = 0;
-		while (j < all->map.col)
-		{
-			if ((((!i) || (i == (all->map.row - 1))) || ((!j) ||
-				(j == (all->map.col - 1)))) && (dfs_map[i][j] != 1))
-				dfs_map[i][j] = 9;
-			j++;
-		}
-		i++;
-	}
+	
 	i = 0;
 	while (i < all->map.row)
 	{
@@ -53,6 +40,27 @@ void	ft_dfs_intro(t_all *all, int **dfs_map)
 	}
 }
 
+void	ft_dfs_intro(t_all *all, int **dfs_map)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < all->map.row)
+	{
+		j = 0;
+		while (j < all->map.col)
+		{
+			if ((((!i) || (i == (all->map.row - 1))) || ((!j) ||
+				(j == (all->map.col - 1)))) && (dfs_map[i][j] != 1))
+				dfs_map[i][j] = 9;
+			j++;
+		}
+		i++;
+	}
+	ft_dfs_essential(all, dfs_map);
+}
+
 void	ft_dfs(t_all *all, int **dfs_map, int i, int j)
 {
 	dfs_map[i][j] = 9;
@@ -71,7 +79,35 @@ void	ft_dfs(t_all *all, int **dfs_map, int i, int j)
 		return ;
 }
 
-void	ft_map_validation(t_all *all)
+int		ft_map_validation(t_all *all, int **dfs_map, int *i, int *j)
+{
+	while (*i < all->map.row)
+	{
+		dfs_map[*i] = ft_calloc(sizeof(int), all->map.col);
+		if (!(dfs_map[*i]))
+		{
+				ft_free_all_int(dfs_map, *i);
+				return (1); 
+		}
+		*j = 0;
+		while (*j < (int)ft_strlen(all->map.map[*i]))
+		{
+			if (all->map.map[*i][*j] == '1')
+				dfs_map[*i][*j] = 1;
+			ft_nesw_intro(all, *i, *j);
+			(*j)++;
+		}
+		while (*j < all->map.col)
+		{
+			dfs_map[*i][*j] = 9;
+			(*j)++;
+		}
+		(*i)++;
+	}
+	return (0);
+}
+
+void	ft_map_validation_intro(t_all *all)
 {
 	int	i;
 	int j;
@@ -81,46 +117,8 @@ void	ft_map_validation(t_all *all)
 	dfs_map = ft_calloc(sizeof(int *), all->map.row);
 	if (!(dfs_map))
 		return ;
-	while (i < all->map.row)
-	{
-		dfs_map[i] = ft_calloc(sizeof(int), all->map.col);
-		if (!(dfs_map[i]))
-		{
-				ft_free_all_int(dfs_map, i);
-				return ; 
-		}
-		j = 0;
-		while (j < (int)ft_strlen(all->map.map[i]))
-		{
-			if (all->map.map[i][j] == '1')
-				dfs_map[i][j] = 1;
-			ft_nesw_intro(all, i, j);
-			j++;
-		}
-		while (j < all->map.col)
-		{
-			dfs_map[i][j] = 9;
-			j++;
-		}
-		i++;
-	}
+	if (ft_map_validation(all, dfs_map, &i, &j))
+		return ;
 	ft_dfs_intro(all, dfs_map);
 	ft_free_all_int(dfs_map, i);
-}
-
-void	ft_free_all_int(int **map, int max)
-{
-	int i;
-
-	if (map)
-	{
-		i = 0;
-		while (i < max)
-		{
-			free(map[i]);
-			i++;
-		}
-	}
-	free(map);
-	map = 0;
 }

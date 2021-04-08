@@ -1,23 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_init.c                                       :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/31 12:41:18 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/08 21:32:34 by yeslee           ###   ########.fr       */
+/*   Created: 2021/04/08 19:51:19 by yeslee            #+#    #+#             */
+/*   Updated: 2021/04/08 19:52:35 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	ft_struct_init(int ac, char **av, t_all *all)
+void	ft_free_all(char **map, int max)
 {
-	ft_bzero(&all->game.r, sizeof(t_window));
-	ft_bzero(&all->game, sizeof(t_game));
-	ft_bzero(&all->map, sizeof(t_map));
-	ft_bzero(&all->save, sizeof(t_save));
-	if ((ac == 3) && (!(ft_strncmp(av[2], "--save", ft_strlen(av[2])))))
-		all->save.pic = 1;
+	int i;
+
+	i = 0;
+	if (map[i])
+	{
+		while (i < max)
+		{
+			free(map[i]);
+			i++;
+		}
+	}
+	free(map);
+	map = 0;
+}
+
+void	ft_free_all_int(int **map, int max)
+{
+	int i;
+
+	if (map)
+	{
+		i = 0;
+		while (i < max)
+		{
+			free(map[i]);
+			i++;
+		}
+	}
+	free(map);
+	map = 0;
 }
