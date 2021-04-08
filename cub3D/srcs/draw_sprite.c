@@ -6,115 +6,85 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 15:32:14 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/06 14:15:17 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 02:33:35 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	ft_sort_sprite(int *buf1, double *buf2, int num)
+int		ft_set_sprite_1(t_all *all, int i)
 {
-	int		i;
-	int		j;
-	double	temp;
+	all->sp.sp_x = all->sp.sprite[all->sp.sp_order[i]].x - all->info.pos_x;
+	all->sp.sp_y = all->sp.sprite[all->sp.sp_order[i]].y - all->info.pos_y;
+	all->sp.inv_det = 1.0 /
+		(all->info.plane_x * all->info.dir_y - all->info.dir_x * all->info.plane_y);
+	all->sp.tran_x = all->sp.inv_det *
+		(all->info.dir_y * all->sp.sp_x - all->info.dir_x * all->sp.sp_y);
+	all->sp.tran_y = all->sp.inv_det *
+		(-all->info.plane_y * all->sp.sp_x + all->info.plane_x * all->sp.sp_y);
+	all->sp.sp_scx =
+		(int)((all->game.r.width / 2) * (1 + all->sp.tran_x / all->sp.tran_y));
+	all->sp.sp_h = abs((int)(all->game.r.height / (all->sp.tran_y)));
+	all->sp.start_dy = -all->sp.sp_h / 2 + all->game.r.height / 2;
+	return (i);
+}
 
-	i = 0;
-	while (i < num)
+void	ft_set_sprite_2(t_all *all)
+{
+	if (all->sp.start_dy < 0)
+		all->sp.start_dy = 0;
+	all->sp.end_dy = all->sp.sp_h / 2 + all->game.r.height / 2;
+	if (all->sp.end_dy >= all->game.r.height)
+		all->sp.end_dy = all->game.r.height - 1;
+	all->sp.sp_w = abs((int)(all->game.r.height / (all->sp.tran_y)));
+	all->sp.start_dx = -all->sp.sp_w / 2 + all->sp.sp_scx;
+	if (all->sp.start_dx < 0)
+		all->sp.start_dx = 0;
+	all->sp.end_dx = all->sp.sp_w / 2 + all->sp.sp_scx;
+	if (all->sp.end_dx >= all->game.r.width)
+		all->sp.end_dx = all->game.r.width - 1;
+	all->sp.stripe = all->sp.start_dx;
+}
+
+void	ft_paint_sprite(t_all *all)
+{
+	int	dy;
+	int	d;
+
+	while (all->sp.stripe < all->sp.end_dx)
 	{
-		j = 0;
-		while (j < num - 1)
+		all->sp.tex_x = (int)(256 * (all->sp.stripe -
+					(-all->sp.sp_w / 2 + all->sp.sp_scx)) * all->info.tex_w
+				/ all->sp.sp_w) / 256;
+		if (all->sp.tran_y > 0 && all->sp.stripe > 0 &&
+			all->sp.stripe < all->game.r.width &&
+			all->sp.tran_y < all->sp.z_buf[all->sp.stripe])
 		{
-			if (buf2[j + 1] > buf2[j])
+			dy = all->sp.start_dy;
+			while (dy < all->sp.end_dy)
 			{
-				temp = buf2[j];
-				buf2[j] = buf2[j + 1];
-				buf2[j + 1] = temp;
-				temp = buf1[j];
-				buf1[j] = buf1[j + 1];
-				buf1[j + 1] = temp;
+				d = (dy)*256 - all->game.r.height * 128 + all->sp.sp_h * 128;
+				all->sp.tex_y = ((d * all->info.tex_h) / all->sp.sp_h) / 256;
+				all->info.color =
+					all->info.tex[4][all->info.tex_w * all->sp.tex_y + all->sp.tex_x];
+				if ((all->info.color & 0x00FFFFFF) != 0)
+					all->info.buf[dy][all->sp.stripe] = all->info.color;
+				dy++;
 			}
-			j++;
 		}
-		i++;
+		all->sp.stripe++;
 	}
 }
 
-void	ft_sort_sprite_init(t_all *all)
+void	ft_clean_buffer(t_all *all)
 {
-	int i;
+	int	x;
+	int	y;
 
-	i = 0;
-	while (i < all->map.num_sp)
-    {
-      all->sp.spriteOrder[i] = i;
-      all->sp.spriteDistance[i] = ((all->info.posX - all->sp.sprite[i].x) *
-			  (all->info.posX - all->sp.sprite[i].x) + (all->info.posY - all->sp.sprite[i].y) *
-			  (all->info.posY - all->sp.sprite[i].y));
-	  i++;
-    }
-    ft_sort_sprite(all->sp.spriteOrder, all->sp.spriteDistance, all->map.num_sp);
-}
-
-int	ft_sprite_loop(t_all *all)
-{
-	int i;
-	
-	ft_sort_sprite_init(all);
-	i = 0;
-	while (i < all->map.num_sp)
-    {
-      all->sp.sp_x = all->sp.sprite[all->sp.spriteOrder[i]].x - all->info.posX;
-      all->sp.sp_y = all->sp.sprite[all->sp.spriteOrder[i]].y - all->info.posY;
-
-      double invDet = 1.0 / (all->info.planeX * all->info.dirY - all->info.dirX * all->info.planeY);
-
-      double transformX = invDet * (all->info.dirY * all->sp.sp_x - all->info.dirX * all->sp.sp_y);
-      double transformY = invDet * (-all->info.planeY * all->sp.sp_x + all->info.planeX * all->sp.sp_y);
-
-      int spriteScreenX = (int)((all->game.r.width / 2) * (1 + transformX / transformY));
-
-      int spriteHeight = abs((int)(all->game.r.height / (transformY)));
-      int drawStartY = -spriteHeight / 2 + all->game.r.height / 2;
-      if(drawStartY < 0)
-		  drawStartY = 0;
-      int drawEndY = spriteHeight / 2 + all->game.r.height / 2;
-      if(drawEndY >= all->game.r.height)
-		  drawEndY = all->game.r.height - 1;
-
-      int spriteWidth = abs((int)(all->game.r.height / (transformY)));
-      int drawStartX = -spriteWidth / 2 + spriteScreenX;
-      if(drawStartX < 0)
-		  drawStartX = 0;
-      int drawEndX = spriteWidth / 2 + spriteScreenX;
-      if(drawEndX >= all->game.r.width)
-		  drawEndX = all->game.r.width - 1;
-
-	  int stripe = drawStartX;
-	  while (stripe < drawEndX)
-      {
-		  int texX = (int)(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * all->info.texWidth / spriteWidth) / 256;
-		if(transformY > 0 && stripe > 0 && stripe < all->game.r.width && transformY < all->sp.zBuffer[stripe])
-		{
-			int dy = drawStartY; 
-			while (dy < drawEndY)
-       		{
-				int d = (dy) * 256 - all->game.r.height * 128 + spriteHeight * 128;
-				int texY = ((d * all->info.texHeight) / spriteHeight) / 256;
-				all->info.color = all->info.tex[4][all->info.texWidth * texY + texX];
-          		if ((all->info.color & 0x00FFFFFF) != 0)
-					all->info.buf[dy][stripe] = all->info.color;
-				dy++;
-        	}
-		}
-		stripe++;
-      }
-	  i++;
-    }
-	ft_img_draw(all);
-	int y = 0;
+	y = 0;
 	while (y < all->game.r.height)
 	{
-		int x = 0;
+		x = 0;
 		while (x < all->game.r.width)
 		{
 			all->info.buf[y][x] = 0;
@@ -122,5 +92,22 @@ int	ft_sprite_loop(t_all *all)
 		}
 		y++;
 	}
+}
+
+int		ft_sprite_loop(t_all *all)
+{
+	int	i;
+
+	ft_sort_sprite_init(all);
+	i = 0;
+	while (i < all->map.num_sp)
+	{
+		i = ft_set_sprite_1(all, i);
+		ft_set_sprite_2(all);
+		ft_paint_sprite(all);
+		i++;
+	}
+	ft_img_draw(all);
+	ft_clean_buffer(all);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/08 21:39:55 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 02:32:11 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,20 +171,22 @@ typedef struct	s_sprite
 
 typedef struct	s_sp_buf
 {
-	int		*spriteOrder;
+	int		*sp_order;
 
-	double	*spriteDistance;
-	double	*zBuffer;
+	double	*sp_dist;
+	double	*z_buf;
 
 	double	sp_x;
 	double	sp_y;
 
 	double	inv_det;
 
-	double	transform_x;
-	double	transform_y;
+	double	tran_x;
+	double	tran_y;
 
-	int		sp_screen_x;
+	int		sp_scx;
+	
+	int		sp_w;
 	int		sp_h;
 
 	int		start_dx;
@@ -192,6 +194,13 @@ typedef struct	s_sp_buf
 	
 	int		end_dx;
 	int		end_dy;
+
+	int		stripe;
+
+	int		tex_x;
+	int		tex_y;
+
+	int		dy;
 	
 	t_sprite	*sprite;
 }				t_sp_buf;
@@ -272,3 +281,8 @@ int			ft_save_bmp_intro(t_all *all);
 int				ft_sprite_loop(t_all *all);
 void			ft_sort_sprite_init(t_all *all);
 void			ft_sort_sprite(int *buf1, double *buf2, int num);
+
+void	ft_clean_buffer(t_all *all);
+void	ft_paint_sprite(t_all *all);
+
+void	ft_bubble_sort(int *buf1, double *buf2, int num);

@@ -32,4 +32,5 @@ all:
 		srcs/save_bmp.c \
 		srcs/draw_sprite.c \
 		include/libft/ft_bzero.c \
-		srcs/free.c
+		srcs/free.c \
+		srcs/bubble_sort.c

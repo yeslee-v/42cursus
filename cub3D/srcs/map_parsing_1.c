@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:53:02 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/08 21:16:34 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 01:19:49 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,21 @@ int		ft_isspace(char c)
 	return (0);
 }
 
+void	ft_read_essential(char *line, t_all *all)
+{
+	if (all->game.cnt == 8)
+		ft_read_map(line, all);
+	else if (ft_isspace(line[0]))
+		ft_error_message(5);
+}
+
 void	ft_read_line(char *line, t_all *all)
 {
 	int		len;
 	int		len_id;
 	char	**res;
 
-	if (all->game.cnt == 8)
-		ft_read_map(line, all);
-	else if (ft_isspace(line[0]))
-		ft_error_message(5);
+	ft_read_essential(line, all);
 	res = ft_split(line, ' ');
 	len = ft_double_strlen(res);
 	len_id = ft_strlen(res[0]);

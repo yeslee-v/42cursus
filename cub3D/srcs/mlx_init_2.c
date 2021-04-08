@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 21:51:29 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/06 14:21:06 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 01:43:30 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,14 @@ void	ft_allocate_sprite(t_all *all)
 
 void	ft_allocate_buf_for_sprite(t_all *all)
 {
-	all->sp.zBuffer = malloc(sizeof(double) * all->game.r.width);
-	if (!(all->sp.zBuffer))
+	all->sp.z_buf = malloc(sizeof(double) * all->game.r.width);
+	if (!(all->sp.z_buf))
 		return ;
-	all->sp.spriteOrder = malloc(sizeof(int) * all->map.num_sp);
-	if (!(all->sp.spriteOrder))
+	all->sp.sp_order = malloc(sizeof(int) * all->map.num_sp);
+	if (!(all->sp.sp_order))
 		return ;
-	all->sp.spriteDistance = malloc(sizeof(double) * all->map.num_sp);
-	if (!(all->sp.spriteDistance))
+	all->sp.sp_dist = malloc(sizeof(double) * all->map.num_sp);
+	if (!(all->sp.sp_dist))
 		return ;
 	ft_allocate_sprite(all);
 }

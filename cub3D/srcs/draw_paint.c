@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 14:45:15 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/08 21:41:16 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 01:27:49 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void    load_texture(t_all *all)
 {
 	t_img	img;
 
-	printf("n: %s\n", all->game.n);
     ft_load_image(&all->info, all->info.tex[0], all->game.n, &img);
     ft_load_image(&all->info, all->info.tex[1], all->game.s, &img);
     ft_load_image(&all->info, all->info.tex[2], all->game.w, &img);

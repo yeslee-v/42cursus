@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 20:44:47 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/07 20:46:11 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 01:44:04 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_calc_save_map(t_all *all)
 		ft_dda(all);
 		ft_draw_wall(all);
 		ft_paint_texture(all, x);
-		all->sp.zBuffer[x] = all->info.perpWallDist;
+		all->sp.z_buf[x] = all->info.perpWallDist;
         x++;
     }
 	return (0);

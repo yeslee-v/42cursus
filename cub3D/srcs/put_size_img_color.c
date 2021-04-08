@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 13:25:13 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/08 21:49:17 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 01:22:35 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int		ft_check_atoi(char *s)
 
 void	ft_put_size(char *width, char *height, t_game *game)
 {
+	if (game->r.width || game->r.height)
+		ft_error_message(5);
 	if ((ft_check_atoi(width)) && (ft_check_atoi(height)))
 	{
 		game->r.width = ft_check_atoi(width);
