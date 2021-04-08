@@ -1,16 +1,18 @@
 R 5000 6000
 
-
-NO brick.xpm
-
-SO dirt.xpm
+NO ./pics/wall_n.xpm
 
 
-EA stone.xpm
+SO ./pics/wall_s.xpm
 
-WE wood.xpm
+WE ./pics/wall_w.xpm
 
-S brice_sprite.xpm
+EA ./pics/wall_e.xpm
+
+
+
+
+S ./pics/sprite.xpm
 
 C 106,176,76
 

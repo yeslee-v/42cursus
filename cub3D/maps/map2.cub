@@ -1,16 +1,12 @@
 R 640 480
 
+NO ./pics/wall_n.xpm
+SO ./pics/wall_s.xpm
+WE ./pics/wall_w.xpm
 
-NO brick.xpm
+EA ./pics/wall_e.xpm
+S ./pics/sprite.xpm
 
-SO dirt.xpm
-
-
-EA stone.xpm
-
-WE wood.xpm
-
-S brice_sprite.xpm
 
 C 106,176,76
 
