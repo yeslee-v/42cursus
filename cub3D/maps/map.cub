@@ -4,8 +4,8 @@ SO ./pics/wall_s.xpm
 WE ./pics/wall_w.xpm
 EA ./pics/wall_e.xpm
 S ./pics/sprite.xpm
-F 184,113,39
-C 51,198,224
+F 184, 113, 39
+C    51,   198    ,  224
 
  111
 10201

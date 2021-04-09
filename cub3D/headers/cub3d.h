@@ -233,7 +233,7 @@ void			ft_read_line(char *line, t_all *all);
 
 void			ft_put_size(char *width, char *height, t_game *game);
 void			ft_put_image(char *img, char **txtr_addr, t_game *game);
-void			ft_put_color(char *color, int *color_arr, t_game *game);
+void			ft_put_color(char **color, int *color_arr, t_game *game);
 
 void			ft_read_map(char *line, t_all *all);
 void			ft_input_map(char *line, t_all *all, int len);
@@ -289,5 +289,7 @@ void			ft_clean_buffer(t_all *all);
 void			ft_paint_sprite(t_all *all);
 
 void			ft_bubble_sort(int *buf1, double *buf2, int num);
+
+void	ft_free_char(char **map);
 
 #endif

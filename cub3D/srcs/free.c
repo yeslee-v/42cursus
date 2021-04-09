@@ -12,6 +12,21 @@
 
 #include "cub3d.h"
 
+void	ft_free_char(char **map)
+{
+	int i;
+
+	i = 0;
+	while (map[i])
+	{
+	
+			free(map[i]);
+			i++;
+	}
+	free(map);
+	map = 0;
+}
+
 void	ft_free_all(char **map, int max)
 {
 	int i;

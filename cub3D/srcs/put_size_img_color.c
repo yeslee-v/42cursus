@@ -15,14 +15,15 @@
 int		ft_check_atoi(char *s)
 {
 	int	i;
-
 	i = 0;
+
 	while (s[i])
 	{
 		if (!(ft_isdigit(s[i])))
 			ft_error_message(4);
 		i++;
 	}
+
 	return (ft_atoi(s));
 }
 
@@ -49,18 +50,20 @@ void	ft_put_image(char *img, char **txtr_addr, t_game *game)
 	tmp = ft_strnstr(img, ".xpm", ft_strlen(img));
 	if ((!*tmp) && (!tmp[4]))
 		ft_error_message(2);
-	*txtr_addr = img;
+	*txtr_addr = ft_strdup(img);
 	game->cnt++;
 }
 
-void	ft_put_color(char *color, int *color_arr, t_game *game)
+void	ft_put_color(char **color, int *color_arr, t_game *game)
 {
-	int		i;
-	int		rgb;
-	char	**res;
-	int		len;
+	// int		i;
+	// int		rgb;
+	// char	**res;
+	// int		len;
 
-	res = ft_split(color, ',');
+	color_arr = 0;
+color = 0;
+/*	res = ft_split(color, ',');
 	len = ft_double_strlen(res);
 	if (*color_arr)
 		ft_error_message(5);
@@ -70,6 +73,7 @@ void	ft_put_color(char *color, int *color_arr, t_game *game)
 		while (res[i])
 		{
 			rgb = ft_check_atoi(res[i]);
+			printf("%d\n", rgb);
 			if (((rgb >= 0) && (rgb <= 255)))
 				color_arr[i] = rgb;
 			else
@@ -79,5 +83,6 @@ void	ft_put_color(char *color, int *color_arr, t_game *game)
 	}
 	else
 		ft_error_message(7);
+	ft_free_char(res);*/
 	game->cnt++;
 }

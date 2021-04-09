@@ -4,7 +4,7 @@ NAME_BONUS = cub3D_bonus
 HEADER = -I ./headers
 
 CC = gcc
-CFLAGES = -Wall -Wextra -Werror
+CFLAGES = -Wall -Wextra -Werror -fsanitize=address -g3
 
 LFLAGES = -L ./mlx
 LIBS = -lmlx -framework AppKit
@@ -29,6 +29,7 @@ SRCS = ./include/get_next_line/get_next_line.c \
 	   ./include/libft/ft_calloc.c \
 	   ./include/libft/ft_memset.c \
 	   ./include/libft/ft_bzero.c \
+	   ./include/libft/ft_strtrim.c \
 	   ./srcs/main.c \
 	   ./srcs/parse_init.c \
 	   ./srcs/exception_handling.c \
@@ -61,6 +62,7 @@ SRCS_BONUS = ./include/get_next_line/get_next_line.c \
 			 ./include/libft/ft_calloc.c \
 			 ./include/libft/ft_memset.c \
 			 ./include/libft/ft_bzero.c \
+			 ./include/libft/ft_strtrim.c \
 			 ./srcs/main.c \
 			 ./srcs/parse_init.c \
 			 ./srcs/exception_handling.c \

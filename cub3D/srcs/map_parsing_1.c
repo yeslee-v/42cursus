@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:53:02 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/09 11:48:02 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 20:21:49 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,35 @@ void	ft_read_essential(char *line, t_all *all)
 	if (all->game.cnt == 8)
 		ft_read_map(line, all);
 	else if (ft_isspace(line[0]))
-		ft_error_message(5);
+		{
+			printf("%s\n",line);
+			ft_error_message(5);
+		}
+}
+
+//char	**ft_parse_comma(char *line)
+void	ft_parse_comma(char *line)
+{
+	char	**parsed;
+	int		i;
+	char	**temp;
+
+	parsed = ft_calloc(4, sizeof(char *));
+	temp = ft_split(line, ' ');
+	parsed[0] = ft_strdup(temp[0]);
+	i = 0;
+	while (temp[i])
+		free(temp[i++]);
+	free(temp);
+	temp = ft_split(line + 1, ',');
+	i = 0;
+	while (i < 3)
+	{
+		parsed[i + 1] = ft_strtrim(temp[i], " ");
+		i++;
+	}
+	printf("%s|%s|%s|%s|\n", parsed[0], parsed[1], parsed[2], parsed[3]); // 이 값 그대로 0, 1, 2를 r에 넣으면 된다
+	//return (parsed);
 }
 
 void	ft_read_line(char *line, t_all *all)
@@ -59,8 +87,8 @@ void	ft_read_line(char *line, t_all *all)
 		ft_put_image(res[1], &(all->game.e), &(all->game));
 	else if (ft_strnstr(res[0], "S", len_id) && (len_id == 1) && (len == 2))
 		ft_put_image(res[1], &(all->game.sp), &(all->game));
-	else if (ft_strnstr(res[0], "F", len_id) && (len_id == 1) && (len == 2))
-		ft_put_color(res[1], all->game.f, &(all->game));
-	else if (ft_strnstr(res[0], "C", len_id) && (len_id == 1) && (len == 2))
-		ft_put_color(res[1], all->game.c, &(all->game));
+	else
+		//printf("line: %s\n", line);
+		ft_parse_comma(line);
+	ft_free_char(res);
 }
