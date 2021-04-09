@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/09 12:03:07 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 14:30:19 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,7 +260,7 @@ void			ft_draw_wall(t_all *all);
 void			ft_paint_texture(t_all *all, int x);
 
 int				ft_press_key(int key, t_all *all);
-int				ft_close(int key);
+int				ft_close();
 
 void			ft_bgm_start(void);
 void			ft_bgm_end(void);
@@ -279,15 +279,15 @@ void			ft_load_image(t_info *info, int *texture, char *path,
 void			ft_img_draw(t_all *all);
 void			ft_paint_f_c(t_all *all);
 
-int			ft_save_bmp_intro(t_all *all);
+int				ft_save_bmp_intro(t_all *all);
 
 int				ft_sprite_loop(t_all *all);
 void			ft_sort_sprite_init(t_all *all);
 void			ft_sort_sprite(int *buf1, double *buf2, int num);
 
-void	ft_clean_buffer(t_all *all);
-void	ft_paint_sprite(t_all *all);
+void			ft_clean_buffer(t_all *all);
+void			ft_paint_sprite(t_all *all);
 
-void	ft_bubble_sort(int *buf1, double *buf2, int num);
+void			ft_bubble_sort(int *buf1, double *buf2, int num);
 
 #endif
