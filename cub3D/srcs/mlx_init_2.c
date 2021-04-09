@@ -6,11 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 21:51:29 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/09 01:43:30 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 11:48:37 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 void	ft_allocate_buf(t_all *all)
 {
@@ -43,7 +43,7 @@ void	ft_allocate_texture(t_all *all)
 	while (i < 5)
 	{
 		if (!(all->info.tex[i] = (int *)malloc(sizeof(int) *
-						(all->info.texHeight * all->info.texWidth))))
+						(all->info.tex_h * all->info.tex_w))))
             return ;
 		i++;
 	}
@@ -51,7 +51,7 @@ void	ft_allocate_texture(t_all *all)
 	while (i < 5)
 	{
 		j = 0;
-        while (j < (all->info.texHeight * all->info.texWidth))
+        while (j < (all->info.tex_h * all->info.tex_w))
 		{
 			all->info.tex[i][j] = 0;
 			j++;

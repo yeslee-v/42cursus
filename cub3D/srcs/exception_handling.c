@@ -6,11 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 19:46:42 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/07 20:48:11 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 11:45:02 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 int		ft_check_error(int ac, char **av)
 {

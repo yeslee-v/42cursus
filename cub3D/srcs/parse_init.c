@@ -6,11 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 12:41:18 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/08 21:32:34 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 11:44:51 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 void	ft_struct_init(int ac, char **av, t_all *all)
 {

@@ -6,11 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 20:29:35 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/08 20:04:36 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 11:48:20 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 void	ft_dfs_essential(t_all *all, int **dfs_map)
 {

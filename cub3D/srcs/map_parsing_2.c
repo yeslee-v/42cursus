@@ -6,11 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:31:38 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/08 19:53:21 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 11:48:10 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 void	ft_ismap(char *line, t_all *all)
 {

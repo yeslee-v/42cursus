@@ -6,11 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:30:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/07 20:49:14 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 11:49:17 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 void	write_int(char *color, unsigned param)
 {

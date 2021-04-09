@@ -6,20 +6,23 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/09 02:32:11 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 11:51:33 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/get_next_line/get_next_line.h"
-#include "./include/libft/libft.h"
-#include "mlx/mlx.h"
-#include <errno.h>
-#include <fcntl.h>
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
+#ifndef CUB3D_H
+# define CUB3D_H
+
+# include "../mlx/mlx.h"
+# include "../headers/get_next_line.h"
+# include "../headers/libft.h"
+# include <errno.h>
+# include <fcntl.h>
+# include <math.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
 
 # define X_EVENT_KEY_PRESS	2
 # define X_EVENT_KEY_EXIT	17
@@ -110,45 +113,45 @@ typedef struct	s_img
 
 typedef struct	s_info
 {
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	double	planeX;
-	double	planeY;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
+	double	camera_x;
+	double	ray_x;
+	double	ray_y;
 	
-	int		mapX;
-	int		mapY;
+	int		map_x;
+	int		map_y;
 
-	double	sideDistX;
-	double	sideDistY;
+	double	side_x;
+	double	side_y;
 
-	double	deltaDistX;
-	double	deltaDistY;
-	double	perpWallDist;
+	double	delta_x;
+	double	delta_y;
+	double	perp;
 
 	double	step;
-	int		stepX;
-	int		stepY;
+	int		step_x;
+	int		step_y;
 
 	int		hit;
 	int		side;
 
-	int		lineHeight;
-	int		drawStart;
-	int		drawEnd;
-	int		texNum;
+	int		line_h;
+	int		draw_s;
+	int		draw_e;
+	int		tex_n;
 
-	int		texX;
-	int		texY;
+	int		tex_x;
+	int		tex_y;
 	int		color;
 
-	double	wallX;
-	double	texPos;
+	double	wall_x;
+	double	tex_pos;
 
 	void	*mlx;
 	void	*win;
@@ -156,11 +159,11 @@ typedef struct	s_info
 	int		**buf;
 	int		**tex;
 
-	double	moveSpeed;
-	double	rotSpeed;
+	double	move_s;
+	double	rot_s;
 
-	int		texWidth;
-	int		texHeight;
+	int		tex_w;
+	int		tex_h;
 }				t_info;
 
 typedef struct	s_sprite
@@ -261,6 +264,7 @@ int				ft_close(int key, t_all *all);
 
 void			ft_bgm_start(void);
 void			ft_bgm_end(void);
+int		ft_close(int key);
 
 void			ft_set_screen_size(t_all *all);
 int				ft_main_loop(t_all *all);
@@ -286,3 +290,5 @@ void	ft_clean_buffer(t_all *all);
 void	ft_paint_sprite(t_all *all);
 
 void	ft_bubble_sort(int *buf1, double *buf2, int num);
+
+#endif

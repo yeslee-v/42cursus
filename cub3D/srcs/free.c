@@ -6,11 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 19:51:19 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/08 19:52:35 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 11:46:40 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 void	ft_free_all(char **map, int max)
 {

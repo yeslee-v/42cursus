@@ -6,22 +6,22 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 14:45:15 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/09 01:27:49 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 11:46:25 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 int	ft_set_texnum(t_all *all)
 {
 	int num;
 
 	num = 3;
-	if (all->info.side == 0 && all->info.rayDirX < 0)
+	if (all->info.side == 0 && all->info.ray_x < 0)
 		num = 0;
-	else if (all->info.side == 0 && all->info.rayDirX > 0)
+	else if (all->info.side == 0 && all->info.ray_x > 0)
 		num = 1;
-	else if (all->info.side == 1 && all->info.rayDirY < 0)
+	else if (all->info.side == 1 && all->info.ray_y < 0)
 		num = 2;
 	return (num);
 }

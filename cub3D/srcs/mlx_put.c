@@ -6,33 +6,33 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 13:53:10 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/06 17:25:46 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 11:48:50 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 void	ft_put_step_side_value(t_all *all)
 {
-	if (all->info.rayDirX < 0)
+	if (all->info.ray_x < 0)
 	{
-		all->info.stepX = -1;
-		all->info.sideDistX = (all->info.posX - all->info.mapX) * all->info.deltaDistX;
+		all->info.step_x = -1;
+		all->info.side_x = (all->info.pos_x - all->info.map_x) * all->info.delta_x;
 	}
 	else
 	{
-		all->info.stepX = 1;
-		all->info.sideDistX = (all->info.mapX + 1.0 - all->info.posX) * all->info.deltaDistX;
+		all->info.step_x = 1;
+		all->info.side_x = (all->info.map_x + 1.0 - all->info.pos_x) * all->info.delta_x;
 	}
-	if (all->info.rayDirY < 0)
+	if (all->info.ray_y < 0)
 	{
-		all->info.stepY = -1;
-		all->info.sideDistY = (all->info.posY - all->info.mapY) * all->info.deltaDistY;
+		all->info.step_y = -1;
+		all->info.side_y = (all->info.pos_y - all->info.map_y) * all->info.delta_y;
 	}
 	else
 	{
-		all->info.stepY = 1;
-		all->info.sideDistY = (all->info.mapY + 1.0 - all->info.posY) * all->info.deltaDistY;
+		all->info.step_y = 1;
+		all->info.side_y = (all->info.map_y + 1.0 - all->info.pos_y) * all->info.delta_y;
 	}
 }
 
@@ -40,19 +40,19 @@ void	ft_dda(t_all *all)
 {
 	while (all->info.hit == 0)
 	{
-		if (all->info.sideDistX < all->info.sideDistY)
+		if (all->info.side_x < all->info.side_y)
 		{
-			all->info.sideDistX += all->info.deltaDistX;
-			all->info.mapX += all->info.stepX;
+			all->info.side_x += all->info.delta_x;
+			all->info.map_x += all->info.step_x;
 			all->info.side = 0;
 		}
 		else
 		{
-			all->info.sideDistY += all->info.deltaDistY;
-			all->info.mapY += all->info.stepY;
+			all->info.side_y += all->info.delta_y;
+			all->info.map_y += all->info.step_y;
 			all->info.side = 1;
 		}
-		if (all->map.map[all->info.mapX][all->info.mapY] == '1')
+		if (all->map.map[all->info.map_x][all->info.map_y] == '1')
 			all->info.hit = 1;
 	}
 }
@@ -60,45 +60,45 @@ void	ft_dda(t_all *all)
 void	ft_draw_wall(t_all *all)
 {
 	if (all->info.side == 0)
-		all->info.perpWallDist = (all->info.mapX - all->info.posX + 
-				(1.0 - all->info.stepX) / 2.0) / all->info.rayDirX;
+		all->info.perp = (all->info.map_x - all->info.pos_x + 
+				(1.0 - all->info.step_x) / 2.0) / all->info.ray_x;
 	else
-		all->info.perpWallDist = (all->info.mapY - all->info.posY +
-				(1.0 - all->info.stepY) / 2.0) / all->info.rayDirY;
-	all->info.lineHeight = (int)(all->game.r.height / all->info.perpWallDist);
-	all->info.drawStart = (-all->info.lineHeight / 2) + (all->game.r.height / 2);
-	if (all->info.drawStart < 0)
-		all->info.drawStart = 0;
-	all->info.drawEnd = (all->info.lineHeight / 2) + (all->game.r.height / 2);
-	if (all->info.drawEnd >= all->game.r.height)
-		all->info.drawEnd = all->game.r.height - 1;
-	all->info.texNum = ft_set_texnum(all);
+		all->info.perp = (all->info.map_y - all->info.pos_y +
+				(1.0 - all->info.step_y) / 2.0) / all->info.ray_y;
+	all->info.line_h = (int)(all->game.r.height / all->info.perp);
+	all->info.draw_s = (-all->info.line_h / 2) + (all->game.r.height / 2);
+	if (all->info.draw_s < 0)
+		all->info.draw_s = 0;
+	all->info.draw_e = (all->info.line_h / 2) + (all->game.r.height / 2);
+	if (all->info.draw_e >= all->game.r.height)
+		all->info.draw_e = all->game.r.height - 1;
+	all->info.tex_n = ft_set_texnum(all);
 	
 	if (all->info.side == 0)
-		all->info.wallX = all->info.posY + all->info.perpWallDist * all->info.rayDirY;
+		all->info.wall_x = all->info.pos_y + all->info.perp * all->info.ray_y;
 	else
-        all->info.wallX = all->info.posX + all->info.perpWallDist * all->info.rayDirX;
-	all->info.wallX -= floor(all->info.wallX);
+        all->info.wall_x = all->info.pos_x + all->info.perp * all->info.ray_x;
+	all->info.wall_x -= floor(all->info.wall_x);
 }
 
 void	ft_paint_texture(t_all *all, int x)
 {
-	all->info.texX = (int)(all->info.wallX * (double)all->info.texWidth);
-	if (all->info.side == 0 && all->info.rayDirX > 0)
-		all->info.texX = all->info.texWidth - all->info.texX - 1;
-	if (all->info.side == 1 && all->info.rayDirY < 0)
-		all->info.texX = all->info.texWidth - all->info.texX - 1;
+	all->info.tex_x = (int)(all->info.wall_x * (double)all->info.tex_w);
+	if (all->info.side == 0 && all->info.ray_x > 0)
+		all->info.tex_x = all->info.tex_w - all->info.tex_x - 1;
+	if (all->info.side == 1 && all->info.ray_y < 0)
+		all->info.tex_x = all->info.tex_w - all->info.tex_x - 1;
 
-	all->info.step = 1.0 * all->info.texHeight / all->info.lineHeight;
-	all->info.texPos = (all->info.drawStart - all->game.r.height / 2.0 + all->info.lineHeight / 2.0) * all->info.step;
+	all->info.step = 1.0 * all->info.tex_h / all->info.line_h;
+	all->info.tex_pos = (all->info.draw_s - all->game.r.height / 2.0 + all->info.line_h / 2.0) * all->info.step;
 	
 	int y;
-	y = all->info.drawStart; 
-	while (y < all->info.drawEnd)
+	y = all->info.draw_s; 
+	while (y < all->info.draw_e)
 	{
-		all->info.texY = (int)all->info.texPos & (all->info.texHeight - 1);
-		all->info.texPos += all->info.step;
-		all->info.color = all->info.tex[all->info.texNum][all->info.texHeight * all->info.texY + all->info.texX];
+		all->info.tex_y = (int)all->info.tex_pos & (all->info.tex_h - 1);
+		all->info.tex_pos += all->info.step;
+		all->info.color = all->info.tex[all->info.tex_n][all->info.tex_h * all->info.tex_y + all->info.tex_x];
 		if (all->info.side == 1)
 			all->info.color = (all->info.color >> 1) & 8355711;
 		all->info.buf[y][x] = all->info.color;

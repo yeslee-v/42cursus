@@ -6,11 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:53:02 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/09 01:19:49 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 11:48:02 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 int		ft_double_strlen(char **s)
 {

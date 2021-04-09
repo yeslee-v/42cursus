@@ -27,7 +27,7 @@ int	ft_calc_save_map(t_all *all)
 		ft_dda(all);
 		ft_draw_wall(all);
 		ft_paint_texture(all, x);
-		all->sp.z_buf[x] = all->info.perpWallDist;
+		all->sp.z_buf[x] = all->info.perp;
         x++;
     }
 	return (0);

@@ -6,11 +6,11 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 15:32:14 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/09 02:33:35 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 11:46:33 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 int		ft_set_sprite_1(t_all *all, int i)
 {
