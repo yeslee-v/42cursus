@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/09 11:51:33 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 12:03:07 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,11 +260,10 @@ void			ft_draw_wall(t_all *all);
 void			ft_paint_texture(t_all *all, int x);
 
 int				ft_press_key(int key, t_all *all);
-int				ft_close(int key, t_all *all);
+int				ft_close(int key);
 
 void			ft_bgm_start(void);
 void			ft_bgm_end(void);
-int		ft_close(int key);
 
 void			ft_set_screen_size(t_all *all);
 int				ft_main_loop(t_all *all);

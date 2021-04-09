@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 18:38:23 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/09 11:50:00 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/09 12:00:34 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_press_esc(int key)
 {
 	if (key == KEY_ESC)
 	{
-		ft_bgm_end();
+		//ft_bgm_end();
 		exit(0);
 	}
 	return (0);
