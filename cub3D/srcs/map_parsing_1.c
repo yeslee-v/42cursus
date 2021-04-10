@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:53:02 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/09 20:21:49 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/10 23:57:37 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_read_essential(char *line, t_all *all)
 		ft_read_map(line, all);
 	else if (ft_isspace(line[0]))
 		{
-			printf("%s\n",line);
+			//printf("%s\n",line);
 			ft_error_message(5);
 		}
 }
@@ -61,7 +61,7 @@ void	ft_parse_comma(char *line)
 		parsed[i + 1] = ft_strtrim(temp[i], " ");
 		i++;
 	}
-	printf("%s|%s|%s|%s|\n", parsed[0], parsed[1], parsed[2], parsed[3]); // 이 값 그대로 0, 1, 2를 r에 넣으면 된다
+	printf("%s|%s|%s|%s|\n", parsed[0], parsed[1], parsed[2], parsed[3]);
 	//return (parsed);
 }
 
