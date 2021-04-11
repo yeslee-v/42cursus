@@ -4,7 +4,7 @@ NAME_BONUS = cub3D_bonus
 HEADER = -I ./headers
 
 CC = gcc
-CFLAGES = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGES = -Wall -Wextra -Werror
 
 LFLAGES = -L ./mlx
 LIBS = -lmlx -framework AppKit

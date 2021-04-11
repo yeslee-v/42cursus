@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 20:44:47 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/09 14:35:10 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/11 20:40:42 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 int	ft_calc_save_map(t_all *all)
 {
 	int x;
-	ft_allocate_buf(all);
-	ft_paint_f_c(all);
 
 	x = 0;
+	ft_allocate_buf(all);
+	ft_paint_f_c(all);
 	ft_allocate_buf_for_sprite(all);
     while (x < all->game.r.width)
     {
@@ -46,7 +46,8 @@ int ft_mlx_intro(t_all *all)
     all->info.mlx = mlx_init();
 	ft_set_screen_size(all);
 	ft_allocate_texture(all);
-    load_texture(all);
+    
+	load_texture(all);
 
 	all->info.win = mlx_new_window(all->info.mlx, all->game.r.width,
 			all->game.r.height, "mlx");
@@ -54,7 +55,6 @@ int ft_mlx_intro(t_all *all)
 			all->game.r.height);
 	all->img.data = (int *)mlx_get_data_addr(all->img.img, &all->img.bpp,
 			&all->img.size_l, &all->img.endian);
-
 	ft_main_loop(all);
 	if (all->save.pic)
 		ft_save_bmp_intro(all);
