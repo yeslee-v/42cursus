@@ -30,6 +30,7 @@ SRCS = ./include/get_next_line/get_next_line.c \
 	   ./include/libft/ft_memset.c \
 	   ./include/libft/ft_bzero.c \
 	   ./include/libft/ft_strtrim.c \
+	   ./include/libft/ft_isspace.c \
 	   ./srcs/main.c \
 	   ./srcs/parse_init.c \
 	   ./srcs/exception_handling.c \
@@ -63,6 +64,7 @@ SRCS_BONUS = ./include/get_next_line/get_next_line.c \
 			 ./include/libft/ft_memset.c \
 			 ./include/libft/ft_bzero.c \
 			 ./include/libft/ft_strtrim.c \
+			 ./include/libft/ft_isspace.c \
 			 ./srcs/main.c \
 			 ./srcs/parse_init.c \
 			 ./srcs/exception_handling.c \
