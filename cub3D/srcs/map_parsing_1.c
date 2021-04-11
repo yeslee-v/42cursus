@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:53:02 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/10 23:57:37 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/11 01:18:03 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,49 +29,12 @@ int		ft_isspace(char c)
 	return (0);
 }
 
-void	ft_read_essential(char *line, t_all *all)
-{
-	if (all->game.cnt == 8)
-		ft_read_map(line, all);
-	else if (ft_isspace(line[0]))
-		{
-			//printf("%s\n",line);
-			ft_error_message(5);
-		}
-}
-
-//char	**ft_parse_comma(char *line)
-void	ft_parse_comma(char *line)
-{
-	char	**parsed;
-	int		i;
-	char	**temp;
-
-	parsed = ft_calloc(4, sizeof(char *));
-	temp = ft_split(line, ' ');
-	parsed[0] = ft_strdup(temp[0]);
-	i = 0;
-	while (temp[i])
-		free(temp[i++]);
-	free(temp);
-	temp = ft_split(line + 1, ',');
-	i = 0;
-	while (i < 3)
-	{
-		parsed[i + 1] = ft_strtrim(temp[i], " ");
-		i++;
-	}
-	printf("%s|%s|%s|%s|\n", parsed[0], parsed[1], parsed[2], parsed[3]);
-	//return (parsed);
-}
-
-void	ft_read_line(char *line, t_all *all)
+void	ft_read_line_detail(char *line, t_all *all)
 {
 	int		len;
 	int		len_id;
 	char	**res;
 
-	ft_read_essential(line, all);
 	res = ft_split(line, ' ');
 	len = ft_double_strlen(res);
 	len_id = ft_strlen(res[0]);
@@ -87,8 +50,15 @@ void	ft_read_line(char *line, t_all *all)
 		ft_put_image(res[1], &(all->game.e), &(all->game));
 	else if (ft_strnstr(res[0], "S", len_id) && (len_id == 1) && (len == 2))
 		ft_put_image(res[1], &(all->game.sp), &(all->game));
-	else
-		//printf("line: %s\n", line);
-		ft_parse_comma(line);
 	ft_free_char(res);
+}
+
+void	ft_read_line(char *line, t_all *all)
+{
+	if (all->game.cnt == 8)
+		ft_read_map(line, all);
+	else if (ft_isspace(line[0]))
+		ft_error_message(5);
+	ft_read_line_detail(line, all);
+	ft_put_color(line, &(all->game));
 }

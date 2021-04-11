@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 13:25:13 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/09 11:49:09 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/11 01:15:54 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int		ft_check_atoi(char *s)
 	while (s[i])
 	{
 		if (!(ft_isdigit(s[i])))
-			ft_error_message(4);
+			printf("digit:%d\n", s[i]);
+			//ft_error_message(4);
 		i++;
 	}
 
@@ -54,26 +55,49 @@ void	ft_put_image(char *img, char **txtr_addr, t_game *game)
 	game->cnt++;
 }
 
-void	ft_put_color(char **color, int *color_arr, t_game *game)
+void	ft_put_color(char *line, t_game *game)
 {
-	// int		i;
-	// int		rgb;
-	// char	**res;
-	// int		len;
+	char **res;
+	char **idt;
+	int		len;
+	int		i;
+	int rgb;
 
-	color_arr = 0;
-color = 0;
-/*	res = ft_split(color, ',');
+	res = ft_split(line, ',');
 	len = ft_double_strlen(res);
-	if (*color_arr)
-		ft_error_message(5);
-	if (len == 3)
+	idt = ft_split(res[0], ' ');
+	if (ft_strnstr(idt[0], "F", ft_strlen(idt[0])))
+	{
+		printf("loaded %d\n", len);
+		if (len == 3)
+		{
+			i = 0;
+			while (res[i])
+			{
+				if (!i)
+					rgb = ft_check_atoi(idt[1]);
+				else
+					rgb = ft_check_atoi(res[i]);
+				if (((rgb >= 0) && (rgb <= 255)))
+					game->f[i] = rgb;
+				else
+					ft_error_message(7);
+				i++;
+			}
+		}
+	}
+	//printf("start:|%d|%d|%d|%d\n", ft_atoi(res[0] + 2), ft_atoi(res[1]), ft_atoi(res[2]), len);
+	printf("%d|%d|%d\n", game->f[0], game->f[1], game->f[2]);
+	//else if (ft_strnstr(idt[0], "C", ft_strlen(idt[0])))
+	//	printf("start:|%d|%d|%d|%d\n", ft_atoi(res[0] + 2), ft_atoi(res[1]), ft_atoi(res[2]), len);
+//	if (*color_arr)
+//		ft_error_message(5);
+/*	if (len == 3)
 	{
 		i = 0;
 		while (res[i])
 		{
 			rgb = ft_check_atoi(res[i]);
-			printf("%d\n", rgb);
 			if (((rgb >= 0) && (rgb <= 255)))
 				color_arr[i] = rgb;
 			else
@@ -83,6 +107,5 @@ color = 0;
 	}
 	else
 		ft_error_message(7);
-	ft_free_char(res);*/
-	game->cnt++;
+	game->cnt++;*/
 }
