@@ -47,7 +47,7 @@ void	ft_error_message(int error_num)
 		perror("The map is invalid\n");
 	else if (error_num == 10)
 		perror("Malloc error\n");
-	else if (error_num == 11)\
+	else if (error_num == 11)
 		perror("Can not open file\n");
 	exit(0);
 }

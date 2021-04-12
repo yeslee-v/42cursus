@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 20:29:35 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/11 22:29:20 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/12 17:38:55 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_dfs_essential(t_all *all, int **dfs_map)
 {
 	int i;
 	int j;
-	
+
 	i = 0;
 	while (i < all->map.row)
 	{
@@ -86,8 +86,8 @@ int		ft_map_validation(t_all *all, int **dfs_map, int *i, int *j)
 		dfs_map[*i] = ft_calloc(sizeof(int), all->map.col);
 		if (!(dfs_map[*i]))
 		{
-				ft_free_all_int(dfs_map, *i);
-				return (1); 
+			ft_free_all_int(dfs_map, *i);
+			return (1);
 		}
 		*j = 0;
 		while (*j < (int)ft_strlen(all->map.map[*i]))

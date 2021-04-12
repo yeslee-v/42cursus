@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:29:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/11 19:30:01 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/12 17:50:22 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../mlx/mlx.h"
 # include "../headers/get_next_line.h"
-# include "../headers/libft.h"
+# include "../include/libft/libft.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <math.h>
@@ -29,8 +29,8 @@
 
 # define KEY_ESC		53
 
-# define KEY_ARROW_L	123		
-# define KEY_ARROW_R	124		
+# define KEY_ARROW_L	123
+# define KEY_ARROW_R	124
 # define KEY_W			13
 # define KEY_A			0
 # define KEY_S			1
@@ -45,8 +45,8 @@
 
 typedef struct	s_scr
 {
-	int			c_sizeX;
-	int			c_sizeY;
+	int			c_size_x;
+	int			c_size_y;
 }				t_scr;
 
 typedef struct	s_window
@@ -57,14 +57,14 @@ typedef struct	s_window
 
 typedef struct	s_game
 {
-	t_window		r;
+	t_window	r;
 
-	char			*n;
-	char			*s;
-	char			*e;
-	char			*w;
+	char		*n;
+	char		*s;
+	char		*e;
+	char		*w;
 
-	char			*sp;
+	char		*sp;
 
 	int			f[3];
 	int			c[3];
@@ -78,10 +78,10 @@ typedef struct	s_map
 	int			col;
 
 	int			num_sp;
-	
+
 	double		player_row;
 	double		player_col;
-	
+
 	char		player;
 	char		**map;
 
@@ -90,7 +90,7 @@ typedef struct	s_map
 
 typedef struct	s_save
 {
-	int			pic;
+	int				pic;
 
 	unsigned char	file_header[14];
 	unsigned char	info_header[40];
@@ -123,7 +123,7 @@ typedef struct	s_info
 	double	camera_x;
 	double	ray_x;
 	double	ray_y;
-	
+
 	int		map_x;
 	int		map_y;
 
@@ -174,37 +174,37 @@ typedef struct	s_sprite
 
 typedef struct	s_sp_buf
 {
-	int		*sp_order;
+	int			*sp_order;
 
-	double	*sp_dist;
-	double	*z_buf;
+	double		*sp_dist;
+	double		*z_buf;
 
-	double	sp_x;
-	double	sp_y;
+	double		sp_x;
+	double		sp_y;
 
-	double	inv_det;
+	double		inv_det;
 
-	double	tran_x;
-	double	tran_y;
+	double		tran_x;
+	double		tran_y;
 
-	int		sp_scx;
-	
-	int		sp_w;
-	int		sp_h;
+	int			sp_scx;
 
-	int		start_dx;
-	int		start_dy;
-	
-	int		end_dx;
-	int		end_dy;
+	int			sp_w;
+	int			sp_h;
 
-	int		stripe;
+	int			start_dx;
+	int			start_dy;
 
-	int		tex_x;
-	int		tex_y;
+	int			end_dx;
+	int			end_dy;
 
-	int		dy;
-	
+	int			stripe;
+
+	int			tex_x;
+	int			tex_y;
+
+	int			dy;
+
 	t_sprite	*sprite;
 }				t_sp_buf;
 
@@ -283,12 +283,14 @@ int				ft_save_bmp_intro(t_all *all);
 int				ft_sprite_loop(t_all *all);
 void			ft_sort_sprite_init(t_all *all);
 void			ft_sort_sprite(int *buf1, double *buf2, int num);
+int				ft_set_sprite_1(t_all *all, int i);
+void			ft_set_sprite_2(t_all *all);
 
 void			ft_clean_buffer(t_all *all);
 void			ft_paint_sprite(t_all *all);
 
 void			ft_bubble_sort(int *buf1, double *buf2, int num);
 
-void	ft_free_char(char **map);
+void			ft_free_char(char **map);
 
 #endif

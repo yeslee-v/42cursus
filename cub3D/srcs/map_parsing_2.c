@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:31:38 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/11 22:29:01 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/12 17:33:44 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	ft_ismap(char *line, t_all *all)
 			(line[i] == 'N') || (line[i] == 'S') || (line[i] == 'W') ||
 			(line[i] == 'E') || ft_isspace(line[i]))
 		{
-			if ((line[i] == 'N') || (line[i] == 'S') || (line[i] == 'W') || (line[i] == 'E'))
+			if ((line[i] == 'N') || (line[i] == 'S') || (line[i] == 'W') ||
+					(line[i] == 'E'))
 			{
 				all->map.cnt_exist += 1;
 				if (all->map.cnt_exist > 1)
@@ -62,19 +63,19 @@ int		ft_input_origin(t_all *all, char **original, int *i, int *j)
 
 void	ft_input_map(char *line, t_all *all, int len)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	**original;
 
 	i = 0;
 	ft_ismap(line, all);
 	original = (char **)malloc(sizeof(char *) * (all->map.row + 1));
 	if (!(original))
-		return ;
+		ft_error_message(10);
 	if (ft_input_origin(all, original, &i, &j))
-		return ;
+		ft_error_message(10);
 	original[i + 1] = NULL;
-	original[i] = malloc (len + 1);
+	original[i] = malloc(len + 1);
 	j = 0;
 	while (j < len)
 	{
@@ -82,6 +83,7 @@ void	ft_input_map(char *line, t_all *all, int len)
 		j++;
 	}
 	original[i][j] = '\0';
+	ft_free_char(all->map.map);
 	all->map.map = original;
 }
 

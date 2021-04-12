@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 21:51:29 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/09 11:48:37 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/12 18:58:43 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void	ft_allocate_buf(t_all *all)
 	i = 0;
 	all->info.buf = malloc(sizeof(int *) * all->game.r.height);
 	if (!(all->info.buf))
-		return ;
+		ft_error_message(10);
 	while (i < all->game.r.height)
 	{
 		all->info.buf[i] = malloc(sizeof(int) * all->game.r.width);
 		if (!(all->info.buf[i]))
 		{
 			ft_free_all_int(all->info.buf, i);
-			return ;
+			ft_error_message(10);
 		}
 		i++;
 	}
@@ -39,19 +39,19 @@ void	ft_allocate_texture(t_all *all)
 
 	i = 0;
 	if (!(all->info.tex = (int **)malloc(sizeof(int *) * 5)))
-        return ;
+		ft_error_message(10);
 	while (i < 5)
 	{
 		if (!(all->info.tex[i] = (int *)malloc(sizeof(int) *
 						(all->info.tex_h * all->info.tex_w))))
-            return ;
+			ft_error_message(10);
 		i++;
 	}
 	i = 0;
 	while (i < 5)
 	{
 		j = 0;
-        while (j < (all->info.tex_h * all->info.tex_w))
+		while (j < (all->info.tex_h * all->info.tex_w))
 		{
 			all->info.tex[i][j] = 0;
 			j++;
@@ -92,12 +92,12 @@ void	ft_allocate_buf_for_sprite(t_all *all)
 {
 	all->sp.z_buf = malloc(sizeof(double) * all->game.r.width);
 	if (!(all->sp.z_buf))
-		return ;
+		ft_error_message(10);
 	all->sp.sp_order = malloc(sizeof(int) * all->map.num_sp);
 	if (!(all->sp.sp_order))
-		return ;
+		ft_error_message(10);
 	all->sp.sp_dist = malloc(sizeof(double) * all->map.num_sp);
 	if (!(all->sp.sp_dist))
-		return ;
+		ft_error_message(10);
 	ft_allocate_sprite(all);
 }

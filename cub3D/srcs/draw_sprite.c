@@ -6,50 +6,32 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 15:32:14 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/09 11:46:33 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/12 17:29:29 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_set_sprite_1(t_all *all, int i)
+void	ft_paint_sprite_detail(t_all *all, int dy)
 {
-	all->sp.sp_x = all->sp.sprite[all->sp.sp_order[i]].x - all->info.pos_x;
-	all->sp.sp_y = all->sp.sprite[all->sp.sp_order[i]].y - all->info.pos_y;
-	all->sp.inv_det = 1.0 /
-		(all->info.plane_x * all->info.dir_y - all->info.dir_x * all->info.plane_y);
-	all->sp.tran_x = all->sp.inv_det *
-		(all->info.dir_y * all->sp.sp_x - all->info.dir_x * all->sp.sp_y);
-	all->sp.tran_y = all->sp.inv_det *
-		(-all->info.plane_y * all->sp.sp_x + all->info.plane_x * all->sp.sp_y);
-	all->sp.sp_scx =
-		(int)((all->game.r.width / 2) * (1 + all->sp.tran_x / all->sp.tran_y));
-	all->sp.sp_h = abs((int)(all->game.r.height / (all->sp.tran_y)));
-	all->sp.start_dy = -all->sp.sp_h / 2 + all->game.r.height / 2;
-	return (i);
-}
+	int	d;
 
-void	ft_set_sprite_2(t_all *all)
-{
-	if (all->sp.start_dy < 0)
-		all->sp.start_dy = 0;
-	all->sp.end_dy = all->sp.sp_h / 2 + all->game.r.height / 2;
-	if (all->sp.end_dy >= all->game.r.height)
-		all->sp.end_dy = all->game.r.height - 1;
-	all->sp.sp_w = abs((int)(all->game.r.height / (all->sp.tran_y)));
-	all->sp.start_dx = -all->sp.sp_w / 2 + all->sp.sp_scx;
-	if (all->sp.start_dx < 0)
-		all->sp.start_dx = 0;
-	all->sp.end_dx = all->sp.sp_w / 2 + all->sp.sp_scx;
-	if (all->sp.end_dx >= all->game.r.width)
-		all->sp.end_dx = all->game.r.width - 1;
-	all->sp.stripe = all->sp.start_dx;
+	dy = all->sp.start_dy;
+	while (dy < all->sp.end_dy)
+	{
+		d = (dy) * 256 - all->game.r.height * 128 + all->sp.sp_h * 128;
+		all->sp.tex_y = ((d * all->info.tex_h) / all->sp.sp_h) / 256;
+		all->info.color = all->info.tex[4]
+			[all->info.tex_w * all->sp.tex_y + all->sp.tex_x];
+		if ((all->info.color & 0x00FFFFFF) != 0)
+			all->info.buf[dy][all->sp.stripe] = all->info.color;
+		dy++;
+	}
 }
 
 void	ft_paint_sprite(t_all *all)
 {
 	int	dy;
-	int	d;
 
 	while (all->sp.stripe < all->sp.end_dx)
 	{
@@ -61,16 +43,7 @@ void	ft_paint_sprite(t_all *all)
 			all->sp.tran_y < all->sp.z_buf[all->sp.stripe])
 		{
 			dy = all->sp.start_dy;
-			while (dy < all->sp.end_dy)
-			{
-				d = (dy)*256 - all->game.r.height * 128 + all->sp.sp_h * 128;
-				all->sp.tex_y = ((d * all->info.tex_h) / all->sp.sp_h) / 256;
-				all->info.color =
-					all->info.tex[4][all->info.tex_w * all->sp.tex_y + all->sp.tex_x];
-				if ((all->info.color & 0x00FFFFFF) != 0)
-					all->info.buf[dy][all->sp.stripe] = all->info.color;
-				dy++;
-			}
+			ft_paint_sprite_detail(all, dy);
 		}
 		all->sp.stripe++;
 	}

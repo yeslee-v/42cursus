@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 13:25:13 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/11 22:32:59 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/12 17:02:44 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int		ft_check_atoi(char *s)
 {
-	char *trim_s;
-	int	i;
-	int ret;
+	int		i;
+	int		ret;
+	char	*trim_s;
 
-	i = 0;:wq	
+	i = 0;
 	trim_s = ft_strtrim(s, " ");
 	while (trim_s[i])
 	{
@@ -27,19 +27,20 @@ int		ft_check_atoi(char *s)
 		i++;
 	}
 	ret = ft_atoi(trim_s);
-//	free(trim_s);
+	free(trim_s);
 	return (ret);
 }
 
 void	ft_put_size(char *line, t_game *game)
 {
-	char **res;
-	int	value;
+	int		i;
+	int		value;
+	char	**res;
 
 	if (game->r.width || game->r.height)
 		ft_error_message(5);
 	res = ft_split(line, ' ');
-	int i = -1;
+	i = -1;
 	while (res[++i])
 	{
 		value = ft_check_atoi(res[i]);

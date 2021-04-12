@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 20:48:22 by yeslee            #+#    #+#             */
-/*   Updated: 2021/03/26 16:40:30 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/12 17:44:44 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
 
 int		get_next_line(int fd, char **line);
 char	*ft_strdup_gnl(char *c);

@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:30:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/09 11:49:17 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/12 18:21:12 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_write_pixel(int fd, t_all *all)
 	char	color[3];
 	char	padding[3];
 	int		padding_size;
-	
+
 	ft_bzero(padding, 3);
 	padding_size = (4 - (all->game.r.width * IMG_DEPTH) % 4) % 4;
 	i = all->game.r.height;
@@ -35,7 +35,8 @@ void	ft_write_pixel(int fd, t_all *all)
 		j = -1;
 		while (++j < all->game.r.width)
 		{
-			write_int(color, all->img.data[i * all->img.size_l / all->img.bpp * 8 + j]);
+			write_int(color,
+					all->img.data[i * all->img.size_l / all->img.bpp * 8 + j]);
 			write(fd, color, 3);
 		}
 		write(fd, padding, padding_size);

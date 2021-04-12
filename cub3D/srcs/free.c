@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 19:51:19 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/11 22:04:58 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/12 17:33:22 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_free_char(char **map)
 {
 	int i;
 
+	if (map == NULL)
+		return ;
 	i = 0;
 	while (map[i])
 	{

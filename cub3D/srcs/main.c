@@ -6,13 +6,13 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 18:30:21 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/11 21:53:52 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/12 11:40:52 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_map_parsing_intro(int ac, char **av, t_all *all)
+void		ft_map_parsing_intro(int ac, char **av, t_all *all)
 {
 	int		fd;
 	char	*line;
@@ -22,12 +22,10 @@ void	ft_map_parsing_intro(int ac, char **av, t_all *all)
 	while ((get_next_line(fd, &line)) > 0)
 	{
 		if (ft_strlen(line) > 2)
-		{
 			ft_read_line(line, all);
-			free(line);
-		}
+		free(line);
 	}
-	if (get_next_line(fd, &line) == -1)
+	if (line != NULL)
 		free(line);
 	if (!(all->map.cnt_exist))
 		ft_error_message(7);
@@ -35,10 +33,10 @@ void	ft_map_parsing_intro(int ac, char **av, t_all *all)
 	close(fd);
 }
 
-int	main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_all	all;
-	
+
 	ft_map_parsing_intro(ac, av, &all);
 	ft_t_info_init(&all);
 	ft_mlx_intro(&all);
