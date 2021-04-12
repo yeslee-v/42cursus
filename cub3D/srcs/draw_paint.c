@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 14:45:15 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/12 16:58:33 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/12 19:12:13 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	ft_load_image(t_info *info, int *texture, char *path, t_img *img)
 
 	img->img = mlx_xpm_file_to_image(info->mlx, path, &img->img_width,
 			&img->img_height);
+	if (!(img->img))
+		ft_error_message(11);
 	img->data = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->size_l,
 			&img->endian);
 	y = 0;
