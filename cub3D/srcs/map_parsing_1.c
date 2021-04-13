@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:53:02 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/11 20:22:01 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/13 11:50:03 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,6 @@ void	ft_read_line(char *line, t_all *all)
 		ft_put_color((line + 2), all->game.f, &(all->game));
 	else if ((line[0] == 'C') && (ft_isspace(line[1])))
 		ft_put_color((line + 2), all->game.c, &(all->game));
+	else
+		printf("res:%s\n", line);
 }

@@ -1,4 +1,5 @@
-R 315 315
+R 315 45
+315
 NO ./pics/wall_n.xpm
 SO ./pics/wall_s.xpm
 WE ./pics/wall_w.xpm

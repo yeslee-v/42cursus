@@ -6,11 +6,17 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 20:44:47 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/12 17:13:57 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/13 11:54:57 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int		ft_close_main(void)
+{
+	exit(0);
+	return (0);
+}
 
 int		ft_calc_save_map(t_all *all)
 {
@@ -56,6 +62,7 @@ int		ft_mlx_intro(t_all *all)
 	if (all->save.pic)
 		ft_save_bmp_intro(all);
 	mlx_hook(all->info.win, X_EVENT_KEY_PRESS, 0, &ft_press_key, all);
+	mlx_hook(all->info.win, X_EVENT_KEY_EXIT, 17, &ft_close_main, all);
 	mlx_loop(all->info.mlx);
 	return (0);
 }
