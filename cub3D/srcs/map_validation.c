@@ -6,11 +6,29 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 20:29:35 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/12 17:38:55 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/13 15:48:24 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	ft_dfs(t_all *all, int **dfs_map, int i, int j)
+{
+	dfs_map[i][j] = 9;
+	if (((i - 1) >= 0) && (dfs_map[i - 1][j] != 1) && (dfs_map[i - 1][j] != 9))
+		ft_dfs(all, dfs_map, (i - 1), j);
+	else if (((i + 1) < all->map.row) && (dfs_map[i + 1][j] != 1) &&
+		(dfs_map[i + 1][j] != 9))
+		ft_dfs(all, dfs_map, (i + 1), j);
+	else if (((j - 1) >= 0) && (dfs_map[i][j - 1] != 1) &&
+			(dfs_map[i][j - 1] != 9))
+		ft_dfs(all, dfs_map, i, (j - 1));
+	else if (((j + 1) < all->map.col) && (dfs_map[i][j + 1] != 1) &&
+		(dfs_map[i][j + 1] != 9))
+		ft_dfs(all, dfs_map, i, (j + 1));
+	else
+		return ;
+}
 
 void	ft_dfs_essential(t_all *all, int **dfs_map)
 {
@@ -59,24 +77,6 @@ void	ft_dfs_intro(t_all *all, int **dfs_map)
 		i++;
 	}
 	ft_dfs_essential(all, dfs_map);
-}
-
-void	ft_dfs(t_all *all, int **dfs_map, int i, int j)
-{
-	dfs_map[i][j] = 9;
-	if (((i - 1) >= 0) && (dfs_map[i - 1][j] != 1) && (dfs_map[i - 1][j] != 9))
-		ft_dfs(all, dfs_map, (i - 1), j);
-	else if (((i + 1) < all->map.row) && (dfs_map[i + 1][j] != 1) &&
-		(dfs_map[i + 1][j] != 9))
-		ft_dfs(all, dfs_map, (i + 1), j);
-	else if (((j - 1) >= 0) && (dfs_map[i][j - 1] != 1) &&
-			(dfs_map[i][j - 1] != 9))
-		ft_dfs(all, dfs_map, i, (j - 1));
-	else if (((j + 1) < all->map.col) && (dfs_map[i][j + 1] != 1) &&
-		(dfs_map[i][j + 1] != 9))
-		ft_dfs(all, dfs_map, i, (j + 1));
-	else
-		return ;
 }
 
 int		ft_map_validation(t_all *all, int **dfs_map, int *i, int *j)

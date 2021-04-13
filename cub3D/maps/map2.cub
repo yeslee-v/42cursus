@@ -1,4 +1,4 @@
-R 640 480
+R 33640 33480
 
 NO ./pics/wall_n.xpm
 SO ./pics/wall_s.xpm

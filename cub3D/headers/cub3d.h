@@ -235,6 +235,9 @@ void			ft_put_size(char *line, t_game *game);
 void			ft_put_image(char *line, char **img, t_game *game);
 void			ft_put_color(char *line, int *rgb, t_game *game);
 
+int				ft_cnt_comma(char *line);
+int				ft_check_atoi(char *s);
+
 void			ft_read_map(char *line, t_all *all);
 void			ft_input_map(char *line, t_all *all, int len);
 

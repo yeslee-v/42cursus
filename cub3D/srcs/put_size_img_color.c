@@ -6,29 +6,27 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 13:25:13 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/13 11:45:12 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/13 17:46:13 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_check_atoi(char *s)
+void	ft_set_size(int i, int value, t_game *game)
 {
-	int		i;
-	int		ret;
-	char	*trim_s;
-
-	i = 0;
-	trim_s = ft_strtrim(s, " ");
-	while (trim_s[i])
+	if (value)
 	{
-		if (!(ft_isdigit(trim_s[i])))
-			ft_error_message(4);
-		i++;
+		if (value < 200)
+			value = 200;
+		if (!i)
+			game->r.width = value;
+		else if (i == 1)
+			game->r.height = value;
+		else if (i == 2)
+			ft_error_message(1);
 	}
-	ret = ft_atoi(trim_s);
-	free(trim_s);
-	return (ret);
+	else
+		ft_error_message(6);
 }
 
 void	ft_put_size(char *line, t_game *game)
@@ -44,19 +42,9 @@ void	ft_put_size(char *line, t_game *game)
 	while (res[++i])
 	{
 		value = ft_check_atoi(res[i]);
-		if (value)
-		{
-			if (value < 200)
-				value = 200;
-			if (!i)
-				game->r.width = value;
-			else if (i == 1)
-				game->r.height = value;
-			else if (i == 2)
-				ft_error_message(1);
-		}
-		else
-			ft_error_message(6);
+		if ((value == -1) || !(value))
+			ft_error_message(3);
+		ft_set_size(i, value, game);
 	}
 	game->cnt++;
 	ft_free_char(res);
@@ -75,6 +63,14 @@ void	ft_put_image(char *line, char **img, t_game *game)
 	game->cnt++;
 }
 
+void	ft_put_color_ex(char *line, int *rgb)
+{
+	if (*rgb)
+		ft_error_message(5);
+	if (ft_cnt_comma(line) != 2)
+		ft_error_message(6);
+}
+
 void	ft_put_color(char *line, int *rgb, t_game *game)
 {
 	char	**res;
@@ -82,8 +78,7 @@ void	ft_put_color(char *line, int *rgb, t_game *game)
 	int		len;
 	int		i;
 
-	if (*rgb)
-		ft_error_message(5);
+	ft_put_color_ex(line, rgb);
 	res = ft_split(line, ',');
 	len = ft_double_strlen(res);
 	if (len == 3)

@@ -6,17 +6,24 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 16:33:38 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/11 22:11:58 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/13 19:32:40 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-int		ft_atoi(const char *str)
+static int	ft_check_flow(int sign, long tmp)
 {
-	int	sign;
-	int cnt;
-	int	result;
+	if (((sign * tmp) < -2147483648) || ((sign * tmp) > 2147483647))
+		return (1);
+	return (0);
+}
+
+int			ft_atoi(const char *str)
+{
+	int		sign;
+	long	tmp;
 
 	sign = 1;
 	while (*str == ' ' || (*str >= 9 && *str <= 13))
@@ -25,17 +32,13 @@ int		ft_atoi(const char *str)
 		sign = -1;
 	if (*str == '-' || *str == '+')
 		str++;
-	cnt = 0;
-	result = 0;
+	tmp = 0;
 	while ((*str >= '0') && (*str <= '9'))
 	{
-		result = (result * 10) + (*str - '0');
+		if (ft_check_flow(sign, tmp))
+			return (0);
+		tmp = (tmp * 10) + (*str - '0');
 		str++;
-		cnt++;
 	}
-	if (cnt >= 19 && sign == 1)
-		return (-1);
-	else if (cnt >= 19 && sign == -1)
-		return (0);
-	return (sign * result);
+	return (sign * (int)tmp);
 }

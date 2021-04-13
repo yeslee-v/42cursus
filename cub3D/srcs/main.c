@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 18:30:21 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/12 11:40:52 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/13 17:28:56 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		ft_map_parsing_intro(int ac, char **av, t_all *all)
 	fd = ft_check_error(ac, av);
 	while ((get_next_line(fd, &line)) > 0)
 	{
-		if (ft_strlen(line) > 2)
+		if (ft_strlen(line) > 0)
 			ft_read_line(line, all);
 		free(line);
 	}
@@ -40,6 +40,5 @@ int			main(int ac, char **av)
 	ft_map_parsing_intro(ac, av, &all);
 	ft_t_info_init(&all);
 	ft_mlx_intro(&all);
-	system("leaks checker");
 	return (0);
 }

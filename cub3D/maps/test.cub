@@ -1,0 +1,18 @@
+R -234234234234347234234 -223423423423423417483647
+
+NO pics/wall_n.xpm
+SO pics/wall_s.xpm
+EA pics/wall_e.xpm
+WE pics/wall_w.xpm
+
+S pics/sprite.xpm
+
+C 173   ,     201       ,59
+F 25,235,0
+
+1111111
+11020201
+1002000111
+100020000N1
+1020001111
+1111111

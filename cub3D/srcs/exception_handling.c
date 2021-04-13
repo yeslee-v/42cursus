@@ -34,7 +34,7 @@ void	ft_error_message(int error_num)
 	else if (error_num == 3)
 		printf("ERROR: %s\n", strerror(errno));
 	else if (error_num == 4)
-		perror("It is not a number\n");
+		perror("It is not a number or is a negative number\n");
 	else if (error_num == 5)
 		perror("Parsing does not work\n");
 	else if (error_num == 6)

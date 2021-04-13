@@ -23,8 +23,9 @@ SRCS = ./include/get_next_line/get_next_line.c \
 	   ./srcs/parse_init.c \
 	   ./srcs/exception_handling.c \
 	   ./srcs/map_parsing_1.c \
-	   ./srcs/map_parsing_2.c \
+	   ./srcs/put_util.c \
 	   ./srcs/put_size_img_color.c \
+	   ./srcs/map_parsing_2.c \
 	   ./srcs/map_validation.c \
 	   ./srcs/mlx_main.c \
 	   ./srcs/mlx_init.c \
@@ -45,8 +46,9 @@ SRCS_BONUS = ./include/get_next_line/get_next_line.c \
 			 ./srcs/parse_init.c \
 			 ./srcs/exception_handling.c \
 			 ./srcs/map_parsing_1.c \
-			 ./srcs/map_parsing_2.c \
+			 ./srcs/put_util.c \
 			 ./srcs/put_size_img_color.c \
+			 ./srcs/map_parsing_2.c \
 			 ./srcs/map_validation.c \
 			 ./srcs/mlx_main_bonus.c \
 			 ./srcs/mlx_init.c \
@@ -89,6 +91,7 @@ $(NAME_BONUS) : $(OBJS_BONUS)
 
 clean :
 	$(RM) $(RMFLAGS) $(OBJS) $(OBJS_BONUS)
+	$(RM) $(RMFLAGS) $(LIBFT_NAME) $(MLX_NAME)
 	 make clean -C $(LIBFT)
 	 make clean -C $(MLX)
 
