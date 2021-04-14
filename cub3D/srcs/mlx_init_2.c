@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 21:51:29 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/12 18:58:43 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/14 14:42:01 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_allocate_sprite(t_all *all)
 	k = 0;
 	all->sp.sprite = calloc(sizeof(t_sprite), all->map.num_sp);
 	if (!(all->sp.sprite))
-		return ;
+		ft_error_message(10);
 	while (i < all->map.row)
 	{
 		j = 0;
