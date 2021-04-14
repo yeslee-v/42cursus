@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 14:45:15 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/12 19:12:13 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/14 14:30:13 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	ft_paint_f_c(t_all *all)
 		y = 0;
 		while (y < all->game.r.height)
 		{
-			all->info.buf[y][x] = ((all->game.c[0] * 256 * 256) +
-					(all->game.c[1] * 256) + all->game.c[2]);
+			all->info.buf[y][x] = ((all->game.f[0] * 256 * 256) +
+					(all->game.f[1] * 256) + all->game.f[2]);
 			all->info.buf[all->game.r.height - y - 1][x] =
-				((all->game.f[0] * 256 * 256) +
-				(all->game.f[1] * 256) + all->game.f[2]);
+				((all->game.c[0] * 256 * 256) +
+				(all->game.c[1] * 256) + all->game.c[2]);
 			y++;
 		}
 		x++;
