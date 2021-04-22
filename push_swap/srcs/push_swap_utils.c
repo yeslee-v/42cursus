@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:52:28 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/21 22:14:44 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/22 15:38:57 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,8 @@ int		ft_check_same(char **av)
 		j = i;
 		while (av[++j])
 		{
-			if (av[i] == av[j])
-				ft_error_message(); // error
-			printf("%s : %s\n", av[i], av[j]);
+			if (ft_check_atoi(av[i]) == ft_check_atoi(av[j]))
+				ft_error_message();
 		}
 	}
 	return (len);
