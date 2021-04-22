@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   write_result.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 18:21:06 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/22 16:55:41 by yeslee           ###   ########.fr       */
+/*   Created: 2021/04/22 16:52:59 by yeslee            #+#    #+#             */
+/*   Updated: 2021/04/22 16:54:14 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-#include "../include/libft/libft.h"
-#include "../headers/get_next_line.h"
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <stdio.h>
+void	ft_ok()
+{
+	write(1, "OK\n", 3);
+	exit(0);
+}
 
-int		main(int ac, char **av);
+void	ft_ko()
+{
+	write(1, "KO\n", 3);
+	exit(0);
+}
 
-void	ft_ok();
-void	ft_ko();
-void	ft_error_message();
-
-int		ft_check_atoi(char *s);
-int		ft_double_strlen(char **s);
-int		ft_check_same(char **av);
-
-#endif
+void	ft_error_message()
+{
+	write(2, "Error\n", 6);
+	exit(0);
+}

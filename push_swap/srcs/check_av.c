@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   check_av.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 18:52:28 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/22 15:38:57 by yeslee           ###   ########.fr       */
+/*   Created: 2021/04/22 16:54:54 by yeslee            #+#    #+#             */
+/*   Updated: 2021/04/22 16:57:46 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_error_message()
-{
-	write(2, "Error\n", 6);
-	exit(0);
-}
 
 int		ft_check_atoi(char *s)
 {
@@ -57,6 +51,7 @@ int		ft_check_same(char **av)
 		j = i;
 		while (av[++j])
 		{
+			printf("%d\n", ft_check_atoi(av[i]));
 			if (ft_check_atoi(av[i]) == ft_check_atoi(av[j]))
 				ft_error_message();
 		}

@@ -15,12 +15,14 @@ RMFLAGS = -f
 SRCS_C = ./include/get_next_line/get_next_line.c \
 		 ./include/get_next_line/get_next_line_utils.c \
 		 ./srcs/main.c \
-		 ./srcs/push_swap_utils.c
+		 ./srcs/check_av.c \
+		 ./srcs/write_result.c
 
 SRCS_P = ./include/get_next_line/get_next_line.c \
 		 ./include/get_next_line/get_next_line_utils.c \
 		 ./srcs/main.c \
-		 ./srcs/push_swap_utils.c
+		 ./srcs/check_av.c \
+		 ./srcs/write_result.c
 
 OBJS_C = $(SRCS_C:.c=.o)
 OBJS_P = $(SRCS_P:.c=.o)
