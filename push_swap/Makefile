@@ -25,14 +25,12 @@ SRCS_P = ./include/get_next_line/get_next_line.c \
 OBJS_C = $(SRCS_C:.c=.o)
 OBJS_P = $(SRCS_P:.c=.o)
 
-all : $(NAME_C)
+all : $(NAME_C) $(NAME_P)
 
 $(NAME_C) : $(OBJS_C)
 	@make all -C $(LIBFT)
 	@cp $(LIBFT)/$(LIBFT_NAME) $(LIBFT_NAME)
 	$(CC) $(CFLAGES) -L. -lft $(LFLAGES) $(LIBS) -o $@ $^
-
-p_s : $(NAME_P)
 
 $(NAME_P) : $(OBJS_P)
 	@make all -C $(LIBFT)
