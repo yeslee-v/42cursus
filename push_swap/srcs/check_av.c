@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 16:54:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/22 16:57:46 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/23 17:30:01 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		ft_check_atoi(char *s)
 	return (ret);
 }
 
-int		ft_double_strlen(char **s)
+/*int		ft_double_strlen(char **s)
 {
 	int	i;
 
@@ -36,25 +36,21 @@ int		ft_double_strlen(char **s)
 	while (s[i])
 		i++;
 	return (i);
-}
+}*/
 
 int		ft_check_same(char **av)
 {
 	int i;
 	int j;
-	int	len;
-
-	len = ft_double_strlen(av) - 1;
 	i = 0;
 	while (av[++i])
 	{
 		j = i;
 		while (av[++j])
 		{
-			printf("%d\n", ft_check_atoi(av[i]));
 			if (ft_check_atoi(av[i]) == ft_check_atoi(av[j]))
 				ft_error_message();
 		}
 	}
-	return (len);
+	return (0);
 }
