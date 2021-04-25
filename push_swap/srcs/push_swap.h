@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:21:06 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/22 16:55:41 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/25 18:26:25 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,20 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <stdio.h>
+
+typedef struct	s_a
+{
+	char *a_data;
+	struct s_a *a_next;
+	struct s_a *a_prev;
+}				t_a;
+
+typedef struct	s_b
+{
+	char *b_data;
+	struct s_b *b_next;
+	struct s_b *b_prev;
+}				t_b;
 
 int		main(int ac, char **av);
 

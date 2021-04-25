@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:20:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/23 15:22:05 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/25 18:15:24 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int main(int ac, char **av)
 	}
 	int i = 0;
 	while (av[++i])
-		//printf("len:%d|%s\n", ft_check_same(av), av[i]);
-		printf("len:%s\n", av[i]);
+		printf("len:%d|%s\n", ft_check_same(av), av[i]);
 	return (0);
 }
