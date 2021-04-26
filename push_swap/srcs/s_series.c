@@ -1,47 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_av.c                                         :+:      :+:    :+:   */
+/*   s_series.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/22 16:54:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/23 17:30:01 by yeslee           ###   ########.fr       */
+/*   Created: 2021/04/26 12:42:17 by yeslee            #+#    #+#             */
+/*   Updated: 2021/04/26 17:40:15 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_check_atoi(char *s)
+void	ft_sa(t_node *node)
 {
-	int		i;
-	int		ret;
+	int	tmp;
 
-	i = 0;
-	while (s[i])
-	{
-		if (!(ft_isdigit(s[i])))
-			ft_error_message();
-		i++;
-	}
-	ret = ft_atoi(s);
-	return (ret);
+	if (!(node))
+		return ;
+	printf("ft:%d\n", node->data);
+	tmp = node->data;
+	node->data = node->next->data;
+	node->next->data = tmp;
 }
 
-int		ft_check_same(char **av)
-{
-	int i;
-	int j;
+// void	ft_sb(t_node *node)
+// {
+// 	int	tmp;
 
-	i = -1;
-	while (av[++i])
-	{
-		j = i;
-		while (av[++j])
-		{
-			if (ft_check_atoi(av[i]) == ft_check_atoi(av[j]))
-				ft_error_message();
-		}
-	}
-	return (ft_check_atoi(*av));
-}
+// 	if (!(node))
+// 		return ;
+// 	tmp = node->data;
+// 	node->data = node->next->data;
+// 	node->next->data = tmp;
+// }

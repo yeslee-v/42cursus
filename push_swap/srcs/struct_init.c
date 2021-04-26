@@ -1,47 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_av.c                                         :+:      :+:    :+:   */
+/*   struct_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/22 16:54:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/23 17:30:01 by yeslee           ###   ########.fr       */
+/*   Created: 2021/04/26 14:14:17 by yeslee            #+#    #+#             */
+/*   Updated: 2021/04/26 20:08:35 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_check_atoi(char *s)
+t_node	*ft_get_node(void)
 {
-	int		i;
-	int		ret;
+	t_node	*new;
 
-	i = 0;
-	while (s[i])
-	{
-		if (!(ft_isdigit(s[i])))
-			ft_error_message();
-		i++;
-	}
-	ret = ft_atoi(s);
-	return (ret);
+	if (!(new = malloc(sizeof(t_node))))
+		return (0);
+	new->prev = NULL;
+	new->next = NULL;
+	return (new);
 }
 
-int		ft_check_same(char **av)
+t_lst	*ft_init_list(void)
 {
-	int i;
-	int j;
+	t_lst	*lst;
 
-	i = -1;
-	while (av[++i])
-	{
-		j = i;
-		while (av[++j])
-		{
-			if (ft_check_atoi(av[i]) == ft_check_atoi(av[j]))
-				ft_error_message();
-		}
-	}
-	return (ft_check_atoi(*av));
+	if (!(lst = malloc(sizeof(t_lst))))
+		return (0);
+	lst->head = NULL;
+	lst->num = 0;
+	return (lst);
 }

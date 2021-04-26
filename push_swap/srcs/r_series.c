@@ -1,47 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_av.c                                         :+:      :+:    :+:   */
+/*   r_series.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/22 16:54:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/23 17:30:01 by yeslee           ###   ########.fr       */
+/*   Created: 2021/04/26 15:02:18 by yeslee            #+#    #+#             */
+/*   Updated: 2021/04/26 17:40:10 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_check_atoi(char *s)
+void	ft_ra(t_list_a *lst_a, int n)
 {
-	int		i;
-	int		ret;
+	lst_a	*tmp;
 
-	i = 0;
-	while (s[i])
-	{
-		if (!(ft_isdigit(s[i])))
-			ft_error_message();
-		i++;
-	}
-	ret = ft_atoi(s);
-	return (ret);
+	tmp = lst_a;
+	if (!(lst_a))
+		return ;
+	while (lst_a->next)
+		lst_a = lst_a->next;
+	lst_a->next = tmp;
+	tmp->next = NULL;
 }
 
-int		ft_check_same(char **av)
+/*void	ft_rb(t_list_b *lst_b, int n)
 {
-	int i;
-	int j;
 
-	i = -1;
-	while (av[++i])
-	{
-		j = i;
-		while (av[++j])
-		{
-			if (ft_check_atoi(av[i]) == ft_check_atoi(av[j]))
-				ft_error_message();
-		}
-	}
-	return (ft_check_atoi(*av));
-}
+}*/

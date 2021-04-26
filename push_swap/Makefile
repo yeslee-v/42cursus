@@ -4,7 +4,7 @@ NAME_P = push_swap
 HEADER = -I ./headers
 
 CC = gcc
-CFLAGES = -Wall -Wextra -Werror
+CFLAGES = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 LIBFT = ./include/libft
 LIBFT_NAME = libft.a
@@ -15,14 +15,24 @@ RMFLAGS = -f
 SRCS_C = ./include/get_next_line/get_next_line.c \
 		 ./include/get_next_line/get_next_line_utils.c \
 		 ./srcs/main.c \
+		 ./srcs/write_result.c \
+		 ./srcs/struct_init.c \
 		 ./srcs/check_av.c \
-		 ./srcs/write_result.c
+		 #./srcs/s_series.c \
+		 ./srcs/r_series.c \
+		 ./srcs/rr_series.c \
+		 ./srcs/p_series.c
 
 SRCS_P = ./include/get_next_line/get_next_line.c \
 		 ./include/get_next_line/get_next_line_utils.c \
 		 ./srcs/main.c \
+		 ./srcs/write_result.c \
+		 ./srcs/struct_init.c \
 		 ./srcs/check_av.c \
-		 ./srcs/write_result.c
+		 #./srcs/s_series.c \
+		 #./srcs/r_series.c \
+		 ./srcs/rr_series.c \
+		 ./srcs/p_series.c
 
 OBJS_C = $(SRCS_C:.c=.o)
 OBJS_P = $(SRCS_P:.c=.o)

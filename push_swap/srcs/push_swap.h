@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:21:06 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/25 18:26:25 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/26 20:08:57 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,21 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-typedef struct	s_a
+typedef struct	s_node
 {
-	char *a_data;
-	struct s_a *a_next;
-	struct s_a *a_prev;
-}				t_a;
+	int	data;
+	struct s_node *next;
+	struct s_node *prev;
+}				t_node;
 
-typedef struct	s_b
+typedef struct	s_lst
 {
-	char *b_data;
-	struct s_b *b_next;
-	struct s_b *b_prev;
-}				t_b;
+	t_node		*head;
+	int			num;
+}				t_lst;
+
+t_node	*ft_get_node(void);
+t_lst	*ft_init_list(void);
 
 int		main(int ac, char **av);
 
@@ -43,5 +45,17 @@ void	ft_error_message();
 int		ft_check_atoi(char *s);
 int		ft_double_strlen(char **s);
 int		ft_check_same(char **av);
+
+/*void	ft_sa(t_node *node);
+void	ft_sb(t_node *node);
+
+void	ft_ra(t_list_a *lst_a);
+void	ft_rb(t_list_b *lst_b);
+
+void	ft_rra(t_list_a *lst_a);
+void	ft_rrb(t_list_b *lst_b);
+
+void	ft_pa(t_list_a *lst_a);
+void	ft_pb(t_list_b *lst_b);*/
 
 #endif
