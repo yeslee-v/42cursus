@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:21:06 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/26 20:08:57 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/27 17:27:52 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_node
 typedef struct	s_lst
 {
 	t_node		*head;
+	t_node		*tail;
 	int			num;
 }				t_lst;
 
@@ -46,11 +47,11 @@ int		ft_check_atoi(char *s);
 int		ft_double_strlen(char **s);
 int		ft_check_same(char **av);
 
-/*void	ft_sa(t_node *node);
-void	ft_sb(t_node *node);
+void	ft_sa(t_lst *lst);
+void	ft_sb(t_lst *lst);
 
-void	ft_ra(t_list_a *lst_a);
-void	ft_rb(t_list_b *lst_b);
+void	ft_ra(t_lst *lst);
+/*void	ft_rb(t_lst *lst);
 
 void	ft_rra(t_list_a *lst_a);
 void	ft_rrb(t_list_b *lst_b);

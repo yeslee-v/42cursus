@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:20:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/26 20:09:39 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/27 17:38:27 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int main(int ac, char **av)
 {
 	int		i;
 	t_lst	*lst;
-	t_node	*header;
-	t_node	*tail;
+	t_node	*new;
 
 	if (ac == 1)
 		ft_error_message();
@@ -28,22 +27,36 @@ int main(int ac, char **av)
 	}
 	i = 0;
 	lst = ft_init_list();
-	header = ft_get_node();
-	tail = ft_get_node();
-	header->next = tail;
-	header = tail->prev;
+	
 	lst->head = ft_get_node();
-	header->next = lst->head; // 값이 들어오는 인자는 header와 tail사이에 삽입 
+	lst->tail = ft_get_node();
+	
+	lst->head->next = lst->tail;
+	lst->head->prev = lst->tail;
+	lst->tail->next = lst->head;
+	lst->tail->prev = lst->head;
 	while (av[++i])
 	{
-		lst->head = ft_get_node();
-		lst->head->data = ft_check_same(&av[i]);
-		lst->head = lst->head->next;
+		new = ft_get_node();
+		new->data = ft_check_same(&av[i]);
+		
+		if ((!(lst->head->data) && (!(lst->tail->data))))
+		{
+			lst->head = new;
+			lst->tail = new;
+		}
+		else
+		{
+			lst->tail->next = new;
+			new->prev = lst->tail;
+			lst->tail = new;
+		}
 		//free(lst->head);
 		lst->num++;
 	}
-//	printf("tmp:%d\n", tmp->data);
-//	ft_sa(tmp);
-//	printf("sa:%d\n", lst->head->data);
+	ft_sa(lst);
+	ft_sb(lst);
+	ft_ra(lst);
+	//ft_rb(lst);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 14:14:17 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/26 20:08:35 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/27 16:41:49 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_node	*ft_get_node(void)
 
 	if (!(new = malloc(sizeof(t_node))))
 		return (0);
+	new->data = 0;
 	new->prev = NULL;
 	new->next = NULL;
 	return (new);

@@ -18,9 +18,9 @@ SRCS_C = ./include/get_next_line/get_next_line.c \
 		 ./srcs/write_result.c \
 		 ./srcs/struct_init.c \
 		 ./srcs/check_av.c \
-		 #./srcs/s_series.c \
+		 ./srcs/s_series.c \
 		 ./srcs/r_series.c \
-		 ./srcs/rr_series.c \
+		 #./srcs/rr_series.c \
 		 ./srcs/p_series.c
 
 SRCS_P = ./include/get_next_line/get_next_line.c \
@@ -29,9 +29,9 @@ SRCS_P = ./include/get_next_line/get_next_line.c \
 		 ./srcs/write_result.c \
 		 ./srcs/struct_init.c \
 		 ./srcs/check_av.c \
-		 #./srcs/s_series.c \
-		 #./srcs/r_series.c \
-		 ./srcs/rr_series.c \
+		 ./srcs/s_series.c \
+		 ./srcs/r_series.c \
+		 #./srcs/rr_series.c \
 		 ./srcs/p_series.c
 
 OBJS_C = $(SRCS_C:.c=.o)

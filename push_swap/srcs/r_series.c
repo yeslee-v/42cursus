@@ -6,23 +6,36 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 15:02:18 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/26 17:40:10 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/27 18:33:33 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_ra(t_list_a *lst_a, int n)
+void	ft_ra(t_lst *lst)
 {
-	lst_a	*tmp;
+	t_node	*tail_tmp;
 
-	tmp = lst_a;
-	if (!(lst_a))
-		return ;
-	while (lst_a->next)
-		lst_a = lst_a->next;
-	lst_a->next = tmp;
-	tmp->next = NULL;
+	tail_tmp = ft_get_node();
+/*	printf("before\n");
+	while (lst->head)
+	{
+		printf("%d\n", lst->head->data);
+		lst->head = lst->head->next;
+	}*/
+	tmp = lst->tail->data;
+	while (lst->)
+	{
+		
+	}
+	lst->tail->data = lst->tail->prev->data;
+	lst->head->data = tmp;
+	printf("after\n");
+	while (lst->head)
+	{
+		printf("%d\n", lst->head->data);
+		lst->head = lst->head->next;
+	}
 }
 
 /*void	ft_rb(t_list_b *lst_b, int n)
