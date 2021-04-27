@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:20:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/27 17:38:27 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/28 01:10:58 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ int main(int ac, char **av)
 	ft_sa(lst);
 	ft_sb(lst);
 	ft_ra(lst);
-	//ft_rb(lst);
+	ft_rb(lst);
+	ft_rra(lst);
+	// ft_rrb(lst);
+	// ft_pa(lst);
+	// ft_pb(lst);
 	return (0);
 }

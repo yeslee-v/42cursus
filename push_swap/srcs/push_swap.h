@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:21:06 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/27 17:27:52 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/28 01:06:21 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ void	ft_sa(t_lst *lst);
 void	ft_sb(t_lst *lst);
 
 void	ft_ra(t_lst *lst);
-/*void	ft_rb(t_lst *lst);
+void	ft_rb(t_lst *lst);
 
-void	ft_rra(t_list_a *lst_a);
-void	ft_rrb(t_list_b *lst_b);
+void	ft_rra(t_lst *lst);
+void	ft_rrb(t_lst *lst);
 
-void	ft_pa(t_list_a *lst_a);
+/*void	ft_pa(t_list_a *lst_a);
 void	ft_pb(t_list_b *lst_b);*/
 
 #endif
