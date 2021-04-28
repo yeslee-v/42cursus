@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:21:06 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/28 01:06:21 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/28 22:10:32 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ typedef struct	s_lst
 {
 	t_node		*head;
 	t_node		*tail;
-	int			num;
+	int			cnt;
 }				t_lst;
 
-t_node	*ft_get_node(void);
-t_lst	*ft_init_list(void);
+t_node	*ft_get_node(t_node *new);
+t_lst	*ft_init_list(t_lst *lst);
 
 int		main(int ac, char **av);
 
@@ -47,16 +47,14 @@ int		ft_check_atoi(char *s);
 int		ft_double_strlen(char **s);
 int		ft_check_same(char **av);
 
-void	ft_sa(t_lst *lst);
-void	ft_sb(t_lst *lst);
+void	ft_node_init(t_lst *lst, int value);
 
-void	ft_ra(t_lst *lst);
-void	ft_rb(t_lst *lst);
+void	ft_check_error(int ac);
 
-void	ft_rra(t_lst *lst);
-void	ft_rrb(t_lst *lst);
-
-/*void	ft_pa(t_list_a *lst_a);
-void	ft_pb(t_list_b *lst_b);*/
+void	ft_s(t_lst *lst);
+void	ft_r(t_lst *lst);
+void	ft_rr(t_lst *lst);
+void	ft_del(t_lst *t);
+int		ft_p(t_lst *a, t_lst *b);
 
 #endif

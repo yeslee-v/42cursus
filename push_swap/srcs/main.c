@@ -6,61 +6,52 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:20:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/28 01:10:58 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/28 22:11:50 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	ft_node_init(t_lst *lst, int value)
+{
+	t_node *new;
+
+	new = NULL;
+	new = ft_get_node(new);
+	new->data = value;
+
+	if (!(lst->head) && !(lst->tail))
+	{
+		new->next = new;
+		new->prev = new;
+		lst->head = new;
+		lst->tail = new;
+	}
+	else
+	{
+		lst->tail->next = new;
+		new->prev = lst->tail;
+		lst->tail = new;
+		lst->head->prev = lst->tail;
+		lst->tail->next = lst->head;
+	}
+	lst->cnt++;
+}
+
 int main(int ac, char **av)
 {
 	int		i;
-	t_lst	*lst;
-	t_node	*new;
+	t_lst	*lst_a;
+	t_lst	*lst_b;
 
-	if (ac == 1)
-		ft_error_message();
-	else if (ac == 2)
-	{
-		if (EOF)
-			ft_ok();
-	}
+	lst_a = NULL;
+	lst_b = NULL;
+	lst_a = ft_init_list(lst_a);
+	lst_b = ft_init_list(lst_b);
+	ft_check_error(ac);
+	
 	i = 0;
-	lst = ft_init_list();
-	
-	lst->head = ft_get_node();
-	lst->tail = ft_get_node();
-	
-	lst->head->next = lst->tail;
-	lst->head->prev = lst->tail;
-	lst->tail->next = lst->head;
-	lst->tail->prev = lst->head;
 	while (av[++i])
-	{
-		new = ft_get_node();
-		new->data = ft_check_same(&av[i]);
-		
-		if ((!(lst->head->data) && (!(lst->tail->data))))
-		{
-			lst->head = new;
-			lst->tail = new;
-		}
-		else
-		{
-			lst->tail->next = new;
-			new->prev = lst->tail;
-			lst->tail = new;
-		}
-		//free(lst->head);
-		lst->num++;
-	}
-	ft_sa(lst);
-	ft_sb(lst);
-	ft_ra(lst);
-	ft_rb(lst);
-	ft_rra(lst);
-	// ft_rrb(lst);
-	// ft_pa(lst);
-	// ft_pb(lst);
+		ft_node_init(lst_a, ft_check_same(&av[i]));
 	return (0);
 }

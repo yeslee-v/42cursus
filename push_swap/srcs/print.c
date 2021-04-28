@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rr_series.c                                        :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/28 01:05:14 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/28 01:16:07 by yeslee           ###   ########.fr       */
+/*   Created: 2021/04/28 22:08:42 by yeslee            #+#    #+#             */
+/*   Updated: 2021/04/28 22:09:04 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_rra(t_lst *lst)
+void	print_node(t_lst *t)
 {
-	t_node	*tmp;
+	t_node *tmp;
 
-	tmp = lst->head;
-	lst->tail = lst->tail->prev;
-	lst->tail->next = lst->head->next;
-	lst->head = tmp;
-	lst->head->prev = lst->tail->prev;
-	printf("%d %d\n", lst->head->data, lst->tail->data); // error
+	tmp = t->tail;
+	while (tmp)
+	{
+		printf("%d\n", tmp->data);
+		tmp = tmp->prev;
+		if (tmp == t->tail)
+			break ;
+	}
 }
