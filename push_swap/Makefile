@@ -15,7 +15,6 @@ RMFLAGS = -f
 SRCS_C = ./include/get_next_line/get_next_line.c \
 		 ./include/get_next_line/get_next_line_utils.c \
 		 ./srcs/main.c \
-		 ./srcs/error_handling.c \
 		 ./srcs/write_result.c \
 		 ./srcs/struct_init.c \
 		 ./srcs/check_av.c \
@@ -24,7 +23,6 @@ SRCS_C = ./include/get_next_line/get_next_line.c \
 SRCS_P = ./include/get_next_line/get_next_line.c \
 		 ./include/get_next_line/get_next_line_utils.c \
 		 ./srcs/main.c \
-		 ./srcs/error_handling.c \
 		 ./srcs/write_result.c \
 		 ./srcs/struct_init.c \
 		 ./srcs/check_av.c \
