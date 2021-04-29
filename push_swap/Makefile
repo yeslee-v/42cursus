@@ -17,16 +17,18 @@ SRCS_C = ./include/get_next_line/get_next_line.c \
 		 ./srcs/main.c \
 		 ./srcs/write_result.c \
 		 ./srcs/struct_init.c \
-		 ./srcs/check_av.c \
+		 ./srcs/check_ac_av.c \
 		 ./srcs/actions.c \
+		 ./srcs/parse_init.c \
 
 SRCS_P = ./include/get_next_line/get_next_line.c \
 		 ./include/get_next_line/get_next_line_utils.c \
 		 ./srcs/main.c \
 		 ./srcs/write_result.c \
 		 ./srcs/struct_init.c \
-		 ./srcs/check_av.c \
+		 ./srcs/check_ac_av.c \
 		 ./srcs/actions.c \
+		 ./srcs/parse_init.c \
 
 OBJS_C = $(SRCS_C:.c=.o)
 OBJS_P = $(SRCS_P:.c=.o)

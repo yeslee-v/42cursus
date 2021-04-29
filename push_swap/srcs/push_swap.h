@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:21:06 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/28 22:10:32 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/29 14:23:36 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_node	*ft_get_node(t_node *new);
 t_lst	*ft_init_list(t_lst *lst);
 
 int		main(int ac, char **av);
+void	ft_print_node(t_lst *stack);
 
 void	ft_ok();
 void	ft_ko();
@@ -46,7 +47,6 @@ void	ft_error_message();
 int		ft_check_atoi(char *s);
 int		ft_double_strlen(char **s);
 int		ft_check_same(char **av);
-
 void	ft_node_init(t_lst *lst, int value);
 
 void	ft_check_error(int ac);
@@ -56,5 +56,7 @@ void	ft_r(t_lst *lst);
 void	ft_rr(t_lst *lst);
 void	ft_del(t_lst *t);
 int		ft_p(t_lst *a, t_lst *b);
+
+void	ft_set_pivot(t_lst *stack); 
 
 #endif

@@ -6,36 +6,29 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:20:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/28 22:11:50 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/29 17:05:39 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_node_init(t_lst *lst, int value)
+void	ft_print_node(t_lst *stack)
 {
-	t_node *new;
+	t_node *tmp;
 
-	new = NULL;
-	new = ft_get_node(new);
-	new->data = value;
-
-	if (!(lst->head) && !(lst->tail))
+	tmp = stack->tail;
+	printf("\n");
+	while (tmp)
 	{
-		new->next = new;
-		new->prev = new;
-		lst->head = new;
-		lst->tail = new;
+		printf(" | %d |\n", tmp->data);
+		tmp = tmp->prev;
+		if (tmp == stack->tail)
+		{
+			printf(" -----\n");
+			break ;
+		}
 	}
-	else
-	{
-		lst->tail->next = new;
-		new->prev = lst->tail;
-		lst->tail = new;
-		lst->head->prev = lst->tail;
-		lst->tail->next = lst->head;
-	}
-	lst->cnt++;
+	printf("====================\n");
 }
 
 int main(int ac, char **av)
@@ -53,5 +46,6 @@ int main(int ac, char **av)
 	i = 0;
 	while (av[++i])
 		ft_node_init(lst_a, ft_check_same(&av[i]));
+	ft_set_pivot(lst_a);
 	return (0);
 }
