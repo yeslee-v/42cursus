@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:20:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/29 17:05:39 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/30 16:19:03 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	ft_print_node(t_lst *stack)
 {
 	t_node *tmp;
 
-	tmp = stack->tail;
+	tmp = stack->head;
 	printf("\n");
 	while (tmp)
 	{
 		printf(" | %d |\n", tmp->data);
-		tmp = tmp->prev;
-		if (tmp == stack->tail)
+		tmp = tmp->next;
+		if (tmp == stack->head)
 		{
 			printf(" -----\n");
 			break ;

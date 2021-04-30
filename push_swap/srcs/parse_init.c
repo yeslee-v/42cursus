@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 14:09:02 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/29 19:24:17 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/30 16:51:54 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,26 @@ void	ft_bubble_sort(t_lst *stack)
 	}
 }
 
-void	ft_quick_sort(t_lst *stack, t_node *piv1, t_node *piv2)
+void	ft_quick_sort(t_lst *stack, int piv1, int piv2)
 {
+	t_node	*tmp;
+
+	tmp = stack->head;
+	printf("piv1:%d piv2:%d\n", piv1, piv2);
+	printf("==============\n");
+	while (tmp)
+	{
+		if (tmp->data < piv1)
+			printf("min: %d\n", tmp->data);
+		else if ((piv1 <= tmp->data) && (tmp->data < piv2))
+			printf("mid: %d\n", tmp->data);
+		else
+			printf("max: %d\n", tmp->data);
+		tmp = tmp->next;
+		if (tmp == stack->head)
+			break ;
+	}
 	ft_print_node(stack);
-	printf("piv1:piv2 = %d:%d\n", piv1->data, piv2->data);
 }
 
 t_lst	*ft_lstdup(t_lst *stack)
@@ -69,25 +85,30 @@ t_lst	*ft_lstdup(t_lst *stack)
 void	ft_set_pivot(t_lst *stack)
 {
 	int		i;
-	t_node	*piv1;
-	t_node	*piv2;
+	int		piv1;
+	int		piv2;
 	t_node	*tmp;
 	t_lst	*have_to_set;
 
 	i = 0;
 	have_to_set = ft_lstdup(stack);
-	ft_print_node(have_to_set);
 	ft_bubble_sort(stack);
 	tmp = stack->tail;
 	while (++i <= stack->cnt)
 	{
 		if (i == (stack->cnt / 3))
-			piv1 = tmp;
+			piv1 = tmp->data;
 		else if (i == ((2 * stack->cnt) / 3))
-			piv2 = tmp;
+			piv2 = tmp->data;
 		tmp = tmp->prev;
 		if (tmp == stack->tail)
 			break ;
+	}
+	if (piv2 < piv1)
+	{
+		i = piv1;
+		piv1 = piv2;
+		piv2 = i;
 	}
 	ft_quick_sort(have_to_set, piv1, piv2);
 }
