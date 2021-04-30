@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:20:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/30 16:19:03 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/30 20:40:56 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ int main(int ac, char **av)
 	i = 0;
 	while (av[++i])
 		ft_node_init(lst_a, ft_check_same(&av[i]));
-	ft_set_pivot(lst_a);
+	ft_set_pivot(lst_a, lst_b);
 	return (0);
 }

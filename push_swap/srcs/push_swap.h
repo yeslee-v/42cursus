@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:21:06 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/29 14:23:36 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/04/30 19:11:39 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ void	ft_rr(t_lst *lst);
 void	ft_del(t_lst *t);
 int		ft_p(t_lst *a, t_lst *b);
 
-void	ft_set_pivot(t_lst *stack); 
+void	ft_set_pivot(t_lst *a, t_lst *b); 
 
 #endif
