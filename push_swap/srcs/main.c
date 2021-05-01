@@ -28,7 +28,7 @@ void	ft_print_node(t_lst *stack)
 			break ;
 		}
 	}
-	//printf("%d\n", stack->res);
+	printf("%d\n", stack->res);
 	printf("====================\n");
 }
 
