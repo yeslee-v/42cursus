@@ -31,7 +31,7 @@ typedef struct	s_lst
 {
 	t_node		*head;
 	t_node		*tail;
-	int			cnt;
+	int			cnt; // number of nodes
 }				t_lst;
 
 t_node	*ft_get_node(t_node *new);

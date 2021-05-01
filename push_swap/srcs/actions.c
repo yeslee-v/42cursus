@@ -25,11 +25,14 @@ void	ft_r(t_lst *lst)
 {
 	t_node	*tmp;
 
-	tmp = lst->head;
-	lst->head = lst->head->next;
-	lst->head->prev = tmp;
-	lst->tail = tmp;
-	lst->tail->next = lst->head;
+	if (lst->cnt > 1)
+	{
+		tmp = lst->head;
+		lst->head = lst->head->next;
+		lst->head->prev = tmp;
+		lst->tail = tmp;
+		lst->tail->next = lst->head;
+	}
 }
 
 void	ft_rr(t_lst *lst)
@@ -51,7 +54,7 @@ void	ft_del(t_lst *t)
 	t->head->prev = tmp->prev;
 	t->tail->next = t->head;
 	t->cnt--;
-	free(tmp);
+	//free(tmp);
 	tmp = NULL;
 }
 
