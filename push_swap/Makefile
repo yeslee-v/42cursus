@@ -20,6 +20,7 @@ SRCS_C = ./include/get_next_line/get_next_line.c \
 		 ./srcs/check_ac_av.c \
 		 ./srcs/actions.c \
 		 ./srcs/parse_init.c \
+		 ./srcs/optimize.c
 
 SRCS_P = ./include/get_next_line/get_next_line.c \
 		 ./include/get_next_line/get_next_line_utils.c \
@@ -29,6 +30,7 @@ SRCS_P = ./include/get_next_line/get_next_line.c \
 		 ./srcs/check_ac_av.c \
 		 ./srcs/actions.c \
 		 ./srcs/parse_init.c \
+		 ./srcs/optimize.c
 
 OBJS_C = $(SRCS_C:.c=.o)
 OBJS_P = $(SRCS_P:.c=.o)

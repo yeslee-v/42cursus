@@ -32,6 +32,7 @@ typedef struct	s_lst
 	t_node		*head;
 	t_node		*tail;
 	int			cnt; // number of nodes
+	int			res;
 }				t_lst;
 
 t_node	*ft_get_node(t_node *new);
@@ -58,5 +59,8 @@ void	ft_del(t_lst *t);
 int		ft_p(t_lst *a, t_lst *b);
 
 void	ft_set_pivot(t_lst *a, t_lst *b); 
+
+void	ft_sort_two(t_lst *stack);
+void	ft_sort_three(t_lst *stack);
 
 #endif

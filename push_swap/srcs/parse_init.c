@@ -40,6 +40,28 @@ void	ft_bubble_sort(t_lst *stack)
 	}
 }
 
+/*int		ft_count_stack(t_lst *stack) // 스택의 갯수를 구하는
+{
+	
+}*/
+
+int		ft_count_element(t_lst *stack)	// min,mid,max로 몇 개 보냈는
+{
+	int		cnt;
+	t_node	*node;
+
+	cnt = 0;
+	node = stack->head;
+	while (node)
+	{
+		cnt++;
+		node = node->next;
+		if (node == stack->head)
+			break ;
+	}
+	return (cnt);
+}
+
 void	ft_quick_sort(t_lst *a, t_lst *b, int piv1, int piv2)
 {
 	int		i;
@@ -52,13 +74,20 @@ void	ft_quick_sort(t_lst *a, t_lst *b, int piv1, int piv2)
 		if (a->head->data < piv1)
 		{
 			ft_p(a, b);
-			ft_r(b);
+			ft_rr(b);
 		}
 		else if ((piv1 <= a->head->data) && (a->head->data < piv2))
+		{
 			ft_p(a, b);
+		}
 		 else
+		 {
 			ft_r(a);
+		 }
 	}
+	int res = ft_count_element(a);
+	if (res == 3)
+	printf("res:%d\n", res);
 	ft_print_node(a);
 	ft_print_node(b);
 }
@@ -81,32 +110,7 @@ t_lst	*ft_lstdup(t_lst *stack)
 	return (new);
 }
 
-void	ft_sort_three(t_lst *a)
-{
-	int base;
-
-	base = a->head->data;
-	if (base)
-	{
-	}
-
-
-}
-
-void	ft_sort_two(t_lst *a)
-{
-	int	tmp;
-
-	if (a->head->next->data < a->head->data)
-	{
-		tmp = a->head->data;
-		a->head->data = a->head->next->data;
-		a->head->next->data = tmp;
-	}
-	ft_print_node(a);
-}
-
-void	ft_set_pivot(t_lst *a, t_lst *b) //header 바꿔야함
+void	ft_set_pivot(t_lst *a, t_lst *b)
 {
 	int		i;
 	int		piv1;

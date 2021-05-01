@@ -54,5 +54,6 @@ t_lst	*ft_init_list(t_lst *lst)
 	lst->head = NULL;
 	lst->tail = NULL;
 	lst->cnt = 0;
+	lst->res = 0;
 	return (lst);
 }
