@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 14:09:02 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/30 22:02:50 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/03 13:40:44 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	ft_bubble_sort(t_lst *stack)
 	}
 }
 
-/*int		ft_count_stack(t_lst *stack) // 스택의 갯수를 구하는
+int		ft_count_stack(t_lst *stack) // 스택의 갯수를 구하는
 {
 	
-}*/
+}
 
 int		ft_count_element(t_lst *stack)	// min,mid,max로 몇 개 보냈는
 {
@@ -73,16 +73,16 @@ void	ft_quick_sort(t_lst *a, t_lst *b, int piv1, int piv2)
 	{
 		if (a->head->data < piv1)
 		{
-			ft_p(a, b);
-			ft_rr(b);
+			ft_pa(a, b);
+			ft_rrb(b);
 		}
 		else if ((piv1 <= a->head->data) && (a->head->data < piv2))
 		{
-			ft_p(a, b);
+			ft_pa(a, b);
 		}
 		 else
 		 {
-			ft_r(a);
+			ft_ra(a);
 		 }
 	}
 	int res = ft_count_element(a);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_init.c                                       :+:      :+:    :+:   */
+/*   optimize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 14:09:02 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/30 22:02:50 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/03 11:14:05 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,28 @@ void	ft_sort_three(t_lst *stack)
 	if ((x->data < z->data) && (y->data < z->data))
 	{
 		if (x->data < y->data)
-			printf("OK\n");
+			write(1, "OK\n", 3);
 		else
-			ft_s(stack);
+			ft_sa(stack);
 	}
 	else if ((x->data < y->data) && (z->data < y->data))
 	{
 		if (x->data < z->data)
 		{
-			ft_s(stack);
-			ft_r(stack);
+			ft_sa(stack);
+			ft_ra(stack);
 		}
 		else
-			ft_rr(stack);
+			ft_rra(stack);
 	}
 	else
 	{
 		if (y->data < z->data)
-			ft_r(stack);
+			ft_ra(stack);
 		else
 		{
-			ft_s(stack);
-			ft_rr(stack);
+			ft_sa(stack);
+			ft_rra(stack);
 		}
 	}
 	ft_print_node(stack);

@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:21:06 by yeslee            #+#    #+#             */
-/*   Updated: 2021/04/30 19:11:39 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/03 11:14:41 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,15 @@ void	ft_node_init(t_lst *lst, int value);
 
 void	ft_check_error(int ac);
 
-void	ft_s(t_lst *lst);
-void	ft_r(t_lst *lst);
-void	ft_rr(t_lst *lst);
+void	ft_sa(t_lst *lst);
+void	ft_sb(t_lst *lst);
+void	ft_ra(t_lst *lst);
+void	ft_rb(t_lst *lst);
+void	ft_rra(t_lst *lst);
+void	ft_rrb(t_lst *lst);
 void	ft_del(t_lst *t);
-int		ft_p(t_lst *a, t_lst *b);
+int		ft_pa(t_lst *a, t_lst *b);
+int		ft_pb(t_lst *a, t_lst *b);
 
 void	ft_set_pivot(t_lst *a, t_lst *b); 
 
