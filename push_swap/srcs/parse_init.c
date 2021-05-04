@@ -40,10 +40,10 @@ void	ft_bubble_sort(t_lst *stack)
 	}
 }
 
-int		ft_count_stack(t_lst *stack) // 스택의 갯수를 구하는
-{
-	
-}
+// void		ft_b_to_a(t_lst *a, t_lst *b) // 스택의 갯수를 구하는
+// {
+// 	t_node *node;
+// }
 
 int		ft_count_element(t_lst *stack)	// min,mid,max로 몇 개 보냈는
 {
@@ -67,7 +67,6 @@ void	ft_quick_sort(t_lst *a, t_lst *b, int piv1, int piv2)
 	int		i;
 
 	i = a->cnt + 1;
-	ft_print_node(a);
 	printf("piv1:%d piv2:%d i: %d\n", piv1, piv2, i);
 	while (a && (--i > 0))
 	{
@@ -86,8 +85,9 @@ void	ft_quick_sort(t_lst *a, t_lst *b, int piv1, int piv2)
 		 }
 	}
 	int res = ft_count_element(a);
-	if (res == 3)
-	printf("res:%d\n", res);
+	// if (
+	ft_set_pivot(a, b);
+	printf("res:%d | in stack A:%d\n", res, (res / 3));
 	ft_print_node(a);
 	ft_print_node(b);
 }

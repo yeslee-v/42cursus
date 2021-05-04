@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:21:06 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/03 11:14:41 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/04 18:07:18 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ typedef struct	s_lst
 	t_node		*head;
 	t_node		*tail;
 	int			cnt; // number of nodes
-	int			res;
 }				t_lst;
 
 t_node	*ft_get_node(t_node *new);
 t_lst	*ft_init_list(t_lst *lst);
 
 int		main(int ac, char **av);
+void	ft_read(t_lst *a, t_lst *b);
 void	ft_print_node(t_lst *stack);
 
 void	ft_ok();
@@ -54,10 +54,13 @@ void	ft_check_error(int ac);
 
 void	ft_sa(t_lst *lst);
 void	ft_sb(t_lst *lst);
+void	ft_ss(t_lst *a, t_lst *b);
 void	ft_ra(t_lst *lst);
 void	ft_rb(t_lst *lst);
+void	ft_rr(t_lst *a, t_lst *b);
 void	ft_rra(t_lst *lst);
 void	ft_rrb(t_lst *lst);
+void	ft_rrr(t_lst *a, t_lst *b);
 void	ft_del(t_lst *t);
 int		ft_pa(t_lst *a, t_lst *b);
 int		ft_pb(t_lst *a, t_lst *b);

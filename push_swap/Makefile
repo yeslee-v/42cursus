@@ -18,6 +18,7 @@ SRCS_C = ./include/get_next_line/get_next_line.c \
 		 ./srcs/write_result.c \
 		 ./srcs/struct_init.c \
 		 ./srcs/check_ac_av.c \
+		 ./srcs/checker.c \
 		 ./srcs/actions.c \
 		 ./srcs/parse_init.c \
 		 ./srcs/optimize.c
@@ -28,6 +29,7 @@ SRCS_P = ./include/get_next_line/get_next_line.c \
 		 ./srcs/write_result.c \
 		 ./srcs/struct_init.c \
 		 ./srcs/check_ac_av.c \
+		 ./srcs/checker.c \
 		 ./srcs/actions.c \
 		 ./srcs/parse_init.c \
 		 ./srcs/optimize.c
