@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:21:06 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/04 18:07:18 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/04 23:19:03 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,9 @@ void	ft_rrr(t_lst *a, t_lst *b);
 void	ft_del(t_lst *t);
 int		ft_pa(t_lst *a, t_lst *b);
 int		ft_pb(t_lst *a, t_lst *b);
+
+void	ft_read(t_lst *a, t_lst *b);
+void	ft_r_first(t_lst *a, t_lst *b, char *line);
 
 void	ft_set_pivot(t_lst *a, t_lst *b); 
 
