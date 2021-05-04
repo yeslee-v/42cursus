@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 15:17:20 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/04 18:19:07 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/04 18:29:41 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_read(t_lst *a, t_lst *b)
 			ft_rrb(b);
 		else if ((line[0] == 'r') && (line[1] == 'r') && (line[2] == 'r') && (line[3] == '\0'))
 			ft_rrr(a, b);
-		free(line);
 		write(1, &line, ft_strlen(line));
+		free(line);
 	}
 }
