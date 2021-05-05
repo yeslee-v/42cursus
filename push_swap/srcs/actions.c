@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:47:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/05 13:26:00 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/05 14:53:03 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void	ft_del(t_lst *t)
 
 int	ft_pa(t_lst *a, t_lst *b)
 {
-	if (b->cnt > 1)
+	if (a->cnt > 0)
 	{
 		ft_node_init(b, a->head->data);
 		ft_del(a);
@@ -134,7 +134,7 @@ int	ft_pa(t_lst *a, t_lst *b)
 
 int	ft_pb(t_lst *b, t_lst *a)
 {
-	if (b->cnt > 1)
+	if (b->cnt > 0)
 	{
 		ft_node_init(a, b->head->data);
 		ft_del(b);
