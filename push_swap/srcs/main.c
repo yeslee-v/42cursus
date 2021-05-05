@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:20:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/04 18:26:45 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/05 22:16:34 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,18 @@ void	ft_print_node(t_lst *stack)
 int main(int ac, char **av)
 {
 	int		i;
-	t_lst	*lst_a;
-	t_lst	*lst_b;
+	t_stack	stack;
 
-	lst_a = NULL;
-	lst_b = NULL;
-	lst_a = ft_init_list(lst_a);
-	lst_b = ft_init_list(lst_b);
+	stack.a = ft_init_list(stack.a);
+	stack.b = ft_init_list(stack.b);
 	ft_check_error(ac);
 
 	i = 0;
 	while (av[++i])
-		ft_node_init(lst_a, ft_check_same(&av[i]));
-	ft_read(lst_a, lst_b);
-	//ft_set_pivot(lst_a, lst_b);
+		ft_node_init(stack.a, ft_check_same(&av[i]));
+	if (!(ft_strncmp(av[0], "./checker", ft_strlen(av[0]))))
+		ft_read(stack.a, stack.b);
+	if (!(ft_strncmp(av[0], "./push_swap", ft_strlen(av[0]))))
+		ft_quick_sort_init(&stack, 0, ac - 1);
 	return (0);
 }

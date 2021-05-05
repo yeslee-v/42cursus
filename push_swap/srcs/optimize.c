@@ -6,15 +6,15 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 14:09:02 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/03 11:14:05 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/05 22:56:30 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_sort_three(t_lst *stack)
+void	ft_sort_three(t_node *x, t_node *y, t_node *z)
 {
-	t_node *x;
+/*	t_node *x;
 	t_node *y;
 	t_node *z;
 
@@ -48,12 +48,12 @@ void	ft_sort_three(t_lst *stack)
 			ft_rra(stack);
 		}
 	}
-	ft_print_node(stack);
+	ft_print_node(stack);*/
 }
 
-void	ft_sort_two(t_lst *stack)
+void	ft_sort_two(t_node x, t_node y)
 {
-	int	tmp;
+/*	int	tmp;
 
 	if (stack->head->next->data < stack->head->data)
 	{
@@ -61,5 +61,5 @@ void	ft_sort_two(t_lst *stack)
 		stack->head->data = stack->head->next->data;
 		stack->head->next->data = tmp;
 	}
-	ft_print_node(stack);
+	ft_print_node(stack);*/
 }

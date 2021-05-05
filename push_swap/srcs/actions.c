@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:47:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/05 14:53:03 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/05 22:47:00 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 void	ft_sa(t_lst *lst)
 {
-	int	tmp;
+	t_node	*tmp;
 
 	if (lst->cnt > 1)
 	{
-		tmp = lst->head->data;
-		lst->head->data = lst->head->next->data;
-		lst->head->next->data = tmp;
+		tmp = lst->head;
+		lst->head = lst->head->next;
+		lst->head->next = tmp;
 	}
 }
 
 void	ft_sb(t_lst *lst)
 {
-	int	tmp;
+	t_node	*tmp;
 
 	if (lst->cnt > 1)
 	{
-		tmp = lst->head->data;
-		lst->head->data = lst->head->next->data;
-		lst->head->next->data = tmp;
+		tmp = lst->head;
+		lst->head = lst->head->next;
+		lst->head->next = tmp;
 	}
 }
 
@@ -42,32 +42,26 @@ void	ft_ss(t_lst *a, t_lst *b)
 	ft_sb(b);
 }
 
-void	ft_ra(t_lst *lst)
+int	ft_ra(t_lst *lst)
 {
-	t_node	*tmp;
-
 	if (lst->cnt > 1)
 	{
-		tmp = lst->head;
 		lst->head = lst->head->next;
-		lst->head->prev = tmp;
-		lst->tail = tmp;
-		lst->tail->next = lst->head;
+		lst->tail = lst->tail->next;
+		return (1);
 	}
+	return (0);
 }
 
-void	ft_rb(t_lst *lst)
+int	ft_rb(t_lst *lst)
 {
-	t_node	*tmp;
-
 	if (lst->cnt > 1)
 	{
-		tmp = lst->head;
 		lst->head = lst->head->next;
-		lst->head->prev = tmp;
-		lst->tail = tmp;
-		lst->tail->next = lst->head;
+		lst->tail = lst->tail->next;
+		return (1);
 	}
+	return (0);
 }
 
 void	ft_rr(t_lst *a, t_lst *b)
@@ -127,6 +121,8 @@ int	ft_pa(t_lst *a, t_lst *b)
 	{
 		ft_node_init(b, a->head->data);
 		ft_del(a);
+		a->cnt++;
+		b->cnt--;
 		return (1);
 	}
 	return (0);
@@ -138,6 +134,8 @@ int	ft_pb(t_lst *b, t_lst *a)
 	{
 		ft_node_init(a, b->head->data);
 		ft_del(b);
+		a->cnt--;
+		b->cnt++;
 		return (1);
 	}
 	return (0);
