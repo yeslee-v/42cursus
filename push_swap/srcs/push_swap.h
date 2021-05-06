@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:21:06 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/05 22:46:06 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/06 19:01:19 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,11 @@ void	ft_ss(t_lst *a, t_lst *b);
 int		ft_ra(t_lst *lst);
 int		ft_rb(t_lst *lst);
 void	ft_rr(t_lst *a, t_lst *b);
-void	ft_rra(t_lst *lst);
-void	ft_rrb(t_lst *lst);
+int		ft_rra(t_lst *lst);
+int		ft_rrb(t_lst *lst);
 void	ft_rrr(t_lst *a, t_lst *b);
 void	ft_del(t_lst *t);
+void	ft_add_p(t_lst *lst, int value);
 int		ft_pa(t_lst *a, t_lst *b);
 int		ft_pb(t_lst *a, t_lst *b);
 
@@ -84,7 +85,7 @@ void	ft_a_to_b(t_stack *stack, int min, int max);
 //void	ft_b_to_a(t_stack *stack, int piv1, int piv2, int i);
 int		ft_count_element(t_lst *stack);
 
-void	ft_sort_two(t_lst *stack);
-void	ft_sort_three(t_lst *stack);
+void	ft_sort_two(t_lst *lst);
+void	ft_sort_three(t_lst *lst);
 
 #endif

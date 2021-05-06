@@ -6,11 +6,36 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 14:14:17 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/05 22:31:31 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/06 16:20:39 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_add_p(t_lst *lst, int value)
+{
+	t_node *new;
+
+	new = NULL;
+	new = ft_get_node(new);
+	new->data = value;
+	if (!(lst->head) && !(lst->tail))
+	{
+		new->next = new;
+		new->prev = new;
+		lst->head = new;
+		lst->tail = new;
+	}
+	else
+	{
+		t_node *tmp = lst->head;
+		lst->head->prev = new;
+		new->prev = lst->tail;
+		lst->head = new;
+		lst->head->next = tmp;
+		lst->tail->next = lst->head;
+	}
+}
 
 void	ft_node_init(t_lst *lst, int value)
 {

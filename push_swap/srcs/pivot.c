@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 13:31:20 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/05 22:56:36 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/06 14:42:35 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	ft_quick_sort_init(t_stack *stack, int min, int max)  // idx
 	else
 	{
 		if (stack->a->cnt == 2)
-			ft_sort_two(stack->a->head, stack->a->next);
+			ft_sort_two(stack->a);
 		else if (stack->a->cnt == 3)
-			ft_sort_three(stack->a->head, stack->a->next, stack->a->next->next);
+			ft_sort_three(stack->a);
 	}
 }

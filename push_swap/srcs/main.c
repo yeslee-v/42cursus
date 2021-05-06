@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:20:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/05 22:16:34 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/06 17:28:34 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ void	ft_print_node(t_lst *stack)
 	t_node *tmp;
 
 	tmp = stack->head;
+	if (tmp == NULL)
+	{
+		printf("element is not exist\n");
+		return ;
+	}
 	printf("\n");
 	while (tmp)
 	{
