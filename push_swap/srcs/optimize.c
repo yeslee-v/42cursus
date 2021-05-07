@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 14:09:02 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/06 13:45:41 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/07 20:29:41 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,39 @@ void	ft_sort_three(t_lst *lst)
 		if (x->data < y->data)
 			write(1, "OK\n", 3);
 		else
+		{
 			ft_sa(lst);
+			write(1, "sa\n", 3);
+		}
 	}
 	else if ((x->data < y->data) && (z->data < y->data))
 	{
 		if (x->data < z->data)
 		{
 			ft_sa(lst);
+			write(1, "sa\n", 3);
 			ft_ra(lst);
+			write(1, "ra\n", 3);
 		}
 		else
 			ft_rra(lst);
+			write(1, "rra\n", 3);
 	}
 	else
 	{
 		if (y->data < z->data)
+		{
 			ft_ra(lst);
+			write(1, "ra\n", 3);
+		}
 		else
 		{
 			ft_sa(lst);
+			write(1, "sa\n", 3);
 			ft_rra(lst);
+			write(1, "rra\n", 3);
 		}
 	}
-	ft_print_node(lst);
 }
 
 void	ft_sort_two(t_lst *lst)
@@ -61,5 +71,4 @@ void	ft_sort_two(t_lst *lst)
 		lst->head->data = lst->head->next->data;
 		lst->head->next->data = tmp;
 	}
-	ft_print_node(lst);
 }

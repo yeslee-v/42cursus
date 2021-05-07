@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 15:17:20 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/05 13:28:16 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/07 21:57:16 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	ft_read(t_lst *a, t_lst *b)
 	int		size;
 	char	*line;
 
+	printf("cnt:%d\n", a->cnt);
 	while ((size = get_next_line(0, &line) > 0))
 	{
 		if ((line[0] == 's') && (line[1] == 'a') && (line[2] == '\0'))
@@ -71,6 +72,8 @@ void	ft_read(t_lst *a, t_lst *b)
 		else
 			ft_error_message();
 		free(line);
+		ft_print_node(a);
+		ft_print_node(b);
 	}
 	if (size == -1)
 		ft_error_message();

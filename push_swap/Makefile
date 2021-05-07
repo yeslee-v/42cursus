@@ -4,7 +4,7 @@ NAME_P = push_swap
 HEADER = -I ./headers
 
 CC = gcc
-CFLAGES = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGES = -Wall -Wextra -Werror
 
 LIBFT = ./include/libft
 LIBFT_NAME = libft.a
@@ -21,7 +21,7 @@ SRCS_C = ./include/get_next_line/get_next_line.c \
 		 ./srcs/checker.c \
 		 ./srcs/actions.c \
 		 ./srcs/pivot.c \
-		 ./srcs/parse_init.c \
+		 ./srcs/push_swap.c \
 		 ./srcs/optimize.c
 
 SRCS_P = ./include/get_next_line/get_next_line.c \
@@ -33,7 +33,7 @@ SRCS_P = ./include/get_next_line/get_next_line.c \
 		 ./srcs/checker.c \
 		 ./srcs/actions.c \
 		 ./srcs/pivot.c \
-		 ./srcs/parse_init.c \
+		 ./srcs/push_swap.c \
 		 ./srcs/optimize.c
 
 OBJS_C = $(SRCS_C:.c=.o)

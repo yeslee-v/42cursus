@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:20:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/06 17:28:34 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/07 21:37:02 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	ft_print_node(t_lst *stack)
 	tmp = stack->head;
 	if (tmp == NULL)
 	{
-		printf("element is not exist\n");
+		printf(" |  |\n");
+		printf(" ---\n");
 		return ;
 	}
 	printf("\n");
@@ -55,11 +56,10 @@ int main(int ac, char **av)
 	int		i;
 	t_stack	stack;
 
+	i = 0;
+	ft_check_error(ac);
 	stack.a = ft_init_list(stack.a);
 	stack.b = ft_init_list(stack.b);
-	ft_check_error(ac);
-
-	i = 0;
 	while (av[++i])
 		ft_node_init(stack.a, ft_check_same(&av[i]));
 	if (!(ft_strncmp(av[0], "./checker", ft_strlen(av[0]))))
