@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 13:31:20 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/06 14:42:35 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/08 16:00:47 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,15 @@ int	*ft_set_idx(t_lst *lst)
 
 void	ft_quick_sort_init(t_stack *stack, int min, int max)  // idx
 {
+	stack->is_push_swap = 1;
 	stack->arr = ft_set_idx(stack->a);
 	if (3 < stack->a->cnt)
 		ft_a_to_b(stack, min, max);
 	else
 	{
 		if (stack->a->cnt == 2)
-			ft_sort_two(stack->a);
+			ft_sort_two(stack);
 		else if (stack->a->cnt == 3)
-			ft_sort_three(stack->a);
+			ft_sort_three(stack);
 	}
 }

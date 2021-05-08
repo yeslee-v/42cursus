@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   checker_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 18:20:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/08 12:25:08 by yeslee           ###   ########.fr       */
+/*   Created: 2021/05/08 20:57:54 by yeslee            #+#    #+#             */
+/*   Updated: 2021/05/08 21:33:48 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,39 @@ void	ft_print_node(t_lst *stack)
 	printf("====================\n");
 }
 
+int		ft_lstcnt(t_lst *lst)
+{
+	int		cnt;
+	t_node	*node;
+
+	cnt = 0;
+	node = lst->head;
+	while (node)
+	{
+		cnt++;
+		node = node->next;
+		if (node == lst->head)
+			break ;
+	}
+	return (cnt);
+}
+
 int main(int ac, char **av)
 {
 	int		i;
 	t_stack	stack;
 
-	i = 0;
 	if (ac == 1)
 		ft_error_message();
+	i = 0;
 	stack.a = ft_init_list(stack.a);
 	stack.b = ft_init_list(stack.b);
 	while (av[++i])
 		ft_node_init(stack.a, ft_check_same(&av[i]));
-	if (!(ft_strncmp(av[0], "./checker", ft_strlen(av[0]))))
-		ft_read(stack.a, stack.b);
-	if (!(ft_strncmp(av[0], "./push_swap", ft_strlen(av[0]))))
-		ft_quick_sort_init(&stack, 0, ac - 1);
+//	printf("before sort\n");
+//	ft_print_node(stack.a);
+	stack.a->cnt = ft_lstcnt(stack.a);
+	stack.b->cnt = ft_lstcnt(stack.b);
+	ft_read(&stack);
 	return (0);
 }

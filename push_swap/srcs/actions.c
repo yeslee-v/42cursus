@@ -6,147 +6,200 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:47:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/08 11:38:46 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/08 22:17:14 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_sa(t_lst *lst)
+void	ft_sa(t_stack *stack)
 {
 	int	tmp;
 
-	if (lst->cnt > 1)
+	if (!stack)
+		return ;
+	if (stack->a->cnt > 1)
 	{
-		tmp = lst->head->data;
-		lst->head->data = lst->head->next->data;
-		lst->head->next->data = tmp;
+		tmp = stack->a->head->data;
+		stack->a->head->data = stack->a->head->next->data;
+		stack->a->head->next->data = tmp;
 	}
+		if (stack->is_push_swap)
+			write(1, "sa\n", 3);
 }
 
-void	ft_sb(t_lst *lst)
+void	ft_sb(t_stack *stack)
 {
 	int	tmp;
 
-	if (lst->cnt > 1)
+	if (!stack)
+		return ;
+	if (stack->b->cnt > 1)
 	{
-		tmp = lst->head->data;
-		lst->head->data = lst->head->next->data;
-		lst->head->next->data = tmp;
+		tmp = stack->b->head->data;
+		stack->b->head->data = stack->b->head->next->data;
+		stack->b->head->next->data = tmp;
 	}
+		if (stack->is_push_swap)
+			write(1, "sb\n", 3);
 }
 
-void	ft_ss(t_lst *a, t_lst *b)
+void	ft_ss(t_stack *stack)
 {
-	ft_sa(a);
-	ft_sb(b);
+	if (!stack)
+		return ;
+	if (stack->is_push_swap)
+	{
+		write(1, "ss\n", 3);
+		stack->is_push_swap = 0;
+	}
+	ft_sa(stack);
+	ft_sb(stack);
 }
 
-int	ft_ra(t_lst *lst)
+int	ft_ra(t_stack *stack)
 {
-	if (lst->cnt > 1)
+	if (!stack)
+		return (0);
+	if (stack->a->cnt > 1)
 	{
-		lst->head = lst->head->next;
-		lst->tail = lst->tail->next;
+		stack->a->head = stack->a->head->next;
+		stack->a->tail = stack->a->tail->next;
+	//	return (1);
 	}
+		if (stack->is_push_swap)
+			write(1, "ra\n", 3);
 	return (1);
 }
 
-int	ft_rb(t_lst *lst)
+int	ft_rb(t_stack *stack)
 {
-	if (lst->cnt > 1)
+	if (!stack)
+		return (0);
+	if (stack->b->cnt > 1)
 	{
-		lst->head = lst->head->next;
-		lst->tail = lst->tail->next;
+		stack->b->head = stack->b->head->next;
+		stack->b->tail = stack->b->tail->next;
+	//	return (1);
 	}
+		if (stack->is_push_swap)
+			write(1, "rb\n", 3);
 	return (1);
 }
 
-void	ft_rr(t_lst *a, t_lst *b)
+void	ft_rr(t_stack *stack)
 {
-	ft_ra(a);
-	ft_rb(b);
-}
-
-int	ft_rra(t_lst *lst)
-{
-	t_node	*tmp;
-	
-	if (lst->cnt > 1)
+	if (!stack)
+		return ;
+	if (stack->is_push_swap)
 	{
-		tmp = lst->head;
-		lst->head = lst->tail;
-		lst->tail = lst->tail->prev;
-		lst->head->next = tmp;
-		return (1);
+		write(1, "rr\n", 3);
+		stack->is_push_swap = 0;
 	}
-	return (0);
+	ft_ra(stack);
+	ft_rb(stack);
 }
 
-int	ft_rrb(t_lst *lst)
+void	ft_rra(t_stack *stack)
 {
 	t_node	*tmp;
 
-	if (lst->cnt > 1)
+	if (!stack)
+		return ;
+//	printf("out\n");
+	if (stack->a->cnt > 1)
 	{
-		tmp = lst->head;
-		lst->head = lst->tail;
-		lst->tail = lst->tail->prev;
-		lst->head->next = tmp;
-		return (1);
+//		printf("in\n");
+		tmp = stack->a->head;
+		stack->a->head = stack->a->tail;
+		stack->a->tail = stack->a->tail->prev;
+	//	stack->a->head->next = tmp;
 	}
-	return (0);
+		if (stack->is_push_swap)
+			write(1, "rra\n", 4);
 }
 
-void	ft_rrr(t_lst *a, t_lst *b)
+void	ft_rrb(t_stack *stack)
 {
-	ft_rra(a);
-	ft_rrb(b);
+	t_node	*tmp;
+
+	if (!stack)
+		return ;
+	if (stack->b->cnt > 1)
+	{
+		tmp = stack->b->head;
+		stack->b->head = stack->b->tail;
+		stack->b->tail = stack->b->tail->prev;
+	//	stack->b->head->next = tmp;
+	}
+		if (stack->is_push_swap)
+			write(1, "rrb\n", 4);
 }
 
-void	ft_del(t_lst *t)
+void	ft_rrr(t_stack *stack)
+{
+	if (!stack)
+		return ;
+	if (stack->is_push_swap)
+	{
+		write(1, "rrr\n", 4);
+		stack->is_push_swap = 0;
+	}
+	ft_rra(stack);
+	ft_rrb(stack);
+}
+
+void	ft_del(t_lst *lst)
 {
 	t_node *tmp;
 
+	if (!lst)
+		return ;
 	tmp = NULL;
-	if (t->cnt != 1)
+	if (lst->cnt != 1)
 	{
-		tmp = t->head;
-		t->head = tmp->next;
-		t->head->prev = tmp->prev;
-		t->tail->next = t->head;
+		tmp = lst->head;
+		lst->head = tmp->next;
+		lst->head->prev = tmp->prev;
+		lst->tail->next = lst->head;
 		free(tmp);
 	}
-	else if (t->cnt == 1)
+	else if (lst->cnt == 1)
 	{
-		tmp = t->head;
+		tmp = lst->head;
 		free(tmp);
-		t->head = NULL;
+		lst->head = NULL;
 	}
 }
 
-int	ft_pa(t_lst *a, t_lst *b)
+void	ft_pa(t_stack *stack)
 {
-	if (b->head != NULL)
+	if (!stack)
+		return ;
+	if (stack->b->head != NULL)
 	{
-		ft_add_p(a, b->head->data);
-		ft_del(b);
-		a->cnt++;
-		b->cnt--;
-		return (1);
+		ft_add_p(stack->a, stack->b->head->data);
+		ft_del(stack->b);
+		stack->a->cnt++;
+		stack->b->cnt--;
 	}
-	return (0);
+		if (stack->is_push_swap)
+			write(1, "pa\n", 3);
+	return ;
 }
 
-int	ft_pb(t_lst *a, t_lst *b)
+void	ft_pb(t_stack *stack)
 {
-	if (a->head != NULL)
+	if (!stack)
+		return ;
+	if (stack->a->head != NULL)
 	{
-		ft_add_p(b, a->head->data);
-		ft_del(a);
-		a->cnt--;
-		b->cnt++;
-		return (1);
+		ft_add_p(stack->b, stack->a->head->data);
+		ft_del(stack->a);
+		stack->a->cnt--;
+		stack->b->cnt++;
 	}
-	return (0);
+		if (stack->is_push_swap)
+			write(1, "pb\n", 3);
+	return ;
 }

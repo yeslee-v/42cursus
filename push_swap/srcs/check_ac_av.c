@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 11:50:21 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/08 12:24:55 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/08 14:57:42 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,17 @@ int		ft_check_atoi(char *s)
 {
 	int		i;
 	int		ret;
+	int		minus;
 
 	i = 0;
+	minus = 0;
+
+	if ((ft_atoi(s) >= 2147483648) || (ft_atoi(s) <= -2147483649))
+		ft_error_message();
 	while (s[i])
 	{
+		if (s[i] == '-')
+			i++;
 		if (!(ft_isdigit(s[i])))
 			ft_error_message();
 		i++;

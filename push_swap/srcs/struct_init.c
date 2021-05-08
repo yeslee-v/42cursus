@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 14:14:17 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/08 11:35:33 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/08 16:44:56 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	ft_node_init(t_lst *lst, int value)
 		lst->head->prev = lst->tail;
 		lst->tail->next = lst->head;
 	}
-	lst->cnt++;
 }
 
 t_node	*ft_get_node(t_node *new)

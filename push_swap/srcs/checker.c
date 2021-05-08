@@ -6,20 +6,20 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 15:17:20 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/08 12:15:37 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/08 22:24:50 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_is_sorted(t_lst *stack)
+int		ft_is_sorted(t_lst *lst)
 {
 	int		i;
 	t_node	*first;
 	t_node	*second;
 
-	i = stack->cnt;
-	first = stack->head;
+	i = lst->cnt;
+	first = lst->head;
 	second = first->next;
 	while (--i)
 	{
@@ -31,50 +31,54 @@ int		ft_is_sorted(t_lst *stack)
 	return (1);
 }
 
-void	ft_r_first(t_lst *a, t_lst *b, char *line)
+void	ft_r_first(t_stack *stack, char *line)
 {
 	if ((line[1] == 'a') && (line[2] == '\0'))
-		ft_ra(a);
+		ft_ra(stack);
 	else if ((line[1] == 'b') && (line[2] == '\0'))
-		ft_rb(b);
+		ft_rb(stack);
 	else if ((line[1] == 'r') && (line[2] == '\0'))
-		ft_rr(a, b);
+		ft_rr(stack);
 	else if ((line[1] == 'r') && (line[2] == 'a') && (line[3] == '\0'))
-		ft_rra(a);
+		ft_rra(stack);
 	else if ((line[1] == 'r') && (line[2] == 'b') && (line[3] == '\0'))
-		ft_rrb(b);
+		ft_rrb(stack);
 	else if ((line[1] == 'r') && (line[2] == 'r') && (line[3] == '\0'))
-		ft_rrr(a, b);
+		ft_rrr(stack);
 	else
 		ft_error_message();
 }
 
-void	ft_read(t_lst *a, t_lst *b)
+void	ft_read(t_stack *stack)
 {
 	int		size;
 	char	*line;
-
+	
+	stack->is_push_swap = 0;
 	while ((size = get_next_line(0, &line) > 0))
 	{
-		if (a->cnt == 1)
+		if (stack->a->cnt == 1)
 			ft_ok();
 		else if ((line[0] == 's') && (line[1] == 'a') && (line[2] == '\0'))
-			ft_sa(a);
+			ft_sa(stack);
 		else if ((line[0] == 's') && (line[1] == 'b') && (line[2] == '\0'))
-			ft_sb(b);
+			ft_sb(stack);
 		else if ((line[0] == 's') && (line[1] == 's') && (line[2] == '\0'))
-			ft_ss(a, b);
+			ft_ss(stack);
 		else if ((line[0] == 'p') && (line[1] == 'a') && (line[2] == '\0'))
-			ft_pa(a, b);
+			ft_pa(stack);
 		else if ((line[0] == 'p') && (line[1] == 'b') && (line[2] == '\0'))
-			ft_pb(a, b);
+			ft_pb(stack);
 		else if (line[0] == 'r')
-			ft_r_first(a, b, line);
+			ft_r_first(stack, line);
 		else
 			ft_error_message();
 		free(line);
+	//	ft_print_node(stack->a);
+	//	ft_print_node(stack->b);
 	}
-	if (ft_is_sorted(a))
+//	printf("checker\n");
+	if (ft_is_sorted(stack->a))
 		ft_ok();
 	else
 		ft_ko();
