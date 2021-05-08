@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:20:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/07 21:37:02 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/08 12:25:08 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,7 @@ void	ft_print_node(t_lst *stack)
 			break ;
 		}
 	}
-//	printf("%d\n", stack->res);
 	printf("====================\n");
-/*	printf("====================\n");
-	tmp = stack->tail;
-	printf("\n");
-	while (tmp)
-	{
-		printf(" { %d }\n", tmp->data);
-		tmp = tmp->prev;
-		if (tmp == stack->tail)
-		{
-			printf(" +++++++\n");
-			break ;
-		}
-	}*/
 }
 
 int main(int ac, char **av)
@@ -57,7 +43,8 @@ int main(int ac, char **av)
 	t_stack	stack;
 
 	i = 0;
-	ft_check_error(ac);
+	if (ac == 1)
+		ft_error_message();
 	stack.a = ft_init_list(stack.a);
 	stack.b = ft_init_list(stack.b);
 	while (av[++i])

@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:21:06 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/06 19:01:19 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/08 12:24:48 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ int		ft_check_atoi(char *s);
 int		ft_double_strlen(char **s);
 int		ft_check_same(char **av);
 void	ft_node_init(t_lst *lst, int value);
-
-void	ft_check_error(int ac);
 
 void	ft_sa(t_lst *lst);
 void	ft_sb(t_lst *lst);

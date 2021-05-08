@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 11:50:21 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/07 21:10:18 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/08 12:24:55 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,4 @@ int		ft_check_same(char **av)
 		}
 	}
 	return (ft_check_atoi(*av));
-}
-
-void	ft_check_error(int ac)
-{
-	if (ac == 1)
-		ft_error_message();
-	else if (ac == 2)
-		if (EOF)
-			ft_ok();
 }

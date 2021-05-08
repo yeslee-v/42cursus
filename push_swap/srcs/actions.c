@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:47:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/07 21:55:58 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/08 11:38:46 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,9 +125,9 @@ void	ft_del(t_lst *t)
 	}
 }
 
-int	ft_pa(t_lst *b, t_lst *a)
+int	ft_pa(t_lst *a, t_lst *b)
 {
-	if (b->cnt > 0)
+	if (b->head != NULL)
 	{
 		ft_add_p(a, b->head->data);
 		ft_del(b);
@@ -140,7 +140,7 @@ int	ft_pa(t_lst *b, t_lst *a)
 
 int	ft_pb(t_lst *a, t_lst *b)
 {
-	if (a->cnt > 0)
+	if (a->head != NULL)
 	{
 		ft_add_p(b, a->head->data);
 		ft_del(a);

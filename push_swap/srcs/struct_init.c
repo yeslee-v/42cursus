@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 14:14:17 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/07 21:57:39 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/08 11:35:33 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_add_p(t_lst *lst, int value)
 	else
 	{
 		tmp = lst->head;
-		lst->head->prev = new;
+		tmp->prev = new;
 		new->prev = lst->tail;
 		lst->head = new;
 		lst->head->next = tmp;
