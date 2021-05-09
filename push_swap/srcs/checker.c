@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 15:17:20 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/08 22:24:50 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/09 14:13:45 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,10 @@ void	ft_read(t_stack *stack)
 		else
 			ft_error_message();
 		free(line);
+	//	printf("stack a+++++++++\n");
 	//	ft_print_node(stack->a);
-	//	ft_print_node(stack->b);
+	//	printf("stack b+++++++++\n");
+//		ft_print_node(stack->b);
 	}
 //	printf("checker\n");
 	if (ft_is_sorted(stack->a))

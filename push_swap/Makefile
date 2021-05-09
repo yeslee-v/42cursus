@@ -22,7 +22,8 @@ SRCS_C = ./include/get_next_line/get_next_line.c \
 		 ./srcs/actions.c \
 		 ./srcs/pivot.c \
 		 ./srcs/push_swap.c \
-		 ./srcs/optimize.c
+		 ./srcs/optimize.c \
+		 ./srcs/optimize_2.c
 
 SRCS_P = ./include/get_next_line/get_next_line.c \
 		 ./include/get_next_line/get_next_line_utils.c \
@@ -34,7 +35,8 @@ SRCS_P = ./include/get_next_line/get_next_line.c \
 		 ./srcs/actions.c \
 		 ./srcs/pivot.c \
 		 ./srcs/push_swap.c \
-		 ./srcs/optimize.c
+		 ./srcs/optimize.c \
+		 ./srcs/optimize_2.c
 
 OBJS_C = $(SRCS_C:.c=.o)
 OBJS_P = $(SRCS_P:.c=.o)

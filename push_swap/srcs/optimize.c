@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 14:09:02 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/08 22:22:59 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/09 21:57:02 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_reverse_sort_three(t_stack *stack)
 	x = stack->b->head;
 	y = stack->b->head->next;
 	z = stack->b->head->next->next;
-//	printf("%d %d %d\n", x->data, y->data, z->data);
 	if ((x->data > z->data) && (y->data > z->data))
 	{
 		if (x->data > y->data) // 3 2 1
@@ -91,7 +90,6 @@ void	ft_sort_three(t_stack *stack)
 
 void	ft_sort_two(t_stack *stack)
 {
-//	printf(">>>>>>>>>>%d %d\n", stack->a->head->next->data, stack->a->head->data);
 	if (stack->a->head->next->data < stack->a->head->data)
 		ft_sa(stack);
 }

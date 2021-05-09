@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:21:06 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/08 21:58:30 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/09 15:49:37 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_lst	*ft_init_list(t_lst *lst);
 
 int		main(int ac, char **av);
 void	ft_print_node(t_lst *stack);
+int		ft_lstcnt(t_lst *lst);
 
 void	ft_ok();
 void	ft_ko();
@@ -89,5 +90,6 @@ int		ft_count_element(t_lst *stack);
 void	ft_sort_two(t_stack *stack);
 void	ft_sort_three(t_stack *stack);
 void	ft_reverse_sort_three(t_stack *stack);
+void	ft_sort_five(t_stack *stack);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:47:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/08 22:17:14 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/09 13:33:21 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	ft_sa(t_stack *stack)
 		tmp = stack->a->head->data;
 		stack->a->head->data = stack->a->head->next->data;
 		stack->a->head->next->data = tmp;
-	}
 		if (stack->is_push_swap)
 			write(1, "sa\n", 3);
+	}
 }
 
 void	ft_sb(t_stack *stack)
@@ -39,9 +39,9 @@ void	ft_sb(t_stack *stack)
 		tmp = stack->b->head->data;
 		stack->b->head->data = stack->b->head->next->data;
 		stack->b->head->next->data = tmp;
-	}
 		if (stack->is_push_swap)
 			write(1, "sb\n", 3);
+	}
 }
 
 void	ft_ss(t_stack *stack)
@@ -65,11 +65,11 @@ int	ft_ra(t_stack *stack)
 	{
 		stack->a->head = stack->a->head->next;
 		stack->a->tail = stack->a->tail->next;
-	//	return (1);
-	}
 		if (stack->is_push_swap)
 			write(1, "ra\n", 3);
-	return (1);
+		return (1);
+	}
+	return (0);
 }
 
 int	ft_rb(t_stack *stack)
@@ -80,11 +80,11 @@ int	ft_rb(t_stack *stack)
 	{
 		stack->b->head = stack->b->head->next;
 		stack->b->tail = stack->b->tail->next;
-	//	return (1);
-	}
 		if (stack->is_push_swap)
 			write(1, "rb\n", 3);
-	return (1);
+		return (1);
+	}
+	return (0);
 }
 
 void	ft_rr(t_stack *stack)
@@ -114,9 +114,9 @@ void	ft_rra(t_stack *stack)
 		stack->a->head = stack->a->tail;
 		stack->a->tail = stack->a->tail->prev;
 	//	stack->a->head->next = tmp;
-	}
 		if (stack->is_push_swap)
 			write(1, "rra\n", 4);
+	}
 }
 
 void	ft_rrb(t_stack *stack)
@@ -131,9 +131,9 @@ void	ft_rrb(t_stack *stack)
 		stack->b->head = stack->b->tail;
 		stack->b->tail = stack->b->tail->prev;
 	//	stack->b->head->next = tmp;
-	}
 		if (stack->is_push_swap)
 			write(1, "rrb\n", 4);
+	}
 }
 
 void	ft_rrr(t_stack *stack)
@@ -182,9 +182,9 @@ void	ft_pa(t_stack *stack)
 		ft_del(stack->b);
 		stack->a->cnt++;
 		stack->b->cnt--;
-	}
 		if (stack->is_push_swap)
 			write(1, "pa\n", 3);
+	}
 	return ;
 }
 
@@ -198,8 +198,8 @@ void	ft_pb(t_stack *stack)
 		ft_del(stack->a);
 		stack->a->cnt--;
 		stack->b->cnt++;
-	}
 		if (stack->is_push_swap)
 			write(1, "pb\n", 3);
+	}
 	return ;
 }
