@@ -4,7 +4,7 @@ NAME_P = push_swap
 HEADER = -I ./headers
 
 CC = gcc
-CFLAGES = -Wall -Wextra -Werror
+CFLAGES = -Wall -Wextra -Werror -fsanitize=address -g3
 
 LIBFT = ./include/libft
 LIBFT_NAME = libft.a

@@ -83,13 +83,15 @@ void	ft_quick_sort_init(t_stack *stack, int min, int max);
 void	ft_bubble_sort(int *arr, int max);
 int		*ft_intdup(t_lst *stack);
 
+void	ft_a_to_b_init(t_stack *stack, int min, int max);
 void	ft_a_to_b(t_stack *stack, int min, int max);
 void	ft_b_to_a(t_stack *stack, int min, int max);
 int		ft_count_element(t_lst *stack);
 
 void	ft_sort_two(t_stack *stack);
 void	ft_sort_three(t_stack *stack);
+void	ft_reverse_sort_two(t_stack *stack);
 void	ft_reverse_sort_three(t_stack *stack);
-void	ft_sort_five(t_stack *stack);
+// void	ft_sort_five(t_stack *stack);
 
 #endif

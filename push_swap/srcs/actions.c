@@ -67,9 +67,9 @@ int	ft_ra(t_stack *stack)
 		stack->a->tail = stack->a->tail->next;
 		if (stack->is_push_swap)
 			write(1, "ra\n", 3);
-		return (1);
+		//return (1);
 	}
-	return (0);
+	return (1);
 }
 
 int	ft_rb(t_stack *stack)
@@ -82,9 +82,9 @@ int	ft_rb(t_stack *stack)
 		stack->b->tail = stack->b->tail->next;
 		if (stack->is_push_swap)
 			write(1, "rb\n", 3);
-		return (1);
+		//return (1);
 	}
-	return (0);
+	return (1);
 }
 
 void	ft_rr(t_stack *stack)
@@ -169,6 +169,7 @@ void	ft_del(t_lst *lst)
 		tmp = lst->head;
 		free(tmp);
 		lst->head = NULL;
+		lst->tail = NULL;
 	}
 }
 

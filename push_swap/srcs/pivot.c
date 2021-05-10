@@ -68,7 +68,7 @@ void	ft_quick_sort_init(t_stack *stack, int min, int max)  // idx
 	stack->is_push_swap = 1;
 	stack->arr = ft_set_idx(stack->a);
 	if (3 < stack->a->cnt)
-		ft_a_to_b(stack, min, max);
+		ft_a_to_b_init(stack, min, max);
 	else
 	{
 		if (stack->a->cnt == 2)

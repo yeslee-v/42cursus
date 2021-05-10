@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 15:17:20 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/09 14:13:45 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/10 22:19:29 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int		ft_is_sorted(t_lst *lst)
 	t_node	*second;
 
 	i = lst->cnt;
+	if (i == 1)
+		return (1);
 	first = lst->head;
 	second = first->next;
 	while (--i)
@@ -57,9 +59,8 @@ void	ft_read(t_stack *stack)
 	stack->is_push_swap = 0;
 	while ((size = get_next_line(0, &line) > 0))
 	{
-		if (stack->a->cnt == 1)
-			ft_ok();
-		else if ((line[0] == 's') && (line[1] == 'a') && (line[2] == '\0'))
+
+		if ((line[0] == 's') && (line[1] == 'a') && (line[2] == '\0'))
 			ft_sa(stack);
 		else if ((line[0] == 's') && (line[1] == 'b') && (line[2] == '\0'))
 			ft_sb(stack);
@@ -74,13 +75,12 @@ void	ft_read(t_stack *stack)
 		else
 			ft_error_message();
 		free(line);
-	//	printf("stack a+++++++++\n");
-	//	ft_print_node(stack->a);
-	//	printf("stack b+++++++++\n");
-//		ft_print_node(stack->b);
+	// printf("stack a+++++++++\n");
+	// ft_print_node(stack->a);
+	// printf("stack b+++++++++\n");
+	// ft_print_node(stack->b);
 	}
-//	printf("checker\n");
-	if (ft_is_sorted(stack->a))
+	if (ft_is_sorted(stack->a) && !(stack->b->cnt))
 		ft_ok();
 	else
 		ft_ko();

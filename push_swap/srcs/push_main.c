@@ -60,7 +60,7 @@ int main(int ac, char **av)
 	t_stack	stack;
 
 	if (ac == 1)
-		ft_error_message();
+		exit(0);
 	i = 0;
 	stack.a = ft_init_list(stack.a);
 	stack.b = ft_init_list(stack.b);

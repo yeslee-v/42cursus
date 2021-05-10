@@ -41,7 +41,7 @@ void	ft_sort_five(t_stack *stack)
 	first = stack->arr[0];
 	second = stack->arr[1];
 	int	first_idx = ft_find_num(stack, first);
-	printf(">>>>>>>first: %d second: %d\n", first_idx, second_idx);
+	// printf(">>>>>>>first: %d second: %d\n", first_idx, second_idx);
 	while (++cnt < 6) // seprate first second while
 	{
 	/*	printf("\n++++++++++[before]+++++++++++\n");
