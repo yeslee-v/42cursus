@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 18:20:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/04 18:26:45 by yeslee           ###   ########.fr       */
+/*   Created: 2021/05/08 20:58:08 by yeslee            #+#    #+#             */
+/*   Updated: 2021/05/08 22:03:38 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ void	ft_print_node(t_lst *stack)
 	t_node *tmp;
 
 	tmp = stack->head;
+	if (tmp == NULL)
+	{
+		printf(" |  |\n");
+		printf(" ---\n");
+		return ;
+	}
 	printf("\n");
 	while (tmp)
 	{
@@ -28,39 +34,47 @@ void	ft_print_node(t_lst *stack)
 			break ;
 		}
 	}
-//	printf("%d\n", stack->res);
 	printf("====================\n");
-/*	printf("====================\n");
-	tmp = stack->tail;
-	printf("\n");
-	while (tmp)
+}
+
+int		ft_lstcnt(t_lst *lst)
+{
+	int		cnt;
+	t_node	*node;
+
+	cnt = 0;
+	node = lst->head;
+	while (node)
 	{
-		printf(" { %d }\n", tmp->data);
-		tmp = tmp->prev;
-		if (tmp == stack->tail)
-		{
-			printf(" +++++++\n");
+		cnt++;
+		node = node->next;
+		if (node == lst->head)
 			break ;
-		}
-	}*/
+	}
+	return (cnt);
 }
 
 int main(int ac, char **av)
 {
 	int		i;
-	t_lst	*lst_a;
-	t_lst	*lst_b;
+	t_stack	stack;
 
-	lst_a = NULL;
-	lst_b = NULL;
-	lst_a = ft_init_list(lst_a);
-	lst_b = ft_init_list(lst_b);
-	ft_check_error(ac);
-
+	if (ac == 1)
+		exit(0);
 	i = 0;
+	stack.a = ft_init_list(stack.a);
+	stack.b = ft_init_list(stack.b);
 	while (av[++i])
-		ft_node_init(lst_a, ft_check_same(&av[i]));
-	ft_read(lst_a, lst_b);
-	//ft_set_pivot(lst_a, lst_b);
+		ft_node_init(stack.a, ft_check_same(&av[i]));
+//	printf("before sort\n");
+//	ft_print_node(stack.a);
+	stack.a->cnt = ft_lstcnt(stack.a);
+	stack.b->cnt = ft_lstcnt(stack.b);
+//	printf("after sort\n");
+	ft_quick_sort_init(&stack, 0, ac - 1);
+	//printf("stack a\n");
+//	ft_print_node(stack.a);
+	//printf("stack b\n");
+//	ft_print_node(stack.b);
 	return (0);
 }

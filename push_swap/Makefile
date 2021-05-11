@@ -4,7 +4,7 @@ NAME_P = push_swap
 HEADER = -I ./headers
 
 CC = gcc
-CFLAGES = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGES = -Wall -Wextra -Werror -fsanitize=address -g3
 
 LIBFT = ./include/libft
 LIBFT_NAME = libft.a
@@ -14,25 +14,29 @@ RMFLAGS = -f
 
 SRCS_C = ./include/get_next_line/get_next_line.c \
 		 ./include/get_next_line/get_next_line_utils.c \
-		 ./srcs/main.c \
+		 ./srcs/checker_main.c \
 		 ./srcs/write_result.c \
 		 ./srcs/struct_init.c \
 		 ./srcs/check_ac_av.c \
 		 ./srcs/checker.c \
 		 ./srcs/actions.c \
-		 ./srcs/parse_init.c \
-		 ./srcs/optimize.c
+		 ./srcs/pivot.c \
+		 ./srcs/push_swap.c \
+		 ./srcs/optimize.c \
+		 ./srcs/optimize_2.c
 
 SRCS_P = ./include/get_next_line/get_next_line.c \
 		 ./include/get_next_line/get_next_line_utils.c \
-		 ./srcs/main.c \
+		 ./srcs/push_main.c \
 		 ./srcs/write_result.c \
 		 ./srcs/struct_init.c \
 		 ./srcs/check_ac_av.c \
 		 ./srcs/checker.c \
 		 ./srcs/actions.c \
-		 ./srcs/parse_init.c \
-		 ./srcs/optimize.c
+		 ./srcs/pivot.c \
+		 ./srcs/push_swap.c \
+		 ./srcs/optimize.c \
+		 ./srcs/optimize_2.c
 
 OBJS_C = $(SRCS_C:.c=.o)
 OBJS_P = $(SRCS_P:.c=.o)
