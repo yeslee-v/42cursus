@@ -1,7 +1,10 @@
 NAME = libasm.a
 
-CC = nasm
-CFLAGES = -f macho64
+NASM = nasm
+NFLAGES = -f macho64
+
+CC = gcc
+CFLAGES = -Wall -Wextra -Werror
 
 RM = rm
 RMFLAGS = -f
@@ -22,7 +25,7 @@ $(NAME) : $(OBJS)
 	$(CC) $(CFLAGES) -o $@ $^
 
 %.o:%.c
-	@$(CC) $(CFLAGES) -o $@ -c $<	
+	@$(NASM) $(NFLAGES) -o $@ -c $<	
 
 clean :
 	$(RM) $(RMFLAGS) $(OBJS)
