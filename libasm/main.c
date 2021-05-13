@@ -31,15 +31,15 @@ int		main(void)
 
 	printf("--strlen\n");
 	STRLEN("")
-	STRLEN("toto")
-	STRLEN("totototo")
+	STRLEN("yeslee")
+	STRLEN("tomatoma")
 	STRLEN("0123456789abcdef")
 	STRLEN("42")
 	STRLEN("1")
 	printf("-done\n");
 
 	printf("\n--strcpy\n");
-	printf("`%s` (`toto`)\n", ft_strcpy(buffer, "toto"));
+	printf("`%s` (`ji-kim`)\n", ft_strcpy(buffer, "ji-kim"));
 	printf("`%s` (empty)\n", ft_strcpy(buffer, ""));
 	printf("`%s` (`long message`)\n", ft_strcpy(buffer, "long message"));
 	printf("`%s` (NULL > not modified)\n", ft_strcpy(buffer, NULL));
@@ -47,19 +47,19 @@ int		main(void)
 
 	printf("\n--strcmp\n");
 	STRCMP("", "")
-	STRCMP("toto", "toto")
-	STRCMP("", "toto")
-	STRCMP("toto", "")
-	STRCMP("toto", "totobar")
-	printf("`%s`:`%s` = %d\n", "TOTO", NULL, ft_strcmp("TOTO", NULL));
-	printf("`%s`:`%s` = %d\n", NULL, "TOTO", ft_strcmp(NULL, "TOTO"));
+	STRCMP("amin", "amin")
+	STRCMP("", "amin")
+	STRCMP("amin", "")
+	STRCMP("amin", "toma")
+	printf("`%s`:`%s` = %d\n", "AMIN", NULL, ft_strcmp("AMIN", NULL));
+	printf("`%s`:`%s` = %d\n", NULL, "AMIN", ft_strcmp(NULL, "AMIN"));
 	printf("`%s`:`%s` = %d\n", NULL, NULL, ft_strcmp(NULL, NULL));
 	printf("-done\n");
 
 	printf("\n--write\n");
-	WRITE("toto", 4L)
-	WRITE("totototo", 4L)
-	WRITE("totototo", 8L)
+	WRITE("harry", 4L)
+	WRITE("tomatoma", 4L)
+	WRITE("tomatoma", 8L)
 	WRITE("toto", 2L)
 	printf("-done\n");
 
@@ -73,10 +73,10 @@ int		main(void)
 	printf("-done\n");
 
 	printf("\n--ft_strdup\n");
-	tmp2 = ft_strdup("toto");
+	tmp2 = ft_strdup("yeslee");
 	DUP(tmp2)
 	free(tmp2);
-	DUP("totobar")
+	DUP("toolbar")
 	DUP("long message")
 	DUP("")
 	DUP(NULL)

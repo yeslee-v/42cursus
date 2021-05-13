@@ -3,6 +3,9 @@ NAME = libasm.a
 NASM = nasm
 NFLAGES = -f macho64
 
+AR = ar
+ARFLAGS = rcs
+
 CC = gcc
 CFLAGES = -Wall -Wextra -Werror
 
@@ -14,25 +17,24 @@ SRCS = ./ft_strlen.s \
 	   ./ft_strcmp.s \
 	   ./ft_write.s \
 	   ./ft_read.s \
-	   ./ft_strdup.s \
-	   ./main.c
+	   ./ft_strdup.s
 
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGES) -o $@ $^
+	$(AR) $(ARFLAGS) $@ $^
 
-%.o:%.c
-	@$(NASM) $(NFLAGES) -o $@ -c $<	
+test: $(NAME)
+	@$(CC) $(CFLAGS) -o main.c $@ -c $<	
 
 clean :
 	$(RM) $(RMFLAGS) $(OBJS)
 
 fclean : clean
-	$(RM) $(RMFLAGS) $(NAME)
+	$(RM) $(RMFLAGS) $(NAME) test
 
 re : fclean all
 
-.PHONY : all fclean clean re
+.PHONY : all fclean clean re test
