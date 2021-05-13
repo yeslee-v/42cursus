@@ -23,7 +23,7 @@ void	ft_reverse_sort_three(t_stack *stack)
 	z = stack->b->head->next->next;
 	if (ft_lstcnt(stack->a) == 3)
 	{
-		printf("rev_sort_3\n");
+		// printf("rev_sort_3\n");
 		if ((x->data > z->data) && (y->data > z->data))
 		{
 			if (x->data > y->data) // 3 2 1
@@ -57,7 +57,7 @@ void	ft_reverse_sort_three(t_stack *stack)
 	}
 	else // 정렬해야하는 3개 외에 다른 인자가 있는 경우
 	{
-		printf("rev_sort_3 + a\n");
+		// printf("rev_sort_3 + a\n");
 		if ((x->data > z->data) && (y->data > z->data))
 		{
 			if (x->data > y->data) // 3 2 1
@@ -160,7 +160,7 @@ void	ft_sort_three(t_stack *stack)
 	}
 	else // 정렬해야하는 3개 외에 다른 인자가 있는 경우
 	{
-		printf("sort_3 + a\n");
+		// printf("sort_3 + a\n");
 		if ((x->data < z->data) && (y->data < z->data))
 		{
 			if (x->data < y->data) // 1 2 3
@@ -212,22 +212,22 @@ void	ft_sort_three(t_stack *stack)
 
 void	ft_sort_two(t_stack *stack)
 {
-	printf("sort_2\n");
+	// printf("sort_2\n");
 	if (stack->a->head->next->data < stack->a->head->data)
 		ft_sa(stack);
-					ft_print_node(stack->a);
-		ft_print_node(stack->b);
-	printf("*************\n");
+					// ft_print_node(stack->a);
+		// ft_print_node(stack->b);
+	// printf("*************\n");
 }
 
 void	ft_reverse_sort_two(t_stack *stack)
 {
-	printf("r_sort_2\n");
+	// printf("r_sort_2\n");
 	if (stack->b->head->data < stack->b->head->next->data)
 		ft_sb(stack);
 	ft_pa(stack);
 	ft_pa(stack);
-		ft_print_node(stack->a);
-		ft_print_node(stack->b);
-		printf("------+++++++++++");
+		// ft_print_node(stack->a);
+		// ft_print_node(stack->b);
+		// printf("------+++++++++++");
 }

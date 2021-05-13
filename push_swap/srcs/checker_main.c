@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 20:57:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/08 21:33:48 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/13 20:50:03 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,9 @@ int main(int ac, char **av)
 	i = 0;
 	stack.a = ft_init_list(stack.a);
 	stack.b = ft_init_list(stack.b);
+	ft_init_val(&stack.val);
 	while (av[++i])
 		ft_node_init(stack.a, ft_check_same(&av[i]));
-//	printf("before sort\n");
-//	ft_print_node(stack.a);
 	stack.a->cnt = ft_lstcnt(stack.a);
 	stack.b->cnt = ft_lstcnt(stack.b);
 	ft_read(&stack);

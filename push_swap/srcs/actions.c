@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:47:53 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/09 13:33:21 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/13 22:38:39 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,34 +57,30 @@ void	ft_ss(t_stack *stack)
 	ft_sb(stack);
 }
 
-int	ft_ra(t_stack *stack)
+void	ft_ra(t_stack *stack)
 {
 	if (!stack)
-		return (0);
+		return	;
 	if (stack->a->cnt > 1)
 	{
 		stack->a->head = stack->a->head->next;
 		stack->a->tail = stack->a->tail->next;
 		if (stack->is_push_swap)
 			write(1, "ra\n", 3);
-		//return (1);
 	}
-	return (1);
 }
 
-int	ft_rb(t_stack *stack)
+void	ft_rb(t_stack *stack)
 {
 	if (!stack)
-		return (0);
+		return ;
 	if (stack->b->cnt > 1)
 	{
 		stack->b->head = stack->b->head->next;
 		stack->b->tail = stack->b->tail->next;
 		if (stack->is_push_swap)
 			write(1, "rb\n", 3);
-		//return (1);
 	}
-	return (1);
 }
 
 void	ft_rr(t_stack *stack)
@@ -106,14 +102,11 @@ void	ft_rra(t_stack *stack)
 
 	if (!stack)
 		return ;
-//	printf("out\n");
 	if (stack->a->cnt > 1)
 	{
-//		printf("in\n");
 		tmp = stack->a->head;
 		stack->a->head = stack->a->tail;
 		stack->a->tail = stack->a->tail->prev;
-	//	stack->a->head->next = tmp;
 		if (stack->is_push_swap)
 			write(1, "rra\n", 4);
 	}
@@ -130,7 +123,6 @@ void	ft_rrb(t_stack *stack)
 		tmp = stack->b->head;
 		stack->b->head = stack->b->tail;
 		stack->b->tail = stack->b->tail->prev;
-	//	stack->b->head->next = tmp;
 		if (stack->is_push_swap)
 			write(1, "rrb\n", 4);
 	}

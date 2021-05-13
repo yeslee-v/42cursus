@@ -6,74 +6,52 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 13:31:20 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/08 16:00:47 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/13 22:32:45 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_bubble_sort(int *arr, int max)
+int	ft_set_max(t_lst *lst)
 {
-	int	i;
-	int	j;
-	int	tmp;
+	int		max;
+	t_node	*tmp;
 
-	i = 0;
-	while (i < (max - 1))
+	tmp = lst->head;
+	max = lst->head->data;
+	while (tmp)
 	{
-		j = i + 1;
-		while (j < max)
-		{
-			if (arr[j] < arr[i])
-			{
-				tmp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = tmp;
-			}
-			j++;
-		}
-		i++;
+		if (max < tmp->data)
+			max = tmp->data;
+		tmp = tmp->next;
+		if (tmp == lst->head)
+			break ;
 	}
+	return (max);
 }
 
-int	*ft_intdup(t_lst *stack)
+int	ft_set_min(t_lst *lst)
 {
-	int	i;
-	int	*new;
-	t_node	*node;
+	int		min;
+	t_node	*tmp;
 
-	i = -1;
-	if (!(new = malloc(sizeof(int) * stack->cnt)))
-		return (0);
-	node = stack->head;
-	while (++i < stack->cnt)
+	tmp = lst->head;
+	min = lst->head->data;
+	while (tmp)
 	{
-		new[i] = node->data;
-		node = node->next;
+		if (min > tmp->data)
+			min = tmp->data;
+		tmp = tmp->next;
+		if (tmp == lst->head)
+			break ;
 	}
-	return (new);
+	return (min);
 }
 
-int	*ft_set_idx(t_lst *lst)
-{
-	int	*arr;
-
-	arr = ft_intdup(lst);
-	ft_bubble_sort(arr, lst->cnt);
-	return (arr);
-}
-
-void	ft_quick_sort_init(t_stack *stack, int min, int max)  // idx
+void	ft_quick_sort_init(t_stack *stack)
 {
 	stack->is_push_swap = 1;
-	stack->arr = ft_set_idx(stack->a);
-	if (3 < stack->a->cnt)
-		ft_a_to_b_init(stack, min, max);
-	else
-	{
-		if (stack->a->cnt == 2)
-			ft_sort_two(stack);
-		else if (stack->a->cnt == 3)
-			ft_sort_three(stack);
-	}
+		ft_a_to_b(stack, ft_lstcnt(stack->a));
+		while (ft_lstcnt(stack->b) > 0)
+			ft_b_to_a(stack, ft_set_max(stack->b));
 }

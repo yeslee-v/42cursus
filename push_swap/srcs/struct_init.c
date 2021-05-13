@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 14:14:17 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/08 16:44:56 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/13 20:46:27 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,10 @@ t_lst	*ft_init_list(t_lst *lst)
 	lst->tail = NULL;
 	lst->cnt = 0;
 	return (lst);
+}
+
+void	ft_init_val(t_val *val)
+{
+	val->piv1 = 0;
+	val->piv2 = 0;
 }
