@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:40:22 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/14 19:48:54 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/14 21:27:12 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int			ft_set_min(t_lst *lst)
 
 void		ft_quick_sort_init(t_stack *stack)
 {
+	if (ft_is_sorted(stack->a))
+		exit(0);
 	stack->is_push_swap = 1;
 	ft_a_to_b(stack, ft_lstcnt(stack->a));
 	while (ft_lstcnt(stack->b) > 0)
