@@ -17,6 +17,7 @@ SRCS_C = ./include/get_next_line/get_next_line.c \
 		 ./srcs/checker_main.c \
 		 ./srcs/write_result.c \
 		 ./srcs/struct_init.c \
+		 ./srcs/add_cnt.c \
 		 ./srcs/check_ac_av.c \
 		 ./srcs/checker.c \
 		 ./srcs/actions_p.c \
@@ -25,6 +26,7 @@ SRCS_C = ./include/get_next_line/get_next_line.c \
 		 ./srcs/actions_s.c \
 		 ./srcs/push_swap_init.c \
 		 ./srcs/push_swap.c \
+		 ./srcs/set_max.c \
 		 ./srcs/optimize_2.c \
 		 ./srcs/optimize_3.c \
 		 ./srcs/optimize_4.c \
@@ -35,6 +37,7 @@ SRCS_P = ./include/get_next_line/get_next_line.c \
 		 ./srcs/push_main.c \
 		 ./srcs/write_result.c \
 		 ./srcs/struct_init.c \
+		 ./srcs/add_cnt.c \
 		 ./srcs/check_ac_av.c \
 		 ./srcs/checker.c \
 		 ./srcs/actions_p.c \
@@ -43,6 +46,7 @@ SRCS_P = ./include/get_next_line/get_next_line.c \
 		 ./srcs/actions_s.c \
 		 ./srcs/push_swap_init.c \
 		 ./srcs/push_swap.c \
+		 ./srcs/set_max.c \
 		 ./srcs/optimize_2.c \
 		 ./srcs/optimize_3.c \
 		 ./srcs/optimize_4.c \

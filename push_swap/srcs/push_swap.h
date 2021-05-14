@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:21:06 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/14 15:52:26 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/14 19:48:47 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
-#include <stdio.h>
 
 typedef struct	s_node
 {
@@ -94,7 +93,7 @@ int		ft_set_max(t_lst *lst);
 int		ft_set_min(t_lst *lst);
 
 void	ft_a_to_b(t_stack *stack, int size);
-void	ft_b_to_a(t_stack *stack, int max);
+void	ft_find_max(t_stack *stack, int max);
 int		ft_count_element(t_lst *stack);
 
 void	ft_sort_two(t_stack *stack);

@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:40:22 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/14 15:51:41 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/14 19:48:54 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,5 @@ void		ft_quick_sort_init(t_stack *stack)
 	stack->is_push_swap = 1;
 	ft_a_to_b(stack, ft_lstcnt(stack->a));
 	while (ft_lstcnt(stack->b) > 0)
-		ft_b_to_a(stack, ft_set_max(stack->b));
+		ft_find_max(stack, ft_set_max(stack->b));
 }
