@@ -6,13 +6,13 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 15:17:20 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/10 22:19:29 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/14 13:41:25 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_is_sorted(t_lst *lst)
+int			ft_is_sorted(t_lst *lst)
 {
 	int		i;
 	t_node	*first;
@@ -33,7 +33,15 @@ int		ft_is_sorted(t_lst *lst)
 	return (1);
 }
 
-void	ft_r_first(t_stack *stack, char *line)
+void		ft_conclusion(t_stack *stack)
+{
+	if (ft_is_sorted(stack->a) && !(stack->b->cnt))
+		ft_ok();
+	else
+		ft_ko();
+}
+
+void		ft_r_first(t_stack *stack, char *line)
 {
 	if ((line[1] == 'a') && (line[2] == '\0'))
 		ft_ra(stack);
@@ -51,15 +59,14 @@ void	ft_r_first(t_stack *stack, char *line)
 		ft_error_message();
 }
 
-void	ft_read(t_stack *stack)
+void		ft_read(t_stack *stack)
 {
 	int		size;
 	char	*line;
-	
+
 	stack->is_push_swap = 0;
 	while ((size = get_next_line(0, &line) > 0))
 	{
-
 		if ((line[0] == 's') && (line[1] == 'a') && (line[2] == '\0'))
 			ft_sa(stack);
 		else if ((line[0] == 's') && (line[1] == 'b') && (line[2] == '\0'))
@@ -75,13 +82,6 @@ void	ft_read(t_stack *stack)
 		else
 			ft_error_message();
 		free(line);
-	// printf("stack a+++++++++\n");
-	// ft_print_node(stack->a);
-	// printf("stack b+++++++++\n");
-	// ft_print_node(stack->b);
 	}
-	if (ft_is_sorted(stack->a) && !(stack->b->cnt))
-		ft_ok();
-	else
-		ft_ko();
+	ft_conclusion(stack);
 }

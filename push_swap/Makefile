@@ -4,7 +4,7 @@ NAME_P = push_swap
 HEADER = -I ./headers
 
 CC = gcc
-CFLAGES = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGES = -Wall -Wextra -Werror
 
 LIBFT = ./include/libft
 LIBFT_NAME = libft.a
@@ -19,10 +19,14 @@ SRCS_C = ./include/get_next_line/get_next_line.c \
 		 ./srcs/struct_init.c \
 		 ./srcs/check_ac_av.c \
 		 ./srcs/checker.c \
-		 ./srcs/actions.c \
-		 ./srcs/pivot.c \
+		 ./srcs/actions_p.c \
+		 ./srcs/actions_r.c \
+		 ./srcs/actions_rr.c \
+		 ./srcs/actions_s.c \
+		 ./srcs/push_swap_init.c \
 		 ./srcs/push_swap.c \
-		 ./srcs/optimize.c \
+		 ./srcs/optimize_2.c \
+		 ./srcs/optimize_3.c \
 		 ./srcs/optimize_4.c \
 		 ./srcs/optimize_5.c
 
@@ -33,10 +37,14 @@ SRCS_P = ./include/get_next_line/get_next_line.c \
 		 ./srcs/struct_init.c \
 		 ./srcs/check_ac_av.c \
 		 ./srcs/checker.c \
-		 ./srcs/actions.c \
-		 ./srcs/pivot.c \
+		 ./srcs/actions_p.c \
+		 ./srcs/actions_r.c \
+		 ./srcs/actions_rr.c \
+		 ./srcs/actions_s.c \
+		 ./srcs/push_swap_init.c \
 		 ./srcs/push_swap.c \
-		 ./srcs/optimize.c \
+		 ./srcs/optimize_2.c \
+		 ./srcs/optimize_3.c \
 		 ./srcs/optimize_4.c \
 		 ./srcs/optimize_5.c
 

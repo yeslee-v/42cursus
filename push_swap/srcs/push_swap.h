@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:21:06 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/13 22:33:16 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/14 15:52:26 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ typedef struct	s_lst
 {
 	t_node		*head;
 	t_node		*tail;
-	int			cnt; // number of nodes
+	int			cnt;
 }				t_lst;
 
 typedef struct	s_val
 {
-	int	piv1;
-	int piv2;
+	int		piv1;
+	int		piv2;
 }				t_val;
 
 typedef	struct	s_stack
@@ -52,9 +52,8 @@ void	ft_init_val(t_val *val);
 t_node	*ft_get_node(t_node *new);
 t_lst	*ft_init_list(t_lst *lst);
 
-int		main(int ac, char **av);
-void	ft_print_node(t_lst *stack);
 int		ft_lstcnt(t_lst *lst);
+int		main(int ac, char **av);
 
 void	ft_ok();
 void	ft_ko();
@@ -100,8 +99,6 @@ int		ft_count_element(t_lst *stack);
 
 void	ft_sort_two(t_stack *stack);
 void	ft_sort_three(t_stack *stack);
-void	ft_reverse_sort_two(t_stack *stack);
-void	ft_reverse_sort_three(t_stack *stack);
 void	ft_sort_four(t_stack *stack);
 void	ft_sort_five(t_stack *stack);
 

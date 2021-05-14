@@ -6,17 +6,17 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 15:42:38 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/13 21:06:37 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/14 15:24:37 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_find_num(t_stack *stack, int num)
+int			ft_find_num(t_stack *stack, int num)
 {
 	int		i;
 	int		node_cnt;
-	t_node *tmp;
+	t_node	*tmp;
 
 	i = 0;
 	tmp = stack->a->head;
@@ -32,34 +32,41 @@ int		ft_find_num(t_stack *stack, int num)
 	return (0);
 }
 
-void	ft_sort_four(t_stack *stack)
+static void	ft_while(t_stack *stack, int idx)
 {
 	int	cnt;
-	int	first;
-	int	idx;
+	int	reset;
 
 	cnt = 0;
-	first = ft_set_min(stack->a);
-	idx = ft_find_num(stack, first);
 	while (++cnt < 5)
 	{
 		if (cnt == idx)
 		{
 			if (cnt <= 2)
 			{
-			int reset = cnt;
+				reset = cnt;
 				while (--reset)
 					ft_ra(stack);
 			}
 			else if (2 < cnt)
 			{
-				int reset = ft_lstcnt(stack->a) - cnt + 2;
+				reset = ft_lstcnt(stack->a) - cnt + 2;
 				while (--reset)
 					ft_rra(stack);
 			}
 			ft_pb(stack);
 		}
 	}
+}
+
+void		ft_sort_four(t_stack *stack)
+{
+	int		idx;
+	int		first;
+
+	first = ft_set_min(stack->a);
+	idx = ft_find_num(stack, first);
+	ft_while(stack, idx);
 	ft_sort_three(stack);
 	ft_pa(stack);
 }

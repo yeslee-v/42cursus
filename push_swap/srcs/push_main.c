@@ -6,38 +6,13 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 20:58:08 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/13 20:50:11 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/14 16:37:52 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_print_node(t_lst *stack)
-{
-	t_node *tmp;
-
-	tmp = stack->head;
-	if (tmp == NULL)
-	{
-		printf(" |  |\n");
-		printf(" ---\n");
-		return ;
-	}
-	printf("\n");
-	while (tmp)
-	{
-		printf(" | %d |\n", tmp->data);
-		tmp = tmp->next;
-		if (tmp == stack->head)
-		{
-			printf(" -----\n");
-			break ;
-		}
-	}
-	printf("====================\n");
-}
-
-int		ft_lstcnt(t_lst *lst)
+int			ft_lstcnt(t_lst *lst)
 {
 	int		cnt;
 	t_node	*node;
@@ -54,7 +29,7 @@ int		ft_lstcnt(t_lst *lst)
 	return (cnt);
 }
 
-int main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	int		i;
 	t_stack	stack;
