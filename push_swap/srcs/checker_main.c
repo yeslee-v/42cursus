@@ -6,12 +6,13 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 20:57:54 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/14 16:37:42 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/14 20:02:21 by parkjaekw        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-int		ft_lstcnt(t_lst *lst)
+
+int			ft_lstcnt(t_lst *lst)
 {
 	int		cnt;
 	t_node	*node;
@@ -27,6 +28,7 @@ int		ft_lstcnt(t_lst *lst)
 	}
 	return (cnt);
 }
+
 int			main(int ac, char **av)
 {
 	int		i;

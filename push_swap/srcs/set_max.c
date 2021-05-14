@@ -6,13 +6,13 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 17:23:36 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/14 18:00:27 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/14 20:25:42 by parkjaekw        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_from_top(t_stack *stack, int	max)
+static int	ft_from_top(t_stack *stack, int max)
 {
 	int		top_cnt;
 	t_node	*tmp;
@@ -50,7 +50,7 @@ static int	ft_from_bottom(t_stack *stack, int max)
 	return (bot_cnt);
 }
 
-static void		ft_cnt_is_zero(t_stack *stack, int top_cnt, int bot_cnt)
+static void	ft_cnt_is_zero(t_stack *stack, int top_cnt, int bot_cnt)
 {
 	if (top_cnt == 0)
 	{
@@ -65,7 +65,7 @@ static void		ft_cnt_is_zero(t_stack *stack, int top_cnt, int bot_cnt)
 	}
 }
 
-static void		ft_cnt_is_not_zero(t_stack *stack, int top_cnt, int bot_cnt)
+static void	ft_cnt_is_not_zero(t_stack *stack, int top_cnt, int bot_cnt)
 {
 	if (top_cnt <= bot_cnt)
 	{

@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 14:14:17 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/14 18:09:42 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/14 20:04:11 by parkjaekw        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,36 @@
 
 void		ft_node_init(t_lst *lst, int value)
 {
-	t_node	*new;
+	t_node	*node;
 
-	new = NULL;
-	new = ft_get_node(new);
-	new->data = value;
+	node = NULL;
+	node = ft_get_node(node);
+	node->data = value;
 	if (!(lst->head) && !(lst->tail))
 	{
-		new->next = new;
-		new->prev = new;
-		lst->head = new;
-		lst->tail = new;
+		node->next = node;
+		node->prev = node;
+		lst->head = node;
+		lst->tail = node;
 	}
 	else
 	{
-		lst->tail->next = new;
-		new->prev = lst->tail;
-		lst->tail = new;
+		lst->tail->next = node;
+		node->prev = lst->tail;
+		lst->tail = node;
 		lst->head->prev = lst->tail;
 		lst->tail->next = lst->head;
 	}
 }
 
-t_node		*ft_get_node(t_node *new)
+t_node		*ft_get_node(t_node *node)
 {
-	if (!(new = malloc(sizeof(t_node))))
+	if (!(node = malloc(sizeof(t_node))))
 		return (NULL);
-	new->data = 0;
-	new->prev = NULL;
-	new->next = NULL;
-	return (new);
+	node->data = 0;
+	node->prev = NULL;
+	node->next = NULL;
+	return (node);
 }
 
 t_lst		*ft_init_list(t_lst *lst)

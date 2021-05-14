@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 12:21:43 by yeslee            #+#    #+#             */
-/*   Updated: 2021/05/14 17:55:21 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/05/14 20:23:42 by parkjaekw        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_optimize(t_stack *stack, int i)
 {
 	if (ft_is_sorted(stack->a))
 		return ;
-	else if	(i == 2)
+	else if (i == 2)
 		ft_sort_two(stack);
 	else if (i == 3)
 		ft_sort_three(stack);
@@ -26,6 +26,7 @@ void	ft_optimize(t_stack *stack, int i)
 		ft_sort_five(stack);
 	return ;
 }
+
 void	ft_set_pivot_under_200(t_stack *stack, int size, int max)
 {
 	if (200 <= size)
@@ -69,11 +70,8 @@ void	ft_set_pivot(t_stack *stack, int size)
 		ft_set_pivot_under_200(stack, size, max);
 }
 
-void	ft_a_to_b(t_stack *stack, int size)
+void	ft_a_to_b_main(t_stack *stack, int size)
 {
-	if (size < 6)
-		return (ft_optimize(stack, size));
-	ft_set_pivot(stack, size);
 	while (size > 0)
 	{
 		if (stack->val.piv1 <= stack->a->head->data)
@@ -96,5 +94,13 @@ void	ft_a_to_b(t_stack *stack, int size)
 		}
 		size--;
 	}
+}
+
+void	ft_a_to_b(t_stack *stack, int size)
+{
+	if (size < 6)
+		return (ft_optimize(stack, size));
+	ft_set_pivot(stack, size);
+	ft_a_to_b_main(stack, size);
 	ft_a_to_b(stack, ft_lstcnt(stack->a));
 }
