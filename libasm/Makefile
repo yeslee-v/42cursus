@@ -19,12 +19,12 @@ SRCS = ./ft_strlen.s \
 	   ./ft_read.s \
 	   ./ft_strdup.s
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.s=.o)
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(AR) $(ARFLAGS) $@ $^
+	@$(AR) $(ARFLAGS) $@ $^
 
 test: $(NAME)
 	@$(CC) $(CFLAGS) -o main.c $@ -c $<	
