@@ -22,6 +22,11 @@ int		strlen_test(char *str)
 	int 	ret1;
 	int 	ret2;
 
+	if (str == NULL)
+	{
+		printf("this is error: NULL\n");
+		exit(0);
+	}
 	ret1 = ft_strlen(str);
 	ret2 = strlen(str);
 	printf("str: %s|\n👉 strlen : %d / ft_strlen : %d\n\n", str, ret1, ret2);
@@ -37,6 +42,11 @@ int		strcpy_test(char *src)
 	char	dest1[BUFFER_SIZE];
 	char	dest2[BUFFER_SIZE];
 
+	if (src == NULL)
+	{
+		printf("this is error: NULL\n");
+		exit(0);
+	}
 	bzero(dest1, BUFFER_SIZE);
 	bzero(dest2, BUFFER_SIZE);
 	ft_strcpy(dest1, src);
@@ -54,6 +64,11 @@ int		strcmp_test(char *s1, char *s2)
 	int 	ret1;
 	int 	ret2;
 
+	if (s1 == NULL || s2 == NULL)
+	{
+		printf("this is error: NULL\n");
+		exit(0);
+	}
 	ret1 = ft_strcmp(s1, s2);
 	ret2 = strcmp(s1, s2);
 	printf("strcmp : %d / ft_strcmp : %d\n\n", ret1, ret2);
@@ -70,6 +85,11 @@ int		write_test(char *str)
 	char	buf[BUFFER_SIZE];
 	int		ret;
 
+/*	if (str == NULL)
+	{
+		printf("this is error: NULL\n");
+		exit(0);
+	}*/
 	bzero(buf, BUFFER_SIZE);
 	if (pipe(ft_write_pipe) < 0)
 		exit(EXIT_FAILURE);
@@ -93,6 +113,11 @@ int		read_test(char *str)
 	char	buf[BUFFER_SIZE];
 	int		ret;
 
+/*	if (str == NULL)
+	{
+		printf("this is error: NULL\n");
+		exit(0);
+	}*/
 	bzero(buf, BUFFER_SIZE);
 	if (pipe(ft_read_pipe) < 0)
 		exit(EXIT_FAILURE);
@@ -115,6 +140,11 @@ int		strdup_test(char *str)
 	char	*str1;
 	char	*str2;
 
+	if (str == NULL)
+	{
+		printf("this is error: NULL\n");
+		exit(0);
+	}
 	str1 = ft_strdup(str);
 	str2 = strdup(str);
 	printf("strdup: %s| / ft_strdup : %s|\n\n", str1, str2);
@@ -201,6 +231,7 @@ int		main(void)
 	// FT_STRDUP
 
 	printf("%s", "\n------[ ft_strdup.s ]------\n\n");
+//	strdup_test(NULL);
 	strdup_test("hola");
 	strdup_test("hi hello");
 	strdup_test("");
