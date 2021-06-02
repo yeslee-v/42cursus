@@ -1,14 +1,14 @@
 section .text
- 		global _main
-		extern __error
+ 		global _ft_write
+		extern ___error
 
- _main:
- 	move rax, 0x2000004
+ _ft_write :
+ 	mov rax, 0x2000004
  	syscall
  	jc _err
  	ret
 
- _err:
+ _err :
  	push rax
  	call ___error
  	pop rdx

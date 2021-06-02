@@ -1,7 +1,7 @@
 NAME = libasm.a
 
 NASM = nasm
-NFLAGES = -f macho64
+NFLAGS = -f macho64
 
 AR = ar
 ARFLAGS = rcs
@@ -27,14 +27,18 @@ $(NAME) : $(OBJS)
 	@$(AR) $(ARFLAGS) $@ $^
 
 test: $(NAME)
-	@$(CC) $(CFLAGS) -o main.c $@ -c $<	
+	@$(CC) $(CFLAGS) $^ main.c -o test
+	@./test
 
 clean :
-	$(RM) $(RMFLAGS) $(OBJS)
+	@$(RM) $(RMFLAGS) $(OBJS)
 
 fclean : clean
-	$(RM) $(RMFLAGS) $(NAME) test
+	@$(RM) $(RMFLAGS) $(NAME) test
 
 re : fclean all
+
+%.o : %.s
+	@$(NASM) $(NFLAGS) $< -o $@
 
 .PHONY : all fclean clean re test

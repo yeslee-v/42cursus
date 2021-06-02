@@ -1,9 +1,9 @@
 section .text
- 		global _main
-		extern __error
+ 		global _ft_read
+		extern ___error
 
- _main:
- 	move rax, 0x2000003
+ _ft_read :
+ 	mov rax, 0x2000003
  	syscall
  	jc _err
  	ret

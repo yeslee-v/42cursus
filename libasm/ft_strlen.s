@@ -1,15 +1,15 @@
 section .text
- 	global _ft_strlen
+		global _ft_strlen
 
- _ft_strlen:
+ _ft_strlen :
  	mov rax, 0
- 	jmp cnt
+ 	jmp .cnt
 
- cnt:
+.cnt :
  	cmp BYTE[rdi + rax], 0
- 	je	end
+ 	je	.end
  	inc rax
- 	jmp cnt
+ 	jmp .cnt
 
- end:
+ .end :
  	ret

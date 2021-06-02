@@ -9,14 +9,15 @@ _ft_strcmp :
 	je		.diff
 
 .loop :
-	mov		al, BYTE [rdi]
-	mov		cl, BYTE [rsi]
+	mov		al, BYTE[rdi]
+	mov		cl, BYTE[rsi]
 	cmp		al, cl
+	jne		.diff
 	cmp		cl, 0
-	j		.end
-	jmp		.incr
+	je		.end
+	jmp		.inc
 
-.incr
+.inc :
 	inc		rdi
 	inc		rsi
 	jmp		.loop
