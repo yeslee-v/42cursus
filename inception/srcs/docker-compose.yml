@@ -1,11 +1,33 @@
-version: "3"
+version: "3"                        # set skima version
 
-services:
-  db:
-      image: debian:buster
-      ports:
-          "443:443"
-      volumes:
-          - db_data:/var/lib/mysql
-      env_file:
-          .env
+services:                           # define service lists
+  nginx:                            # define service
+      image: debian:buster          # set container image 
+      build: requirements/nginx
+      container_name: nginx
+      ports:                        # set port
+          - "443:443"
+            #      env_file:
+
+            #- .env
+          #      depends_on:
+          #          - wordpress
+          #          - db
+
+            #  wordpress:
+            #      image: debian:buster
+            #      port:
+            #          "9000"
+            #      volumes:
+            #          - 
+            #      env_file:
+            #          .env
+  
+            #  db:
+            #      image: debian:buster
+            #      port:
+            #          "3306"
+            #      volumes:
+            #          - 
+            #      env_file:
+            #          .env
