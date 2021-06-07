@@ -1,0 +1,16 @@
+server {
+	listen 443;
+
+	ssl on;
+	ssl_certificate /etc/ssl/certs/localhost.dev.crt;
+	ssl_certificate_key /etc/ssl/private/localhost.dev.key;
+	ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+
+	root /var/www/html;
+
+	index index.html index.htm index.nginx-debian.html;
+	location / {
+		try_files $uri $uri/ =404;
+	}
+}

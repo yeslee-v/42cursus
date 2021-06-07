@@ -2,7 +2,30 @@ version: "3"                        # set skima version
 
 services:                           # define service lists
   nginx:                            # define service
+      image: nginx
       build: requirements/nginx
       container_name: nginx
       ports:                        # set port
           - "443:443"
+
+  db:
+      image: mariadb
+      volumes:
+          - /data/mysql:/var/lib/mysql
+      build: requirements/mariadb
+      restart: always
+      container_name: db
+      ports:
+          - 3306
+  
+  wordpress:
+      depends_on:
+          - nginx
+      image: wordpress
+      volumes:
+          - wordpress:/etc/ng
+      build: requirements/wordpress
+      restart: always
+      container_name: wordpress
+      ports:
+          - 9000
