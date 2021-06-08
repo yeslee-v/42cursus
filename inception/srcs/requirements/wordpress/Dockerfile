@@ -1,16 +1,11 @@
 FROM debian:buster
 
-RUN	apt-get -y install php7.3-fpm \
-	php-mysql \
+RUN	apt-get update && apt-get -y upgrade; \
+	apt-get -y install php7.3-fpm \
 	wget
 
-RUN	wget https://wordpress.org/latest.tar.gz; \
-	tar -xvf phpMyAdmin-5.0.2-all-languages.tar.gz
+RUN	wget https://wordpress.org/latest.tar.gz
 
-RUN	wget https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.0.2-all-languages.tar.gz; \
-	tar -xvf phpMyAdmin-5.0.2-all-languages.tar.gz
-
-COPY /srcs/requirements/nginx/wordpress/conf/wp-config.php ./tmp/
-COPY /srcs/requirements/nginx/wordpress/conf/config.inc.php ./tmp/
+COPY conf/wp-config.php ./tmp/
 
 ENTRYPOINT ["bash", "run.sh"]

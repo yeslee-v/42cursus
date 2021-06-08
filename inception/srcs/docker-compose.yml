@@ -5,13 +5,15 @@ services:                           # define service lists
       image: nginx
       build: requirements/nginx
       container_name: nginx
+      volumes:
+          - ./data/html:/var/www/html
       ports:                        # set port
           - "443:443"
 
   db:
       image: mariadb
       volumes:
-          - /data/mysql:/var/lib/mysql
+          - ./data/mysql:/var/lib/mysql
       build: requirements/mariadb
       restart: always
       container_name: db
@@ -21,9 +23,10 @@ services:                           # define service lists
   wordpress:
       depends_on:
           - nginx
+          - db
       image: wordpress
       volumes:
-          - wordpress:/etc/ng
+          - ./data/html:/var/www/html
       build: requirements/wordpress
       restart: always
       container_name: wordpress

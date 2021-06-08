@@ -1,3 +1,5 @@
+service mysql start
+
 mysql < /var/www/html/phpmyadmin/sql/create_tables.sql -u root
 mysqladmin -u root -p password
 
