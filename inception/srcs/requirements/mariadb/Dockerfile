@@ -1,7 +1,8 @@
 FROM	debian:buster
 
 RUN		apt-get update && apt-get -y upgrade; \
-		apt-get -y install mariadb-server
+		apt-get -y install mariadb-server \
+		vim
 
 EXPOSE	3306
 

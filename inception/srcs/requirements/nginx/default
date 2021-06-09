@@ -12,11 +12,15 @@ server {
 	index index.html index.htm index.nginx-debian.html;
 	
 	location / {
+	#/뒤에 뭐가 들어가면 그 파일을 찾는다: uri = url + urn
 		try_files $uri $uri/ =404;
 	}
 	
 	location ~\.php$ {
-		fastcgi_pass wordpress:9000;
-		fastcgi_index index.php;
+		#wordpress 컨테이너에 도커 네트워크가 들어있음
+		fastcgi_pass	wordpress:9000;
+		fastcgi_index	index.php;
+		fastcgi_param	SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		include			fastcgi_params;
 	}
 }
