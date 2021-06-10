@@ -8,6 +8,7 @@ RUN	apt-get update && apt-get -y upgrade; \
 
 RUN	wget https://wordpress.org/latest.tar.gz
 
-COPY conf/wp-config.php ./tmp/
+COPY ./conf/wp-config.php ./tmp/
+COPY ./conf/run.sh ./
 
 ENTRYPOINT ["bash", "run.sh"]

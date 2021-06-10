@@ -12,8 +12,8 @@ services:                           # define service lists
           #- ./data/html:/var/www/html # /host/path : /container/path
       ports:                        # set port
           - "443:443"
-      network:
-          - inception_networt
+      networks:
+          - inception_network
 
   mariadb:
       image: mariadb
@@ -24,20 +24,21 @@ services:                           # define service lists
       restart: always
       ports:
           - 3306
-      network:
-          - inception_networt
+      networks:
+          - inception_network
       env_file: .env
   
   wordpress:
       image: wordpress
       build: requirements/wordpress
       container_name: wordpress
-      volumes: wp-data:/var/www/html
+      volumes:
+          - wp-data:/var/www/html
       restart: always
       ports:
           - 9000
-      network:
-          - inception_networt
+      networks:
+          - inception_network
       depends_on:
           - mariadb
 
@@ -46,10 +47,16 @@ services:                           # define service lists
 
 volumes:
     db-data:
-        - home/yeslee/data/db
+        driver_opts:
+            type: none
+            device: /Users/yeslee/volume-test/db
+            o: bind
     wp-data:
-        - home/yeslee/data/wp
+        driver_opts:
+            type: none
+            device: /Users/yeslee/volume-test/wp
+            o: bind
 
 networks:
-    - inception_networt
+    inception_network:
         # driver: bridge default값이기 때문에 안써도 무방
