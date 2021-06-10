@@ -1,3 +1,5 @@
+# 컨테이너 별 조건 순서는 중요하지않음
+
 version: "3"                        # set skima version
 
 services:                           # define service lists
@@ -6,32 +8,48 @@ services:                           # define service lists
       build: requirements/nginx
       container_name: nginx
       volumes:
-          - ./data/html:/var/www/html
+          - wp-data:/var/www/html
+          #- ./data/html:/var/www/html # /host/path : /container/path
       ports:                        # set port
           - "443:443"
+      network:
+          - inception_networt
 
   mariadb:
       image: mariadb
-      volumes:
-          - ./data/mysql:/var/lib/mysql
       build: requirements/mariadb
-      restart: always
       container_name: mariadb
+      volumes:
+          - db-data:/var/lib/mysql # named_volume_name : /container/path
+      restart: always
       ports:
           - 3306
+      network:
+          - inception_networt
+      env_file: .env
   
   wordpress:
-      depends_on:
-          - nginx
-          - mariadb
       image: wordpress
-      volumes:
-          - ./data/html:/var/www/html
       build: requirements/wordpress
-      restart: always
       container_name: wordpress
+      volumes: wp-data:/var/www/html
+      restart: always
       ports:
           - 9000
+      network:
+          - inception_networt
+      depends_on:
+          - mariadb
+
+# n드라이브같은 클라우드를 만든다고 생각 >> 경로 지정해주자
+# service에서 지정한 container path에 있는 내용이 home/yeslee/data/~ 로 이동
+
+volumes:
+    db-data:
+        - home/yeslee/data/db
+    wp-data:
+        - home/yeslee/data/wp
 
 networks:
-    driver: bridge
+    - inception_networt
+        # driver: bridge default값이기 때문에 안써도 무방

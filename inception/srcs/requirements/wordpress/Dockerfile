@@ -10,4 +10,4 @@ RUN	wget https://wordpress.org/latest.tar.gz
 
 COPY conf/wp-config.php ./tmp/
 
-#ENTRYPOINT ["bash", "run.sh"]
+ENTRYPOINT ["bash", "run.sh"]

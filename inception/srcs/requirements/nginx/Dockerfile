@@ -19,7 +19,6 @@ RUN		mv localhost.dev.key etc/ssl/private
 # 파일 소유자 권한 부여
 RUN chown -R www-data:www-data /etc/nginx
 
-#CMD	nginx -g 'daemon off;'
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
 # nginx에서는 .sh만들지 않고 바로 띄운다 >> ENTRYPOINT ["bash", "entrypoint.sh"]
