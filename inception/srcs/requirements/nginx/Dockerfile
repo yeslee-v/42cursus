@@ -10,8 +10,9 @@ RUN		apt-get update && apt-get -y upgrade; \
 # 인증서 설정
 RUN	openssl req -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=KR/ST=Seoul/L=Yongin/O=42seoul/CN=localhost" -keyout localhost.dev.key -out localhost.dev.crt
 
-COPY	default ./tmp/
-COPY	conf/nginx.conf ./tmp/
+# 도커 컨테이너 안의 폴더 경로를 써서 옮김
+COPY	default ./etc/nginx/sites-available/default
+#COPY	conf/nginx.conf ./
 
 RUN		mv localhost.dev.crt etc/ssl/certs
 RUN		mv localhost.dev.key etc/ssl/private

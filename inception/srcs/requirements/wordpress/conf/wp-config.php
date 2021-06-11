@@ -26,7 +26,7 @@ define( 'DB_NAME', 'wordpress' );
 define( 'DB_USER', 'yeslee' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', '0406' );
+define( 'DB_PASSWORD', '1234' );
 
 /** MySQL hostname: 빌릴 서버 >> mariadb:port*/
 define( 'DB_HOST', 'mariadb:3306' );

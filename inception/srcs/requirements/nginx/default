@@ -17,6 +17,7 @@ server {
 	}
 	
 	location ~\.php$ {
+		try_files $uri $uri/ =404;
 		#wordpress 컨테이너에 도커 네트워크가 들어있음
 		fastcgi_pass	wordpress:9000;
 		fastcgi_index	index.php;

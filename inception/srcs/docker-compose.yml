@@ -7,41 +7,51 @@ services:                           # define service lists
       image: nginx
       build: requirements/nginx
       container_name: nginx
-      volumes:
-          - wp-data:/var/www/html
-          #- ./data/html:/var/www/html # /host/path : /container/path
+      restart: always
       ports:                        # set port
           - "443:443"
       networks:
           - inception_network
-
-  mariadb:
-      image: mariadb
-      build: requirements/mariadb
-      container_name: mariadb
       volumes:
-          - db-data:/var/lib/mysql # named_volume_name : /container/path
-      restart: always
-      ports:
-          - 3306
-      networks:
-          - inception_network
-      env_file: .env
-  
+          - wp-data:/var/www/html
+          #- ./data/html:/var/www/html # /host/path : /container/path
+
   wordpress:
       image: wordpress
       build: requirements/wordpress
       container_name: wordpress
-      volumes:
-          - wp-data:/var/www/html
       restart: always
       ports:
           - 9000
       networks:
           - inception_network
+      environment:
+          - WORDPRESS_DB_HOST=$${WORDPRESS_DB_HOST}
+          - WORDPRESS_DB_USER=$${WORDPRESS_DB_USER}
+          - WORDPRESS_DB_PASSWORD=$${WORDPRESS_DB_PASSWORD}
+          - WORDPRESS_DB_NAME=$${WORDPRESS_DB_NAME}
+      volumes:
+          - wp-data:/var/www/html # nginx 소개 페이지 위치
       depends_on:
           - mariadb
 
+  mariadb:
+      image: mariadb
+      build: requirements/mariadb
+      container_name: mariadb
+      restart: always
+      ports:
+          - 3306
+      networks:
+          - inception_network
+      environment:
+          - MYSQL_DATABASE=$${MYSQL_DATABSE}
+          - MYSQL_USER=$${MYSQL_USER}
+          - MYSQL_PASSWORD=$${MYSQL_PASSWORD}
+          - MYSQL_ROOT_PASSWORD=$${MYSQL_ROOT_PASSWORD}
+      volumes:
+          - db-data:/var/lib/mysql # named_volume_name : /container/path
+  
 # n드라이브같은 클라우드를 만든다고 생각 >> 경로 지정해주자
 # service에서 지정한 container path에 있는 내용이 home/yeslee/data/~ 로 이동
 
