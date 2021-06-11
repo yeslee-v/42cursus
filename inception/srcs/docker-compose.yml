@@ -13,7 +13,7 @@ services:                           # define service lists
       networks:
           - inception_network
       volumes:
-          - wp-data:/var/www/html
+          - wp-data:/var/www/wordpress # html로 하면 싹 밀어버릴 위험이 있기 때문에 wordpress 폴더를 만들어 거기에 넣어준다:ㅣ
           #- ./data/html:/var/www/html # /host/path : /container/path
 
   wordpress:
@@ -31,7 +31,7 @@ services:                           # define service lists
           - WORDPRESS_DB_PASSWORD=$${WORDPRESS_DB_PASSWORD}
           - WORDPRESS_DB_NAME=$${WORDPRESS_DB_NAME}
       volumes:
-          - wp-data:/var/www/html # nginx 소개 페이지 위치
+          - wp-data:/var/www/wordpress # nginx 소개 페이지 위치
       depends_on:
           - mariadb
 
@@ -62,10 +62,10 @@ volumes:
             device: /Users/yeslee/volume-test/db
             o: bind
     wp-data:
-        driver_opts:
-            type: none
-            device: /Users/yeslee/volume-test/wp
-            o: bind
+        # driver_opts:
+            # type: none
+            #          device: /Users/yeslee/volume-test/wp
+            # o: bind
 
 networks:
     inception_network:

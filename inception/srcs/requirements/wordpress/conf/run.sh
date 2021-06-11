@@ -1,7 +1,8 @@
-mv wordpress/ /var/www/html/
-mv ./tmp/wp-config.php /var/www/html/wordpress/
-chown -R www-data:www-data /var/www/html/wordpress
+#mv wordpress/ /var/www/html/
+#mv ./tmp/wp-config.php /var/www/html/wordpress/
+#chown -R www-data:www-data /var/www/html/
 
+chown -R www-data:www-data /var/www/wordpress/
 # run in background
 service php7.3-fpm start
 service php7.3-fpm stop

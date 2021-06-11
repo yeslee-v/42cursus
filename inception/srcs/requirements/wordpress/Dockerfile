@@ -6,15 +6,13 @@ RUN	apt-get update && apt-get -y upgrade; \
 	wget \
 	vim
 
-RUN	wget https://wordpress.org/latest.tar.gz; \
-    tar -xvf https://wordpress.org/latest.tar.gz
+#RUN	wget https://wordpress.org/latest.tar.gz; \
+#   tar -xvf https://wordpress.org/latest.tar.gz
 
-RUN mv wordpress/ ./var/www/html/
 COPY ./conf/run.sh ./
 COPY ./conf/www.conf ./etc/php/7.3/fpm/pool.d/www.conf
 COPY ./conf/php-fpm.conf ./etc/php/7.3/fpm/php-fpm.conf
-COPY ./conf/wp-conf.php ./var/www/html/
-
+COPY ./conf/wordpress/ /var/www/wordpress
 EXPOSE	9000
 
 ENTRYPOINT ["bash", "run.sh"]

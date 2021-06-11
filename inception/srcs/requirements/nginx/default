@@ -7,9 +7,9 @@ server {
 	ssl_protocols TLSv1.2 TLSv1.3;
     ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
 
-	root /var/www/html;
+	root /var/www/wordpress;
 
-	index index.html index.htm index.nginx-debian.html;
+	index index.html index.htm index.nginx-debian.html index.php;
 	
 	location / {
 	#/뒤에 뭐가 들어가면 그 파일을 찾는다: uri = url + urn
