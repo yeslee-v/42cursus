@@ -7,8 +7,6 @@ server {
 	ssl_protocols TLSv1.2 TLSv1.3;
     ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
 
-	root /var/www/wordpress;
-
 	index index.html index.htm index.nginx-debian.html index.php;
 	
 	location / {
@@ -17,7 +15,7 @@ server {
 	}
 	
 	location ~\.php$ {
-		try_files $uri $uri/ =404;
+		root /var/www/html;
 		#wordpress 컨테이너에 도커 네트워크가 들어있음
 		fastcgi_pass	wordpress:9000;
 		fastcgi_index	index.php;
