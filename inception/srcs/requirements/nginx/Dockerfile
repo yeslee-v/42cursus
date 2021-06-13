@@ -12,7 +12,6 @@ RUN	openssl req -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=KR/ST=Seoul/L=
 
 # 도커 컨테이너 안의 폴더 경로를 써서 옮김
 COPY	default ./etc/nginx/sites-available/default
-#COPY	conf/nginx.conf ./
 
 RUN		mv localhost.dev.crt etc/ssl/certs
 RUN		mv localhost.dev.key etc/ssl/private
@@ -21,9 +20,3 @@ RUN		mv localhost.dev.key etc/ssl/private
 RUN chown -R www-data:www-data /etc/nginx
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
-
-# nginx에서는 .sh만들지 않고 바로 띄운다 >> ENTRYPOINT ["bash", "entrypoint.sh"]
-
-#nginx -g "daemon off"
-#php7.3-fpm --nodaemonize
-#/var/lib/mysql/mysqld_safe --data_dir=var/lib/mysql 

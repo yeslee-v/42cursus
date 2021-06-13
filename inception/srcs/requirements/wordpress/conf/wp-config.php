@@ -23,12 +23,13 @@
 define( 'DB_NAME', getenv('WORDPRESS_DB_NAME') );
 
 /** MySQL database username */
-define( 'DB_USER', getenv('WORDRPESS_DB_USER') );
+define( 'DB_USER', getenv('WORDPRESS_DB_USER') );
 
 /** MySQL database password */
 define( 'DB_PASSWORD', getenv('WORDPRESS_DB_PASSWORD') );
 
 /** MySQL hostname: borrow server  */
+#define( 'DB_HOST', 'mariadb:3306' );
 define( 'DB_HOST', getenv('WORDPRESS_DB_HOST') );
 
 /** Database Charset to use in creating database tables. */
@@ -46,14 +47,14 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         'put your unique phrase here' );
-define( 'SECURE_AUTH_KEY',  'put your unique phrase here' );
-define( 'LOGGED_IN_KEY',    'put your unique phrase here' );
-define( 'NONCE_KEY',        'put your unique phrase here' );
-define( 'AUTH_SALT',        'put your unique phrase here' );
-define( 'SECURE_AUTH_SALT', 'put your unique phrase here' );
-define( 'LOGGED_IN_SALT',   'put your unique phrase here' );
-define( 'NONCE_SALT',       'put your unique phrase here' );
+define('AUTH_KEY',         'PtuzR,&BQeqR-i!kap+-QIJ0rVz<U4>K[0:YR~&=-iuP$US,O0Co7D#EAPdx0*)v');
+define('SECURE_AUTH_KEY',  '69z%8jNwphjKm_rQ)Aetr&V:,h.Xn*NR;]8`3p-Zdj?=tXY]W{1RkFJunFTT7IHu');
+define('LOGGED_IN_KEY',    ')B/Yn(Z Pf!R%@8l,d3:,sO?F]xHVV0>adx5m/;wb-wu$v!%|%6U2+/LFbXg.UG_');
+define('NONCE_KEY',        '*:cN^-T=daq<xanQlN$borVKb%+aB|+|`i9iTtLFn-G!<JZ^?ihgI)PlQ?7bl=:z');
+define('AUTH_SALT',        '8v:v%zDa9OKvB.5{[IOGaw=Nd%~ &DfhIb}/s&(T<+dM6|i2vEMs03WTeL]q[HC1');
+define('SECURE_AUTH_SALT', '`2Ij|U*:e~x+;#VwtZ-mXVJpR?D+LwE3()|a6)mu9$m:L> [W|:95<=k:1EkLJy~');
+define('LOGGED_IN_SALT',   'Z~uhcE<odct4taA2UVY[KOm c^O$GTga=1ut]gev+IBnX{/QO+I+oK% `{$]C,nb');
+define('NONCE_SALT',       ' ~[y~U`N83ah+)0G9fIp)*%WzdshW^NZAzN20:VIyn|o;[L4%; l9m6#aCH-CSlt');
 
 /**#@-*/
 
@@ -77,7 +78,7 @@ $table_prefix = 'wp_';
  *
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
-define( 'WP_DEBUG', false );
+define( 'WP_DEBUG', true );
 
 /* That's all, stop editing! Happy publishing. */
 
