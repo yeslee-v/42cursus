@@ -28,10 +28,14 @@ services:                           # define service lists
       networks:
           - inception_network
       environment:
-          - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
-          - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
-          - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
-          - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
+          #WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+          #WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+          #WORDPRESS_DB_PASS: ORD=${WORDPRESS_DB_PASSWORD}
+          #WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+           - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
+           - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
+           - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
+           - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
       volumes:
           - wp-data:/var/www/html # nginx 소개 페이지 위치
       depends_on:
@@ -47,10 +51,14 @@ services:                           # define service lists
       networks:
           - inception_network
       environment:
-          - MYSQL_DATABASE=${MYSQL_DATABASE}
-          - MYSQL_USER=${MYSQL_USER}
-          - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-          - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+          #MYSQL_DATABASE: ${MYSQL_DATABASE}
+          #MYSQL_USER: ${MYSQL_USER}
+          #MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+          #MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+           - MYSQL_DATABASE=${MYSQL_DATABASE}
+           - MYSQL_USER=${MYSQL_USER}
+           - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+           - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       volumes:
           - db-data:/var/lib/mysql # named_volume_name : /container/path
   
