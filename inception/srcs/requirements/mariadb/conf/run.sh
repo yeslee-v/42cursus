@@ -3,7 +3,7 @@
 ./mysql_cmd.sh
 
 service mysql start
-mysql -u root -p$MY_ROOT_PASSWORD < mysql_cmd.sql
+mysql -u root -p$MYSQL_ROOT_PASSWORD < mysql_cmd.sql
 
 sleep 2
 
