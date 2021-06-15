@@ -6,6 +6,7 @@ RUN		apt-get update && apt-get -y upgrade; \
 
 RUN mkdir -p /run/mysql
 
+COPY	./conf/mysql_cmd.sh ./
 COPY	./conf/run.sh ./
 COPY	./conf/50-server.cnf ./etc/mysql/mariadb.conf.d/50-server.cnf
 
