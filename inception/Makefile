@@ -1,4 +1,7 @@
 all:
+	mkdir ~/volume-test/db
+	mkdir ~/volume-test/wp
+	cd srcs/
 	docker-compose up -d --build
 
 down:

@@ -10,6 +10,8 @@ COPY	./conf/mysql_cmd.sh ./
 COPY	./conf/run.sh ./
 COPY	./conf/50-server.cnf ./etc/mysql/mariadb.conf.d/50-server.cnf
 
+RUN chmod u+r+x mysql_cmd.sh
+
 EXPOSE	3306
 
 ENTRYPOINT	["bash", "run.sh"]

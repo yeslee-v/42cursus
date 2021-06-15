@@ -2,6 +2,7 @@
 cat << EOF > exit.sql
 exit
 EOF
+
 chown -R www-data:www-data /var/www
 
 # run in background
