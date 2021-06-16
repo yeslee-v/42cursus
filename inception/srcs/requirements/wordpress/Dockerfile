@@ -7,7 +7,8 @@ RUN	apt-get update && apt-get -y upgrade; \
 	php-mysqli \
 	mariadb-client \
 	wget \
-	vim
+	vim \
+	curl
 
 RUN	wget https://wordpress.org/latest.tar.gz; \
 	tar -xvf latest.tar.gz
@@ -18,7 +19,7 @@ RUN mkdir -p /var/www/html; \
 RUN mv wordpress /var/www/html
 
 COPY ./conf/run.sh ./
-COPY ./conf/wp-config.php /var/www/html/wordpress
+COPY ./conf/wp-config.php ./
 COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 COPY ./conf/php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
 
