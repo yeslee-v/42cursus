@@ -1,14 +1,32 @@
-all:
-	mkdir ~/volume-test/db
-	mkdir ~/volume-test/wp
-	cd srcs/
-	docker-compose up -d --build
+CMD = cd ./srcs && docker-compose
+MKDIR = sudo mkdir
+RMDIR = sudo rm -r
+
+all: up
+
+ready:
+	@$(MKDIR) ~/data
+	@$(MKDIR) ~/data/wp
+	@$(MKDIR) ~/data/db
+	@sudo chmod 777 /etc/hosts
+	@echo "0.0.0.0 yeslee.42.fr" >> /etc/hosts
+
+up:
+	@$(CMD) up -d --build
 
 down:
-	docker-compose down --rmi all
+	@$(CMD) down
 
 clean:
-	docker rm -f $(docker ps -aq)
+	@$(CMD) down --rmi all
+	@$(RMDIR) ~/data
+	@$(RMDIR) ~/data/wp
+	@$(RMDIR) ~/data/db
 
-re: clean
-	docker-compose up -d --build
+fclean: clean
+		@./srcs
+		@docker system prune --volumes --force --all
+
+re: fclean all
+
+.PHONY: ready up down clean fclean re

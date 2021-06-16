@@ -25,9 +25,9 @@ chown -R www-data:www-data /var/www
 #connect_db
 #echo "error_log = /dev/stderr" >> /etc/php/7.3/fpm/php.ini
 
-curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-chmod +x wp-cli.phar
-php wp-cli.phar core install --url=localhost --title=yesleenception_world --admin_user=yeslee --admin_email=1234@42.fr --allow-root
+#curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+#chmod +x wp-cli.phar
+#php wp-cli.phar core install --url=localhost --title=yesleenception_world --admin_user=yeslee --admin_email=1234@42.fr --allow-root
 
 # run in background
 /usr/sbin/php-fpm7.3 -F

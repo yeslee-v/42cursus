@@ -4,6 +4,8 @@ bash mysql_cmd.sh
 
 service mysql start
 mysql -u root -p$MYSQL_ROOT_PASSWORD < mysql_cmd.sql
+mysql -u root -p$MYSQL_ROOT_PASSWORD < wp.sql
+
 #sleep 2
 
 #killall mysqld mysqld_safe
