@@ -12,9 +12,7 @@ ready:
 	echo "0.0.0.0 yeslee.42.fr" >> /etc/hosts
 
 up:
-	$(T_CMD) up --build
-#	cd ./srcs; \
-#	docker-compose up -d --build
+	$(T_CMD) up -d --build
 
 down:
 	cd ./srcs; \
