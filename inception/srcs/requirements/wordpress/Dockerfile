@@ -19,10 +19,9 @@ RUN mkdir -p /var/www/html; \
 RUN mv wordpress /var/www/html
 
 COPY ./conf/run.sh ./
-COPY ./conf/wp-config.php ./
+COPY ./conf/wp-config.php /var/www/html/wordpress/wp-config.php
 COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 COPY ./conf/php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
-
 RUN chown -R www-data:www-data /var/www
 
 EXPOSE	9000

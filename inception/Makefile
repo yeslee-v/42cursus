@@ -1,31 +1,32 @@
-CMD = cd ./srcs && docker-compose
-MKDIR = sudo mkdir
-RMDIR = sudo rm -r
-
-all: up
+M_CMD = sudo mkdir -p
+R_CMD = sudo rm -r
+T_CMD = cd ./srcs && docker-compose
+all: ready up
 
 ready:
-	@$(MKDIR) ~/data
-	@$(MKDIR) ~/data/wp
-	@$(MKDIR) ~/data/db
-	@sudo chmod 777 /etc/hosts
-	@echo "0.0.0.0 yeslee.42.fr" >> /etc/hosts
+	sudo chmod 777 /var/run/docker.sock
+	sudo chmod 777 /etc/hosts
+	$(M_CMD) /home/yeslee/data
+	$(M_CMD) /home/yeslee/data/wp
+	$(M_CMD) /home/yeslee/data/db
+	echo "0.0.0.0 yeslee.42.fr" >> /etc/hosts
 
 up:
-	@$(CMD) up -d --build
+	$(T_CMD) up --build
+#	cd ./srcs; \
+#	docker-compose up -d --build
 
 down:
-	@$(CMD) down
+	cd ./srcs; \
+	docker-compose down
 
 clean:
-	@$(CMD) down --rmi all
-	@$(RMDIR) ~/data
-	@$(RMDIR) ~/data/wp
-	@$(RMDIR) ~/data/db
+	cd ./srcs; \
+	docker-compose down --rmi all
+	$(R_CMD) /home/yeslee/data
 
 fclean: clean
-		@./srcs
-		@docker system prune --volumes --force --all
+	docker system prune --volumes --force --all
 
 re: fclean all
 
