@@ -1,6 +1,7 @@
 M_CMD = sudo mkdir -p
 R_CMD = sudo rm -r
 T_CMD = cd ./srcs && docker-compose
+
 all: ready up
 
 ready:
@@ -15,12 +16,10 @@ up:
 	$(T_CMD) up -d --build
 
 down:
-	cd ./srcs; \
-	docker-compose down
+	$(T_CMD) down
 
 clean:
-	cd ./srcs; \
-	docker-compose down --rmi all
+	$(T_CMD) down --rmi all
 	$(R_CMD) /home/yeslee/data
 
 fclean: clean
