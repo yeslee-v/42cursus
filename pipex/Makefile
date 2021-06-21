@@ -6,15 +6,15 @@ HEADER = -I ./headers
 CC = gcc
 CFLAGES = -Wall -Wextra -Werror
 
-LIBFT = ./include/libft
+LIBFT = ./libft
 LIBFT_NAME = libft.a
 
 RM = rm
 RMFLAGS = -f
 
-SRCS = ./include/get_next_line/get_next_line.c \
+SRCS = ./srcs/pipex.c
 
-SRCS_BONUS = ./include/get_next_line/get_next_line.c \
+SRCS_BONUS = ./srcs/pipex_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
