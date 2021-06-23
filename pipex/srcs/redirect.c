@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 03:33:30 by yeslee            #+#    #+#             */
-/*   Updated: 2021/06/24 04:03:05 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/06/24 04:15:57 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_dup2(int fd, t_cmd *cmd)
 		if (dup2(cmd->fd[1], fd) == -1)
 			ft_error_message("dup2 error");
 	}
-	else
+	else if (fd == 0)
 	{
 		if (dup2(cmd->fd[0], fd) == -1)
 			ft_error_message("dup2 error");
