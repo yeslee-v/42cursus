@@ -6,49 +6,58 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 16:40:26 by yeslee            #+#    #+#             */
-/*   Updated: 2021/06/21 22:20:46 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/06/24 04:10:06 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../headers/pipex.h"
 
-int		main()
-//int	main(int ac, char **av)
+static void	ft_execve(t_cmd *st_cmd)
 {
-	pid_t	pid_1;
-	pid_t	pid_2;
-	int		fd_1;
-	int		fd_2;
+	int		i;
+
+	i = ft_double_len(st_cmd->cmd);
+	while (--i >= 0)
+		execve(st_cmd->cmd[i], st_cmd->av, st_cmd->envp);
+	ft_error_message("execve error");
+}
+
+static void	ft_pid_zero(char **av, char **path, t_cmd *cmd)
+{
+	int		pid;
 	int		status;
 
-	status = 10;
-//	if (ac != 5)
-//		perror("Error\n");
-	pid_1 = fork();
-	if (pid_1 == 0)
+	pipe(cmd->fd);
+	pid = fork();
+	if (pid == 0)
 	{
-		printf("before fork_mom: %d\n", getpid());
-		pid_2 = fork();
-		if (pid_2 == 0)
-		{
-			printf("first cmd >> child: %d\n", getpid());
-			if ((fd_1 = open("./a.txt", O_WRONLY)) > 0)
-				printf("open!!!!!!!\n\n");
-			else
-				printf("close!!!!!!!\n\n");
-		}
-		else
-		{
-			printf("second cmd >> mom: %d\n", getpid());
-			wait(&status);
-		}
+		ft_divid_path(av[2], path, cmd);
+		ft_connect_i(0);
+		ft_dup2(1, cmd);
+		ft_execve(cmd);
 	}
 	else
 	{
-		printf("i'm grand process; %d\n", getpid());
 		wait(&status);
+		ft_divid_path(av[3], path, cmd);
+		ft_connect_o(1);
+		ft_dup2(0, cmd);
+		ft_execve(cmd);
 	}
-	printf("pid:wait = %d:%d\n", getpid(), status);
-//	printf("parents: %d child: %d\n", getpid(), pid);
+}
+
+int			main(int ac, char **av, char **path)
+{
+	pid_t	pid;
+	t_cmd	cmd;
+	int		status;
+
+	if (ac != 5)
+		ft_error_message("The arguments are invalid");
+	pid = fork();
+	if (pid == 0)
+		ft_pid_zero(av, path, &cmd);
+	else
+		wait(&status);
 	return (0);
 }

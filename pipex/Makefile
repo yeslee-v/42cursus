@@ -12,9 +12,15 @@ LIBFT_NAME = libft.a
 RM = rm
 RMFLAGS = -f
 
-SRCS = ./srcs/pipex.c
+SRCS = ./srcs/pipex.c \
+	   ./srcs/set_cmd.c \
+	   ./srcs/print_error.c \
+	   ./srcs/redirect.c
 
-SRCS_BONUS = ./srcs/pipex_bonus.c
+SRCS_BONUS = ./srcs/set_cmd.c \
+			 ./srcs/print_error.c \
+			 ./srcs/pipex_bonus.c \
+			 ./srcs/redirect.c
 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)

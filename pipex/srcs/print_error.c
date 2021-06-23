@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/21 16:40:26 by yeslee            #+#    #+#             */
-/*   Updated: 2021/06/21 16:42:18 by yeslee           ###   ########.fr       */
+/*   Created: 2021/06/23 17:01:38 by yeslee            #+#    #+#             */
+/*   Updated: 2021/06/23 17:03:24 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../headers/pipex.h"
 
-int	main(int ac, char **av)
+void	ft_error_message(char *s)
 {
-
+	perror(s);
+	exit(0);
 }
