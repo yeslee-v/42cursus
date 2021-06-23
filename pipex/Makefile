@@ -48,6 +48,7 @@ clean :
 
 fclean : clean
 	$(RM) $(RMFLAGS) $(NAME) $(NAME_BONUS)
+	$(RM) $(RMFLAGS) ./libft.a
 	@make fclean -C $(LIBFT)
 
 re : fclean all
