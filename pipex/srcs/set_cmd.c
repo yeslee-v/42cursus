@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 01:57:27 by yeslee            #+#    #+#             */
-/*   Updated: 2021/06/24 03:05:40 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/06/25 22:35:09 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void		ft_cmd_intro(const char *cmd_1, char **path, t_cmd *st_cmd)
 	char	**chunk;
 
 	i = 0;
+	if (!(ft_strlen(cmd_1)))
+		ft_error_message("cmd_1 is not exists");
 	chunk = ft_split(cmd_1, ' ');
 	while (*path)
 	{

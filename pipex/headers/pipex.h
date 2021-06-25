@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 17:21:33 by yeslee            #+#    #+#             */
-/*   Updated: 2021/06/24 05:29:11 by yeslee           ###   ########.fr       */
+/*   Updated: 2021/06/25 17:14:43 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ void			ft_divid_path(const char *cmd_1, char **path, t_cmd *st_cmd);
 void			ft_connect_i(char *file, int dest_fd);
 void			ft_connect_o(char *file, int dest_fd);
 void			ft_dup2(int fd, t_cmd *cmd);
+void			ft_close(int flag, t_cmd *cmd);
+void			ft_execve(t_cmd *st_cmd);
 
 #endif
