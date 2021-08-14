@@ -8,7 +8,7 @@ CFLAGES = -Wall -Wextra -Werror
 RM = rm
 RMFLAGS = -f
 
-SRCS = ./srcs/main.c
+SRCS = ./philo_main.c
 
 OBJS = $(SRCS:.c=.o)
 
