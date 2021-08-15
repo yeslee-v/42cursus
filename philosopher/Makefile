@@ -4,18 +4,21 @@ HEADER = philo.h
 
 CC = gcc
 CFLAGES = -Wall -Wextra -Werror
+PFLAGE = -lpthread
 
 RM = rm
 RMFLAGS = -f
 
-SRCS = ./philo_main.c
+SRCS = ./main.c \
+	   ./init.c \
+	   ./print.c
 
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGES) -lpthread -o $@ $^
+	$(CC) $(CFLAGES) $(PFLAGE) -o $@ $^
 
 %.o:%.c
 	@$(CC) $(CFLAGES) $(HEADER) -o $@ -c $<	
