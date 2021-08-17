@@ -18,11 +18,11 @@
 
 typedef struct	s_philo
 {
-	int			num_of_philo;
-	int			time_to_die;
-	int			time_to_eat;
-	int			time_to_sleep;
-	int			num_of_must_eat;
+	int			num;
+	int			die;
+	int			eat;
+	int			sleep;
+	int			must_eat;
 
 	pthread_mutex_t	fork;
 }				t_philo;
