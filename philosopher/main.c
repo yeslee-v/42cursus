@@ -1,52 +1,53 @@
 #include "philo.h"
 
+void	*do_philo(void)
+{
+	int i;
+	int	ret;
+
+	i = -1;
+	ret = 0;
+	while (++i < thr.philo->num)
+	{
+		ret = pthread_mutex_init(thr.thread[i], NULL);
+		if (ret < 0)
+		{
+			printf("fail to make mutex\n");
+			return ;
+		}
+
+	}
+}
+
 int main(int ac, char **av)
 {
-	t_thread thr;
-	struct timeval start;
-	struct timeval end;
+	int			i;
+	int			ret;
+	t_philo	philo;
 
 	if ((ac < 4) || (ac > 5))
 	{
 		printf("ac is invalid\n");
 		return (1);
 	}
-	init_philo(thr.philo);
-	while (*av)
-	{
-		if (ft_atoi(*av) < 0)
-		{
-			printf("arg is invalid\n");
-			return (1);
-		}
-		av++;
-	}
-	gettimeofday(&start, NULL);
-	thr.philo->num = ft_atoi(av[1]);
-	if (thr.philo->num > 200)
-	{
-		printf("philosopher is over than 200\n");
+	if (init_philo(ac, av, philo.per))
 		return (1);
-	}
-	thr.philo->die = ft_atoi(av[2]);
-	thr.philo->eat = ft_atoi(av[3]);
-	thr.philo->sleep = ft_atoi(av[4]);
-	if ((thr.philo->eat < 60) || (thr.philo->sleep < 60) || (thr.philo->die < 60))
-	{
-		printf("time is under than 60\n");
-		return (1);
-	}
-	thr.thread = malloc(sizeof(pthread_t) * thr.philo->num);
-	if (!thr.thread)
+	philo.thread = malloc(sizeof(pthread_t) * philo.per->num);
+	if (!philo.thread)
 	{
 		printf("malloc error\n");
 		return (1);
 	}
-	int i = -1;
-	while (++i < thr.philo->num)
+	i = -1;
+	ret = 0;
+	while (++i < philo.per->num)
 	{
-		// make thread
-		// thread < -1 -> error
+		ret = pthread_create(philo.thread[i], NULL, &do_philo, (void *)thr);
+		if (ret == -1)
+		{
+			printf("Fail to make thread\n");
+			return (1);
+		}
 	}
 	return (0);
 }

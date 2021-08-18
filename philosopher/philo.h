@@ -3,7 +3,6 @@
 
 # include <pthread.h>
 # include <stdio.h>
-# include <stdlib.h>
 # include <string.h>
 # include <sys/time.h>
 # include <unistd.h>
@@ -16,22 +15,24 @@
 
 # define MAX_INT 2147483648
 
-typedef struct	s_philo
+typedef struct	s_per
 {
 	int			num;
-	int			die;
-	int			eat;
-	int			sleep;
-	int			must_eat;
+	unsigned long long			die;
+	unsigned long long			eat;
+	unsigned long long			sleep;
+	unsigned long long			must_eat;
 
-	pthread_mutex_t	fork;
-}				t_philo;
+	pthread_mutex_t	*fork;
+}				t_per;
 
-typedef struct	s_thread
+typedef struct	s_philo
 {
+	int			l_fork;
+	int			r_fork;
 	pthread_t	*thread;
-	t_philo		*philo;
-}				t_thread;
+	t_per		*per;
+}				t_philo;
 
 /*
  * main.c
@@ -41,7 +42,11 @@ int		main(int ac, char **av);
 /*
  *init.c
  */
-void	init_philo(t_philo *philo);
+int		init_philo(int ac, char **av, t_philo *philo);
+
+/*
+ * utils.c
+ */
 int		ft_atoi(char *str);
 
 /*
