@@ -1,15 +1,15 @@
 #include "philo.h"
 
-void	*do_philo(void)
+void	*do_philo(void *philo)
 {
 	int i;
 	int	ret;
 
 	i = -1;
 	ret = 0;
-	while (++i < thr.philo->num)
+	while (++i < arg->info->num)
 	{
-		ret = pthread_mutex_init(thr.thread[i], NULL);
+		ret = pthread_mutex_init(arg->thread[i], NULL);
 		if (ret < 0)
 		{
 			printf("fail to make mutex\n");
@@ -23,26 +23,27 @@ int main(int ac, char **av)
 {
 	int			i;
 	int			ret;
-	t_philo	philo;
+	t_philo		*philo;
 
 	if ((ac < 4) || (ac > 5))
 	{
 		printf("ac is invalid\n");
 		return (1);
 	}
-	if (init_philo(ac, av, philo.per))
+	init_philo(philo);
+	if (init_info(ac, av, philo->info))
 		return (1);
-	philo.thread = malloc(sizeof(pthread_t) * philo.per->num);
-	if (!philo.thread)
+	philo->thread = malloc(sizeof(pthread_t) * philo->info->num);
+	if (!(philo->thread))
 	{
 		printf("malloc error\n");
 		return (1);
 	}
 	i = -1;
 	ret = 0;
-	while (++i < philo.per->num)
+	while (++i < philo->info->num)
 	{
-		ret = pthread_create(philo.thread[i], NULL, &do_philo, (void *)thr);
+		ret = pthread_create(&(philo->thread[i]), NULL, do_philo, &philo[i]);
 		if (ret == -1)
 		{
 			printf("Fail to make thread\n");

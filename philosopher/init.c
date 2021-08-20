@@ -1,26 +1,26 @@
 #include "philo.h"
 
-int	init_philo(int ac, char **av, t_philo *philo)
+int	init_info(int ac, char **av, t_info *info)
 {
-	memset(philo, 0, sizeof(t_philo));
-	philo->num = ft_atoi(av[1]);
-	if ((philo->num < 0) || (philo->num > 200))
+	memset(info, 0, sizeof(t_info));
+	info->num = ft_atoi(av[1]);
+	if ((info->num < 0) || (info->num > 200))
 	{
-		printf("num of philosophers is invalid\n");
+		printf("num of infosophers is invalid\n");
 		return (1);
 	}
-	philo->die = ft_atoi(av[2]);
-	philo->eat = ft_atoi(av[3]);
-	philo->sleep = ft_atoi(av[4]);
-	if ((philo->die < 60) || (philo->eat < 60) || (philo->sleep < 60))
+	info->die = ft_atoi(av[2]);
+	info->eat = ft_atoi(av[3]);
+	info->sleep = ft_atoi(av[4]);
+	if ((info->die < 60) || (info->eat < 60) || (info->sleep < 60))
 	{
 		printf("time is under than 60\n");
 		return (1);
 	}
 	if (ac == 5)
 	{
-		philo->must_eat = ft_atoi(av[5]);
-		if (philo->must_eat < 0)
+		info->must_eat = ft_atoi(av[5]);
+		if (info->must_eat < 0)
 		{
 			printf("'num of must eat' is invalid\n");
 			return (1);
@@ -29,4 +29,10 @@ int	init_philo(int ac, char **av, t_philo *philo)
 	return (0);
 }
 
-
+void	init_philo(t_philo *philo)
+{
+	philo->lf_idx = -1;
+	philo->rf_idx = -1;
+	philo->std_time = get_time();
+	philo->thread = NULL;
+}
