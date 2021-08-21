@@ -9,7 +9,7 @@
 # include <sys/select.h>
 # include <unistd.h>
 
-# define FORK	1
+# define TAKE	1
 # define EAT	2
 # define SLEEP	3
 # define THINK	4
@@ -20,7 +20,9 @@
 
 typedef struct	s_info
 {
-	int					num;
+	int					*fork;
+	int					total;
+	int					die_flag;
 	unsigned long long	die;
 	unsigned long long	eat;
 	unsigned long long	sleep;
@@ -28,14 +30,17 @@ typedef struct	s_info
 
 	unsigned long long	std_time;
 
-	pthread_mutex_t		*fork;
+	pthread_mutex_t		*mutex;
 }				t_info;
 
 typedef struct	s_philo
 {
+	int					num;
 	int					e_cnt;
+	int					e_time;
 	int					lf_idx;
 	int					rf_idx;
+	int					status;
 	pthread_t			*thread;
 	t_info				*info;
 }				t_philo;
@@ -44,12 +49,13 @@ typedef struct	s_philo
  * main.c
  */
 int		main(int ac, char **av);
+void	*do_philo(void *thread);
 
 /*
  *init.c
  */
 int		init_info(int ac, char **av, t_info *info);
-void	init_philo(t_philo *philo);
+int		init_philo(t_info *info, t_philo **philo);
 
 /*
  * utils.c
@@ -60,6 +66,9 @@ unsigned long long	get_time(void);
 /*
  *print.c
  */
-void	print_status(int status);
+void	print_status(int time, t_philo *philo);
+void	run_eat(t_philo *philo);
+void	run_sleep(t_philo *philo);
+void	run_think(t_philo *philo);
 
 # endif

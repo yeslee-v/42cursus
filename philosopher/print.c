@@ -1,24 +1,48 @@
 #include "philo.h"
 
-void	print_status(int status)
+void	run_eat(t_philo *philo)
 {
-	if (status == 1)
+	ready_to_eat(philo);
+	philo->status = EAT;
+	philo->e_time = get_time();
+	print_status(get_time(), philo);
+	philo->e_cnt++;
+}
+
+/*
+ *void	run_sleep(t_philo *philo)
+ *{
+	philo->status = SLEEP;
+ *
+ *}
+ *
+ *void	run_think(t_philo *philo)
+ *{
+	philo->status = THINK;
+ *
+ *}
+ */
+
+void	print_status(int time, t_philo *philo)
+{
+	printf("%d %d ", time, philo->num);
+	if (philo->status == 1)
 	{
 		printf("has taken a fork\n");
 	}
-	else if (status == 2)
+	else if (philo->status == 2)
 	{
 		printf("is eating\n");
 	}
-	else if (status == 3)
+	else if (philo->status == 3)
 	{
 		printf("is sleeping\n");
 	}
-	else if (status == 4)
+	else if (philo->status == 4)
 	{
 		printf("is thinking\n");
 	}
-	else if (status == 5)
+	else if (philo->status == 5)
 	{
 		printf("is died\n");
 	}

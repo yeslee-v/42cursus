@@ -1,22 +1,30 @@
 #include "philo.h"
 
-void	*do_philo(void *philo)
+void	*do_philo(void *thread)
 {
-	int i;
-	int	ret;
+	t_info	*info;
+	t_philo *philo;
 
-	i = -1;
-	ret = 0;
-	while (++i < arg->info->num)
+	philo = (t_philo *)thread;
+	info = philo->info;
+	while (1)
 	{
-		ret = pthread_mutex_init(arg->thread[i], NULL);
-		if (ret < 0)
-		{
-			printf("fail to make mutex\n");
-			return ;
-		}
-
+		ready_to_eat(philo);
+		if (info->die_flag == 1)
+			break ;
+		run_eat(philo);
+		/*
+		 *if (info->die_flag == 1)
+		 *    break ;
+		 *run_sleep(philo);
+		 *if (info->flag == 1)
+		 *    break ;
+		 *run_think(philo);
+		 *if (info->flag == 1)
+		 *    break ;
+		 */
 	}
+	return (thread);
 }
 
 int main(int ac, char **av)
@@ -30,10 +38,9 @@ int main(int ac, char **av)
 		printf("ac is invalid\n");
 		return (1);
 	}
-	init_philo(philo);
-	if (init_info(ac, av, philo->info))
+	if (init_philo(philo->info, &philo) || init_info(ac, av, philo->info))
 		return (1);
-	philo->thread = malloc(sizeof(pthread_t) * philo->info->num);
+	philo->thread = malloc(sizeof(pthread_t) * philo->info->total);
 	if (!(philo->thread))
 	{
 		printf("malloc error\n");
@@ -41,7 +48,7 @@ int main(int ac, char **av)
 	}
 	i = -1;
 	ret = 0;
-	while (++i < philo->info->num)
+	while (++i < philo->info->total)
 	{
 		ret = pthread_create(&(philo->thread[i]), NULL, do_philo, &philo[i]);
 		if (ret == -1)
