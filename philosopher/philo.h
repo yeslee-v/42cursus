@@ -71,4 +71,9 @@ void	run_eat(t_philo *philo);
 void	run_sleep(t_philo *philo);
 void	run_think(t_philo *philo);
 
+/*
+ *do.c
+ */
+void	ready_to_eat(t_philo *philo);
+
 # endif

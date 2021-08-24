@@ -11,7 +11,9 @@ RMFLAGS = -f
 
 SRCS = ./main.c \
 	   ./init.c \
-	   ./print.c
+	   ./print.c \
+	   ./do.c \
+	   ./utils.c
 
 OBJS = $(SRCS:.c=.o)
 

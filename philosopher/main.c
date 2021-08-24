@@ -1,31 +1,5 @@
 #include "philo.h"
-
-void	*do_philo(void *thread)
-{
-	t_info	*info;
-	t_philo *philo;
-
-	philo = (t_philo *)thread;
-	info = philo->info;
-	while (1)
-	{
-		ready_to_eat(philo);
-		if (info->die_flag == 1)
-			break ;
-		run_eat(philo);
-		/*
-		 *if (info->die_flag == 1)
-		 *    break ;
-		 *run_sleep(philo);
-		 *if (info->flag == 1)
-		 *    break ;
-		 *run_think(philo);
-		 *if (info->flag == 1)
-		 *    break ;
-		 */
-	}
-	return (thread);
-}
+#include <pthread.h>
 
 int main(int ac, char **av)
 {
@@ -56,6 +30,11 @@ int main(int ac, char **av)
 			printf("Fail to make thread\n");
 			return (1);
 		}
+		pthread_detach(philo->thread[i]);
 	}
+	/*
+	 *do_monitor(philo);
+	 */
+	// mutex
 	return (0);
 }
