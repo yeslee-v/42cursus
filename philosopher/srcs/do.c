@@ -1,4 +1,4 @@
-#include "philo.h"
+#include "../include/philo.h"
 
 void	ready_to_eat(t_philo *philo)
 {
@@ -27,12 +27,14 @@ void	*do_philo(void *thread)
 		run_eat(philo);
 		if (info->die_flag == 1)
 			break ;
-		run_sleep(philo);
-		if (info->die_flag == 1)
-			break ;
-		run_think(philo);
-		if (info->die_flag == 1)
-			break ;
+		/*
+		 *run_sleep(philo);
+		 *if (info->die_flag == 1)
+		 *    break ;
+		 *run_think(philo);
+		 *if (info->die_flag == 1)
+		 *    break ;
+		 */
 	}
 	return (thread);
 }

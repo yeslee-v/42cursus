@@ -1,35 +1,37 @@
 NAME = philo
 
-HEADER = philo.h
+HEADER = -I ./include
 
 CC = gcc
 CFLAGES = -Wall -Wextra -Werror
-PFLAGE = -lpthread
+FFLAGES = -g3 -fsanitize=address
+PFLAGES = -pthread
 
 RM = rm
 RMFLAGS = -f
 
-SRCS = ./main.c \
-	   ./init.c \
-	   ./print.c \
-	   ./do.c \
-	   ./utils.c
+SRCS = srcs/main.c \
+	   srcs/init.c \
+	   srcs/utils.c \
+	   srcs/do.c \
+	   srcs/print.c
 
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGES) $(PFLAGE) -o $@ $^
+#	@$(CC) $(CFLAGES) $(PFLAGES) $(FFLAGES) -o $@ $^
+	@$(CC) $(CFLAGES) $(PFLAGES) -o $@ $^
 
 %.o:%.c
-	@$(CC) $(CFLAGES) $(HEADER) -o $@ -c $<	
+	@$(CC) $(CFLAGES) $(HEADER) -o $@ -c $<
 
 clean :
-	$(RM) $(RMFLAGS) $(OBJS)
+	@$(RM) $(RMFLAGS) $(OBJS)
 
 fclean : clean
-	$(RM) $(RMFLAGS) $(NAME)
+	@$(RM) $(RMFLAGS) $(NAME)
 
 re : fclean all
 

@@ -1,5 +1,4 @@
-#include "philo.h"
-#include <pthread.h>
+#include "../include/philo.h"
 
 int	init_info(int ac, char **av, t_info *info)
 {
@@ -43,6 +42,7 @@ int	init_philo(t_info *info, t_philo **philo)
 {
 	int	i;
 
+	printf("init_philo: here\n");
 	memset(info, 0, sizeof(t_info));
 	i = -1;
 	*philo = malloc(sizeof(t_philo) * info->total);
