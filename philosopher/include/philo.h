@@ -49,6 +49,7 @@ typedef struct	s_philo
  * main.c
  */
 int		main(int ac, char **av);
+int		intro_philo(int ac, char **av, t_philo *philo);
 void	*do_philo(void *thread);
 
 /*

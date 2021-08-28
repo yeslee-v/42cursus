@@ -6,17 +6,20 @@ int	ft_atoi(char *str)
 	int		neg;
 	long	ret;
 
-	i = -1;
+	i = 0;
 	neg = 1;
 	if (!str)
 		return (-1);
-	if ((str[++i] == '+') || (str[++i] == '-'))
+	if ((str[i] == '+') || (str[i] == '-'))
+	{
 		if (str[i] == '-')
 			neg = -1;
-	ret = 1;
+		i++;
+	}
+	ret = 0;
 	while (str[i])
 	{
-		ret = (ret * 10) + (str[i] + 32);
+		ret = (ret * 10) + (str[i] - '0');
 		i++;
 	}
 	ret *= neg;
