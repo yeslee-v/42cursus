@@ -2,30 +2,33 @@
 
 void	run_eat(t_philo *philo)
 {
-	ready_to_eat(philo);
-	philo->status = EAT;
-	philo->e_time = get_time();
-	print_status(get_time(), philo);
-	philo->e_cnt++;
+	if ((philo->info->fork[philo->lf_idx] == philo->id) &&
+			(philo->info->fork[philo->rf_idx] == philo->id))
+	{
+		philo->status = EAT;
+		philo->e_time = get_time();
+		print_status(get_time(), philo);
+		philo->e_cnt++;
+	}
+	usleep(100);
 }
 
-/*
- *void	run_sleep(t_philo *philo)
- *{
+void	run_sleep(t_philo *philo)
+{
 	philo->status = SLEEP;
- *
- *}
- *
- *void	run_think(t_philo *philo)
- *{
+	print_status(get_time(), philo);
+}
+
+void	run_think(t_philo *philo)
+{
 	philo->status = THINK;
- *
- *}
- */
+	print_status(get_time(), philo);
+}
+ 
 
 void	print_status(int time, t_philo *philo)
 {
-	printf("%d %d ", time, philo->num);
+	printf("%d %d ", time, philo->id);
 	if (philo->status == 1)
 	{
 		printf("has taken a fork\n");

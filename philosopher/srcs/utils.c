@@ -1,5 +1,12 @@
 #include "../include/philo.h"
 
+int ft_isdigit(int num)
+{
+	if ((num >= '0') && (num <= '9'))
+		return (1);
+	return (0);
+}
+
 int	ft_atoi(char *str)
 {
 	int		i;
@@ -8,8 +15,6 @@ int	ft_atoi(char *str)
 
 	i = 0;
 	neg = 1;
-	if (!str)
-		return (-1);
 	if ((str[i] == '+') || (str[i] == '-'))
 	{
 		if (str[i] == '-')
@@ -17,13 +22,13 @@ int	ft_atoi(char *str)
 		i++;
 	}
 	ret = 0;
-	while (str[i])
+	while (ft_isdigit(str[i]))
 	{
 		ret = (ret * 10) + (str[i] - '0');
 		i++;
 	}
 	ret *= neg;
-	if ((ret > MAX_INT) || ret < 0)
+	if ((ret > MAX_INT) || ret <= 0)
 		return (-1);
 	return ((int)ret);
 }

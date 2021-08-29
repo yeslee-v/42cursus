@@ -30,18 +30,18 @@ typedef struct	s_info
 
 	unsigned long long	std_time;
 
+	pthread_t			*thread;
 	pthread_mutex_t		*mutex;
 }				t_info;
 
 typedef struct	s_philo
 {
-	int					num;
+	int					id;
 	int					e_cnt;
 	int					e_time;
 	int					lf_idx;
 	int					rf_idx;
 	int					status;
-	pthread_t			*thread;
 	t_info				*info;
 }				t_philo;
 
@@ -49,7 +49,7 @@ typedef struct	s_philo
  * main.c
  */
 int		main(int ac, char **av);
-int		intro_philo(int ac, char **av, t_philo *philo);
+int		intro_philo(int ac, char **av, t_info *info);
 void	*do_philo(void *thread);
 
 /*
