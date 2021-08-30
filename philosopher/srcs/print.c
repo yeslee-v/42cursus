@@ -1,4 +1,5 @@
 #include "../include/philo.h"
+#include <pthread.h>
 
 void	run_eat(t_philo *philo)
 {
@@ -17,6 +18,11 @@ void	run_sleep(t_philo *philo)
 {
 	philo->status = SLEEP;
 	print_status(get_time(), philo);
+	philo->info->fork[philo->lf_idx] = -1;
+	philo->info->fork[philo->rf_idx] = -1;
+	pthread_mutex_unlock(&(philo->info->mutex[philo->lf_idx]));
+	pthread_mutex_unlock(&(philo->info->mutex[philo->rf_idx]));
+	usleep(100);
 }
 
 void	run_think(t_philo *philo)

@@ -11,6 +11,7 @@ void	ready_to_eat(t_philo *philo)
 	philo->info->fork[philo->rf_idx] = philo->id;
 	philo->status = TAKE;
 	print_status(get_time() - philo->info->std_time, philo);
+	printf("%d:%d\n", philo->info->fork[philo->lf_idx], philo->id);
 }
 
 void	*do_philo(void *thread)
@@ -37,9 +38,6 @@ void	*do_philo(void *thread)
 		if (info->die_flag == 1)
 			break ;
 		run_think(philo);
-		usleep(100);
-		if (info->die_flag == 1)
-			break ;
 	}
 	return (thread);
 }

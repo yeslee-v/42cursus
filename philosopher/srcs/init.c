@@ -28,12 +28,18 @@ int	init_info(int ac, char **av, t_info *info)
 		}
 	}
 	info->fork = malloc(sizeof(int *) * info->total);
+	memset(info->fork, -1, sizeof(fork));
 	info->std_time = get_time();
 	info->mutex = malloc(sizeof(pthread_mutex_t) * info->total);
 	i = -1;
 	while (++i < info->total)
 		pthread_mutex_init(&(info->mutex)[i], NULL);
 	info->thread = malloc(sizeof(pthread_t) * info->total);
+	if (!(info->thread))
+	{
+		printf("malloc error\n");
+		return (1);
+	}
 	return (0);
 }
 

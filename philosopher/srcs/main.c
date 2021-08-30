@@ -10,12 +10,6 @@ int	intro_philo(int ac, char **av, t_info *info)
 		return (1);
 	if (init_philo(info, &philo))
 		return (1);
-	info->thread = malloc(sizeof(pthread_t) * info->total);
-	if (!(info->thread))
-	{
-		printf("malloc error\n");
-		return (1);
-	}
 	i = -1;
 	ret = 0;
 	while (++i < info->total)
