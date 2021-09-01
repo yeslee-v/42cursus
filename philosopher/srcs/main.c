@@ -22,6 +22,13 @@ int	intro_philo(int ac, char **av, t_info *info)
 		}
 		pthread_detach(info->thread[i]);
 	}
+	while (1)
+	{
+		if (check_must_eat(info, philo))
+			break ;
+		if (check_is_die(info, philo))
+			break ;
+	}
 	return (0);
 }
 
@@ -35,9 +42,6 @@ int main(int ac, char **av)
 		return (1);
 	}
 	intro_philo(ac, av, &info);
-	/*
-	 *do_monitor(philo->;
-	 */
-	// mutex
+	ft_pthread_mutex_destroy(&info);
 	return (0);
 }
