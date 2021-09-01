@@ -1,9 +1,20 @@
 #include "../include/philo.h"
+#include <unistd.h>
 
-int	init_info(int ac, char **av, t_info *info)
+void	ft_pthread_mutex_destroy(t_info *info)
 {
-	int i;
+	int	i;
 
+	i = -1;
+	while (++i < info->total)
+	{
+		usleep(100);
+		pthread_mutex_destroy(&(info->mutex[i]));
+	}
+}
+
+int	put_av(int ac, char **av, t_info *info)
+{
 	info->total = ft_atoi(av[1]);
 	if ((info->total < 0) || (info->total > 200))
 	{
@@ -27,6 +38,17 @@ int	init_info(int ac, char **av, t_info *info)
 			return (1);
 		}
 	}
+	return (0);
+}
+
+int	init_info(int ac, char **av, t_info *info)
+{
+	int	i;
+
+	if (put_av(ac, av, info))
+		return (1);
+	info->die_flag = 0;
+	info->must_eat_cnt = 0;
 	info->fork = malloc(sizeof(int *) * info->total);
 	memset(info->fork, -1, sizeof(fork));
 	info->std_time = get_time();

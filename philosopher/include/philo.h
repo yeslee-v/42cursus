@@ -18,23 +18,22 @@
 
 # define MAX_INT 2147483648
 
-typedef struct	s_info
+typedef struct s_info
 {
 	int					*fork;
 	int					total;
 	int					die_flag;
+	int					must_eat;
+	int					must_eat_cnt;
 	unsigned long long	die;
 	unsigned long long	eat;
 	unsigned long long	sleep;
-	unsigned long long	must_eat;
-
 	unsigned long long	std_time;
-
 	pthread_t			*thread;
 	pthread_mutex_t		*mutex;
 }				t_info;
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	int					id;
 	int					e_cnt;
@@ -48,33 +47,38 @@ typedef struct	s_philo
 /*
  * main.c
  */
-int		main(int ac, char **av);
-int		intro_philo(int ac, char **av, t_info *info);
-void	*do_philo(void *thread);
+int					main(int ac, char **av);
+int					intro_philo(int ac, char **av, t_info *info);
+void				*do_philo(void *thread);
 
 /*
  *init.c
  */
-int		init_info(int ac, char **av, t_info *info);
-int		init_philo(t_info *info, t_philo **philo);
+int					init_info(int ac, char **av, t_info *info);
+int					init_philo(t_info *info, t_philo **philo);
+void				ft_pthread_mutex_destroy(t_info *info);
 
 /*
  * utils.c
  */
 int					ft_atoi(char *str);
+void				custom_usleep(int time);
 unsigned long long	get_time(void);
 
 /*
  *print.c
  */
-void	print_status(int time, t_philo *philo);
-void	run_eat(t_philo *philo);
-void	run_sleep(t_philo *philo);
-void	run_think(t_philo *philo);
+void				print_status(int time, t_philo *philo);
+void				run_eat(t_info *info, t_philo *philo);
+void				run_sleep(t_info *info, t_philo *philo);
+void				run_think(t_info *info, t_philo *philo);
 
 /*
  *do.c
  */
-void	ready_to_eat(t_philo *philo);
+void				ready_to_eat(t_info *info, t_philo *philo);
+void				*do_philo(void *thread);
+int					check_must_eat(t_info *info, t_philo *philo);
+int					check_is_die(t_info *info, t_philo *philo);
 
-# endif
+#endif

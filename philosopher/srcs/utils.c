@@ -1,6 +1,6 @@
 #include "../include/philo.h"
 
-int ft_isdigit(int num)
+int	ft_isdigit(int num)
 {
 	if ((num >= '0') && (num <= '9'))
 		return (1);
@@ -35,8 +35,17 @@ int	ft_atoi(char *str)
 
 unsigned long long	get_time(void)
 {
-	struct timeval time;
+	struct timeval	time;
 
 	gettimeofday(&time, NULL);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+void	custom_usleep(int time)
+{
+	unsigned long long	goal;
+
+	goal = time + get_time();
+	while (goal > get_time())
+		usleep(10);
 }
