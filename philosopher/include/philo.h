@@ -30,6 +30,7 @@ typedef struct s_info
 	unsigned long long	sleep;
 	unsigned long long	std_time;
 	pthread_t			*thread;
+	pthread_mutex_t		print_mutex;
 	pthread_mutex_t		*mutex;
 }				t_info;
 
@@ -68,7 +69,7 @@ unsigned long long	get_time(void);
 /*
  *print.c
  */
-void				print_status(int time, t_philo *philo);
+void				print_status(int time, t_info *info, t_philo *philo);
 void				run_eat(t_info *info, t_philo *philo);
 void				run_sleep(t_info *info, t_philo *philo);
 void				run_think(t_info *info, t_philo *philo);

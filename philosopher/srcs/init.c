@@ -11,6 +11,8 @@ void	ft_pthread_mutex_destroy(t_info *info)
 		usleep(100);
 		pthread_mutex_destroy(&(info->mutex[i]));
 	}
+	usleep(100);
+	pthread_mutex_destroy(&(info->print_mutex));
 }
 
 int	put_av(int ac, char **av, t_info *info)
@@ -56,6 +58,7 @@ int	init_info(int ac, char **av, t_info *info)
 	i = -1;
 	while (++i < info->total)
 		pthread_mutex_init(&(info->mutex)[i], NULL);
+	pthread_mutex_init(&(info->print_mutex), NULL);
 	info->thread = malloc(sizeof(pthread_t) * info->total);
 	if (!(info->thread))
 	{

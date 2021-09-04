@@ -6,9 +6,7 @@ int	intro_philo(int ac, char **av, t_info *info)
 	int			ret;
 	t_philo		*philo;
 
-	if (init_info(ac, av, info))
-		return (1);
-	if (init_philo(info, &philo))
+	if (init_info(ac, av, info) || init_philo(info, &philo))
 		return (1);
 	i = -1;
 	ret = 0;
@@ -23,12 +21,8 @@ int	intro_philo(int ac, char **av, t_info *info)
 		pthread_detach(info->thread[i]);
 	}
 	while (1)
-	{
-		if (check_must_eat(info, philo))
+		if (check_must_eat(info, philo) || check_is_die(info, philo))
 			break ;
-		if (check_is_die(info, philo))
-			break ;
-	}
 	return (0);
 }
 
