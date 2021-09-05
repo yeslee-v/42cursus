@@ -12,17 +12,19 @@ void	run_eat(t_info *info, t_philo *philo)
 		philo->e_cnt++;
 	}
 	custom_usleep(info->eat);
+
 }
 
 void	run_sleep(t_info *info, t_philo *philo)
 {
 	philo->status = SLEEP;
 	print_status(get_time() - info->std_time, info, philo);
+	custom_usleep(info->sleep);
 	philo->info->fork[philo->lf_idx] = -1;
 	philo->info->fork[philo->rf_idx] = -1;
 	pthread_mutex_unlock(&(philo->info->mutex[philo->lf_idx]));
 	pthread_mutex_unlock(&(philo->info->mutex[philo->rf_idx]));
-	custom_usleep(info->sleep);
+
 }
 
 void	run_think(t_info *info, t_philo *philo)
@@ -34,7 +36,7 @@ void	run_think(t_info *info, t_philo *philo)
 void	print_status(int time, t_info *info, t_philo *philo)
 {
 	pthread_mutex_lock(&(info->print_mutex));
-	printf("%d %d ", time, (philo->id + 1));
+	printf("%dms %d ", time, (philo->id + 1));
 	if (philo->status == 1)
 		printf("has taken a fork\n");
 	else if (philo->status == 2)
@@ -44,6 +46,6 @@ void	print_status(int time, t_info *info, t_philo *philo)
 	else if (philo->status == 4)
 		printf("is thinking\n");
 	else if (philo->status == 5)
-		printf("is died\n");
-	pthread_mutex_lock(&(info->print_mutex));
+		printf("died\n");
+	pthread_mutex_unlock(&(info->print_mutex));
 }

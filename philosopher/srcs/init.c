@@ -52,7 +52,7 @@ int	init_info(int ac, char **av, t_info *info)
 	info->die_flag = 0;
 	info->must_eat_cnt = 0;
 	info->fork = malloc(sizeof(int *) * info->total);
-	memset(info->fork, -1, sizeof(fork));
+	memset(info->fork, -1, sizeof(int));
 	info->std_time = get_time();
 	info->mutex = malloc(sizeof(pthread_mutex_t) * info->total);
 	i = -1;

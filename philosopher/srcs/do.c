@@ -5,12 +5,14 @@ void	ready_to_eat(t_info *info, t_philo *philo)
 {
 	if (info->total % 2 == 0)
 		usleep(300);
+	printf("mseo babo\n");
 	pthread_mutex_lock(&(philo->info->mutex[philo->lf_idx]));
 	pthread_mutex_lock(&(philo->info->mutex[philo->rf_idx]));
 	philo->info->fork[philo->lf_idx] = philo->id;
 	philo->info->fork[philo->rf_idx] = philo->id;
 	philo->status = TAKE;
 	print_status(get_time() - info->std_time, info, philo);
+	printf("soooh babo\n");
 }
 
 void	*do_philo(void *thread)
@@ -23,18 +25,23 @@ void	*do_philo(void *thread)
 	while (1)
 	{
 		ready_to_eat(info, philo);
+		printf("inyang babo\n");
 		usleep(200);
+		printf("flag : %d\n", info->die_flag);
 		if (info->die_flag == 1)
 			break ;
 		run_eat(info, philo);
+		printf("ji-kim babo\n");
 		usleep(200);
 		if (info->die_flag == 1)
 			break ;
 		run_sleep(info, philo);
+		printf("ylee babo\n");
 		usleep(200);
 		if (info->die_flag == 1)
 			break ;
 		run_think(info, philo);
+		printf("jkeum babo\n");
 	}
 	return (thread);
 }
