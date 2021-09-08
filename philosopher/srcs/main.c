@@ -12,7 +12,7 @@ int	intro_philo(int ac, char **av, t_info *info)
 	ret = 0;
 	while (++i < info->total)
 	{
-		ret = pthread_create(&(info->thread[i]), NULL, do_philo, &philo[i]);
+		ret = pthread_create(&(info->thread)[i], NULL, do_philo, &philo[i]);
 		if (ret == -1)
 		{
 			printf("Fail to make thread\n");

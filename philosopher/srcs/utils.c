@@ -47,5 +47,5 @@ void	custom_usleep(int time)
 
 	goal = time + get_time();
 	while (goal > get_time())
-		usleep(10);
+		usleep(100);
 }

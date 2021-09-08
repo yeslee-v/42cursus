@@ -3,7 +3,7 @@ NAME = philo
 HEADER = -I ./include
 
 CC = gcc
-CFLAGES = -Wall -Wextra -Werror
+CFLAGES = -Wall -Wextra -Werror -g
 FFLAGES = -g3 -fsanitize=address
 PFLAGES = -pthread
 

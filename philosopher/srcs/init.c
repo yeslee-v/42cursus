@@ -8,10 +8,10 @@ void	ft_pthread_mutex_destroy(t_info *info)
 	i = -1;
 	while (++i < info->total)
 	{
-		usleep(100);
-		pthread_mutex_destroy(&(info->mutex[i]));
+		usleep(10);
+		pthread_mutex_destroy(&(info->mutex)[i]);
 	}
-	usleep(100);
+	usleep(10);
 	pthread_mutex_destroy(&(info->print_mutex));
 }
 

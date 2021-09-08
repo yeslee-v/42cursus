@@ -69,15 +69,15 @@ unsigned long long	get_time(void);
 /*
  *print.c
  */
-void				print_status(int time, t_info *info, t_philo *philo);
-void				run_eat(t_info *info, t_philo *philo);
-void				run_sleep(t_info *info, t_philo *philo);
-void				run_think(t_info *info, t_philo *philo);
+void				print_status(int time, t_philo *philo);
+void				run_eat(t_philo *philo);
+void				run_sleep(t_philo *philo);
+void				run_think(t_philo *philo);
 
 /*
  *do.c
  */
-void				ready_to_eat(t_info *info, t_philo *philo);
+void				ready_to_eat(t_philo *philo);
 void				*do_philo(void *thread);
 int					check_must_eat(t_info *info, t_philo *philo);
 int					check_is_die(t_info *info, t_philo *philo);
