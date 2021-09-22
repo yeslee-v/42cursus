@@ -12,7 +12,6 @@ void	run_eat(t_philo *philo)
 		print_status(get_time() - philo->info->std_time, philo);
 	}
 	custom_usleep(philo->info->eat);
-
 }
 
 void	run_sleep(t_philo *philo)
