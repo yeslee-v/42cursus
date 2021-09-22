@@ -38,7 +38,7 @@ typedef struct s_philo
 {
 	int					id;
 	int					e_cnt;
-	int					e_time;
+	unsigned long long	e_time;
 	int					lf_idx;
 	int					rf_idx;
 	int					status;
