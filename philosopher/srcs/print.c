@@ -8,8 +8,8 @@ void	run_eat(t_philo *philo)
 	{
 		philo->e_time = get_time();
 		philo->status = EAT;
-		philo->e_cnt++;
 		print_status(get_time() - philo->info->std_time, philo);
+		philo->e_cnt++;
 	}
 	custom_usleep(philo->info->eat);
 	philo->info->fork[philo->lf_idx] = -1;
