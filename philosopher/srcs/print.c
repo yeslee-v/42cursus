@@ -3,9 +3,6 @@
 
 void	run_eat(t_philo *philo)
 {
-	unsigned long long expected_time;
-
-	expected_time = ((get_time() - philo->e_time) / philo->info->eat) * philo->info->eat;
 	if ((philo->info->fork[philo->lf_idx] == philo->id) && \
 			(philo->info->fork[philo->rf_idx] == philo->id))
 	{

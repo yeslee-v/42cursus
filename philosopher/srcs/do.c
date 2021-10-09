@@ -66,7 +66,7 @@ int	check_is_die(t_info *info, t_philo *philo)
 {
 	int					i;
 	unsigned long long	now;
-	unsigned long long present;
+	unsigned long long	present;
 
 	i = -1;
 	now = 0;
@@ -76,7 +76,6 @@ int	check_is_die(t_info *info, t_philo *philo)
 		now = present - philo[i].e_time;
 		if (now > info->die)
 		{
-			printf("now : %llu, present : %llu, etime : %llu\n", now, present, philo[i].e_time);
 			info->die_flag = 1;
 			philo[i].status = DIE;
 			print_status(now, &philo[i]);

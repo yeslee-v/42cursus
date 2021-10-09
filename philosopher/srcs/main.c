@@ -1,13 +1,13 @@
 #include "../include/philo.h"
 
-int	intro_philo(int ac, char **av, t_info *info)
+void	intro_philo(int ac, char **av, t_info *info)
 {
 	int			i;
 	int			ret;
 	t_philo		*philo;
 
 	if (init_info(ac, av, info) || init_philo(info, &philo))
-		return (1);
+		return ;
 	i = -1;
 	ret = 0;
 	while (++i < info->total)
@@ -17,7 +17,7 @@ int	intro_philo(int ac, char **av, t_info *info)
 		if (ret == -1)
 		{
 			printf("Fail to make thread\n");
-			return (1);
+			return ;
 		}
 		pthread_detach(info->thread[i]);
 	}
@@ -25,21 +25,24 @@ int	intro_philo(int ac, char **av, t_info *info)
 	{
 		if (check_must_eat(info, philo) || check_is_die(info, philo))
 			break ;
-		/*usleep(100);*/
 	}
-	return (0);
+	free(philo);
 }
 
 int	main(int ac, char **av)
 {
+	int		i;
 	t_info	info;
 
+	i = -1;
 	if ((ac < 5) || (ac > 6))
 	{
 		printf("ac is invalid\n");
 		return (1);
 	}
 	intro_philo(ac, av, &info);
+	free(info.fork);
+	free(info.thread);
 	ft_pthread_mutex_destroy(&info);
 	return (0);
 }
