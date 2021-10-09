@@ -1,5 +1,4 @@
 #include "../include/philo.h"
-#include <unistd.h>
 
 void	ft_pthread_mutex_destroy(t_info *info)
 {

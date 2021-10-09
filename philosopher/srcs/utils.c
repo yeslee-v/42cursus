@@ -41,7 +41,7 @@ unsigned long long	get_time(void)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-void	custom_usleep(int time)
+void	custom_usleep(unsigned long long time)
 {
 	unsigned long long	goal;
 

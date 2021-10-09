@@ -12,6 +12,7 @@ int	intro_philo(int ac, char **av, t_info *info)
 	ret = 0;
 	while (++i < info->total)
 	{
+		usleep(50);
 		ret = pthread_create(&(info->thread)[i], NULL, do_philo, &philo[i]);
 		if (ret == -1)
 		{
@@ -21,8 +22,11 @@ int	intro_philo(int ac, char **av, t_info *info)
 		pthread_detach(info->thread[i]);
 	}
 	while (1)
+	{
 		if (check_must_eat(info, philo) || check_is_die(info, philo))
 			break ;
+		/*usleep(100);*/
+	}
 	return (0);
 }
 

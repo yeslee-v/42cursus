@@ -63,13 +63,13 @@ void				ft_pthread_mutex_destroy(t_info *info);
  * utils.c
  */
 int					ft_atoi(char *str);
-void				custom_usleep(int time);
+void				custom_usleep(unsigned long long time);
 unsigned long long	get_time(void);
 
 /*
  *print.c
  */
-void				print_status(int time, t_philo *philo);
+void				print_status(unsigned long long time, t_philo *philo);
 void				run_eat(t_philo *philo);
 void				run_sleep(t_philo *philo);
 void				run_think(t_philo *philo);
