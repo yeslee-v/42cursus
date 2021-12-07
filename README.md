@@ -19,27 +19,3 @@
 |        | [**Philosophers**]() |     `Thread`<br>`Mutex`     | [![](https://badge42.herokuapp.com/api/project/yeslee/Philosophers)](#) | 2021-10-13 |   5.05   |
 |        | [**Exam Rank 04**]() |          | [![](https://badge42.herokuapp.com/api/project/yeslee/Exam%20Rank%2004)](#) | 2021-11-02 |   5.05   |
 |   04   | [**CPP Module 00**]() |    `C++`     | [![](https://badge42.herokuapp.com/api/project/yeslee/CPP%20Module%2000)](#) |          |          |
-
-	
-
-<!-- # 🏊‍♀️ 42_cursus
-
-## ✅ 0 Circle
-1. libft
-
-## ✅ 1 Circle
-1. get_next_line
-2. netwhat
-3. ft_printf
-
-## ✅ 2 Circle
-1. ft_server
-2. cub3D
-3. pipex
-
-## ✅ 3 Circle
-1. push_swap
-2. libasm 👉 Move outer circle
-3. inception
-4. minishell
-5. philosopher -->
