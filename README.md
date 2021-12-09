@@ -11,7 +11,7 @@
 |   02   | [**ft_server**]() |   `Docker`   | [![](https://badge42.herokuapp.com/api/project/yeslee/ft_server)](#) | 2021-02-06 |   2.62   |
 |        | [**cub3d**]()     |     `Algorithm(DFS)`<br>`Raycasting`<br>`Graphic Design`      | [![](https://badge42.herokuapp.com/api/project/yeslee/cub3d)](#) | 2021-04-17 |   3.59 → 4.24   |
 |        | [**Exam Rank 02**]() |          | [![](https://badge42.herokuapp.com/api/project/yeslee/Exam%20Rank%2002)](#) | 2021-04-22 |   3.59   |
-|   03   | [**push_swap**]()   |     `Algorithm(Sort)`     | [![](https://badge42.herokuapp.com/api/project/yeslee/push_swap)](#) | 2021-05-15 |   3.95 → 3.96   |
+|   03   | [**push_swap**](./push_swap/README.md)   |     `Algorithm(Sort)`     | [![](https://badge42.herokuapp.com/api/project/yeslee/push_swap)](#) | 2021-05-15 |   3.95 → 3.96   |
 |        | [**Exam Rank 03**]() |          | [![](https://badge42.herokuapp.com/api/project/yeslee/Exam%20Rank%2003)](#) | 2021-06-01 |   3.96   |
 |        | [**Inception**]()|     `Docker Compose`      | [![](https://badge42.herokuapp.com/api/project/yeslee/Inception)](#) | 2021-06-18 |   4.10 → 4.85   |
 |   (02)   | [**pipex**]()|     `Pipe`<br>`Fork`     | [![](https://badge42.herokuapp.com/api/project/yeslee/pipex)](#) | 2021-06-25 |   4.17   |
