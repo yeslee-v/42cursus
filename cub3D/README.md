@@ -22,7 +22,7 @@ $>make; ./cub3d --save maps/map.cub
     - `A` : left
     - `D` : right (moving the mouse pointer also works for both left/right)
 
-## OpenSource Tester
+## Opensource Tester
 
 https://github.com/humblEgo/cub3D_map_tester
 
