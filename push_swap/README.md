@@ -7,6 +7,8 @@ the lowest possible number of actions. To succeed you’ll have to manipulate va
 types of algorithms and choose the one (of many) most appropriate solution for an
 optimized data sorting.
 
+---
+
 ## Contents
 
 ### 🏗 push_swap
