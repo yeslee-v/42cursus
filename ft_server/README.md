@@ -7,8 +7,6 @@ multiples services: Wordpress, phpMyAdmin, and a SQL database.
 
 ## Content
 
-### General instructions
-
 - You must place all the necessary files for the configuration of your server in a folder
 called srcs.
 
