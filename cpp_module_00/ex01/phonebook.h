@@ -1,16 +1,26 @@
-//
-// Created by Yeshin Lee on 2021/12/14.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   phonebook.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/15 20:18:22 by yeslee            #+#    #+#             */
+/*   Updated: 2021/12/15 21:18:05 by yeslee           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#ifndef INC_42CURSUS_PHONEBOOK_H
-#define INC_42CURSUS_PHONEBOOK_H
+#ifndef PHONEBOOK_H
+# define PHONEBOOK_H
 
+#include <iostream>
 
+std::string	info[5];
 
 class phonebook {
-
+	
 };
 
 
 
-#endif //INC_42CURSUS_PHONEBOOK_H
+#endif
