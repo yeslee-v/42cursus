@@ -15,12 +15,14 @@
 
 #include <iostream>
 
-std::string	info[5];
 
 class phonebook {
-	
+    std::string	first_name[8];
+    std::string	last_name[8];
+    std::string	nickname[8];
+    std::string	phone_number[8];
+    std::string	darkest_secret[8];
+
 };
-
-
 
 #endif
