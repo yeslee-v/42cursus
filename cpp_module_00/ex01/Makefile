@@ -1,23 +1,25 @@
 NAME = phonebook
-HEADER = phonebook.h
+HEADER = phonebook.hpp
 
 CC = clang++
+#-STD = c++98
 CFLAGES = -Wall -Wextra -Werror 
 
 RM = rm
 RMFLAGS = -f
 
-SRC = phonebook.cpp
+SRC = main.cpp \
+		phonebook.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGES) -o $@ $^
+	$(CC) $(-STD) $(CFLAGES) -o $@ $^
 
 %.o:%.c
-	$(CC) $(CFLAGES) $(HEADER) -o $@ -c $<
+	$(CC) $(-STD) $(CFLAGES) $(HEADER) -o $@ -c $<
 
 clean :
 	$(RM) $(RMFLAGS) $(OBJ)

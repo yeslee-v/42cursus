@@ -10,31 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phonebook.h"
+#include "phonebook.hpp"
 
-int main()
-{
-    std::string opt;
+void Phonebook::AddInfo(int idx) {
+    std::getline(std::cin, firstName[idx]);
+    std::getline(std::cin, lastName[idx]);
+    std::getline(std::cin, nickname[idx]);
+    std::getline(std::cin, phoneNumber[idx]);
+    std::getline(std::cin, darkestSecret[idx]);
+}
 
-    while (1)
+void Phonebook::PrintInfo(int idx) {
+    int tmp;
+
+    tmp = idx + 1;
+    while (--tmp)
     {
-        std::cout << "Input Option: ";
-        std::cin >> opt;
-
-        if (opt == "ADD")
-        {
-            std::cout << "here is ADD" << std::endl;
-        }
-        else if (opt == "SEARCH")
-        {
-            std::cout << "here is SEARCH" << std::endl;
-        }
-        else if (opt == "EXIT")
-        {
-            std::cout << "here is EXIT" << std::endl;
-            exit(0);
-        }
+        std::cout << idx << std::endl;
+        std::cout << firstName[idx] << std::endl;
+        std::cout << lastName[idx] << std::endl;
+        std::cout << nickname[idx] << std::endl;
     }
-
-    return 0;
 }
