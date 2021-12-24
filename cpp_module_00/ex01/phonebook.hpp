@@ -13,21 +13,23 @@
 #ifndef PHONEBOOK_H
 # define PHONEBOOK_H
 
+#include "contact.hpp"
 #include <iostream>
 #include <iomanip>
 
 class Phonebook {
 private:
-    std::string	firstName[8];
-    std::string	lastName[8];
-    std::string	nickname[8];
-    std::string	phoneNumber[8];
-    std::string	darkestSecret[8];
+    int         cnt;
+    Contact contact();
 
 public:
     void AddInfo(int idx);
     void PrintInfo(int idx);
+    void SearchInfo(int base);
 
+    Phonebook() {
+        cnt = 0;
+    }
 };
 
 #endif
