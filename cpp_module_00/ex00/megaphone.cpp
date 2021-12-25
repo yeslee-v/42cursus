@@ -15,7 +15,7 @@ int main(int ac, char **av)
 		{
 			for (j = 0; av[i][j]; j++)
 			{
-				c = toupper(av[i][j]);
+				c = std::toupper(av[i][j]);
 				std::cout << c;
 			}
 		}

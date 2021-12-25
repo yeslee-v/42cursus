@@ -12,28 +12,62 @@
 
 #include "phonebook.hpp"
 
-void Phonebook::AddInfo(int idx) {
-    Contact contact;
+Phonebook::Phonebook() {
+    cnt = 0;
+}
 
-    std::cout << "idx is " << idx << std::endl;
+Phonebook::~Phonebook() {}
+
+void Phonebook::PrintValue(char c, std::string str) {
+    std::cout << "|" << std::setfill(c) << std::setw(10) << str;
+}
+
+void Phonebook::SetPrintValue(std::string str) {
+    std::string value = str.substr(0, 9);
+    if (str.length() > 9)
+        value.append(".");
+    PrintValue(' ', value);
+}
+
+void Phonebook::PrintOpt(void) {
+    PrintValue(' ', "index");
+    PrintValue(' ', "first name");
+    PrintValue(' ', "last name");
+    PrintValue(' ', "nickname");
+    std::cout << "|" << std::endl;
+}
+
+void Phonebook::PrintLine(int n, char c) {
+    int i = 4;
+
+    std::cout << "|" << std::setfill(c) << std::setw(n);
+    while (--i)
+        std::cout << "|" << std::setw(n);
+    std::cout << "|" << std::endl;
+}
+
+void Phonebook::AddInfo(int idx) {
+    std::string info[5];
+
     std::cout << "first name : ";
-    std::getline(std::cin, contact.firstName[idx]);
+    std::getline(std::cin, info[FIRSTNAME]);
     std::cout << "last name : ";
-    std::getline(std::cin, contact.lastName[idx]);
+    std::getline(std::cin, info[LASTNAME]);
     std::cout << "nickname : ";
-    std::getline(std::cin, contact.nickname[idx]);
+    std::getline(std::cin, info[NICKNAME]);
     std::cout << "phone number : ";
-    std::getline(std::cin, contact.phoneNumber[idx]);
+    std::getline(std::cin, info[PHONENUMBER]);
     std::cout << "darkest secret : ";
-    std::getline(std::cin, contact.darkestSecret[idx]);
+    std::getline(std::cin, info[DARKESTSECRET]);
     if (cnt < 8)
         cnt++;
+    contact[idx].SetValue(info);
 }
 
 void Phonebook::SearchInfo(int base) {
     int inputIdx;
 
-    if (base == 0)
+    if (cnt == 0)
     {
         std::cout << "Phonebook is empty" << std::endl;
         return ;
@@ -42,16 +76,16 @@ void Phonebook::SearchInfo(int base) {
         base = 8;
     std::cout << "Input index that you want to search(1 ~ " << cnt << ") : ";
     std::cin >> inputIdx;
-    if ((inputIdx > 0) && (inputIdx <= cnt))
+    if (((--inputIdx) > -1) && (inputIdx < cnt))
     {
         std::cout << std::endl;
         std::cout << "Searching phonebook.." << std::endl;
         std::cout << std::endl;
-        std::cout << "first name : " << contact().firstName[inputIdx] << std::endl;
-        std::cout << "last name : " << contact().lastName[inputIdx] << std::endl;
-        std::cout << "nickname : " << contact().nickname[inputIdx] << std::endl;
-        std::cout << "phone number : " << contact().phoneNumber[inputIdx] << std::endl;
-        std::cout << "darkest secret : " << contact().darkestSecret[inputIdx] << std::endl;
+        std::cout << "first name : " << contact[inputIdx].GetValue(FIRSTNAME) << std::endl;
+        std::cout << "last name : " << contact[inputIdx].GetValue(LASTNAME) << std::endl;
+        std::cout << "nickname : " << contact[inputIdx].GetValue(NICKNAME) << std::endl;
+        std::cout << "phone number : " << contact[inputIdx].GetValue(PHONENUMBER) << std::endl;
+        std::cout << "darkest secret : " << contact[inputIdx].GetValue(DARKESTSECRET) << std::endl;
     }
     else
         std::cout << "This index is invalid" << std::endl;
@@ -59,19 +93,19 @@ void Phonebook::SearchInfo(int base) {
 }
 
 void Phonebook::PrintInfo(int base) {
-    int idx = 0;
+    int idx = -1;
 
-    contact().PrintLine(11, '-');
-    contact().PrintOpt();
-    contact().PrintLine(11, '-');
-    while ((++idx) <= cnt)
+    PrintLine(11, '-');
+    PrintOpt();
+    PrintLine(11, '-');
+    while (((++idx + 1) <= cnt))
     {
-        std::cout << "|" << std::setfill(' ') << std::setw(10) << idx;
-        contact().SetPrintValue(contact().firstName[idx]);
-        contact().SetPrintValue(contact().lastName[idx]);
-        contact().SetPrintValue(contact().nickname[idx]);
+        std::cout << "|" << std::setfill(' ') << std::setw(10) << (idx + 1);
+        SetPrintValue(contact[idx].GetValue(FIRSTNAME));
+        SetPrintValue(contact[idx].GetValue(LASTNAME));
+        SetPrintValue(contact[idx].GetValue(NICKNAME));
         std::cout << "|" << std::endl;
     }
-    contact().PrintLine(11, '-');
-    Phonebook().SearchInfo(base);
+    PrintLine(11, '-');
+    SearchInfo(base);
 }

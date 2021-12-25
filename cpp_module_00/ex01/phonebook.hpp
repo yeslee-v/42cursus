@@ -20,16 +20,19 @@
 class Phonebook {
 private:
     int         cnt;
-    Contact contact();
+    Contact contact[8];
 
 public:
+    Phonebook();
+    ~Phonebook();
+
     void AddInfo(int idx);
     void PrintInfo(int idx);
+    void PrintOpt(void);
+    void PrintLine(int n, char c);
     void SearchInfo(int base);
-
-    Phonebook() {
-        cnt = 0;
-    }
+    void SetPrintValue(std::string str);
+    void PrintValue(char c, std::string str);
 };
 
 #endif

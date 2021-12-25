@@ -12,12 +12,10 @@
 
 #include "phonebook.hpp"
 
-
-
 int main(void) {
-    int         idx = 1;
+    int         idx = 0;
     std::string cmd;
-    Phonebook   info;
+    Phonebook   phonebook;
 
     while (1)
     {
@@ -26,16 +24,14 @@ int main(void) {
         std::getline(std::cin, cmd);
         if ((cmd == "ADD") && (cmd.length() == 3))
         {
-            if (idx > 8)
+            if (idx > 7)
                 idx = idx % 8;
-            info.AddInfo(idx);
+            phonebook.AddInfo(idx);
             std::cout << std::endl;
             idx++;
         }
         else if ((cmd == "SEARCH") && (cmd.length() == 6))
-        {
-            info.PrintInfo(idx);
-        }
+            phonebook.PrintInfo(idx);
         else if ((cmd == "EXIT") && (cmd.length() == 4))
         {
             std::cout << "program exited" << std::endl;

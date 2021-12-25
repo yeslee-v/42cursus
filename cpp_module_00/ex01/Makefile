@@ -3,8 +3,8 @@ NAME = phonebook
 HEADER = contact.hpp \
 		phonebook.hpp
 
-CC = clang++ -std=c++98
-CFLAGES = -Wall -Wextra -Werror 
+CC = clang++
+CFLAGES = -std=c++98 -Wall -Wextra -Werror
 
 RM = rm
 RMFLAGS = -f
@@ -18,16 +18,16 @@ OBJ = $(SRC:.cpp=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	@$(CC) $(CFLAGES) -o $@ $^
+	$(CC) $(CFLAGES) -o $@ $^
 
 %.o:%.c
-	@$(CC) $(CFLAGES) $(HEADER) -o $@ -c $<
+	$(CC) $(CFLAGES) $(HEADER) -o $@ -c $<
 
 clean :
-	@$(RM) $(RMFLAGS) $(OBJ)
+	$(RM) $(RMFLAGS) $(OBJ)
 
 fclean : clean
-	@$(RM) $(RMFLAGS) $(NAME)
+	$(RM) $(RMFLAGS) $(NAME)
 
 re : fclean all
 
