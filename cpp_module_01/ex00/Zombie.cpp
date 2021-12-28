@@ -4,23 +4,14 @@
 
 #include "Zombie.hpp"
 
-Zombie::Zombie() {
-    // 초기화
+Zombie::Zombie(std::string name) {
+    this->name = name;
 }
 
 Zombie::~Zombie() {
-    // Zombie의 이름을 포함한 debugging message 추가
-}
-
-void Zombie::SetName(std::string str) {
-    name = str;
-}
-
-void Zombie::GetName(int idx) {
-    return (name[idx]);
+        std::cout << "Vanish " << this->name << std::endl;
 }
 
 void Zombie::announce() {
-    // <name> BraiiiiiiinnnzzzZ...
-    std::cout << "BraiiiiiiinnnzzzZ..." << std::endl;
+    std::cout << "<" << this->name << "> BraiiiiiiinnnzzzZ..." << std::endl;
 }
