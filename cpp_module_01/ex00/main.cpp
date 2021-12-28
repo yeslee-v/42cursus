@@ -5,5 +5,13 @@
 #include "Zombie.hpp"
 
 int main(void) {
+    Zombie* heapZombie;
+    Zombie  stackZombie = Zombie("stackChump");
 
+    heapZombie = newZombie("HeapChump");
+
+    heapZombie->announce();
+    stackZombie.announce();
+    randomChump("randomChump");
+    delete heapZombie;
 }
