@@ -10,17 +10,13 @@
 
 class HumanA {
 private:
-    Weapon weapon;
+    Weapon& weapon;
     std::string name;
 public:
-    HumanA();
-    HumanA(Weapon weapon);
+    HumanA(std::string name, Weapon& weapon);
     ~HumanA();
 
-    void setHumanA(std::string name);
-    std::string getHumanA(void);
-
-    static void attack(void);
+    void attack(void);
 };
 
 
