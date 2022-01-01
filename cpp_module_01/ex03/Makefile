@@ -10,10 +10,10 @@ CFLAGES = -std=c++98 -Wall -Wextra -Werror
 RM = rm
 RMFLAGS = -f
 
-SRC = main.cpp\
-	Weapon.cpp \
+SRC = Weapon.cpp \
 	HumanA.cpp \
-	HumanB.cpp
+	HumanB.cpp \
+	main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
