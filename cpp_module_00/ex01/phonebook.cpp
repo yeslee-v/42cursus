@@ -6,11 +6,12 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 20:18:36 by yeslee            #+#    #+#             */
-/*   Updated: 2021/12/15 21:18:09 by yeslee           ###   ########.fr       */
+/*   Updated: 2022/01/03 11:24:16 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
+#include <cstdlib>
 
 Phonebook::Phonebook() {
     cnt = 0;
@@ -23,10 +24,16 @@ void Phonebook::PrintValue(char c, std::string str) {
 }
 
 void Phonebook::SetPrintValue(std::string str) {
-    std::string value = str.substr(0, 9);
-    if (str.length() > 9)
+	std:: string value;
+
+    if (str.length() > 10)
+	{
+		value = str.substr(0, 9);
         value.append(".");
-    PrintValue(' ', value);
+	}
+	else
+		value = str.substr(0, 10);
+	PrintValue(' ', value);
 }
 
 void Phonebook::PrintOpt(void) {
@@ -65,7 +72,8 @@ void Phonebook::AddInfo(int idx) {
 }
 
 void Phonebook::SearchInfo(int base) {
-    int inputIdx;
+	int			inputIdx;
+	std::string tmp;;
 
     if (cnt == 0)
     {
@@ -75,7 +83,8 @@ void Phonebook::SearchInfo(int base) {
     if (base > 8)
         base = 8;
     std::cout << "Input index that you want to search(1 ~ " << cnt << ") : ";
-    std::cin >> inputIdx;
+	std::getline(std::cin, tmp);
+	inputIdx = atoi(tmp.c_str());
     if (((--inputIdx) > -1) && (inputIdx < cnt))
     {
         std::cout << std::endl;
@@ -89,7 +98,6 @@ void Phonebook::SearchInfo(int base) {
     }
     else
         std::cout << "This index is invalid" << std::endl;
-    std::cin.ignore();
 }
 
 void Phonebook::PrintInfo(int base) {

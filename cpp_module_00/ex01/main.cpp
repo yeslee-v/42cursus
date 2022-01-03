@@ -6,7 +6,7 @@
 /*   By: yeslee <yeslee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 11:37:59 by yeslee            #+#    #+#             */
-/*   Updated: 2021/12/20 11:38:04 by yeslee           ###   ########.fr       */
+/*   Updated: 2022/01/03 11:25:42 by yeslee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ int main(void) {
             std::cout << "program exited" << std::endl;
             return (0);
         }
+		else if (std::cin.eof())
+		{
+            std::cout << "eof command" << std::endl;
+			return (0);
+		}
         else
             std::cout << "command not found: " << cmd << std::endl;
         std::cin.clear();
