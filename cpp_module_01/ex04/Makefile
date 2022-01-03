@@ -1,15 +1,12 @@
 NAME = Replace
 
-HEADERS = Replace.hpp
-
 CC = clang++
 CFLAGES = -std=c++98 -Wall -Wextra -Werror
 
 RM = rm
 RMFLAGS = -f
 
-SRC = Replace.cpp \
-	main.cpp
+SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -19,7 +16,7 @@ $(NAME) : $(OBJ)
 	$(CC) $(CFLAGES) -o $@ $^
 
 %.o:%.c
-	$(CC) $(CFLAGES) $(HEADERS) -o $@ -c $<
+	$(CC) $(CFLAGES) -o $@ -c $<
 
 clean :
 	$(RM) $(RMFLAGS) $(OBJ)
