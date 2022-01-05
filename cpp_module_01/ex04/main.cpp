@@ -4,25 +4,23 @@
 
 #include <iostream>
 #include <fstream>
-
-std::string crop_filename(std::string filename) {
-    std::size_t pos = filename.rfind('.');
-
-    return (filename.substr(0, pos));
-}
+#include <cstring>
 
 void ft_replace(std::string filename, std::string s1, std::string s2) {
     int             located_s1 = -1;
     std::string     front;
     std::string     behind;
-    std::string     crop_name;
     std::string     read_line;
     std::ifstream   readFile;
     std::ofstream   writeFile;
 
-    crop_name = crop_filename(filename);
     readFile.open(filename);
-    writeFile.open(crop_name + ".replace", std::ios::app);
+    if (!(readFile))
+        std::cout << "Do NOT open for read" << std::endl;
+
+    writeFile.open(filename + ".replace", std::ios::app);
+    if (!(writeFile))
+        std::cout << "Do NOT open for write" << std::endl;
 
     if (readFile.is_open())
     {
@@ -58,7 +56,7 @@ void ft_replace(std::string filename, std::string s1, std::string s2) {
 }
 
 int check_validation(int ac, char **av) {
-    if ((ac != 4) || !av)
+    if ((ac != 4) || !(strlen(av[1])) || !(strlen(av[2])))
         return 1;
     for (int i = 1; i < 4; i++)
     {
@@ -77,7 +75,10 @@ int main(int ac, char **av) {
     std::string s2;
 
     if (check_validation(ac, av))
+    {
+        std::cout << "Invalid Input" << std::endl;
         return 0;
+    }
     filename = av[1];
     s1 = av[2];
     s2 = av[3];
