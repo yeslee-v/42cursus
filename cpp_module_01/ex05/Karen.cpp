@@ -21,19 +21,19 @@ Karen::Karen() {
 Karen::~Karen() {}
 
 void Karen::debug(void) {
-    std::cout << "debug >> I love to get this!" << std::endl;
+    std::cout << "[ DEBUG ]" << std::endl << "I love to get this!" << std::endl;
 }
 
 void Karen::info(void) {
-    std::cout << "info >> If you did I would not have to ask for it!" << std::endl;
+    std::cout << "[ INFO ]" << std::endl << "If you did I would not have to ask for it!" << std::endl;
 }
 
 void Karen::warning(void) {
-    std::cout << "warning >> This is a WARNING." << std::endl;
+    std::cout << "[ WARNING ]" << std::endl << "This is a WARNING." << std::endl;
 }
 
 void Karen::error(void) {
-    std::cout << "error >> I want to speak to the manager now." << std::endl;
+    std::cout << "[ ERROR ]" << std::endl << "I want to speak to the manager now." << std::endl;
 }
 
 void    Karen::complain(std::string level) {
@@ -42,5 +42,5 @@ void    Karen::complain(std::string level) {
         if (list[i].level == level)
             return (this->*list[i].p)();
     }
-    std::cout << "Invalid input" << std::endl;
+    std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 }
