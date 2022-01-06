@@ -9,10 +9,12 @@
 
 class Fixed {
 private:
-    int num;
-    const int i;
+    int raw;
+    int bits;
 public:
     Fixed();
+    Fixed(const Fixed&);
+    Fixed& operator=(const Fixed& fixed);
     ~Fixed();
 
     int getRawBits(void) const;
