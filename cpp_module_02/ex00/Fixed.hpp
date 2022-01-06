@@ -9,11 +9,11 @@
 
 class Fixed {
 private:
-    int raw;
-    int bits;
+    int fixed_point;
+    static const int fractional_bits;
 public:
     Fixed();
-    Fixed(const Fixed&);
+    Fixed(const Fixed& fixed);
     Fixed& operator=(const Fixed& fixed);
     ~Fixed();
 
