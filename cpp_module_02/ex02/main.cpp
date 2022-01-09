@@ -15,8 +15,8 @@ int main( void ) {
     std::cout << "post-decrement : " << a-- << std::endl;
 
     std::cout << std::endl;
-    std::cout << "after a = " << a << std::endl; // 0
-    std::cout << "b = " << b << std::endl; // 10.1016
+    std::cout << "after a = " << a << std::endl;
+    std::cout << "b = " << b << std::endl;
 
     std::cout << std::endl;
     std::cout << "[comparison operators]" << std::endl;
@@ -40,9 +40,8 @@ int main( void ) {
     std::cout << "a * b = " << a*b << std::endl;
     std::cout << "a / b = " << a/b << std::endl;
 
-//    std::cout << Fixed::max( a, b ) << std::endl; // 10.1016
-    std::cout << "min is " << Fixed::min( a, b ) << std::endl; // 10.1016
-    std::cout << "max is " << Fixed::max( a, b ) << std::endl; // 10.1016
+    std::cout << "min is " << Fixed::min( a, b ) << std::endl;
+    std::cout << "max is " << Fixed::max( a, b ) << std::endl;
 
     return 0;
 }
