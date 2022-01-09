@@ -57,7 +57,7 @@ float Fixed::toFloat(void) const {// 고정 소수점 값 -> 부동 소수점 �
 }
 
 // 매개변수의 출력 스트림에 고정 소수점 값의 부동 소수점 삽입
-std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
-    os << fixed.toFloat();
-    return os;
+std::ostream& operator<<(std::ostream& out, const Fixed& fixed) {
+    out << fixed.toFloat();
+    return out;
 }
