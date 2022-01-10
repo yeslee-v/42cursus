@@ -1,4 +1,4 @@
-# Cpp Module 00 
+# Cpp Module 01 
 
 > For the C++ modules you will use and learn C++98 only. The goal is for you to learn
 the basic of an object oriented programming language. We know modern C++ is way
