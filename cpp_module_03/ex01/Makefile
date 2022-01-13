@@ -1,4 +1,4 @@
-NAME = ClapTrap
+NAME = ScavTrap
 
 HEADER = ClapTrap.hpp \
 		ScavTrap.hpp
