@@ -24,7 +24,7 @@ public:
 
     std::string getName(void) const;
 
-    void attack(std::string const& target);
+    using ScavTrap::attack;
     void takeDamage(unsigned int amount);
     void beRepaired(unsigned int amount);
     void whoAmI(void);
