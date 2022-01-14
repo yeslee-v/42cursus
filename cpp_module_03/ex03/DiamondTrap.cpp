@@ -44,12 +44,6 @@ DiamondTrap::~DiamondTrap() {
     std::cout << "[DiamondTrap] Destructor called" << std::endl;
 }
 
-void DiamondTrap::attack(std::string const& target) {
-    std::cout << "[DiamondTrap] " << this->name << " attack " << target << " causing " << this->hitPoints << " points of damage!" << std::endl;
-    this->hitPoints += this->hitPoints;
-    std::cout << "[DiamondTrap] " << this->name << "'s hitPoint is " << this->hitPoints << std::endl;
-}
-
 void DiamondTrap::takeDamage(unsigned int amount) {
     std::cout << "[DiamondTrap] " << this->name << " take " << amount << " points of damage!" << std::endl;
     this->attackDamage += amount;
