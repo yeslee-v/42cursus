@@ -35,6 +35,10 @@ ScavTrap::~ScavTrap() {
     std::cout << "[ScavTrap] Destructor called" << std::endl;
 }
 
+unsigned int ScavTrap::getEnergyPoints(void) const {
+    return this->energyPoints;
+}
+
 void ScavTrap::attack(std::string const& target) {
     std::cout << "[ScavTrap] " << this->name << " attack " << target << " causing " << this->hitPoints << " points of damage!" << std::endl;
     this->hitPoints += this->hitPoints;

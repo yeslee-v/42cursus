@@ -15,6 +15,8 @@ public:
     ScavTrap& operator=(const ScavTrap& scavTrap);
     ~ScavTrap();
 
+    unsigned int getEnergyPoints(void) const;
+
     void attack(std::string const& target);
     void takeDamage(unsigned int amount);
     void beRepaired(unsigned int amount);
