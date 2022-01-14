@@ -1,6 +1,7 @@
 NAME = ClapTrap
 
-HEADER = ClapTrap.hpp
+HEADER = ClapTrap.hpp \
+		FragTrap.hpp
 
 CC = clang++
 CFLAGES = -std=c++98 -Wall -Wextra -Werror
@@ -9,7 +10,8 @@ RM = rm
 RMFLAGS = -f
 
 SRC = main.cpp \
-	ClapTrap.cpp
+	ClapTrap.cpp \
+	FragTrap.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
