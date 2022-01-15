@@ -7,12 +7,14 @@
 
 #include "Animal.hpp"
 
-class Dog : class Animal {
+class Dog : public Animal {
 public:
     Dog();
-    Dog(type);
     Dog(const Dog& dog);
     Dog& operator=(const Dog& dog);
+    ~Dog();
+
+    virtual void makeSound(void) const;
 };
 
 
