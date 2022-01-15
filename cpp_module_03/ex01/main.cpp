@@ -14,9 +14,7 @@ int main(void) {
     cula.guardGate();
 
     std::cout << std::endl;
-    cula.beRepaired(5);
     frankie.attack(cula.getName());
     zizi.takeDamage(frankie.getHitPoints());
-    cula.beRepaired(3);
     std::cout << std::endl;
 }
