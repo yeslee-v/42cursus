@@ -6,7 +6,7 @@ HEADER = ClapTrap.hpp \
 		DiamondTrap.hpp
 
 CC = clang++
-CFLAGES = -std=c++98 -Wall -Wextra -Werror
+CFLAGES = -std=c++98 -Wshadow -Wall -Wextra -Werror
 
 RM = rm
 RMFLAGS = -f
