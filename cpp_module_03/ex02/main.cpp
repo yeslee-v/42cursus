@@ -17,7 +17,6 @@ int main(void) {
     cula.beRepaired(5);
     frankie.attack(cula.getName());
     zizi.takeDamage(frankie.getHitPoints());
-    cula.beRepaired(3);
     frankie.highFivesGuys();
     std::cout << std::endl;
 }

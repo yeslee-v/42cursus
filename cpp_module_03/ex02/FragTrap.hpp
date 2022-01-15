@@ -15,6 +15,7 @@ public:
     FragTrap& operator=(const FragTrap& fragTrap);
     ~FragTrap();
 
+	void attack(std::string const& target);
     void highFivesGuys(void);
 };
 
