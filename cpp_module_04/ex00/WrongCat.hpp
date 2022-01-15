@@ -7,12 +7,12 @@
 
 #include "WrongAnimal.hpp"
 
-class WrongCat : class WrongAnimal {
+class WrongCat : public WrongAnimal {
 public:
     WrongCat();
-    WrongCat(type);
     WrongCat(const WrongCat& wrongCat);
     WrongCat& operator=(const WrongCat& wrongCat);
+    ~WrongCat();
 };
 
 
