@@ -12,11 +12,14 @@ protected:
     std::string type;
 public:
     Animal();
-    Animal(type);
     Animal(const Animal& animal);
     Animal& operator=(const Animal& animal);
+    ~Animal();
 
-    void makeSound(void);
+    void setType(std::string type);
+    std::string getType(void) const;
+
+    virtual void makeSound(void) const;
 };
 
 
