@@ -1,10 +1,11 @@
-NAME = Animal
+NAME = Brain
 
 HEADER = Animal.hpp \
 		Dog.hpp \
 		Cat.hpp \
 		WrongAnimal.hpp \
-		WrongCat.hpp
+		WrongCat.hpp \
+		Brain.hpp
 
 CC = clang++
 CFLAGES = -std=c++98 -Wall -Wextra -Werror
@@ -17,7 +18,8 @@ SRC = main.cpp \
 	Dog.cpp \
 	Cat.cpp \
 	WrongAnimal.cpp \
-	WrongCat.cpp
+	WrongCat.cpp \
+	Brain.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
