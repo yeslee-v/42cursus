@@ -30,7 +30,3 @@ void Animal::setType(std::string type) {
 std::string Animal::getType() const {
     return this->type;
 }
-
-void Animal::makeSound(void) const {
-   std::cout << "동물이 소리를 낸다" << std::endl;
-}

@@ -19,7 +19,7 @@ public:
     void setType(std::string type);
     std::string getType(void) const;
 
-    virtual void makeSound(void) const;
+    virtual void makeSound(void) const = 0;
 };
 
 
