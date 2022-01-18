@@ -6,6 +6,12 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
+#include <exception>
+
+enum range {
+    MIN = 1,
+    MAX = 150
+};
 
 class Bureaucrat {
 private:
@@ -16,12 +22,12 @@ public:
     ~Bureaucrat();
 
     std::string getName(void) const;
-    int getGrade(void) const;
+    int getGrade(unsigned int score) const;
 
-    void GradeTooHighException(int grade);
-    void GradeTooLowException(int grade);
+    void GradeTooHighException(void);
+    void GradeTooLowException(void);
 
-    Bureaucrat& operator<<(const Bureaucrat& bureaucrat);
+    std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat);
 };
 
 

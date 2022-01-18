@@ -12,17 +12,20 @@ std::string Bureaucrat::getName() const {
     return this->name;
 }
 
-int Bureaucrat::getGrade() const {
-    this->grade++;
+int Bureaucrat::getGrade(unsigned int score) const {
+    this->grade -= score;
     return this->grade;
 }
 
-void Bureaucrat::GradeTooHighException(int grade) {
-    (void) grade;
+void Bureaucrat::GradeTooHighException(void) {
     std::cout << "Grade is too high" << std::endl;
 }
 
-void Bureaucrat::GradeTooLowException(int grade) {
-    (void) grade;
+void Bureaucrat::GradeTooLowException(void) {
     std::cout << "Grade is too low" << std::endl;
+}
+
+std::ostream& Bureaucrat::operator<<(std::ostream& out, const Bureaucrat &bureaucrat) {
+    out << bureaucrat.grade;
+    return out;
 }
