@@ -5,7 +5,7 @@
 #include "Brain.hpp"
 
 Brain::Brain() : idx(0) {
-    std::cout << "Default constructor called" << std::endl;
+    std::cout << "Brain: Default constructor called" << std::endl;
 }
 
 Brain::Brain(const Brain &brain) {
@@ -22,19 +22,20 @@ Brain& Brain::operator=(const Brain &brain) {
 }
 
 Brain::~Brain() {
-    std::cout << "Destructor called" << std::endl;
+    std::cout << "Brain: Destructor called" << std::endl;
 }
 
-void Brain::setIdea(std::string idea) {
-    if (this->idx < 0 || this->idx > 100)
-    {
-        std::cout << "Wrong idx" << std::endl;
-        return ;
-    }
+void Brain::setIdea(const std::string idea) {
     this->ideas[idx] = idea;
     idx++;
 }
 
 std::string Brain::getIdea(unsigned int idx) const {
+    if (this->idx > 100)
+    {
+        std::cout << "Wrong idx" << std::endl;
+        return NULL;
+    }
+    std::cout << "here is " << this->ideas[idx] << std::endl;
     return this->ideas[idx];
 }
