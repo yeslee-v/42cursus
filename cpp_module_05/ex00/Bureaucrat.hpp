@@ -13,24 +13,32 @@ enum range {
     MAX = 150
 };
 
-class Bureaucrat : public std::exception {
+class Bureaucrat {
 private:
     std::string name;
     int grade;
 public:
-    Bureaucrat(std::string name);
+    Bureaucrat(const std::string name, int grade);
+    Bureaucrat(const Bureaucrat& bureaucrat);
+    Bureaucrat& operator=(const Bureaucrat& bureaucrat);
     ~Bureaucrat();
-
-    void setGrade(unsigned int score);
 
     std::string getName(void) const;
     int getGrade(void) const;
 
-    void GradeTooHighException(void);
-    void GradeTooLowException(void);
+    void IncrementGrade(void);
+    void DecrementGrade(void);
 
-//    std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat);
+    class GradeTooHighException : public std::exception {
+    public:
+        virtual const char* what() const throw();
+    };
+    class GradeTooLowException : public std::exception {
+    public:
+        virtual const char* what() const throw();
+    };
 };
 
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat);
 
 #endif
