@@ -13,21 +13,23 @@ enum range {
     MAX = 150
 };
 
-class Bureaucrat {
+class Bureaucrat : public std::exception {
 private:
-    const std::string name;
+    std::string name;
     int grade;
 public:
-    Bureaucrat();
+    Bureaucrat(std::string name);
     ~Bureaucrat();
 
+    void setGrade(unsigned int score);
+
     std::string getName(void) const;
-    int getGrade(unsigned int score) const;
+    int getGrade(void) const;
 
     void GradeTooHighException(void);
     void GradeTooLowException(void);
 
-    std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat);
+//    std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat);
 };
 
 
