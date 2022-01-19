@@ -5,29 +5,28 @@
 #include "Bureaucrat.hpp"
 
 int main(void) {
-    Bureaucrat bureaucrat("alphabet");
 
+    std::cout << std::endl;
     try
     {
-        /* do some stuff with bureaucrats */
-        // 1. invalid grade
-        // 2. getGrade -> invalid grade
-        bureaucrat.setGrade(101);
-        if (bureaucrat.getGrade() < MIN)
-            bureaucrat.GradeTooLowException();
-        else if (bureaucrat.getGrade() > MAX)
-            bureaucrat.GradeTooHighException();
+        Bureaucrat alpha("alpha", 1);
+        alpha.DecrementGrade();
     }
     catch (std::exception & e)
     {
-        std::cout << "hell\n";
-        /* handle exception */
-
-            std::cout << "too low" << std::endl;
-////            std::cout << bureaucrat.GradeTooLowException() << std::cout;
-//        if (bureaucrat.getGrade(0) > MAX)
-//            std::cout << "too high" << std::endl;
-//            std::cout << bureaucrat.GradeTooHighException() << std::cout;
+        std::cout << e.what() << std::endl;
     }
+
+    std::cout << std::endl;
+    try
+    {
+        Bureaucrat alpha("beta", 150);
+        alpha.IncrementGrade();
+    }
+    catch (std::exception & e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+
     return 0;
 }
