@@ -17,7 +17,7 @@ enum check_signed {
 };
 
 typedef struct s_grade {
-    int required;
+    int sign;
     int execute;
 } t_grade;
 
@@ -27,7 +27,7 @@ private:
     bool is_signed;
     t_grade grade;
 public:
-    Form(std::string name, int required, int execute);
+    Form(std::string name, int sign, int execute);
     Form(const Form& form);
     Form& operator=(const Form& form);
     ~Form();

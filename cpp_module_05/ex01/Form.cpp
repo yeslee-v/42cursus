@@ -4,14 +4,14 @@
 
 #include "Form.hpp"
 
-Form::Form(std::string name, int required, int execute) : name(name) {
+Form::Form(std::string name, int sign, int execute) : name(name) {
     std::cout << this->name << ": default constructor called" << std::endl;
     this->is_signed = NOT_SIGNED;
-    this->grade.required = required;
+    this->grade.sign = sign;
     this->grade.execute = execute;
-    if ((this->grade.required < MIN) || (this->grade.execute < MIN))
+    if ((this->grade.sign < MIN) || (this->grade.execute < MIN))
         throw Bureaucrat::GradeTooLowException();
-    else if ((this->grade.required > MAX) || (this->grade.execute > MAX))
+    else if ((this->grade.sign > MAX) || (this->grade.execute > MAX))
         throw Bureaucrat::GradeTooHighException();
 }
 
@@ -22,7 +22,7 @@ Form::Form(const Form &form) {
 Form& Form::operator=(const Form &form) {
     this->name = form.getName();
     this->is_signed = form.getIsSigned();
-    this->grade.required = form.getGradeRequired();
+    this->grade.sign = form.getGradeRequired();
     this->grade.execute = form.getGradeExecute();
     return *this;
 }
@@ -40,7 +40,7 @@ int Form::getIsSigned() const {
 }
 
 int Form::getGradeRequired() const {
-    return this->grade.required;
+    return this->grade.sign;
 }
 
 int Form::getGradeExecute() const {
