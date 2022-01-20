@@ -20,8 +20,8 @@ int main(void) {
     std::cout << std::endl;
     try
     {
-        Bureaucrat alpha("beta", 150);
-        alpha.IncrementGrade();
+        Bureaucrat beta("beta", 150);
+        beta.IncrementGrade();
     }
     catch (std::exception & e)
     {
