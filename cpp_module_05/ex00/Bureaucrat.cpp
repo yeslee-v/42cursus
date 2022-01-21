@@ -12,9 +12,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat& bureaucrat) {
     *this = bureaucrat;
 }
 
-Bureaucrat& Bureaucrat::operator=(const Bureaucrat& bureaucrat) {
-    this->name = bureaucrat.getName();
-    this->grade = bureaucrat.getGrade();
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat&) {
     return *this;
 }
 

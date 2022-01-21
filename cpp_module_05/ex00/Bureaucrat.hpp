@@ -15,7 +15,7 @@ enum range {
 
 class Bureaucrat {
 private:
-    std::string name;
+    const std::string name;
     int grade;
 public:
     Bureaucrat(const std::string name, int grade);

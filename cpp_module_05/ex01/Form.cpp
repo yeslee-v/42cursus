@@ -4,26 +4,21 @@
 
 #include "Form.hpp"
 
-Form::Form(std::string name, int sign, int execute) : name(name) {
+Form::Form(std::string name, int sign, int execute) : name(name), sign(sign), execute(execute) {
     std::cout << this->name << ": default constructor called" << std::endl;
     this->is_signed = NOT_SIGNED;
-    this->grade.sign = sign;
-    this->grade.execute = execute;
-    if ((this->grade.sign < MIN) || (this->grade.execute < MIN))
+    if ((this->sign < MIN) || (this->execute < MIN))
         throw Bureaucrat::GradeTooLowException();
-    else if ((this->grade.sign > MAX) || (this->grade.execute > MAX))
+    else if ((this->sign > MAX) || (this->execute > MAX))
         throw Bureaucrat::GradeTooHighException();
 }
 
-Form::Form(const Form &form) {
+Form::Form(const Form &form)
+	: name(form.getName()), is_signed(form.getIsSigned()), sign(form.getGradeRequired()), execute(form.getGradeExecute())  {
     *this = form;
 }
 
-Form& Form::operator=(const Form &form) {
-    this->name = form.getName();
-    this->is_signed = form.getIsSigned();
-    this->grade.sign = form.getGradeRequired();
-    this->grade.execute = form.getGradeExecute();
+Form& Form::operator=(const Form &) {
     return *this;
 }
 
@@ -40,11 +35,11 @@ int Form::getIsSigned() const {
 }
 
 int Form::getGradeRequired() const {
-    return this->grade.sign;
+    return this->sign;
 }
 
 int Form::getGradeExecute() const {
-    return this->grade.execute;
+    return this->execute;
 }
 
 void Form::beSigned(const Bureaucrat& bureaucrat) {
