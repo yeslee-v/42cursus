@@ -18,5 +18,8 @@ int main() {
 
     std::cout << "[Identify Function using reference]" << std::endl;
     identify(*base);
+
+    delete base;
+
     return 0;
 }
