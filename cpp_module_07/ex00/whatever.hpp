@@ -2,8 +2,8 @@
 // Created by Yeshin Lee on 2022/01/24.
 //
 
-#ifndef MAIN_HPP
-#define MAIN_HPP
+#ifndef WHATEVER_HPP
+#define WHATEVER_HPP
 
 #include <iostream>
 #include <string>
