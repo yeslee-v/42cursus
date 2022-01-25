@@ -4,15 +4,35 @@
 
 #include "iter.hpp"
 
-void callEachArray(int a[4]) {
-    for (int i = 0; i < 4; i++)
-        std::cout << a[i] << std::endl;
+class Awesome
+{
+public:
+    Awesome( void ) : _n( 42 ) { return; }
+    int get( void ) const { return this->_n; }
+private:
+    int _n;
+};
+std::ostream & operator<<( std::ostream & o, Awesome const & rhs ) { o << rhs.get(); return o; }
+
+template< typename T >
+void print( T const & x ) { std::cout << x << std::endl; return; }
+
+template< typename T >
+void print2( T const & x ) { std::cout << x << " "; return; }
+
+template< typename T >
+void add(T const & t)
+{
+    const_cast<T &>(t)++;
 }
 
 int main() {
-    int array[4] = {3, 5, 7, 8};
+    int tab[] = { 0, 1, 2, 3, 4 }; // <--- I never understood why you can't write int[] tab. Wouldn't that make more sense?
+    char tab1[] = "Hello world!";
+    Awesome tab2[5];
 
-    ::iter(array, 4, callEachArray(array));
+    iter(tab, 5, print);
+    iter(tab2, 5, print);
 
     return 0;
 }
