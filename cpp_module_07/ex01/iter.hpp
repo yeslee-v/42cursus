@@ -8,11 +8,11 @@
 #include <iostream>
 
 template<typename T>
-void iter(T &arrayAddress, T &ArrayLen, T &eachFunc) {
+void iter(T *arrayAddress, int ArrayLen, void (* func)(T const &)) {
     int i = -1;
 
     while (++i < ArrayLen) {
-        eachFunc(arrayAddress[i]);
+        func(arrayAddress[i]);
     }
 }
 
