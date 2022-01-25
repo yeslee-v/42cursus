@@ -1,6 +1,6 @@
 NAME = Templates
 
-HEADER = main.hpp
+HEADER = whatever.hpp
 
 CC = clang++
 CFLAGES = -std=c++98 -Wall -Wextra -Werror
