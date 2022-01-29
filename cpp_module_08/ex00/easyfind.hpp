@@ -1,0 +1,8 @@
+//
+// Created by Yeshin Lee on 2022/01/29.
+//
+
+#ifndef INC_42CURSUS_EASYFIND_HPP
+#define INC_42CURSUS_EASYFIND_HPP
+
+#endif //INC_42CURSUS_EASYFIND_HPP
