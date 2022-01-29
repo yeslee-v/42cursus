@@ -26,8 +26,6 @@ void Convert::ConvertChar(std::string value) {
     std::cout << "char: ";
     if (isnan(dc) || isinf(dc) || (dc - c))
         std::cout << "impossible" << std::endl;
-    else if (dc - c)
-        std::cout << "impossible" << std::endl;
     else if (std::isprint(c))
         std::cout << "'" << static_cast<char>(c) << "'" << std::endl;
     else if ((0 <= c) && (c <= 32) || (c == 127)) // ascii but NOT print

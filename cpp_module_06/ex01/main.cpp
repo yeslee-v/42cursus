@@ -9,7 +9,7 @@
 int main() {
     Data info;
     uintptr_t serialization_info;
-    Data* deserialization_inf ;
+    Data* deserialization_info ;
 
     info.id = 1;
     info.name = "yeslee";
