@@ -1,6 +1,6 @@
 NAME = mutantstack
 
-HEADER = Mutantstack.hpp
+HEADER = MutantStack.hpp
 
 CC = clang++
 CFLAGES = -std=c++98 -Wall -Wextra -Werror
@@ -9,7 +9,7 @@ RM = rm
 RMFLAGS = -f
 
 SRC = main.cpp \
-	Mutantstack.cpp
+	MutantStack.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
