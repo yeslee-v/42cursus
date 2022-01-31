@@ -4,7 +4,7 @@
 
 #include "Span.hpp"
 
-Span::Span(unsigned int N) : N(N) {}
+Span::Span(unsigned int n) : N(n) {}
 
 Span::Span(const Span& span) {
     *this = span;
@@ -12,13 +12,14 @@ Span::Span(const Span& span) {
 
 Span& Span::operator=(const Span& span) {
     this->N = span.N;
+    this->vec = span.vec;
     return *this;
 }
 
 Span::~Span() {}
 
 void Span::addNumber(unsigned int n) {
-    if (vec.size() == n || N <= vec.size())
+    if (this->N <= vec.size())
         throw Span::FullException();
     vec.push_back(n);
 }
@@ -26,7 +27,7 @@ void Span::addNumber(unsigned int n) {
 void Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
     std::vector<int>::iterator i;
 
-    for (i = begin; i < end; i++)
+    for (i = begin; i != end; i++)
         Span::addNumber(*i);
 }
 
@@ -61,7 +62,7 @@ unsigned int Span::longestSpan() {
 }
 
 const char* Span::FullException::what() const throw() {
-    return "There are NO numbers stored";
+    return "There are FULL, so NO numbers stored";
 }
 
 const char* Span::OneOrNotExistException::what() const throw() {

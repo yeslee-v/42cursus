@@ -9,12 +9,14 @@
 #include <algorithm>
 #include <vector>
 
+#define MAX 10000
+
 class Span {
 private:
-    std::vector<int> vec;
     unsigned int N;
+    std::vector<int> vec;
 public:
-    Span(unsigned int N);
+    Span(unsigned int n);
     Span(const Span& span);
     Span& operator=(const Span& span);
     ~Span();
