@@ -1,6 +1,6 @@
 NAME = span
 
-HEADER = span.hpp
+HEADER = Span.hpp
 
 CC = clang++
 CFLAGES = -std=c++98 -Wall -Wextra -Werror
@@ -9,7 +9,7 @@ RM = rm
 RMFLAGS = -f
 
 SRC = main.cpp \
-	span.cpp
+	Span.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
