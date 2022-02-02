@@ -27,4 +27,5 @@
 |        | [**CPP Module 06**](./cpp_module_06/README.md) |    `C++`     | [![](https://badge42.herokuapp.com/api/project/yeslee/CPP%20Module%2006)](#) |          |          |
 |        | [**CPP Module 07**](./cpp_module_07/README.md) |    `C++`     | [![](https://badge42.herokuapp.com/api/project/yeslee/CPP%20Module%2007)](#) |          |          |
 |        | [**CPP Module 08**](./cpp_module_08/README.md) |    `C++`     | [![](https://badge42.herokuapp.com/api/project/yeslee/CPP%20Module%2008)](#) |          |          |
-
+|        | [**ft_containers**](./ft_containers/README.md) |    `STL`<br>`Vector`<br>`Map`<br>`Stack`     | [![](https://badge42.herokuapp.com/api/project/yeslee/ft_containers)](#) |          |          |
+|        | [**ft_irc**](./ft_irc/README.md) |    `IRC server`<br>`port_network`<br>`password_network`    | [![](https://badge42.herokuapp.com/api/project/yeslee/ft_irc)](#) |          |          |
