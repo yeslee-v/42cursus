@@ -8,7 +8,7 @@ CFLAGES = -std=c++98 -Wall -Wextra -Werror
 RM = rm
 RMFLAGS = -f
 
-SRC = main.cpp Vector.cpp Map.cpp Stack.cpp
+SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
