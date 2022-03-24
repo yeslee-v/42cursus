@@ -7,7 +7,7 @@
 
 namespace ft {
     template < typename T, typename Alloc = std::allocator<T> >
-    class Vector {
+    class vector {
     public:
         typedef T                                       value_type;
         typedef Alloc                                   allocator_type;
@@ -23,14 +23,19 @@ namespace ft {
         typedef size_t                                  size_type;
 
 
+        explicit vector(const allocator_type& alloc = allocator_type());
+        vector(const vector& x);
+        vector& operator=(const vector& vector);
+        ~vector();
+
         /*
          * (constructor)
         Construct vector (public member function )
         (destructor)
-        Vector destructor (public member function )
+        vector destructor (public member function )
         operator=
                 Assign content (public member function )
-
+/*
                 Iterators:
         begin
         Return iterator to beginning (public member function )
@@ -109,7 +114,7 @@ namespace ft {
 
         Template specializations
         vector<bool>
-        Vector of bool (class template specialization )
+        vector of bool (class template specialization )
                 */
 
         }
