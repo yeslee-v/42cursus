@@ -35,25 +35,28 @@ namespace ft {
         vector destructor (public member function )
         operator=
                 Assign content (public member function )
-/*
-                Iterators:
-        begin
-        Return iterator to beginning (public member function )
-        end
-        Return iterator to end (public member function )
-        rbegin
-        Return reverse iterator to reverse beginning (public member function )
-        rend
-        Return reverse iterator to reverse end (public member function )
-        cbegin
-        Return const_iterator to beginning (public member function )
-        cend
-        Return const_iterator to end (public member function )
-        crbegin
-        Return const_reverse_iterator to reverse beginning (public member function )
-        crend
-        Return const_reverse_iterator to reverse end (public member function )
+*/
+        /*
+         * Iterators
+         */
 
+        iterator begin();
+        iterator end();
+        reverse_iterator rbegin() {
+            return reverse_iterator(end());
+        }
+        reverse_iterator rend() {
+            return reverse_iterator(begin());
+        }
+        const_iterator cbegin();
+        const_iterator cend();
+        const_reverse_iterator crbegin() {
+            return const_reverse_iterator(cend());
+        }
+        const_reverse_iterator crend() {
+            return const_reverse_iterator(cbegin());
+        }
+/*
         Capacity:
         size
         Return size (public member function )
