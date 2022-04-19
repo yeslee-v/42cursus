@@ -48,14 +48,6 @@ namespace ft {
         reverse_iterator rend() {
             return reverse_iterator(begin());
         }
-        const_iterator cbegin();
-        const_iterator cend();
-        const_reverse_iterator crbegin() {
-            return const_reverse_iterator(cend());
-        }
-        const_reverse_iterator crend() {
-            return const_reverse_iterator(cbegin());
-        }
 /*
         Capacity:
         size
