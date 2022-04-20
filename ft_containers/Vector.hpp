@@ -5,6 +5,8 @@
 #ifndef VECTOR_HPP
 #define VECTOR_HPP
 
+#include <memory>
+
 namespace ft {
     template < typename T, typename Alloc = std::allocator<T> >
     class vector {
@@ -22,12 +24,6 @@ namespace ft {
         typedef ptrdiff_t                               difference_type;
         typedef size_t                                  size_type;
 
-
-        explicit vector(const allocator_type& alloc = allocator_type());
-        vector(const vector& x);
-        vector& operator=(const vector& vector);
-        ~vector();
-
         /*
          * (constructor)
         Construct vector (public member function )
@@ -35,13 +31,31 @@ namespace ft {
         vector destructor (public member function )
         operator=
                 Assign content (public member function )
-*/
+        */
+        explicit vector(const allocator_type& alloc = allocator_type()) {
+           Alloc _alloc;
+           size_type _n;
+           T _val;
+           iterator _first;
+           iterator _last;
+           vector<T, Alloc> x;
+           T il;
+        };
+        vector(const vector& x);
+        vector& operator=(const vector& vector);
+        ~vector();
+
+
         /*
          * Iterators
          */
 
-        iterator begin();
-        iterator end();
+        iterator begin() {
+            return _first;
+        }
+        iterator end() {
+            return _last;
+        }
         reverse_iterator rbegin() {
             return reverse_iterator(end());
         }
