@@ -6,7 +6,7 @@
 #define VECTOR_HPP
 
 #include <memory>
-#include <vector>
+#include <stdexcept>
 
 namespace ft {
     template < typename T, typename Alloc = std::allocator<T> >
@@ -87,82 +87,113 @@ namespace ft {
         /*
          * Iterators
          */
-
         iterator begin() {
-            return _first;
+            return iterator(_first);
         }
+
         iterator end() {
-            return _last;
+            return iterator(_last);
         }
+
         reverse_iterator rbegin() {
             return reverse_iterator(end());
         }
+
         reverse_iterator rend() {
             return reverse_iterator(begin());
         }
-/*
-        Capacity:
-        size
-        Return size (public member function )
-        max_size
-        Return maximum size (public member function )
-        resize
-        Change size (public member function )
-        capacity
-        Return size of allocated storage capacity (public member function )
-        empty
-        Test whether vector is empty (public member function )
-        reserve
-        Request a change in capacity (public member function )
-        shrink_to_fit
-        Shrink to fit (public member function )
 
-        Element access:
-        operator[]
-        Access element (public member function )
-        at
-        Access element (public member function )
-        front
-        Access first element (public member function )
-        back
-        Access last element (public member function )
-        data
-        Access data (public member function )
+        /*
+         * Capacity
+         */
+        size_type size() const {
+            return _n;
+        }
 
-        Modifiers:
-        assign
-        Assign vector content (public member function )
-        push_back
-        Add element at the end (public member function )
-        pop_back
-        Delete last element (public member function )
-        insert
-        Insert elements (public member function )
-        erase
-        Erase elements (public member function )
-        swap
-        Swap content (public member function )
-        clear
-        Clear content (public member function )
-        emplace
-        Construct and insert element (public member function )
-        emplace_back
-        Construct and insert element at the end (public member function )
+        size_type max_size() const {
+            return (_cap - _n);
+        }
 
-        Allocator:
-        get_allocator
-        Get allocator (public member function )
+        void resize(size_type n, value_type val = value_type()) {
+            if (max_size() < n)
+                throw (std::length_error("vector::resize"))
+            else if (n < _n) {
+                clear();
+                for (size_type i = 0; i < n; i++)
+                    _alloc.construct(_last, val);
+            }
+            else if (_n < n) {
+                while (n - _n)
+                    _alloc.construct(_last, val);
+            }
+            else if (_cap < n) {
+                _alloc.deallocate(_first, _val);
+                while (n--)
+                    _alloc.allocate(_first, val);
+            }
+        }
 
-        Non-member function overloads
-        relational operators
-        Relational operators for vector (function template )
-        swap
-        Exchange contents of vectors (function template )
+        size_type capacity() const {
+            return _cap;
+        }
 
-        Template specializations
-        vector<bool>
-        vector of bool (class template specialization )
-                */
+        bool empty() const {
+            return (_n > 0) ? 1 : 0;
+        }
+
+        void reserve(size_type n) {
+            if (max_size() < n)
+                std::length_error("vector::reserve");
+            _alloc.deallocate(_first, _val);
+            for (size_type i = 0; i < n, i++)
+                _alloc.allocate(_first, i);
+        }
+
+//        Element access:
+//        operator[]
+//        Access element (public member function )
+//        at
+//        Access element (public member function )
+//        front
+//        Access first element (public member function )
+//        back
+//        Access last element (public member function )
+//        data
+//        Access data (public member function )
+//
+//        Modifiers:
+//        assign
+//        Assign vector content (public member function )
+//        push_back
+//        Add element at the end (public member function )
+//        pop_back
+//        Delete last element (public member function )
+//        insert
+//        Insert elements (public member function )
+//        erase
+//        Erase elements (public member function )
+//        swap
+//        Swap content (public member function )
+//        clear
+//        Clear content (public member function )
+//        emplace
+//        Construct and insert element (public member function )
+//        emplace_back
+//        Construct and insert element at the end (public member function )
+//
+//        Allocator:
+//        get_allocator
+//        Get allocator (public member function )
+//
+//        Non-member function overloads
+//        relational operators
+//        Relational operators for vector (function template )
+//        swap
+//        Exchange contents of vectors (function template )
+//
+//        Template specializations
+//        vector<bool>
+//        vector of bool (class template specialization )
 
         }
     };
