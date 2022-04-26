@@ -111,7 +111,7 @@ namespace ft {
         }
 
         size_type max_size() const {
-            return (_cap - _n);
+            return Alloc.max_size();
         }
 
         void resize(size_type n, value_type val = value_type()) {
