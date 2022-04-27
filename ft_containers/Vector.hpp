@@ -228,7 +228,7 @@ namespace ft {
                     for (std::vector<T>::iterator it = vector.begin(); it < vector.end(); ++it) {
                         if (it == position)
                             *it = val;
-                        // 뒤로 한 칸씩 미루기
+                        // 뒤로 한 칸씩 미루퍄
                     }
                 }
                 void insert(iterator position, size_type n, const value_type& val) {
@@ -238,11 +238,21 @@ namespace ft {
                         void insert(iterator position, InputIterator first, InputIterator last) {
                         }
 
-                erase
-                swap
-                clear
-                emplace
-                emplace_back
+                iterator erase(iterator posiiton) {
+                }
+
+                iterator erase(iterator first, iterator last) { // range(first, last)
+                }
+
+                void swap(vector& x) {
+                }
+
+                void clear() {
+                    for (size_type i = 0; i < _n; ++i) {
+                        _last--;
+                        _alloc.destroy(_last);
+                    }
+                }
 
 //        Allocator:
 //        get_allocator
