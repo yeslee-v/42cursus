@@ -272,6 +272,7 @@ namespace ft {
                         _last--;
                         _alloc.destroy(_last);
                     }
+                    _n = 0;
                 }
 
 //        Allocator:
