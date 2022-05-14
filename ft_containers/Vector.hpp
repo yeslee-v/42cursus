@@ -138,7 +138,7 @@ namespace ft {
                 }
 
                 bool empty() const {
-                    return (_n > 0) ? 1 : 0;
+                    return (_n == 0) ? 1 : 0;
                 }
 
                 void reserve(size_type n) {
