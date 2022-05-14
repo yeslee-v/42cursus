@@ -245,6 +245,26 @@ namespace ft {
                 }
 
                 void swap(vector& x) {
+                    allocator_type  tmp_alloc = x._alloc;
+                    size_type       tmp_n = x._n;
+                    size_type       tmp_cap = x._cap;
+                    value_type*     tmp_val = x._val;
+                    value_type*     tmp_first = x._first;
+                    value_type*     tmp_last = x._last;
+
+                    x._alloc = this->_alloc;
+                    x._n = this->_n;
+                    x._cap = this->_cap;
+                    x._val = this->_val;
+                    x._first = this->_first;
+                    x._last = this->_last;
+
+                    this->_alloc = tmp_alloc;
+                    this->_n = tmp_n;
+                    this->_cap = tmp_cap;
+                    this->_val = tmp_val;
+                    this->_first = tmp_first;
+                    this->_last = tmp_last;
                 }
 
                 void clear() {
