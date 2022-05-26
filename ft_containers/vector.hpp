@@ -3,7 +3,7 @@
 //
 
 #ifndef VECTOR_HPP
-#define VECTOR_HPP
+# define VECTOR_HPP
 
 #include <memory>
 #include <stdexcept>
@@ -57,9 +57,9 @@ namespace ft {
                 };
 
                 template <class InputIterator> // iterator 공부하고 나서 진행해야
-                        vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type())
-                        : _alloc(alloc) {
-                        };
+                vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type())
+                    : _alloc(alloc) {
+                };
 
                 vector(const vector& x) {
                     *this = x;
@@ -173,14 +173,10 @@ namespace ft {
                 }
 
                 reference front() {
-//                    if (_first == _last)
-                        // undefined behavior
                     return _first;
                 }
 
                 const_reference front() const {
-                    // if (_first == _last)
-                    // undefined behavior
                     return _first;
                 }
 
@@ -276,18 +272,18 @@ namespace ft {
                 }
 
 //        Allocator:
-//        get_allocator
-//        Get allocator (public member function )
-//
-//        Non-member function overloads
-//        relational operators
-//        Relational operators for vector (function template )
-//        swap
-//        Exchange contents of vectors (function template )
-//
-//        Template specializations
-//        vector<bool>
-//        vector of bool (class template specialization )
+        get_allocator
+        Get allocator (public member function )
+
+        Non-member function overloads
+        relational operators
+        Relational operators for vector (function template )
+        swap
+        Exchange contents of vectors (function template )
+
+        Template specializations
+        vector<bool>
+        vector of bool (class template specialization )
 
         }
     };
