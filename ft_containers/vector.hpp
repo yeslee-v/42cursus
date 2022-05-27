@@ -163,8 +163,9 @@ namespace ft {
                 void reserve(size_type n) { // capacity를 바꾼다
                     if (_cap < n) {
                         value_type* tmp = _alloc.allocate(n);
+
                         for (size_type i = 0; i < _n; i++)
-                            _alloc.allocate(&tmp[i], _val[i]);
+                            _alloc.construct(&tmp[i], _val[i]);
                         clear();
                         _alloc.deallocate(_val, _cap);
                         _val = tmp;
@@ -215,7 +216,7 @@ namespace ft {
                  * Modifiers
                  */
                 template<class InputIterator>
-                void assign(InputIterator first, InputIterator last) { // 복습 요망
+                void assign(InputIterator first, InputIterator last) { // 복습 요망: assign 맡기다
                     size_type size = 0;
 
                     for (InputIterator itr = first; itr != last; ++itr)
@@ -256,7 +257,7 @@ namespace ft {
                             _alloc.construct(&tmp[i], _val[i]);
                         }
                         clear(); // _n == 0
-                        if (_cap != 1) // _cap이 1인 경우는 어차피 253 줄에서 0이었다.
+                        if (_cap != 1) // _cap이 1인 경우는 어차피 254 줄에서 0이었다.
                             _alloc.deallocate(_val, (_cap / 2));
                         _val = tmp;
                     }
