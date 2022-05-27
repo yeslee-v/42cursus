@@ -30,29 +30,17 @@ namespace ft {
                 size_type       _n; // size
                 size_type       _cap; // total size
                 value_type*     _val;
-                value_type*     _first;
-                value_type*     _last;
 
             public:
                 explicit vector(const allocator_type& alloc = allocator_type())
                 : _alloc(alloc), _n(0), _cap(0) {
- //                   _val = _alloc.allocate(0);
-                    _first = _val;
-                    _last = _val;
                 };
 
                 explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
                 : _alloc(alloc), _n(n), _cap(n) {
-//                    while (_cap < _n) {
-//                        size_type new_cap = (_cap * 2 > 0) ? (_cap * 2) : 1;
-//                        _cap = new_cap;
-//                    }
                     _val = alloc.allocate(_cap);
-                    _first = _val;
-                    _last = _first;
                     while (n--) {
-                        _alloc.construct(_last, val);
-                        _last++;
+                        _alloc.construct(&_val[n], val);
                     }
                 };
 
@@ -73,25 +61,21 @@ namespace ft {
                         _val[n++] = *first;
                         first++;
                     }
-                    _first = _val;
-                    _last = &_val[n - 1];
                 };
 
                 vector(const vector& x) {
                     *this = x;
                 };
 
-                vector& operator=(const vector& vector) {
-                    _alloc = vector._alloc;
-                    _n = vector._n;
-                    _cap = vector._cap;
+                vector& operator=(const vector& x) {
+                    clear();
+                    _alloc.deallocate(_val, _cap);
+                    _alloc = x._alloc;
+                    _n = x._n;
+                    _cap = x._n; // _cap만큼이 아닌 _n만큼만 복사한다.
                     _val = _alloc.allocate(_cap);
-                    _first = _val;
-                    _last = _first;
-                    for (n--) {
-                        _alloc.construct(_last, val);
-                        _last++;
-                    }
+                    while (n--)
+                        _alloc.construct(&_val[n], x._val[n]);
                 };
 
                 ~vector() {
@@ -104,19 +88,31 @@ namespace ft {
                  * Iterators
                  */
                 iterator begin() {
-                    return iterator(_first);
+                    return iterator(_val);
+                }
+                const_iterator begin() const {
+                    return const_iterator(_val);
                 }
 
                 iterator end() {
-                    return iterator(_last);
+                    return iterator(&_val[_n]);
+                }
+                const_iterator end() const {
+                    return const_iterator(&_val[_n]);
                 }
 
                 reverse_iterator rbegin() {
                     return reverse_iterator(end());
                 }
+                const_reverse_iterator rbegin() const {
+                    return const_reverse_iterator(end());
+                }
 
                 reverse_iterator rend() {
                     return reverse_iterator(begin());
+                }
+                const_reverse_iterator rend() const {
+                    return const_reverse_iterator(begin());
                 }
 
                 /*
@@ -133,19 +129,26 @@ namespace ft {
                 void resize(size_type n, value_type val = value_type()) {
                     if (max_size() < n)
                         throw (std::length_error("vector::resize"))
-                        else if (n < _n) {
-                            clear();
-                            for (size_type i = 0; i < n; i++)
-                                _alloc.construct(_last, val);
-                        }
-                    else if (_n < n) {
-                        while (n - _n)
-                            _alloc.construct(_last, val);
+                    else if (n < _n) { // resize될 값이 더 작은 경우
+                        while (_n - n)
+                            _alloc.destroy(&_val[--_n]);
                     }
-                    else if (_cap < n) {
-                        _alloc.deallocate(_first, _val);
-                        while (n--)
-                            _alloc.allocate(_first, val);
+                    else if (_cap < n) { // total size가 resize 될 값보다 작은 경우
+                        size_type i = _n;
+                        value_type* tmp = _alloc.allocate(n);
+
+                        while (i--)
+                            _alloc.construct(&tmp[i], _val[i]);
+                        clear(); // element 하나씩 소멸자 호출
+                        _alloc.deallocate(_val, _cap);
+                        _val = tmp;
+                        while (n - _n)
+                            _alloc.construct(&tmp[_n++], val);
+                        _cap = n;
+                    }
+                    else if (_n < n) { // resize 될 값이 더 큰 경우
+                        while (n - _n)
+                            _alloc.construct(&_val[_n++], val);
                     }
                 }
 
@@ -154,86 +157,119 @@ namespace ft {
                 }
 
                 bool empty() const {
-                    return (_n == 0) ? 1 : 0;
+                    return !_n;
                 }
 
-                void reserve(size_type n) {
-                    if (max_size() < n)
-                        std::length_error("vector::reserve");
-                    _alloc.deallocate(_first, _val);
-                    for (size_type i = 0; i < n, i++)
-                        _alloc.allocate(_first, i);
+                void reserve(size_type n) { // capacity를 바꾼다
+                    if (_cap < n) {
+                        value_type* tmp = _alloc.allocate(n);
+                        for (size_type i = 0; i < _n; i++)
+                            _alloc.allocate(&tmp[i], _val[i]);
+                        clear();
+                        _alloc.deallocate(_val, _cap);
+                        _val = tmp;
+                        _cap = n;
+                    }
                 }
 
                 /*
                  * Element access
                  */
                 reference operator[] (size_type n) {
-                    return reference(_first + n);
+                    return _val[n]; // reference == T& 라서 굳이 넣지 않아도 된다
                 }
 
                 const reference operator[] (size_type n) const {
-                    return reference(_first + n);
+                    return _val[n];
                 }
 
                 reference at(size_type n) {
-                    if (_cap < n)
+                    if (_n < n)
                         throw std::out_of_range(std::at);
-                    return reference(_first + n);
+                    return _val[n];
                 }
 
                 const_reference at(size_type n) const {
-                    if (_cap < n)
+                    if (_n < n)
                         throw std::out_of_range(std::at);
-                    return reference(_first + n);
+                    return _val[n];
                 }
 
                 reference front() {
-                    return _first;
+                    return *_val;
                 }
 
                 const_reference front() const {
-                    return _first;
+                    return *_val;
                 }
 
                 reference back() {
-                    return _last;
+                    return _val[_n - 1];
                 }
 
                 const_reference back() const {
-                    return _last;
+                    return _val[_n - 1];
                 }
 
                 /*
                  * Modifiers
                  */
                 template<class InputIterator>
-                void assign(InputIteratorfirst, InputIterator last) {
+                void assign(InputIterator first, InputIterator last) { // 복습 요망
+                    size_type size = 0;
+
+                    for (InputIterator itr = first; itr != last; ++itr)
+                        size++;
+                    if (_cap < size) { // size만큼 새롭게 만든다 -> 할당을 새로 한다 -> 값은 동일하게 넣는다
+                        clear();
+                        _alloc.deallocate(_val, _cap);
+                        _alloc.allocate(_val, size);
+                        _cap = size;
+                    }
+                    // (size < _cap) { // 할당을 새로 하지 않는다 -> 값은 동일하게 넣는다
+                    for (size_type i = 0; i < size; i++) {
+                        _alloc.construct(&_val[i], *first);
+                        first++;
+                    }
+                    _n = size;
                 }
 
                 void assign(size_type n, const value_type& val) {
-                    _alloc.allocate(n);
-                    for (size_type i = 0; i < n; ++i) {
-                        _alloc.construct(_last, val);
-                        _last++;
+                    if (_cap < n) {
+                        clear();
+                        _alloc.deallocate(_val, _cap);
+                        _alloc.allocate(_val, n);
+                        _cap = n;
                     }
+                    for (size_type i = 0; i < n; ++i)
+                        _alloc.construct(&_val[i], val);
+                    _n = n;
                 }
 
                 void push_back(const value_type& val) {
-                    if (_cap < _n + 1) {
-                        ~vector();
-                        for (size_type i = 0; i <= _n; ++i) {
-                            _alloc.allocate(_last, _val);
+                    if (_cap == _n) {
+                        value_type* tmp;
+
+                        _cap = (_cap) ? (_cap * 2) : 1; // cap이 0인 경우 들어갈 자리 하나를 만들어준다
+                        tmp = _alloc.allocate(_cap);
+                        for (size_type i = 0; i < _n; i++) {
+                            _alloc.construct(&tmp[i], _val[i]);
                         }
+                        clear(); // _n == 0
+                        if (_cap != 1) // _cap이 1인 경우는 어차피 253 줄에서 0이었다.
+                            _alloc.deallocate(_val, (_cap / 2));
+                        _val = tmp;
                     }
-                    vector[_last + 1] = val; // 위치를 어떻게 잡아야하지?
+                    _val[_n] = val;
+                    _n++;
                 }
-                void pop_back() {
-                    _alloc.destroy(_last);
-                    if (_first == _last) {
-                        _alloc.deallocate();
-                    }
+
+                void pop_back() { // 빈배열에서 동작하려면 std안에서 자동으로 underflow 발생
+                    _alloc.destroy(_val[_n - 1]);
+                    _n--;
                 }
+
+// 다시~
                 iterator insert(iterator position, const value_type& val) {
                     if (_cap < _n + 1)
                         resize(_n + 1, val);
