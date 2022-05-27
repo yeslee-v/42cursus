@@ -28,7 +28,7 @@ namespace ft {
             private:
                 allocator_type  _alloc;
                 size_type       _n; // size
-                size_type       _cap;
+                size_type       _cap; // total size
                 value_type*     _val;
                 value_type*     _first;
                 value_type*     _last;
@@ -36,29 +36,45 @@ namespace ft {
             public:
                 explicit vector(const allocator_type& alloc = allocator_type())
                 : _alloc(alloc), _n(0), _cap(0) {
-                    _val = _alloc.allocate(0);
+ //                   _val = _alloc.allocate(0);
                     _first = _val;
                     _last = _val;
                 };
 
                 explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
-                : _alloc(alloc), _n(n), _cap(0) {
-                    while (_cap < _n) {
-                        size_type new_cap = (_cap * 2 > 0) ? (_cap * 2) : 1;
-                        _cap = new_cap;
-                    }
+                : _alloc(alloc), _n(n), _cap(n) {
+//                    while (_cap < _n) {
+//                        size_type new_cap = (_cap * 2 > 0) ? (_cap * 2) : 1;
+//                        _cap = new_cap;
+//                    }
                     _val = alloc.allocate(_cap);
                     _first = _val;
                     _last = _first;
-                    for (n--) {
+                    while (n--) {
                         _alloc.construct(_last, val);
                         _last++;
                     }
                 };
 
-                template <class InputIterator> // iterator 공부하고 나서 진행해야
+                template <class InputIterator>
                 vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type())
                     : _alloc(alloc) {
+                    // n = 0, cap = 0;
+                    // 사이즈를 먼저 할당한다
+                    
+                    _n = 0;
+                    for (InputIterator itr = first; itr != last; itr++)
+                        _n++;
+                    _cap = _n; 
+                    _val = alloc.allocate(_cap);
+                    
+                    int n = 0;
+                    while (first != last){
+                        _val[n++] = *first;
+                        first++;
+                    }
+                    _first = _val;
+                    _last = &_val[n - 1];
                 };
 
                 vector(const vector& x) {

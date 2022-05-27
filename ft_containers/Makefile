@@ -1,6 +1,6 @@
 NAME = ft_container
 
-HEADER = Vector.hpp Map.hpp Stack.hpp
+HEADER = Vector.hpp
 
 CC = clang++
 CFLAGES = -std=c++98 -Wall -Wextra -Werror
