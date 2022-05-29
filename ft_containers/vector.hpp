@@ -9,6 +9,11 @@
 #include <stdexcept>
 
 #include "utils/equal_lexicographical_compare.hpp"
+#include "utils/random_access_iterator.hpp"
+#include "utils/reverse_iterator.hpp"
+#include "utils/is_integral.hpp"
+#include "utils/enable_if.hpp"
+
 
 namespace ft {
     template < typename T, typename Alloc = std::allocator<T> >
@@ -16,12 +21,12 @@ namespace ft {
             public:
                 typedef T                                       value_type;
                 typedef Alloc                                   allocator_type;
-                typedef Alloc::reference                        reference;
-                typedef Alloc::const_reference                  const_reference;
-                typedef Alloc::pointer	                        pointer;
-                typedef Alloc::const_pointer	                const_pointer;
-                typedef ft::random_access_iterator<T, false>    iterator;
-                typedef ft::random_access_iterator<T, true>     const_iterator;
+                typedef typename Alloc::reference                        reference;
+                typedef typename Alloc::const_reference                  const_reference;
+                typedef typename Alloc::pointer	                        pointer;
+                typedef typename Alloc::const_pointer	                const_pointer;
+                typedef typename ft::random_access_iterator<T, false>    iterator;
+                typedef typename ft::random_access_iterator<T, true>     const_iterator;
                 typedef ft::reverse_iterator<iterator>          reverse_iterator;
                 typedef ft::reverse_iterator<const_iterator>    const_reverse_iterator;
                 typedef ptrdiff_t                               difference_type;
@@ -38,16 +43,18 @@ namespace ft {
                 : _alloc(alloc), _n(0), _cap(0) {
                 };
 
+                // int일 때는 여기로
                 explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
                 : _alloc(alloc), _n(n), _cap(n) {
-                    _val = alloc.allocate(_cap);
+                    _val = _alloc.allocate(_cap);
                     while (n--) {
                         _alloc.construct(&_val[n], val);
                     }
                 };
 
+                // int가 안들어왔을 때 여기로 >> enble_if 사용
                 template <class InputIterator>
-                vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type())
+                vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = NULL)
                     : _alloc(alloc) {
                     // n = 0, cap = 0;
                     // 사이즈를 먼저 할당한다
@@ -56,33 +63,38 @@ namespace ft {
                     for (InputIterator itr = first; itr != last; itr++)
                         _n++;
                     _cap = _n; 
-                    _val = alloc.allocate(_cap);
+                    _val = _alloc.allocate(_cap);
                     
                     int n = 0;
                     while (first != last){
-                        _val[n++] = *first;
+                        _val[n++] = *first; // int가 들어왔을 때 *을 썼기때문에 에러 발생 >> enable_if로 int가 아닐 때 들어오도록 제메
                         first++;
                     }
                 };
 
-                vector(const vector& x) {
+                vector(const vector& x): _n(0), _cap(0) {
                     *this = x;
                 };
 
                 vector& operator=(const vector& x) {
                     clear();
-                    _alloc.deallocate(_val, _cap);
+                    if (_cap)
+                        _alloc.deallocate(_val, _cap);
                     _alloc = x._alloc;
                     _n = x._n;
                     _cap = x._n; // _cap만큼이 아닌 _n만큼만 복사한다.
                     _val = _alloc.allocate(_cap);
-                    while (n--)
-                        _alloc.construct(&_val[n], x._val[n]);
+
+                    size_type i = _n;
+                    while (i--)
+                        _alloc.construct(&_val[i], x._val[i]);
+                    return *this;
                 };
 
                 ~vector() {
                     clear();
-                    _alloc.deallocate(_val, _cap);
+                    if (_cap)
+                        _alloc.deallocate(_val, _cap);
                 };
 
 
@@ -104,17 +116,17 @@ namespace ft {
                 }
 
                 reverse_iterator rbegin() {
-                    return reverse_iterator(end());
+                    return reverse_iterator(&_val[_n]);
                 }
                 const_reverse_iterator rbegin() const {
-                    return const_reverse_iterator(end());
+                    return const_reverse_iterator(&_val[_n]);
                 }
 
                 reverse_iterator rend() {
-                    return reverse_iterator(begin());
+                    return reverse_iterator(_val);
                 }
                 const_reverse_iterator rend() const {
-                    return const_reverse_iterator(begin());
+                    return const_reverse_iterator(_val);
                 }
 
                 /*
@@ -130,19 +142,21 @@ namespace ft {
 
                 void resize(size_type n, value_type val = value_type()) {
                     if (max_size() < n)
-                        throw (std::length_error("vector::resize"))
+                        throw (std::length_error("vector::resize"));
                     else if (n < _n) { // resize될 값이 더 작은 경우
                         while (_n - n)
                             _alloc.destroy(&_val[--_n]);
                     }
                     else if (_cap < n) { // total size가 resize 될 값보다 작은 경우
-                        size_type i = _n;
+                        size_type i = 0;
                         value_type* tmp = _alloc.allocate(n);
 
-                        while (i--)
+                        for (; i < _n; i++)
                             _alloc.construct(&tmp[i], _val[i]);
                         clear(); // element 하나씩 소멸자 호출
-                        _alloc.deallocate(_val, _cap);
+                        _n = i; // _n 값을 돌려준다
+                        if (_cap)
+                            _alloc.deallocate(_val, _cap);
                         _val = tmp;
                         while (n - _n)
                             _alloc.construct(&tmp[_n++], val);
@@ -164,12 +178,15 @@ namespace ft {
 
                 void reserve(size_type n) { // capacity를 바꾼다
                     if (_cap < n) {
+                        size_type i = 0;
                         value_type* tmp = _alloc.allocate(n);
 
-                        for (size_type i = 0; i < _n; i++)
+                        for (; i < _n; i++)
                             _alloc.construct(&tmp[i], _val[i]);
                         clear();
-                        _alloc.deallocate(_val, _cap);
+                       _n = i; // _n 값 복구
+                        if (_cap)
+                            _alloc.deallocate(_val, _cap);
                         _val = tmp;
                         _cap = n;
                     }
@@ -188,13 +205,13 @@ namespace ft {
 
                 reference at(size_type n) {
                     if (_n < n)
-                        throw std::out_of_range(std::at);
+                        throw std::out_of_range("at");
                     return _val[n];
                 }
 
                 const_reference at(size_type n) const {
                     if (_n < n)
-                        throw std::out_of_range(std::at);
+                        throw std::out_of_range("at");
                     return _val[n];
                 }
 
@@ -218,15 +235,16 @@ namespace ft {
                  * Modifiers
                  */
                 template<class InputIterator>
-                void assign(InputIterator first, InputIterator last) { // 복습 요망: assign 맡기다
+                void assign(InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = NULL) { // 복습 요망: assign 맡기다
                     size_type size = 0;
 
                     for (InputIterator itr = first; itr != last; ++itr)
                         size++;
                     if (_cap < size) { // size만큼 새롭게 만든다 -> 할당을 새로 한다 -> 값은 동일하게 넣는다
                         clear();
-                        _alloc.deallocate(_val, _cap);
-                        _alloc.allocate(_val, size);
+                        if (_cap)
+                            _alloc.deallocate(_val, _cap);
+                        _val = _alloc.allocate(size);
                         _cap = size;
                     }
                     // (size < _cap) { // 할당을 새로 하지 않는다 -> 값은 동일하게 넣는다
@@ -240,8 +258,9 @@ namespace ft {
                 void assign(size_type n, const value_type& val) {
                     if (_cap < n) {
                         clear();
-                        _alloc.deallocate(_val, _cap);
-                        _alloc.allocate(_val, n);
+                        if (_cap)
+                            _alloc.deallocate(_val, _cap);
+                        _val = _alloc.allocate(n);
                         _cap = n;
                     }
                     for (size_type i = 0; i < n; ++i)
@@ -259,6 +278,7 @@ namespace ft {
                             _alloc.construct(&tmp[i], _val[i]);
                         }
                         clear(); // _n == 0
+                        _n = _cap / 2; // clear로 인해 _n이 0으로 초기화됐으므로 기존의 _n 값을 돌려준다
                         if (_cap != 1) // _cap이 1인 경우는 어차피 254 줄에서 0이었다.
                             _alloc.deallocate(_val, (_cap / 2));
                         _val = tmp;
@@ -268,14 +288,14 @@ namespace ft {
                 }
 
                 void pop_back() { // 빈배열에서 동작하려면 std안에서 자동으로 underflow 발생
-                    _alloc.destroy(_val[_n - 1]);
+                    _alloc.destroy(&_val[_n - 1]);
                     _n--;
                 }
 
                 iterator insert(iterator position, const value_type& val) {
                     size_type pos = 0;
 
-                    for (iterator it = vector.begin(); it != position; ++it)
+                    for (iterator it = begin(); it != position; ++it)
                         pos++;
                     // 넉넉하거나 + capacity가 부족해서 추가하는 경우
                     if (_cap < _n + 1)
@@ -285,16 +305,17 @@ namespace ft {
                         _val[i] = _val[i - 1];
                     _val[pos] = val;
                     ++_n;
+                    return iterator(&_val[pos]);
                 }
 
                 void insert(iterator position, size_type n, const value_type& val) {
                     size_type pos = 0;
 
-                    for (iterator it = vector.begin(); it != position; ++it)
+                    for (iterator it = begin(); it != position; ++it)
                         pos++;
                     if (_cap * 2 <= _n + n)
                         reserve(_n + n);
-                    else if (_n + n < _cap * 2)
+                    else if (_cap < _n + n)
                         reserve(_cap * 2);
                     for (size_type i = _n; i > pos; i--) // 앞은 건들지 말고 position 후의 값만 이동하면 된다
 //                        _val[i] = _val[i - n + 1]; // segfault 위험성
@@ -305,11 +326,11 @@ namespace ft {
                 }
 
                 template <class InputIterator>
-                void insert(iterator position, InputIterator first, InputIterator last) {
+                void insert(iterator position, InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = NULL) {
                     size_type pos = 0;
                     size_type size = 0;
 
-                    for (iterator it = vector.begin(); it != position; ++it)
+                    for (iterator it = begin(); it != position; ++it)
                         pos++;
                     for (InputIterator itr = first; itr != last; ++itr)
                         size++;
@@ -345,6 +366,7 @@ namespace ft {
                     for (iterator i = last; i < end(); i++) // 앞으로 가져올 iterator가 존재하지 않을 수 있기 때문에 last로 초기화한다
                         *(i - size) = *i; // [1, (first), , 4(last), 5] >> [1, 4, 5]로 만들기 위해서 현재 iterator에서 size를 빼줘야한다
                     _n -= size;
+                    return first;
                 }
 
                 void swap(vector& x) {
@@ -375,17 +397,19 @@ namespace ft {
                 allocator_type get_allocator() const {
                     return _alloc;
                 }
-            }
+            };
     // Non-member function overloads
     template <class T, class Alloc>
     bool operator== (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
-        return equal(lhs.begin(), lhs.end(), rhs.bagin());
-    }
+        if (lhs.size() != rhs.size())
+            return false;
+        return equal(lhs.begin(), lhs.end(), rhs.begin());
+    };
 
     template <class T, class Alloc>
     bool operator!= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
         return !(lhs == rhs);
-    }
+    };
 
     template <class T, class Alloc>
     bool operator<  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {

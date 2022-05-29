@@ -16,17 +16,17 @@ namespace ft {
     public: // public은 쓸 사람이 위에서 보고 사용한다, private은 쓸 사람이 안봐도 되기 때문에 public을 위로 올린다
         typedef T                                                                           value_type;
         typedef ptrdiff_t                                                                   difference_type;
-        typedef typename ft::typeSelector<*value_type, const *value_type, isConstItr>::type pointer;
-        typedef typename ft::typeSelector<&value_type, const &value_type, isConstItr>::type reference;
-        typedef typename random_access_iterator_tag                                         iterator_category;
+        typedef typename ft::typeSelector<value_type*, const value_type*, isConstItr>::type pointer;
+        typedef typename ft::typeSelector<value_type&, const value_type&, isConstItr>::type reference;
+        typedef typename ft::random_access_iterator_tag                                     iterator_category;
 
         random_access_iterator() {};
-        random_access_iterator(pointer ptr) { value = ptr };
+        random_access_iterator(pointer ptr): value(ptr) {};
         random_access_iterator(random_access_iterator<value_type, false> const& rai) { value = rai.getValue(); }; // 인자는 무조건 iterator가 되어야 한다, const가 들어갈 수 없음
         random_access_iterator& operator=(random_access_iterator const& rai) { value = rai.value; return *this; }
         ~random_access_iterator() {};
 
-        pointer getValue() const { return value };
+        pointer getValue() const { return value; };
 
         // 그냥 type, const type 둘 다 비교해야하므로(경우의 수: 4개) 동일한 operator를 2개씩 구현한다
         bool operator==(random_access_iterator<value_type, true> const& rai) { return value == rai.getValue(); } // iterator - const iterator, const iterator - const iterator
@@ -50,20 +50,20 @@ namespace ft {
         random_access_iterator operator+(int const& n) const { return random_access_iterator(value + n); }; // value+n만큼의 위치를 가진 iterator 반환
         random_access_iterator operator-(int const& n) const { return random_access_iterator(value - n); };
 
-        int operator-(random_access_iterator<value_type, true> const& rai) const { return value - b.getValue(); };
-        int operator-(random_access_iterator<value_type, false> const& rai) const { return value - b.getValue(); };
+        int operator-(random_access_iterator<value_type, true> const& rai) const { return value - rai.getValue(); };
+        int operator-(random_access_iterator<value_type, false> const& rai) const { return value - rai.getValue(); };
 
-        bool operator<(random_access_iterator<value_type, true> const& rai) const { return value < b.getValue(); };
-        bool operator<(random_access_iterator<value_type, false> const& rai) const { return value < b.getValue(); };
+        bool operator<(random_access_iterator<value_type, true> const& rai) const { return value < rai.getValue(); };
+        bool operator<(random_access_iterator<value_type, false> const& rai) const { return value < rai.getValue(); };
 
-        bool operator>(random_access_iterator<value_type, true> const& rai) const { return value > b.getValue(); };
-        bool operator>(random_access_iterator<value_type, false> const& rai) const { return value > b.getValue(); };
+        bool operator>(random_access_iterator<value_type, true> const& rai) const { return value > rai.getValue(); };
+        bool operator>(random_access_iterator<value_type, false> const& rai) const { return value > rai.getValue(); };
 
-        bool operator<=(random_access_iterator<value_type, true> const& rai) const { return value <= b.getValue(); };
-        bool operator<=(random_access_iterator<value_type, false> const& rai) const { return value <= b.getValue(); };
+        bool operator<=(random_access_iterator<value_type, true> const& rai) const { return value <= rai.getValue(); };
+        bool operator<=(random_access_iterator<value_type, false> const& rai) const { return value <= rai.getValue(); };
 
-        bool operator>=(random_access_iterator<value_type, true> const& rai) const { return value >= b.getValue(); };
-        bool operator>=(random_access_iterator<value_type, false> const& rai) const { return value >= b.getValue(); };
+        bool operator>=(random_access_iterator<value_type, true> const& rai) const { return value >= rai.getValue(); };
+        bool operator>=(random_access_iterator<value_type, false> const& rai) const { return value >= rai.getValue(); };
 
         // 새로운 iterator가 반환되기 떄문에 불가
 //        random_access_iterator operator+=(int const& n) const { return random_access_iterator(value += n); }; value+n만큼의 위치를 가진 iterator 반환
@@ -76,11 +76,11 @@ namespace ft {
         reference operator[](int const& n) const { return value[n]; };
 
     private:
-        value_type *value;
+        pointer value;
     };
 
     template<class T, bool isConstItr>
-    random_access_iterator<T, isConstItr> operator+(int const& n, random_access_iterator<T, isConstItr>& rai) const {
+    random_access_iterator<T, isConstItr> operator+(int const& n, random_access_iterator<T, isConstItr>& rai) {
         return rai + n;
     };
 
