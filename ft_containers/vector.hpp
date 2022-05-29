@@ -8,7 +8,7 @@
 #include <memory>
 #include <stdexcept>
 
-#include "utils/equal.hpp"
+#include "utils/equal_lexicographical_compare.hpp"
 
 namespace ft {
     template < typename T, typename Alloc = std::allocator<T> >
@@ -20,8 +20,8 @@ namespace ft {
                 typedef Alloc::const_reference                  const_reference;
                 typedef Alloc::pointer	                        pointer;
                 typedef Alloc::const_pointer	                const_pointer;
-                typedef ft::random_access_iterator<T>           iterator;
-                typedef ft:random_access_iterator<const T>      const_iterator;
+                typedef ft::random_access_iterator<T, false>    iterator;
+                typedef ft::random_access_iterator<T, true>     const_iterator;
                 typedef ft::reverse_iterator<iterator>          reverse_iterator;
                 typedef ft::reverse_iterator<const_iterator>    const_reverse_iterator;
                 typedef ptrdiff_t                               difference_type;
