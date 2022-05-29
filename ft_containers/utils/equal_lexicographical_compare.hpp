@@ -1,5 +1,5 @@
-#ifndef EQUAL_HPP
-# define EQUAL_HPP
+#ifndef EQUAL_LEXICOGRAPHICAL_COMPARE_HPP
+# define EQUAL_LEXICOGRAPHICAL_COMPARE_HPP
 
 namespace ft {
     template <class InputIterator1, class InputIterator2>
