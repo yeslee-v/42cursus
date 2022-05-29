@@ -8,6 +8,8 @@
 #include <memory>
 #include <stdexcept>
 
+#include "utils/equal.hpp"
+
 namespace ft {
     template < typename T, typename Alloc = std::allocator<T> >
             class vector {
@@ -270,27 +272,79 @@ namespace ft {
                     _n--;
                 }
 
-// 다시~
                 iterator insert(iterator position, const value_type& val) {
+                    size_type pos = 0;
+
+                    for (iterator it = vector.begin(); it != position; ++it)
+                        pos++;
+                    // 넉넉하거나 + capacity가 부족해서 추가하는 경우
                     if (_cap < _n + 1)
-                        resize(_n + 1, val);
-                    for (std::vector<T>::iterator it = vector.begin(); it < vector.end(); ++it) {
-                        if (it == position)
-                            *it = val;
-                        // 뒤로 한 칸씩 미루퍄
-                    }
+                        reserve(_cap * 2);
+//                        resize(_n + 1, val); // 후에 position 을 까먹을 수 있음, [1, 2, 3] 의 두번째에 5을 넣었을 때 resize를 하면 [1, 2, 3, 5, 5, 5]가 된다
+                    for (size_type i = _n; i > pos; i--) // 앞은 건들지 말고 position 후의 값만 이동하면 된다
+                        _val[i] = _val[i - 1];
+                    _val[pos] = val;
+                    ++_n;
                 }
+
                 void insert(iterator position, size_type n, const value_type& val) {
+                    size_type pos = 0;
 
+                    for (iterator it = vector.begin(); it != position; ++it)
+                        pos++;
+                    if (_cap * 2 <= _n + n)
+                        reserve(_n + n);
+                    else if (_n + n < _cap * 2)
+                        reserve(_cap * 2);
+                    for (size_type i = _n; i > pos; i--) // 앞은 건들지 말고 position 후의 값만 이동하면 된다
+//                        _val[i] = _val[i - n + 1]; // segfault 위험성
+                        _val[i + n - 1] = _val[i - 1];
+                    for (size_type i = pos; i < pos + n; i++)
+                        _val[i] = val;
+                    _n += n;
                 }
-                template <class InputIterator>
-                        void insert(iterator position, InputIterator first, InputIterator last) {
-                        }
 
-                iterator erase(iterator posiiton) {
+                template <class InputIterator>
+                void insert(iterator position, InputIterator first, InputIterator last) {
+                    size_type pos = 0;
+                    size_type size = 0;
+
+                    for (iterator it = vector.begin(); it != position; ++it)
+                        pos++;
+                    for (InputIterator itr = first; itr != last; ++itr)
+                        size++;
+                    if (_cap * 2 <= _n + size)
+                        reserve(_n + size);
+                    else if (_n + size < _cap * 2)
+                        reserve(_cap * 2);
+                    for (size_type i = _n; i > pos; i--) // 앞은 건들지 말고 position 후의 값만 이동하면 된다
+                        _val[i + size - 1] = _val[i - 1];
+                    for (size_type i = pos; i < pos + size; i++) {
+                        _val[i] = *first;
+                        first++;
+                    }
+                    _n += size;
+                }
+
+                iterator erase(iterator position) {
+                    // *itr = _val[n] >> &(*itr) = &_val[n]
+                    _alloc.destroy(&(*position));
+                    for (iterator i = position; i < end() - 1; i++) // 하나 지웠기 때문에 -1가 된다
+                        *i = *(i + 1);
+                    _n--;
+                    return position; // 첫 변동이 생긴 iterator 반환
                 }
 
                 iterator erase(iterator first, iterator last) { // range(first, last)
+                    int size = last - first; // random iterator는 - 연산이 가능하다
+
+                    for (iterator itr = first; itr != last; ++itr) {
+                        _alloc.destroy(&(*first));
+                        first++;
+                    }
+                    for (iterator i = last; i < end(); i++) // 앞으로 가져올 iterator가 존재하지 않을 수 있기 때문에 last로 초기화한다
+                        *(i - size) = *i; // [1, (first), , 4(last), 5] >> [1, 4, 5]로 만들기 위해서 현재 iterator에서 size를 빼줘야한다
+                    _n -= size;
                 }
 
                 void swap(vector& x) {
@@ -298,50 +352,66 @@ namespace ft {
                     size_type       tmp_n = x._n;
                     size_type       tmp_cap = x._cap;
                     value_type*     tmp_val = x._val;
-                    value_type*     tmp_first = x._first;
-                    value_type*     tmp_last = x._last;
 
                     x._alloc = this->_alloc;
                     x._n = this->_n;
                     x._cap = this->_cap;
                     x._val = this->_val;
-                    x._first = this->_first;
-                    x._last = this->_last;
 
                     this->_alloc = tmp_alloc;
                     this->_n = tmp_n;
                     this->_cap = tmp_cap;
                     this->_val = tmp_val;
-                    this->_first = tmp_first;
-                    this->_last = tmp_last;
                 }
 
                 void clear() {
                     for (size_type i = 0; i < _n; ++i) {
-                        _last--;
-                        _alloc.destroy(_last);
+                        _alloc.destroy(&(_val[i]));
                     }
                     _n = 0;
                 }
 
-//        Allocator:
-        get_allocator
-        Get allocator (public member function )
+                // Allocator:
+                allocator_type get_allocator() const {
+                    return _alloc;
+                }
+            }
+    // Non-member function overloads
+    template <class T, class Alloc>
+    bool operator== (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
+        return equal(lhs.begin(), lhs.end(), rhs.bagin());
+    }
 
-        Non-member function overloads
-        relational operators
-        Relational operators for vector (function template )
-        swap
-        Exchange contents of vectors (function template )
+    template <class T, class Alloc>
+    bool operator!= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
+        return !(lhs == rhs);
+    }
 
-        Template specializations
-        vector<bool>
-        vector of bool (class template specialization )
+    template <class T, class Alloc>
+    bool operator<  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
+        return lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+    }
 
-        }
-    };
+    template <class T, class Alloc>
+    bool operator<= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
+        return !(lhs > rhs);
+    }
+
+    template <class T, class Alloc>
+    bool operator>  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
+        return lexicographical_compare(rhs.begin(), rhs.end(), lhs.begin(), lhs.end());
+
+    }
+
+    template <class T, class Alloc>
+    bool operator>= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
+        return !(lhs < rhs);
+    }
+
+    template <class T, class Alloc>
+    void swap (vector<T,Alloc>& x, vector<T,Alloc>& y) {
+        x.swap(y);
+    }
 }
-
-
 
 #endif
