@@ -69,8 +69,8 @@ namespace ft {
 //        random_access_iterator operator+=(int const& n) const { return random_access_iterator(value += n); }; value+n만큼의 위치를 가진 iterator 반환
 //        random_access_iterator operator-=(int const& n) const { return random_access_iterator(value -= n); };
 
-        random_access_iterator operator+=(int const& n) const { value + n; return *this; }; // value+n만큼의 위치를 가진 iterator 반환
-        random_access_iterator operator-=(int const& n) const { value - n; return *this; };
+        random_access_iterator operator+=(int const& n) { value = value + n; return *this; }; // value+n만큼의 위치를 가진 iterator 반환
+        random_access_iterator operator-=(int const& n) { value = value - n; return *this; };
 
         // random_access_iterator의 특징: 특정 위치(n)으로의 접근이 가능하다
         reference operator[](int const& n) const { return value[n]; };
