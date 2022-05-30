@@ -27,14 +27,14 @@ protected:
 	Container c;
 
 private:
-	template <typename U, class _Cont>
-	friend bool operator==(const stack<T, _Cont> &lhs, const stack<U, _Cont> &rhs);
+	template <typename U, class Cont>
+	friend bool operator==(const stack<U, Cont> &lhs, const stack<U, Cont> &rhs);
 	
-	template <typename U, class _Cont>
-	friend bool operator<(const stack<T, _Cont> &lhs, const stack<U, _Cont> &rhs);
+	template <typename U, class Cont>
+	friend bool operator<(const stack<U, Cont> &lhs, const stack<U, Cont> &rhs);
 
-	template <typename U, class _Cont>
-	friend bool operator>(const stack<T, _Cont> &lhs, const stack<U, _Cont> &rhs);
+	template <typename U, class Cont>
+	friend bool operator>(const stack<U, Cont> &lhs, const stack<U, Cont> &rhs);
 
 };
 
