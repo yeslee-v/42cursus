@@ -1,6 +1,8 @@
 #ifndef MAP_HPP
 # define MAP_HPP
 
+// map은 pair(key: T)로 이루어져있다
+
 namespace ft {
 	template < class Key,                                     // map::key_type
 			   class T,                                       // map::mapped_type
