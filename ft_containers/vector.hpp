@@ -89,11 +89,16 @@ public:
         _alloc = x._alloc;
         _n = x._n;
         _cap = x._n; // _cap만큼이 아닌 _n만큼만 복사한다.
-        _val = _alloc.allocate(_cap);
+        // stack에서 vector의 복사 생성자를 부른다
+        // 복사 생성자는 대입 연산자로 구현했다
+        // 초기 stack의 capacity는 0이기 때문에 0을 할당하는데, 이는 나중에 소멸자를 부를 때 capacity가 존재하는 경우에만 동작하므로 여기에도 동일하게 capacity가 존재하는 경우에만 할당한다
+        if (_cap) {
+            _val = _alloc.allocate(_cap);
 
-        size_type i = _n;
-        while (i--)
-            _alloc.construct(&_val[i], x._val[i]);
+            size_type i = _n;
+            while (i--)
+                _alloc.construct(&_val[i], x._val[i]);
+        }
         return *this;
     };
 
