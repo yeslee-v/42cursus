@@ -137,20 +137,12 @@ namespace ft {
                         node->parent->lnode = node->rnode;
                         node->rnode = tmp->rnode;
                     }
-                    std::cout << "parents" << std::endl;
-                    std::cout << tmp->parent << std::endl;
-                    std::cout << node->parent << std::endl;
-                    std::cout << "parents" << std::endl;
                     node->parent = tmp->parent;
                     node->lnode = tmp->lnode;
                     //    1 (tmp)          5(node)
                     //       6        =>    6
                     //  5(node) 10           10
                     if (tmp->parent) {
-                        std::cout << "here" << std::endl;
-                        std::cout << root->value << std::endl;
-                        std::cout << tmp->parent << std::endl;
-                        std::cout << "here" << std::endl;
                         if (tmp->parent->lnode == tmp)
                             tmp->parent->lnode = node;
                         else
