@@ -103,6 +103,7 @@ namespace ft {
                     if (tmp->lnode != node) {
                         node->parent->rnode = node->lnode;
                         node->lnode = tmp->lnode;
+                        node->lnode->parent = node;
                     }
                     // 지우기 전에 지울 자리에 대체할 값을 옮긴다
                     node->parent = tmp->parent;
@@ -136,6 +137,7 @@ namespace ft {
                     if (tmp->rnode != node) {
                         node->parent->lnode = node->rnode;
                         node->rnode = tmp->rnode;
+                        node->rnode->parent = node;
                     }
                     node->parent = tmp->parent;
                     node->lnode = tmp->lnode;
