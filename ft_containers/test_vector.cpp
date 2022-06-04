@@ -1,31 +1,80 @@
 #include <iostream>
-#include <vector>
+#include "binary_search_tree.hpp"
+
+using namespace std;
 
 int main() {
-    std::vector<int> foo(2, 0);
-    // foo.push_back(1);
-    // foo.push_back(2);
-    // foo.push_back(3);
-    // foo.push_back(4);
+    ft::Bst<int, std::less<int>, std::allocator<int> > bst;
 
-    std::vector<int> bar;
+    bst.insertNode(10);
+    bst.print();
+    cout << "------" << endl;
 
-    bar.push_back(1);
-    bar.push_back(2);
-    bar.push_back(3);
+    bst.deleteNode(10);
+    bst.print();
+    cout << "--------------------" << endl;
 
-    for (size_t i = 0; i < foo.size(); i++){
-        std::cout << "foo[" << i << "] : " << foo[i] << std::endl;
-    }
-    std::cout << "size : " << foo.size() << " cap : " << foo.capacity() << std::endl;
+    bst.insertNode(10);
+    bst.insertNode(8);
+    bst.print();
+    cout << "------" << endl;
 
-    foo.assign(bar.begin(), bar.end());
-    for (size_t i = 0; i < foo.size(); i++){
-        std::cout << "foo[" << i << "] : " << foo[i] << std::endl;
-    }
-    std::allocator<int> alloc;
+    bst.deleteNode(10);
+    bst.print();
+    cout << "---------------------------" << endl;
+//
+    bst.insertNode(10);
+    bst.print();
+    cout << "------" << endl;
 
-    int *i;
-    alloc.deallocate(i, 0);
-    std::cout << "size : " << foo.size() << " cap : " << foo.capacity() << std::endl;
+    bst.deleteNode(8);
+    bst.print();
+    cout << "---------------------------" << endl;
+//
+    bst.insertNode(8);
+    bst.print();
+    cout << "------" << endl;
+
+    bst.deleteNode(8);
+    bst.print();
+    cout << "-------------------------------" << endl;
+//
+    bst.insertNode(11);
+    bst.print();
+    cout << "------" << endl;
+
+    bst.deleteNode(11);
+    bst.print();
+    cout << "---------------------------" << endl;
+//
+    bst.insertNode(5);
+    bst.insertNode(6);
+    bst.insertNode(7);
+    bst.insertNode(8);
+    bst.print();
+    cout << "------" << endl;
+
+    bst.deleteNode(7);
+    bst.print();
+    cout << "------" << endl;
+    bst.deleteNode(10); // delete root
+    bst.print();
+    cout << "------" << endl;
+    bst.deleteNode(5);
+    bst.print();
+//    bst.deleteNode(6);
+//    bst.print();
+    cout << "-------------------------------" << endl;
+//
+//    bst.insertNode(4);
+//    bst.insertNode(7);
+//    bst.insertNode(6);
+//    bst.insertNode(5);
+//    bst.print();
+//    cout << "------" << endl;
+//
+//    bst.deleteNode(8);
+//    bst.print();
+//    cout << "---------------------------" << endl;
+
 }
