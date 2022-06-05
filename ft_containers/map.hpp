@@ -75,9 +75,7 @@ private:
             // map은 하나(root)를 만들어 거기에서 뻗어나가기 때문에 1개만 완전체(할당+생성자를 넣어준다)로 만들어준다
             _bst = _ba.allocate(1);
             _ba.construct(_bst, bst_type());
-            for (InputIterator itr = first; itr != last; ++itr) {
-                _bst.insertNode(*itr);
-            }
+            insert(first, last);
         };
     map(const map &x) {
         // this->_bst는 이름만 있고 형체는 없는데, x의 _bst를 받으려고 한다 => 
@@ -133,22 +131,60 @@ private:
     };
 
     // modifiers
-    pair<iterator, bool> insert(const value_type &val);
-    iterator insert(iterator position, const value_type &val);
+    pair<iterator, bool> insert(const value_type &val) {
+
+    };
+    iterator insert(iterator position, const value_type &val) {
+        
+    };
     template <class InputIterator>
-    void insert(InputIterator first, InputIterator last);
-    void erase(iterator position);
-    size_type erase(const key_type &k);
-    void erase(iterator first, iterator last);
-    void swap(map &x);
+    void insert(InputIterator first, InputIterator last) {
+        for (InputIterator itr = first; itr != last; ++itr)
+            _bst->insertNode(*itr);
+    };
+    void erase(iterator position) { _bst->deleteNode(*position); };
+    size_type erase(const key_type &k) { return _bst->deleteNode(ft::pair<key_type, mapped_type>(k, mapped_type())); };
+    void erase(iterator first, iterator last) {
+        // itr를 지우게 되면 itr++로 이동하지 못하기 때문에 itr++의 값을 가지는 tmp 선언해 먼저 이동한 다음 itr을 지운다
+        iterator tmp;
+        
+        for (iterator itr = first; itr != last; ) {
+            tmp = itr;
+            itr++;
+            erase(tmp);
+        }
+    };
+    void swap(map &x) {
+        bst_type* bt_tmp;
+        allocator_type at_tmp;
+        key_compare kc_tmp;
+        bst_alloc ba_tmp;
+
+        bt_tmp = this->_bst;
+        at_tmp = this->_alloc;
+        kc_tmp = this->_key;
+        ba_tmp = this->_ba;
+
+        this->_bst = x._bst;
+        this->_alloc = x._alloc;
+        this->_key = x._key;
+        this->_ba = x._ba;
+
+        x._bst = bt_tmp;
+        x._alloc = at_tmp;
+        x._key = kc_tmp;
+        x._ba = ba_tmp;
+    };
     void clear() { _bst->clear(); };
 
     // observers
-    key_compare key_comp() const;
-    value_compare value_comp() const;
+    key_compare key_comp() const { return _key; };
+    value_compare value_comp() const { return value_compare(); };
 
     // operations
-    iterator find(const key_type &k);
+    iterator find(const key_type &k) {
+        
+    };
     const_iterator find(const key_type &k) const;
     size_type count(const key_type &k) const;
     iterator lower_bound(const key_type &k);
