@@ -12,8 +12,8 @@ public:
     typedef T2 second_type;
 
     // member variables
-    first_type first;
-    second_type second;
+    first_type first; // key
+    second_type second; // value
 
     // constructor
     pair() : first(first_type()), second(second_type()) {};
