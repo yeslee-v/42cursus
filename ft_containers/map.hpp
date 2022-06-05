@@ -84,14 +84,24 @@ private:
         _bst = _ba.allocate(1);
         _ba.construct(_bst, bst_type());
 
-        *(this->_bst) = *(x._bst);
         this->_alloc = x._alloc;
         this->_key = x._key;
         this->_ba = x._ba;
+        // _bst는 class이기 때문에, 여기서 bst의 operator=를 사용한다
+        *(this->_bst) = *(x._bst);
     };
 
-    ~map();
-    map &operator=(const map &x);
+    ~map() { clear(); _ba.destroy(_bst); _ba.deallocate(_bst, 1); };
+    map &operator=(const map &x) {
+        this->_alloc = x._alloc;
+        this->_key = x._key;
+        this->_ba = x._ba;
+        // x는 reference 이기 때문에 변수 참조, _bst는 포인터이기 때문에 포인터 참조
+        // _bst는 class이기 때문에, 여기서 bst의 operator=를 사용한다
+        *(this->_bst) = *(x._bst);
+
+        return *this;
+    };
 
     // iterators
     iterator begin();
@@ -107,12 +117,20 @@ private:
     const_reverse_iterator rend() const;
 
     // capacity
-    bool empty() const;
-    size_type size() const;
-    size_type max_size() const;
+    bool empty() const { return !_bst->size; };
+    size_type size() const { return bst->size; };
+    size_type max_size() const { return _ba.max_size(); };
 
     // element access
-    mapped_type &operator[](const key_type &k);
+    mapped_type &operator[](const key_type &k) {
+        _bst::Node* node;
+
+        node = _bst->searchNode(ft::pair<key_type, mapped_type>(k, mapped_type()));
+        if (node)
+            return node->value.second;
+        // iterator는 value_type을 갖고 있다 
+        return insert(begin(), ft::pair<key_type, mapped_type>(k, mapped_type()))->second;
+    };
 
     // modifiers
     pair<iterator, bool> insert(const value_type &val);
@@ -123,7 +141,7 @@ private:
     size_type erase(const key_type &k);
     void erase(iterator first, iterator last);
     void swap(map &x);
-    void clear();
+    void clear() { _bst->clear(); };
 
     // observers
     key_compare key_comp() const;
