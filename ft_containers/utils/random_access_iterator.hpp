@@ -38,7 +38,7 @@ namespace ft {
         // *a = t도 포함된다: 둘 다 사용하기 때문에
         // *itr = 5 >> 5가 위치한 주소를 알아내기 위해서 참조(&)해야한다
         reference operator*() const { return *value; };
-        pointer operator->() const { return value; }; // 복습 요망: 왜 pointer가 반환값이냐
+        pointer operator->() const { return value; };
 
         random_access_iterator& operator++() { ++value; return *this; };
         random_access_iterator operator++(int) { random_access_iterator tmp(*this); ++(value); return tmp; }; // *a++;
