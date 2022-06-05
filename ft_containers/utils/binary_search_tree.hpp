@@ -133,7 +133,7 @@ namespace ft {
         }
 
         // 작은 것 중에 가장 큰 것을 먼저 확인한다
-        void deleteNode(T value) {
+        bool deleteNode(T value) {
             Node* node = searchNode(value); // 대체될 애
             Node* tmp = node; // 지워질 애
 
@@ -224,6 +224,9 @@ namespace ft {
                 }
                 size--;
             }
+            else
+                return false;
+            return true; 
         }
 
         // 중위연산
