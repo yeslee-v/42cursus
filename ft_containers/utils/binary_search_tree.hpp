@@ -94,17 +94,8 @@ namespace ft {
         }
 
         // map[2] = 5처럼 값을 넣어주는 함수
-        void insertNode(T value) {
-            if (!root) {
-                root = na.allocate(1);
-                // root = Node(value) -> 자료형이 같아야 하기 때문에 Node 생성자로 value를 넣는다
-                na.construct(root, Node(value));
-                root->lnode = null_node;
-                root->rnode = null_node;
-                // null_node의 parent를 알기 위해 설정 -> bst의 operator--위해
-                null_node->rnode = root;
-            }
-            else {
+        Node* insertNode(T value) {
+            if (root) {
                 Node* tmp = root;
                 Node* prev; // tmp의 이전 노드를 가리킨다
 
@@ -124,7 +115,11 @@ namespace ft {
                     prev->rnode->rnode = null_node;
 
                     null_node->rnode = root;
+                    size++;
+                    return prev->rnode;
                 }
+                else if (prev->value == value)
+                   return prev;
                 else {
                     prev->lnode = na.allocate(1);
                     na.construct(prev->lnode, Node(value));
@@ -133,9 +128,21 @@ namespace ft {
                     prev->lnode->rnode = null_node;
 
                     null_node->rnode = root;
+                    size++;
+                    return prev->lnode;
                 }
             }
+            // root가 존재하지 않는 경우
+            root = na.allocate(1);
+            // root = Node(value) -> 자료형이 같아야 하기 때문에 Node 생성자로 value를 넣는다
+            na.construct(root, Node(value));
+            root->lnode = null_node;
+            root->rnode = null_node;
+            // null_node의 parent를 알기 위해 설정 -> bst의 operator--위해
+            null_node->rnode = root;
             size++;
+
+            return root;
         };
 
         Node* searchNode(T value) {
