@@ -78,7 +78,7 @@ namespace ft {
         size_t get_size() const { return size; };
 
         void copy(Node* node) {
-            if (!node)
+            if (!node || node == null_node)
                 return ;
             insertNode(node->value);
             copy(node->lnode);
