@@ -23,7 +23,9 @@ public:
 
     pair& operator= (const pair& pr) { this->first = pr.first; this->second = pr.second; return *this; };
 
-    // relational operators
+
+};
+// relational operators
     template <class T1, class T2>
     bool operator==(const pair<T1, T2> &lhs, const pair<T1, T2> &rhs)
     {
@@ -59,8 +61,6 @@ public:
     {
         return !(lhs < rhs);
     }
-};
-
 } // namespace ft
 
 #endif
