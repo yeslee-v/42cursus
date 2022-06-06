@@ -111,17 +111,24 @@ public:
     // 제일 작은 노드 찾기
     iterator begin() {
         Node* node = _bst->get_root();
-        
-        while (node->lnode != _bst->get_null_node())
-            node = node->lnode;
-        return iterator(node, _bst->get_null_node());
+
+        // root가 없을 때는 NULL이다
+        if (node) {
+            while (node->lnode != _bst->get_null_node())
+                node = node->lnode;
+            return iterator(node, _bst->get_null_node());
+        }
+        return end();
     };
     const_iterator begin() const {
         Node* node = _bst->get_root();
-        
-        while (node->lnode != _bst->get_null_node())
-            node = node->lnode;
-        return const_iterator(node, _bst->get_null_node());
+
+        if (node) {
+            while (node->lnode != _bst->get_null_node())
+                node = node->lnode;
+            return const_iterator(node, _bst->get_null_node());
+        }
+        return end();
     };
     // vector의 end()처럼 마지막 다음 노드(값이 없음)를 가리키는 것이기 때문에 null_node를 보내준다
     iterator end() { return iterator(_bst->get_null_node(), _bst->get_null_node()); };
@@ -249,17 +256,17 @@ public:
         return end();
     };
 
-    // 상한선: 값을 오름차순으로 정렬 후, k보다 작거나 같은 값을 가리키는 iterator 반환
+    // 상한선: 값을 오름차순으로 정렬 후, k보다 작은 값을 가리키는 iterator 반환
     iterator upper_bound(const key_type &k) {
         for (iterator itr = begin(); itr != end(); ++itr) {
-            if (!_key(k, itr->first))
+            if (_key(k, itr->first))
                 return itr;
         }
         return end();
     };
     const_iterator upper_bound(const key_type &k) const {
         for (const_iterator itr = begin(); itr != end(); ++itr) {
-            if (!_key(k, itr->first))
+            if (_key(k, itr->first))
                 return itr;
         }
         return end();
