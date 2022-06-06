@@ -7,6 +7,7 @@
 #include "utils/bidirectional_iterator.hpp"
 #include "utils/iterator_traits.hpp"
 #include "utils/reverse_iterator.hpp"
+#include "utils/equal_lexicographical_compare.hpp"
 
 // map은 pair(key: T)로 이루어져있다
 
@@ -50,7 +51,7 @@ public:
     typedef ft::reverse_iterator<iterator> reverse_iterator;
     typedef ft::reverse_iterator<const iterator> const_reverse_iterator;
     typedef typename ft::iterator_traits<iterator>::difference_type difference_type;
-    typedef difference_type size_type;
+    typedef size_t size_type;
 
     // 일일이 쓰기 귀찮으므로 bst_type이라는 member type을 선언해준다
     typedef Bst<value_type, value_compare, Alloc> bst_type;
@@ -274,6 +275,45 @@ public:
     // allocator
     allocator_type get_allocator() const { return _alloc; };
 };
+
+// Non-member function overloads
+    template <class Key, class T, class Compare, class Alloc>
+    bool operator==(const map<Key, T, Compare, Alloc> &lhs, const map<Key, T, Compare, Alloc> &rhs)
+    {
+        if (lhs.size() != rhs.size())
+            return false;
+        return ft::equal(lhs.begin(), lhs.end(), rhs.begin());
+    };
+
+    template <class Key, class T, class Compare, class Alloc>
+    bool operator!=(const map<Key, T, Compare, Alloc> &lhs, const map<Key, T, Compare, Alloc> &rhs)
+    {
+        return !(lhs == rhs);
+    };
+
+    template <class Key, class T, class Compare, class Alloc>
+    bool operator<(const map<Key, T, Compare, Alloc> &lhs, const map<Key, T, Compare, Alloc> &rhs)
+    {
+        return ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    bool operator<=(const map<Key, T, Compare, Alloc> &lhs, const map<Key, T, Compare, Alloc> &rhs)
+    {
+        return !(lhs > rhs);
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    bool operator>(const map<Key, T, Compare, Alloc> &lhs, const map<Key, T, Compare, Alloc> &rhs)
+    {
+        return ft::lexicographical_compare(rhs.begin(), rhs.end(), lhs.begin(), lhs.end());
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    bool operator>=(const map<Key, T, Compare, Alloc> &lhs, const map<Key, T, Compare, Alloc> &rhs)
+    {
+        return !(lhs < rhs);
+    }
 
 } // namespace ft
 #endif
