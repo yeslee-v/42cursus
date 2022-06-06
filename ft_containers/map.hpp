@@ -14,8 +14,8 @@ namespace ft
 {
 template <class Key,                                  // map::key_type
           class T,                                    // map::mapped_type
-          class Compare = less<Key>,                  // map::key_compare
-          class Alloc = allocator<ft::pair<const Key, T>> // map::allocator_type
+          class Compare = std::less<Key>,                  // map::key_compare
+          class Alloc = std::allocator<ft::pair<const Key, T> > // map::allocator_type
           >
 class map
 {
@@ -32,20 +32,21 @@ public:
     public:
         key_compare comp;
 
-        value_comp() : comp(key_compare()){};
-        value_comp(Compare c) : comp(c){};
+        value_compare() : comp(key_compare()){};
+        value_compare(Compare c) : comp(c){};
         bool operator()(const value_type &x, const value_type &y) const
         {
             return comp(x.first, y.first);
         }
-    }
+    };
+
     typedef Alloc allocator_type;
     typedef typename Alloc::reference reference;
     typedef typename Alloc::const_reference const_reference;
     typedef typename Alloc::pointer pointer;
     typedef typename Alloc::const_pointer const_pointer;
-    typedef ft::bidirectioal_iterator<value_type, value_compare, Alloc, false> iterator;
-    typedef ft::bidirectioal_iterator<value_type, value_compare, Alloc, true> const_iterator;
+    typedef ft::bidirectional_iterator<value_type, value_compare, Alloc, false> iterator;
+    typedef ft::bidirectional_iterator<value_type, value_compare, Alloc, true> const_iterator;
     typedef ft::reverse_iterator<iterator> reverse_iterator;
     typedef ft::reverse_iterator<const iterator> const_reverse_iterator;
     typedef typename ft::iterator_traits<iterator>::difference_type difference_type;
@@ -54,6 +55,7 @@ public:
     // 일일이 쓰기 귀찮으므로 bst_type이라는 member type을 선언해준다
     typedef Bst<value_type, value_compare, Alloc> bst_type;
 
+    typedef typename bst_type::Node    Node;
     typedef typename Alloc::template rebind<bst_type>::other bst_alloc;
 
     // member variables
@@ -61,8 +63,9 @@ private:
     bst_type* _bst;
     allocator_type _alloc;
     key_compare _key;
-    bst_alloc _ba; 
+    bst_alloc _ba;
 
+public:
     // member function
     explicit map(const key_compare &comp = key_compare(),
                  const allocator_type &alloc = allocator_type()):_alloc(alloc), _key(comp) {
@@ -106,22 +109,22 @@ private:
     // iterators: 중위순회(lnode->root->rnode)
     // 제일 작은 노드 찾기
     iterator begin() {
-        Node* node = _bst->root;
+        Node* node = _bst->get_root();
         
-        while (node->lnode != _bst->null_node)
+        while (node->lnode != _bst->get_null_node())
             node = node->lnode;
-        return iterator(node, _bst->null_node);
+        return iterator(node, _bst->get_null_node());
     };
     const_iterator begin() const {
-        Node* node = _bst->root;
+        Node* node = _bst->get_root();
         
-        while (node->lnode != _bst->null_node)
+        while (node->lnode != _bst->get_null_node())
             node = node->lnode;
-        return const_iterator(node, _bst->null_node);
+        return const_iterator(node, _bst->get_null_node());
     };
     // vector의 end()처럼 마지막 다음 노드(값이 없음)를 가리키는 것이기 때문에 null_node를 보내준다
-    iterator end() { return iterator(_bst->null_node, _bst->null_node); };
-    const_iterator end() const { return const_iterator(_bst->null_node, _bst->null_node); };
+    iterator end() { return iterator(_bst->get_null_node(), _bst->get_null_node()); };
+    const_iterator end() const { return const_iterator(_bst->get_null_node(), _bst->get_null_node()); };
 
     reverse_iterator rbegin() { return reverse_iterator(end()); };
     const_reverse_iterator rbegin() const { return const_reverse_iterator(end()); };
@@ -130,13 +133,13 @@ private:
     const_reverse_iterator rend() const { return const_reverse_iterator(begin()); };
 
     // capacity
-    bool empty() const { return !_bst->size; };
-    size_type size() const { return bst->size; };
+    bool empty() const { return !_bst->get_size(); };
+    size_type size() const { return _bst->get_size(); };
     size_type max_size() const { return _ba.max_size(); };
 
     // element access
     mapped_type &operator[](const key_type &k) {
-        _bst::Node* node;
+        Node* node;
 
         node = _bst->searchNode(ft::pair<key_type, mapped_type>(k, mapped_type()));
         if (node)
@@ -152,14 +155,14 @@ private:
         // key가 존재하지 않는 경우 -> insert 실행
         if (!_bst->searchNode(val))
             is_exist = true;
-        return ft::pair<iterator, bool>(insert(_bst->begin(), val), is_exist); // _bst->begin()은 의미 없음
+        return ft::pair<iterator, bool>(insert(begin(), val), is_exist); // _bst->begin()은 의미 없음
         // key가 존재하는 경우 -> 기존 key값 반환
     };
     iterator insert(iterator position, const value_type &val) {
         // position: 힌트, vector의 position과 다르다. position이 주어져도 val와 주변 value를 비교해 알맞는 곳에 넣어야한다
         (void)position;
 
-        return iterator(_bst->insertNode(val), _bst->null_node);
+        return iterator(_bst->insertNode(val), _bst->get_null_node());
     };
     template <class InputIterator>
     void insert(InputIterator first, InputIterator last) {
@@ -211,27 +214,27 @@ private:
 
        node = _bst->searchNode(ft::pair<key_type, mapped_type>(k, mapped_type()));
        if (node)
-           return iterator(node, _bst->null_node);
+           return iterator(node, _bst->get_null_node());
        return end();
     };
     const_iterator find(const key_type &k) const {
         Node* node;
 
-        node = _bst->searchNode(ft::pair<key_type, mapped_type>(k, mapped_type());
+        node = _bst->searchNode(ft::pair<key_type, mapped_type>(k, mapped_type()));
         if (node)
-            return const_iterator(node, _bst->null_node);
+            return const_iterator(node, _bst->get_null_node());
         return end();
     };
     // k의 존재 여부 반환 -> bool이라고 생각하 => 중복key가 있는 map이 존재하므로 통일성을 위해 count라는 이름의 method
     size_type count(const key_type &k) const {
-        if (_bst->searchNode(ft::pair<key_type, mapped_type>(k, mapped_type()))
+        if (_bst->searchNode(ft::pair<key_type, mapped_type>(k, mapped_type())))
             return 1;
         return 0;
     };
     // 하한선: 값을 오름차순으로 정렬 후, k보다 크거나 같은 값을 가리키는 iterator 반환
     iterator lower_bound(const key_type &k) {
         for (iterator itr = begin(); itr != end(); ++itr) {
-            if (!key_compare(itr->first, k))
+            if (!_key(itr->first, k))
                 return itr;
         }
         // 못찾은 경우: [3, 5, 6] vs k = 10
@@ -239,7 +242,7 @@ private:
     };
     const_iterator lower_bound(const key_type &k) const {
         for (const_iterator itr = begin(); itr != end(); ++itr) {
-            if (!key_compare(itr->first, k))
+            if (!_key(itr->first, k))
                 return itr;
         }
         return end();
@@ -248,14 +251,14 @@ private:
     // 상한선: 값을 오름차순으로 정렬 후, k보다 작거나 같은 값을 가리키는 iterator 반환
     iterator upper_bound(const key_type &k) {
         for (iterator itr = begin(); itr != end(); ++itr) {
-            if (!key_compare(k, itr->first))
+            if (!_key(k, itr->first))
                 return itr;
         }
         return end();
     };
     const_iterator upper_bound(const key_type &k) const {
         for (const_iterator itr = begin(); itr != end(); ++itr) {
-            if (!key_compare(k, itr->first))
+            if (!_key(k, itr->first))
                 return itr;
         }
         return end();
@@ -270,7 +273,7 @@ private:
 
     // allocator
     allocator_type get_allocator() const { return _alloc; };
-}
+};
 
 } // namespace ft
 #endif
