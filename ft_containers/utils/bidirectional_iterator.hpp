@@ -1,37 +1,38 @@
 #ifndef BIDIRECTIOAL_ITERATOR_HPP
 # define BIDIRECTIOAL_ITERATOR_HPP
 
-#include "map.hpp"
+#include "../map.hpp"
 
 #include "type_select.hpp"
 #include "iterator_traits.hpp"
 
 namespace ft {
-    template<class T, class value_compare, class Alloc, class is_const>
+    template<class T, class value_compare, class Alloc, bool is_const>
     class bidirectional_iterator {
     public:
         typedef T                                                                           value_type;
-        typedef _node_compare                                                               comp;
+        typedef ptrdiff_t                                                                   difference_type;
+        typedef value_compare                                                               comp;
         typedef Alloc                                                                       allocator_type;
-        typedef typename ft::typeSelector<_node_type*, const _node_type*, is_const>::type   pointer;
-        typedef typename ft::typeSelector<_node_type&, const _node_type&, is_const>::type   reference;
+        typedef typename ft::typeSelector<value_type*, const value_type*, is_const>::type   pointer;
+        typedef typename ft::typeSelector<value_type&, const value_type&, is_const>::type   reference;
         typedef typename ft::bidirectional_iterator_tag                                     iterator_category;
-        typedef typename ft::bst<T, comp, Alloc>::Node                                      Node;
+        typedef typename ft::Bst<T, comp, Alloc>::Node                                      Node;
 
         bidirectional_iterator() {};
         bidirectional_iterator(Node* node, Node* null_node): _node(node), _null_node(null_node) {};
-        bidirectional_iterator(bidirectional_iterator<_node_type, comp, allocator_type, false> const& bi) { _node = bi.get_node(); _null_node = bi.get_null_node(); }; // 인자는 무조건 iterator가 되어야 한다, const가 들어갈 수 없음
+        bidirectional_iterator(bidirectional_iterator<value_type, comp, allocator_type, false> const& bi) { _node = bi.get_node(); _null_node = bi.get_null_node(); }; // 인자는 무조건 iterator가 되어야 한다, const가 들어갈 수 없음
         bidirectional_iterator& operator=(bidirectional_iterator const& bi) { _node = bi._node; _null_node = bi._null_node; return *this; }
         ~bidirectional_iterator() {};
 
         Node* get_node() const { return _node; };
         Node* get_null_node() const { return _null_node; };
 
-        bool operator==(bidirectional_iterator<_node_type, comp, allocator_type, true> const& bi) { return _node == bi.get_node(); } // iterator - const iterator, const iterator - const iterator
-        bool operator==(bidirectional_iterator<_node_type, comp, allocator_type, false> const& bi) { return _node == bi.get_node(); } // iterator - iterator, const iterator - iterator
+        bool operator==(bidirectional_iterator<value_type, comp, allocator_type, true> const& bi) { return _node == bi.get_node(); } // iterator - const iterator, const iterator - const iterator
+        bool operator==(bidirectional_iterator<value_type, comp, allocator_type, false> const& bi) { return _node == bi.get_node(); } // iterator - iterator, const iterator - iterator
 
-        bool operator!=(bidirectional_iterator<_node_type, comp, allocator_type, true> const& bi) { return _node != bi.get_node(); }
-        bool operator!=(bidirectional_iterator<_node_type, comp, allocator_type, false> const& bi) { return _node != bi.get_node(); }
+        bool operator!=(bidirectional_iterator<value_type, comp, allocator_type, true> const& bi) { return _node != bi.get_node(); }
+        bool operator!=(bidirectional_iterator<value_type, comp, allocator_type, false> const& bi) { return _node != bi.get_node(); }
 
         // pair 반환
         reference operator*() const { return _node->value; };
