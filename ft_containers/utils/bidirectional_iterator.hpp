@@ -63,15 +63,19 @@ namespace ft {
         bidirectional_iterator operator++(int) { bidirectional_iterator tmp(*this); ++(*this); return tmp; }; // *a++;
 
         bidirectional_iterator& operator--() {
+            if (_node == _null_node) {
+               while (_node->rnode != _null_node)
+                   _node = _node->rnode;
+            }
             // 큰 값에서 작은 값으로 이동한다
-            if (_node->lnode != _null_node) {
+            else if (_node->lnode != _null_node) {
                 _node = _node->lnode;
                 while (_node->rnode != _null_node)
                     _node = _node->rnode;
             }
             else {
                 while (_node->parent && _node != _node->parent->lnode) {
-                    _node = _node->parent;         
+                    _node = _node->parent;
                 }
                 _node = _node->parent;
             }
