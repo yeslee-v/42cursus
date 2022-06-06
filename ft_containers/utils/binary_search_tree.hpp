@@ -58,18 +58,22 @@ namespace ft {
             na.construct(null_node, Node());
             
             // 전위순회를 하며 node에 값을 하나씩 넣어준다
-            copy(bst.root);            
+            // 매개변수로 받은 bst의 node를 매개변수로 받은 bst의 null_node와 비교해줘야한다
+            copy(bst.root, bst.null_node);
         }
         Bst& operator=(const Bst& bst) {
             if (this->root)
                 clear();
 
-            copy(bst.root);
+            copy(bst.root, bst.null_node);
             
             return *this;
         }
         ~Bst() {
             clear();
+            // 생성자에서 할당한 null_node는 따로 해제해준다
+            na.destroy(null_node);
+            na.deallocate(null_node, 1);
             // 어차피 없어지니까 root를 NULL 초기화하는 작업은 진행하지 않는다
         };
 
@@ -77,12 +81,12 @@ namespace ft {
         Node* get_null_node() const { return null_node; };
         size_t get_size() const { return size; };
 
-        void copy(Node* node) {
+        void copy(Node* node, Node* null_node) {
             if (!node || node == null_node)
                 return ;
             insertNode(node->value);
-            copy(node->lnode);
-            copy(node->rnode);
+            copy(node->lnode, null_node);
+            copy(node->rnode, null_node);
         }
 
         void clear(){
@@ -125,9 +129,7 @@ namespace ft {
                     size++;
                     return prev->rnode;
                 }
-                else if (prev->value == value)
-                   return prev;
-                else {
+                else if (comp(value, prev->value)) {
                     prev->lnode = na.allocate(1);
                     na.construct(prev->lnode, Node(value));
                     prev->lnode->parent = prev;
@@ -138,6 +140,12 @@ namespace ft {
                     size++;
                     return prev->lnode;
                 }
+                // prev->value == value
+                // key가 동일한 pair 인자를 삽입하려고 하면, 이미 존재하는 key의 Node를 반환한다
+                // 처음에는 else if 의 조건으로 prev->value == value를 넣었으나,
+                // 그러면 prev->value->key와 value->key로 비교해야하는데,
+                // prev->value가 pair가 아닌 경우(범용적인 bst를 만드려고 했음)를 고려하여 else로 아예 빼버렸다.
+                return prev;
             }
             // root가 존재하지 않는 경우
             root = na.allocate(1);
@@ -157,9 +165,9 @@ namespace ft {
                 return NULL;
 
             Node* tmp = root;
-
             while (tmp != null_node) {
-                if (tmp->value == value)
+                // tmp->value의 key와 value의 key를 비교해야하지만, pair로 들어오지 않을 수 있으므로 comp로 비교한다
+                if (!comp(tmp->value, value) && !comp(value, tmp->value))
                     return tmp;
                 tmp = comp(tmp->value, value) ? tmp->rnode : tmp->lnode;
             }
