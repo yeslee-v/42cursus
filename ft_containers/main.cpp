@@ -5,15 +5,15 @@
 #include <iostream>
 #include <string>
 #include <deque>
-#if 1 //CREATE A REAL STL EXAMPLE
+#if 0 //CREATE A REAL STL EXAMPLE
 	#include <map>
 	#include <stack>
 	#include <vector>
 	namespace ft = std;
 #else
-	#include <map.hpp>
-	#include <stack.hpp>
-	#include <vector.hpp>
+	#include "map.hpp"
+	#include "stack.hpp"
+	#include "vector.hpp"
 #endif
 
 #include <stdlib.h>
@@ -49,6 +49,11 @@ class MutantStack : public ft::stack<T>
         };
 
 int main(int argc, char** argv) {
+    time_t start;
+    time_t finish;
+
+    start = time(NULL);
+
     if (argc != 2)
     {
         std::cerr << "Usage: ./test seed" << std::endl;
@@ -116,5 +121,10 @@ int main(int argc, char** argv) {
         std::cout << *it;
     }
     std::cout << std::endl;
+
+    finish = time(NULL);
+
+    std::cout << "time: " << finish - start << "second" << std::endl;
+
     return (0);
 }
