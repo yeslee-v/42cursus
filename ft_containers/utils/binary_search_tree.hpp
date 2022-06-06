@@ -93,8 +93,6 @@ namespace ft {
             na.deallocate(node, 1);            
         }
 
-        
-
         // map[2] = 5처럼 값을 넣어주는 함수
         void insertNode(T value) {
             if (!root) {
@@ -103,6 +101,8 @@ namespace ft {
                 na.construct(root, Node(value));
                 root->lnode = null_node;
                 root->rnode = null_node;
+                // null_node의 parent를 알기 위해 설정 -> bst의 operator--위해
+                null_node->rnode = root;
             }
             else {
                 Node* tmp = root;
@@ -122,6 +122,8 @@ namespace ft {
                     // 새로 생긴 노드의 왼쪽 오른쪽 노드에 null_node를 설정한다
                     prev->rnode->lnode = null_node;
                     prev->rnode->rnode = null_node;
+
+                    null_node->rnode = root;
                 }
                 else {
                     prev->lnode = na.allocate(1);
@@ -129,6 +131,8 @@ namespace ft {
                     prev->lnode->parent = prev;
                     prev->lnode->lnode = null_node;
                     prev->lnode->rnode = null_node;
+
+                    null_node->rnode = root;
                 }
             }
             size++;
@@ -180,8 +184,10 @@ namespace ft {
                             tmp->parent->rnode = node;
                     }
                     // node == root
-                    else
+                    else {
                         root = node;
+                        null_node->rnode = root;
+                    }
 
                     na.destroy(tmp); // 해당 node 지우기
                     na.deallocate(tmp, 1); // 지운 자리의 메모리 해제하기
@@ -215,8 +221,10 @@ namespace ft {
                             tmp->parent->rnode = node;
                     }
                     // node == root
-                    else
+                    else {
                         root = node;
+                        null_node->rnode = root;
+                    }
 
                     na.destroy(tmp); // 해당 node 지우기
                     na.deallocate(tmp, 1); // 지운 자리의 메모리 해제하기
@@ -230,12 +238,13 @@ namespace ft {
                             node->parent->rnode = null_node;
                     }
                     // node가 root노드 단 하나로만 존재할 때
-                    else
+                    else {
                         root = NULL;
+                        null_node->rnode = root;
+                    }
 
                     na.destroy(tmp); // 해당 node 지우기
                     na.deallocate(tmp, 1); // 지운 자리의 메모리 해제하기
-
 
                 }
                 size--;
