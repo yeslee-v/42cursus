@@ -49,7 +49,7 @@ namespace ft {
             // 오른쪽 노드가 존재하지 않는 경우
             else {
                 // 현재 내 노드가 부모의 오른쪽 노드가 아닐 때까지
-                while (_node->parent && _node != _node->parent->rnode) {
+                while (_node->parent && _node == _node->parent->rnode) {
                     _node = _node->parent;         
                 }
                 // 어차피 lnode이기 때문에 parent로 쓴다
@@ -75,7 +75,7 @@ namespace ft {
                     _node = _node->rnode;
             }
             else {
-                while (_node->parent && _node != _node->parent->lnode) {
+                while (_node->parent && _node == _node->parent->lnode) {
                     _node = _node->parent;
                 }
                 _node = _node->parent;
