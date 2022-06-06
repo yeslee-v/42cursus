@@ -19,12 +19,13 @@ namespace ft {
         typedef typename ft::bst<T, comp, Alloc>::Node                                      Node;
 
         bidirectional_iterator() {};
-        bidirectional_iterator(Node* node): _node(node) {};
-        bidirectional_iterator(bidirectional_iterator<_node_type, comp, allocator_type, false> const& bi) { _node = bi.get_node(); }; // 인자는 무조건 iterator가 되어야 한다, const가 들어갈 수 없음
-        bidirectional_iterator& operator=(bidirectional_iterator const& bi) { _node = bi._node; return *this; }
+        bidirectional_iterator(Node* node, Node* null_node): _node(node), _null_node(null_node) {};
+        bidirectional_iterator(bidirectional_iterator<_node_type, comp, allocator_type, false> const& bi) { _node = bi.get_node(); _null_node = bi.get_null_node(); }; // 인자는 무조건 iterator가 되어야 한다, const가 들어갈 수 없음
+        bidirectional_iterator& operator=(bidirectional_iterator const& bi) { _node = bi._node; _null_node = bi._null_node; return *this; }
         ~bidirectional_iterator() {};
 
         Node* get_node() const { return _node; };
+        Node* get_null_node() const { return _null_node; };
 
         bool operator==(bidirectional_iterator<_node_type, comp, allocator_type, true> const& bi) { return _node == bi.get_node(); } // iterator - const iterator, const iterator - const iterator
         bool operator==(bidirectional_iterator<_node_type, comp, allocator_type, false> const& bi) { return _node == bi.get_node(); } // iterator - iterator, const iterator - iterator
@@ -38,10 +39,10 @@ namespace ft {
 
         bidirectional_iterator& operator++() {
             // 오른쪽 노드가 있다면 오른쪽으로 한 칸 이동
-            if (_node->rnode) {
+            if (_node->rnode != _null_node) {
                 _node = _node->rnode;
                 // 왼쪽 노드가 있다면 왼쪽 노드 최남단으로 이동
-                while (_node->lnode)
+                while (_node->lnode != _null_node)
                     _node = _node->lnode;
             }
             // 오른쪽 노드가 존재하지 않는 경우
@@ -52,8 +53,10 @@ namespace ft {
                 }
                 // 어차피 lnode이기 때문에 parent로 쓴다
                 _node = _node->parent;
-                // 순회는 NULL로 끝난다
             }
+            // 순회는 end()에서 끝나기 때문에 노드가 NULL이라면 null_node(end()인지 구분하는 인자)로 바꿔준다
+            if (_node == NULL)
+                _node = _null_node;
             return *this;
         };
         
@@ -61,9 +64,9 @@ namespace ft {
 
         bidirectional_iterator& operator--() {
             // 큰 값에서 작은 값으로 이동한다
-            if (_node->lnode) {
+            if (_node->lnode != _null_node) {
                 _node = _node->lnode;
-                while (_node->rnode)
+                while (_node->rnode != _null_node)
                     _node = _node->rnode;
             }
             else {
@@ -72,6 +75,7 @@ namespace ft {
                 }
                 _node = _node->parent;
             }
+            // begin의 전(parent)을 보기 때문에 NULL을 반환한다
             return (*this);
         };
 
@@ -79,6 +83,7 @@ namespace ft {
 
     private:
         Node* _node;
+        Node* _null_node;
     };
 }
 
