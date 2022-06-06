@@ -32,6 +32,7 @@ namespace ft {
         typedef typename Alloc::template rebind<Node>::other node_alloc;
 
         Node* root;
+        Node* null_node; // leaf node가 NULL을 가리키는지 확인하는 노드(값이 NULL이다), parent(root)의 parent가 가리키는 NULL과 분리해서 구분하려는 의도
         node_alloc na;
         Alloc alloc;
         Compare comp;
@@ -39,12 +40,19 @@ namespace ft {
 
     public:
     // class를 선언할 때만 ;을 넣어준다
-        Bst(const Alloc& alloc = Alloc(), const Compare& comp = Compare()): root(NULL), alloc(alloc), comp(comp), size(0) {};
+        Bst(const Alloc& alloc = Alloc(), const Compare& comp = Compare()): root(NULL), alloc(alloc), comp(comp), size(0) {
+            // 생성자에서 할당하고 초기화해준다
+            null_node = na.allocate(1);
+            na.construct(null_node, 1);
+        };
         Bst(const Bst& bst) {
             root = NULL;
             alloc = bst.alloc;
             comp = bst.comp;
             size = 0;
+
+            null_node = na.allocate(1);
+            na.construct(null_node, 1);
             
             // 전위순회를 하며 node에 값을 하나씩 넣어준다
             copy(bst.root);            
@@ -77,7 +85,7 @@ namespace ft {
         }
 
         void clear(Node* node) {
-            if (!node)
+            if (!node || node == null_node)
                 return ;
             clear(node->lnode);
             clear(node->rnode);
@@ -93,13 +101,16 @@ namespace ft {
                 root = na.allocate(1);
                 // root = Node(value) -> 자료형이 같아야 하기 때문에 Node 생성자로 value를 넣는다
                 na.construct(root, Node(value));
+                root->lnode = null_node;
+                root->rnode = null_node;
             }
             else {
                 Node* tmp = root;
                 Node* prev; // tmp의 이전 노드를 가리킨다
 
                 // node가 중간에 들어가는 경우는 없다 -> 무조건 node 끝쪽에 위치한다
-                while (tmp) {
+                // tmp != NULL 변형 : null_node는 NULL을 가지고 있다
+                while (tmp != null_node) {
                     prev = tmp;
                     tmp = comp(tmp->value, value) ? tmp->rnode : tmp->lnode;
                 }
@@ -108,11 +119,16 @@ namespace ft {
                     prev->rnode = na.allocate(1);
                     na.construct(prev->rnode, Node(value));
                     prev->rnode->parent = prev;
+                    // 새로 생긴 노드의 왼쪽 오른쪽 노드에 null_node를 설정한다
+                    prev->rnode->lnode = null_node;
+                    prev->rnode->rnode = null_node;
                 }
                 else {
                     prev->lnode = na.allocate(1);
                     na.construct(prev->lnode, Node(value));
                     prev->lnode->parent = prev;
+                    prev->lnode->lnode = null_node;
+                    prev->lnode->rnode = null_node;
                 }
             }
             size++;
@@ -124,7 +140,7 @@ namespace ft {
 
             Node* tmp = root;
 
-            while (tmp) {
+            while (tmp != null_node) {
                 if (tmp->value == value)
                     return tmp;
                 tmp = comp(tmp->value, value) ? tmp->rnode : tmp->lnode;
@@ -138,15 +154,15 @@ namespace ft {
             Node* tmp = node; // 지워질 애
 
             if (node) {
-                if (tmp->lnode) {
+                if (tmp->lnode != null_node) {
                     node = node->lnode;
-                    while (node->rnode) // 최남단
+                    while (node->rnode != null_node) // 최남단
                         node = node->rnode;
                     //    10            8
                     //  5        =>   5
                     //    6            6
                     //      8
-                    if (node->lnode && tmp->lnode != node)
+                    if (node->lnode != null_node && tmp->lnode != node)
                         node->lnode->parent = node->parent;
                     if (tmp->lnode != node) {
                         node->parent->rnode = node->lnode;
@@ -170,17 +186,17 @@ namespace ft {
                     na.destroy(tmp); // 해당 node 지우기
                     na.deallocate(tmp, 1); // 지운 자리의 메모리 해제하기
                 }
-                else if (tmp->rnode) {
+                else if (tmp->rnode != null_node) {
                     node = node->rnode;
 
-                    while (node->lnode)
+                    while (node->lnode != null_node)
                         node = node->lnode;
 
                     // 1(tmp)         2
                     //   3(n->p) =>  3
                     // 2(node)      4
                     //   4(n->r)
-                    if (node->rnode && tmp->rnode != node)
+                    if (node->rnode != null_node && tmp->rnode != node)
                         node->rnode->parent = node->parent;
                     if (tmp->rnode != node) {
                         node->parent->lnode = node->rnode;
@@ -209,9 +225,9 @@ namespace ft {
                 else {
                     if (tmp->parent) {
                         if (tmp->parent->lnode == tmp)
-                            node->parent->lnode = NULL;
+                            node->parent->lnode = null_node;
                         else
-                            node->parent->rnode = NULL;
+                            node->parent->rnode = null_node;
                     }
                     // node가 root노드 단 하나로만 존재할 때
                     else
@@ -234,7 +250,7 @@ namespace ft {
             print(this->root);
         }
         void print(Node* node) {
-            if (!node)
+            if (!node || node == null_node)
                 return ;
             print(node->lnode);
             std::cout << node->value << std::endl;
