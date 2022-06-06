@@ -14,9 +14,12 @@ namespace ft {
             Node* rnode;
             T     value;
 
-            Node(): parent(NULL), lnode(NULL), rnode(NULL), value(0) {};
+            Node(): parent(NULL), lnode(NULL), rnode(NULL), value(T()) {};
             Node(T value): parent(NULL), lnode(NULL), rnode(NULL), value(value) {};
-            Node(const Node& node) { *this = node; };
+            // 복사 생성자: map의 value_type의 key_type이 const이기 때문에 대입연산자를 사용할 수 없다 -> 값을 바로 할당한다
+            // 생성과 동시에 초기화를 해준다
+            Node(const Node& node): parent(node.parent), lnode(node.lnode), rnode(node.rnode), value(node.value) {};
+            // 생성자로 인해 이미 멤버 변수를 생성하고, 그 안에는 무슨 값이 할당되어있는지는 모름 -> 여기에 새로운 값을 할당해준다(초기화는 아님)
             Node& operator=(const Node& node) {
                 this->parent = node.parent;
                 this->lnode = node.lnode;
@@ -43,7 +46,7 @@ namespace ft {
         Bst(const Alloc& alloc = Alloc(), const Compare& comp = Compare()): root(NULL), alloc(alloc), comp(comp), size(0) {
             // 생성자에서 할당하고 초기화해준다
             null_node = na.allocate(1);
-            na.construct(null_node, 1);
+            na.construct(null_node, Node());
         };
         Bst(const Bst& bst) {
             root = NULL;
@@ -52,7 +55,7 @@ namespace ft {
             size = 0;
 
             null_node = na.allocate(1);
-            na.construct(null_node, 1);
+            na.construct(null_node, Node());
             
             // 전위순회를 하며 node에 값을 하나씩 넣어준다
             copy(bst.root);            
@@ -69,6 +72,10 @@ namespace ft {
             clear();
             // 어차피 없어지니까 root를 NULL 초기화하는 작업은 진행하지 않는다
         };
+
+        Node* get_root() const { return root; };
+        Node* get_null_node() const { return null_node; };
+        size_t get_size() const { return size; };
 
         void copy(Node* node) {
             if (!node)
