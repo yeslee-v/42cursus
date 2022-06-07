@@ -1,7 +1,5 @@
 NAME = ft_container
 
-HEADER = Vector.hpp
-
 CC = clang++
 CFLAGES = -std=c++98 -Wall -Wextra -Werror
 
@@ -18,7 +16,7 @@ $(NAME) : $(OBJ)
 	$(CC) $(CFLAGES) -o $@ $^
 
 %.o:%.c
-	$(CC) $(CFLAGES) $(HEADER) -o $@ -c $<
+	$(CC) $(CFLAGES) -o $@ -c $<
 
 clean :
 	$(RM) $(RMFLAGS) $(OBJ)
