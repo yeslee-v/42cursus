@@ -2,8 +2,8 @@
 // Created by Yeshin Lee on 2022/05/29.
 //
 
-#ifndef INC_42CURSUS_RANDOM_ACCESS_ITERATOR_HPP
-#define INC_42CURSUS_RANDOM_ACCESS_ITERATOR_HPP
+#ifndef RANDOM_ACCESS_ITERATOR_HPP
+#define RANDOM_ACCESS_ITERATOR_HPP
 
 // vector에서 사용하기 위한 iterator
 
