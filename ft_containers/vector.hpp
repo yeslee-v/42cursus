@@ -55,6 +55,7 @@ namespace ft
         };
 
         // int가 안들어왔을 때 여기로 >> enble_if 사용
+        // typename T
         template <class InputIterator>
         vector(InputIterator first, InputIterator last, const allocator_type &alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type * = NULL)
                 : _alloc(alloc)
@@ -83,6 +84,7 @@ namespace ft
 
         vector &operator=(const vector &x)
         {
+            // 대입하기 전, 비워지지 않았을 수도 있으니 미리 비운다
             clear();
             if (_cap)
                 _alloc.deallocate(_val, _cap);
@@ -149,8 +151,8 @@ namespace ft
         }
 
         /*
-                     * Capacity
-                     */
+         * Capacity
+         */
         size_type size() const
         {
             return _n;
