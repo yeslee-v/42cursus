@@ -8,3 +8,4 @@ You need to respect the structure of the reference container. If it’s missing 
 orthodox canonical form, do not implement it.
 As a reminder, we are coding in C++98, so any new feature of the containers MUST NOT
 be implemented, but every old feature (even deprecated) is expected.
+
