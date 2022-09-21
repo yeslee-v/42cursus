@@ -1,6 +1,7 @@
-# Cpp Module 03 
+# Cpp Module 07
 
-> For the C++ modules you will use and learn C++98 only. The goal is for you to learn
-the basic of an object oriented programming language. We know modern C++ is way
-different in a lot of aspects so if you want to become a proficient C++, developer you
-will need modern standard C++ later on.
+> The goal of these modules is to introduce you to Object-Oriented Programming.
+> This will be the starting point of your C++ journey. Many languages are recommended
+> to learn OOP. We decided to choose C++ since it’s derived from your old friend C.
+> Because this is a complex language, and in order to keep things simple, your code will
+> comply with the C++98 standard.
